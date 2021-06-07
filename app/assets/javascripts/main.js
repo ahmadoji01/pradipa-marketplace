@@ -186,10 +186,10 @@
     /*--
         Custom Scrollbar (Perfect Scrollbar)
     -----------------------------------*/
-    $('.customScroll').perfectScrollbar({
+    /*$('.customScroll').perfectScrollbar({
         suppressScrollX: !0
     });
-
+    */
     /*--
         Select2
     -----------------------------------*/
