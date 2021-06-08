@@ -88,7 +88,7 @@
     /*--
         Off Canvas Function
     -----------------------------------*/
-    (function () {
+    /*(function () {
         var $offCanvasToggle = $('.offcanvas-toggle'),
             $offCanvas = $('.offcanvas'),
             $offCanvasOverlay = $('.offcanvas-overlay'),
@@ -111,38 +111,38 @@
             $offCanvasOverlay.fadeOut();
             $mobileMenuToggle.find('a').removeClass('close');
         });
-    })();
+    })();*/
 
     /*--
         Off Canvas Menu
     -----------------------------------*/
-    function mobileOffCanvasMenu() {
-        var $offCanvasNav = $('.offcanvas-menu, .overlay-menu'),
-            $offCanvasNavSubMenu = $offCanvasNav.find('.sub-menu');
+    // function mobileOffCanvasMenu() {
+    //     var $offCanvasNav = $('.offcanvas-menu, .overlay-menu'),
+    //         $offCanvasNavSubMenu = $offCanvasNav.find('.sub-menu');
 
-        /*Add Toggle Button With Off Canvas Sub Menu*/
-        $offCanvasNavSubMenu.parent().prepend('<span class="menu-expand"></span>');
+    //     /*Add Toggle Button With Off Canvas Sub Menu*/
+    //     $offCanvasNavSubMenu.parent().prepend('<span class="menu-expand"></span>');
 
-        /*Category Sub Menu Toggle*/
-        $offCanvasNav.on('click', 'li a, .menu-expand', function (e) {
-            var $this = $(this);
-            if ($this.attr('href') === '#' || $this.hasClass('menu-expand')) {
-                e.preventDefault();
-                if ($this.siblings('ul:visible').length) {
-                    $this.parent('li').removeClass('active');
-                    $this.siblings('ul').slideUp();
-                    $this.parent('li').find('li').removeClass('active');
-                    $this.parent('li').find('ul:visible').slideUp();
-                } else {
-                    $this.parent('li').addClass('active');
-                    $this.closest('li').siblings('li').removeClass('active').find('li').removeClass('active');
-                    $this.closest('li').siblings('li').find('ul:visible').slideUp();
-                    $this.siblings('ul').slideDown();
-                }
-            }
-        });
-    }
-    mobileOffCanvasMenu();
+    //     /*Category Sub Menu Toggle*/
+    //     $offCanvasNav.on('click', 'li a, .menu-expand', function (e) {
+    //         var $this = $(this);
+    //         if ($this.attr('href') === '#' || $this.hasClass('menu-expand')) {
+    //             e.preventDefault();
+    //             if ($this.siblings('ul:visible').length) {
+    //                 $this.parent('li').removeClass('active');
+    //                 $this.siblings('ul').slideUp();
+    //                 $this.parent('li').find('li').removeClass('active');
+    //                 $this.parent('li').find('ul:visible').slideUp();
+    //             } else {
+    //                 $this.parent('li').addClass('active');
+    //                 $this.closest('li').siblings('li').removeClass('active').find('li').removeClass('active');
+    //                 $this.closest('li').siblings('li').find('ul:visible').slideUp();
+    //                 $this.siblings('ul').slideDown();
+    //             }
+    //         }
+    //     });
+    // }
+    // mobileOffCanvasMenu();
 
     /*--
         Header Category

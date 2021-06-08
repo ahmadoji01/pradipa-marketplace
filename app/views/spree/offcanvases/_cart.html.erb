@@ -1,35 +1,14 @@
-<div id="offcanvas-cart" tabindex="-1" class="offcanvas offcanvas-cart" aria-labelledby="offcanvas-cart-label">
+<div id="offcanvas-cart" tabindex="-1" class="offcanvas offcanvas-end offcanvas-cart" aria-labelledby="offcanvas-cart-label" style="padding:10px 10px">
     <div class="inner">
         <div class="head">
             <span class="title">Cart</span>
             <button class="offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">×</button>
         </div>
-        <div class="body customScroll">
+        <div class="body customScroll cartScroll">
             <ul class="minicart-product-list">
-                <li>
-                    <a href="product-details.html" class="image"><<%= image_tag "product/cart-product-1.jpg" %></a>
-                    <div class="content">
-                        <a href="product-details.html" class="title">Walnut Cutting Board</a>
-                        <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                        <a href="#" class="remove">×</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="product-details.html" class="image"><%= image_tag "product/cart-product-2.jpg" %></a>
-                    <div class="content">
-                        <a href="product-details.html" class="title">Lucky Wooden Elephant</a>
-                        <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
-                        <a href="#" class="remove">×</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="product-details.html" class="image"><%= image_tag "product/cart-product-3.jpg" %></a>
-                    <div class="content">
-                        <a href="product-details.html" class="title">Fish Cut Out Set</a>
-                        <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
-                        <a href="#" class="remove">×</a>
-                    </div>
-                </li>
+                <%= render partial: 'spree/elements/offcanvas_cart_item' %>
+                <%= render partial: 'spree/elements/offcanvas_cart_item' %>
+                <%= render partial: 'spree/elements/offcanvas_cart_item' %>
             </ul>
         </div>
         <div class="foot">
