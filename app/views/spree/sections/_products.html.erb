@@ -5,32 +5,34 @@
             <h2 class="title title-icon-both">Our best sellers</h2>
             <p>Browse a wide range of distinctive pieces of arts you could never find elsewhere.</p>
         </div>
-
-        <div class="row learts-mb-n30">
-            <div class="col-lg-6 col-12 order-lg-2 learts-mb-30">
-                <div class="sale-banner11">
-                    <div class="inner">
-                        <%= image_tag "banner/sale/sale-banner11-2.jpg" %>
-                        <div class="content">
-                            <h3 class="title">Alumsy Shelf</h3>
-                            <%= image_tag "banner/sale/sale-banner4-1.1.png", class: "price" %>
+        
+        <% if featured_products.any? %>
+            <div class="row learts-mb-n30">
+                <div class="col-lg-6 col-12 order-lg-2 learts-mb-30">
+                    <div class="sale-banner11">
+                        <div class="inner">
+                            <% url = spree.product_path(featured_products.first, taxon_id: @taxon.try(:id)) %>
+                            <%= link_to(render('spree/shared/image', 
+                                image: featured_products.first.gallery.images.first, size: :large, itemprop: "image"), url, itemprop: 'url', class: 'price') %>
+                            <div class="content">
+                                <h3 class="title"><%= featured_products.first.name %></h3>
+                            </div>
                         </div>
                     </div>
+                    <div class="countdown2 primary2 justify-content-center learts-mt-50" data-countdown="2021/01/01"></div>
+                    <div class="d-flex justify-content-center learts-mt-50">
+                        <a href="#" class="btn btn-primary btn-hover-black">shop now</a>
+                    </div>
                 </div>
-                <div class="countdown2 primary2 justify-content-center learts-mt-50" data-countdown="2021/01/01"></div>
-                <div class="d-flex justify-content-center learts-mt-50">
-                    <a href="#" class="btn btn-primary btn-hover-black">shop now</a>
+                <div class="col-lg-6 col-12 order-lg-1 learts-mb-30">
+                    <div class="products row row-cols-lg-2 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                        <%= render partial: 'spree/elements/product_card', locals: { product: featured_products.second } %>
+                        <%= render partial: 'spree/elements/product_card', locals: { product: featured_products.third } %>
+                        <%= render partial: 'spree/elements/product_card', locals: { product: featured_products.fourth } %>
+                        <%= render partial: 'spree/elements/product_card', locals: { product: featured_products.fifth } %>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-12 order-lg-1 learts-mb-30">
-                <div class="products row row-cols-lg-2 row-cols-md-3 row-cols-sm-2 row-cols-1">
-                    <%= render partial: 'spree/elements/product_card' %>
-                    <%= render partial: 'spree/elements/product_card' %>
-                    <%= render partial: 'spree/elements/product_card' %>
-                    <%= render partial: 'spree/elements/product_card' %>
-                </div>
-            </div>
-        </div>
-
+        <% end %>
     </div>
-</div>]
+</div>

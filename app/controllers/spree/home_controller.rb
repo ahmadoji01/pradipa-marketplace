@@ -7,7 +7,7 @@ module Spree
         @searcher = build_searcher(params.merge(include_images: true))
         @products = @searcher.retrieve_products
         @taxonomies = Spree::Taxonomy.includes(root: :children)
-        console
+        @featured_products = @products.order("created_at DESC").slice(0,5)
       end
     end
   end

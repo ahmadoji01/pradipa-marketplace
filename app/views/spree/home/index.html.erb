@@ -22,9 +22,9 @@
     </div>
 </div>
 
-<%= render partial: 'spree/sections/products' %>
+<%= render partial: 'spree/sections/products', locals: { featured_products: @featured_products } %>
 <%= render partial: 'spree/sections/special_product_banner' %>
-<%= render partial: 'spree/sections/recent_products' %>
+<%= render partial: 'spree/sections/recent_products', locals: { products: @products } %>
 <%= render partial: 'spree/sections/feature' %>
 <%= render partial: 'spree/sections/deal_of_the_day' %>
 <%= render partial: 'spree/sections/recent_posts' %>
