@@ -1,0 +1,36 @@
+<div class="section section-padding">
+    <div class="container">
+
+        <div class="section-title2 text-center">
+            <h2 class="title title-icon-both">Our best sellers</h2>
+            <p>Browse a wide range of distinctive pieces of arts you could never find elsewhere.</p>
+        </div>
+
+        <div class="row learts-mb-n30">
+            <div class="col-lg-6 col-12 order-lg-2 learts-mb-30">
+                <div class="sale-banner11">
+                    <div class="inner">
+                        <%= image_tag "banner/sale/sale-banner11-2.jpg" %>
+                        <div class="content">
+                            <h3 class="title">Alumsy Shelf</h3>
+                            <%= image_tag "banner/sale/sale-banner4-1.1.png", class: "price" %>
+                        </div>
+                    </div>
+                </div>
+                <div class="countdown2 primary2 justify-content-center learts-mt-50" data-countdown="2021/01/01"></div>
+                <div class="d-flex justify-content-center learts-mt-50">
+                    <a href="#" class="btn btn-primary btn-hover-black">shop now</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 order-lg-1 learts-mb-30">
+                <div class="products row row-cols-lg-2 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                    <%= render partial: 'spree/elements/product_card' %>
+                    <%= render partial: 'spree/elements/product_card' %>
+                    <%= render partial: 'spree/elements/product_card' %>
+                    <%= render partial: 'spree/elements/product_card' %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>]
