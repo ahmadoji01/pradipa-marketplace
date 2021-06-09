@@ -10,26 +10,23 @@
 
             <div class="col">
                 <div class="header6-search">
-                    <form action="#">
-                        <div class="row no-gutters">
-                            <div class="col-auto">
-                                <select class="search-select select2-basic">
-                                    <option value="0">All Categories</option>
-                                    <option value="kids-babies">Kids &amp; Babies</option>
-                                    <option value="home-decor">Home Decor</option>
-                                    <option value="gift-ideas">Gift ideas</option>
-                                    <option value="kitchen">Kitchen</option>
-                                    <option value="toys">Toys</option>
-                                    <option value="kniting-sewing">Kniting &amp; Sewing</option>
-                                    <option value="pots">Pots</option>
-                                </select>
+                    <% @taxons = @taxon && @taxon.parent ? @taxon.parent.children : Spree::Taxon.roots %>
+                        <%= form_tag spree.products_path, method: :get do %>
+                        <% cache [I18n.locale, @taxons] do %>
+                            <div class="row no-gutters">
+                                <div class="col-auto">
+                                    <%= select_tag :taxon, 
+                                        options_for_select([[t('spree.all_departments'), '']] +
+                                                                @taxons.map {|t| [t.name, t.id]},
+                                                                @taxon ? @taxon.id : params[:taxon]), class: 'search-select select2-basic', 'aria-label' => 'Taxon' %>
+                                </div>
+                                <div class="col">
+                                    <%= search_field_tag :keywords, params[:keywords], placeholder: 'What can we help you find?' %>
+                                </div>
+                                <button type="submit"><i class="fal fa-search"></i></button>
                             </div>
-                            <div class="col">
-                                <input type="text" placeholder="Search Products...">
-                            </div>
-                            <button type="submit"><i class="fal fa-search"></i></button>
-                        </div>
-                    </form>
+                        <% end %>
+                    <% end %>
                 </div>
             </div>
 
