@@ -1,3 +1,4 @@
+<% order = current_order %>
 <div id="offcanvas-cart" tabindex="-1" class="offcanvas offcanvas-end offcanvas-cart" aria-labelledby="offcanvas-cart-label" style="padding:10px 10px">
     <div class="inner">
         <div class="head">
@@ -5,16 +6,16 @@
             <button class="offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">×</button>
         </div>
         <div class="body customScroll cartScroll">
-            <ul class="minicart-product-list">
-                <%= render partial: 'spree/elements/offcanvas_cart_item' %>
-                <%= render partial: 'spree/elements/offcanvas_cart_item' %>
-                <%= render partial: 'spree/elements/offcanvas_cart_item' %>
-            </ul>
+            <%= form_for order, url: update_cart_path, html: {id: 'update-cart'} do |order_form| %>
+                <ul class="minicart-product-list">
+                    <%= render partial: 'spree/offcanvases/line_item', collection: order_form.object.line_items, locals: { order_form: order_form } %>
+                </ul>
+            <% end %>
         </div>
         <div class="foot">
             <div class="sub-total">
                 <strong>Subtotal :</strong>
-                <span class="amount">$144.00</span>
+                <span class="amount"><%= order.display_item_total %></span>
             </div>
             <div class="buttons">
                 <a href="shopping-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
