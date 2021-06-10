@@ -856,6 +856,7 @@
     -----------------------------------*/
     $window.on('load', function () {
         subMenuMegaMenuAlignment();
+        $isotopeGrid.isotope( 'reloadItems' ).isotope();
     });
 
     /*--
@@ -863,6 +864,7 @@
     -----------------------------------*/
     $window.resize(function () {
         subMenuMegaMenuAlignment();
+        $isotopeGrid.isotope( 'reloadItems' ).isotope();
     });
 
 })(jQuery);

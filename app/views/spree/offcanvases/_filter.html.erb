@@ -1,0 +1,104 @@
+<div id="offcanvas-filter" tabindex="-1" class="offcanvas offcanvas-bottom offcanvas-filter" aria-labelledby="offcanvas-filter-label">
+    <div class="inner">
+        <div class="head">
+            <span class="title"><strong>Filter Products</strong></span>
+            <button class="offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">×</button>
+        </div>
+        <div class="body" style="overflow: auto">
+            <div class="col-lg-3 col-12 learts-mb-10 order-lg-1">
+
+                <div class="product-column-toggle d-none d-xl-flex single-widget learts-mb-40">
+                    <button class="toggle hintT-top" data-hint="5 Column" data-column="5"><i class="ti-layout-grid4-alt"></i></button>
+                    <button class="toggle active hintT-top" data-hint="4 Column" data-column="4"><i class="ti-layout-grid3-alt"></i></button>
+                    <button class="toggle hintT-top" data-hint="3 Column" data-column="3"><i class="ti-layout-grid2-alt"></i></button>
+                </div>
+
+                <!-- Search Start -->
+                <div class="single-widget learts-mb-40">
+                    <div class="widget-search">
+                        <%= form_tag spree.products_path, method: :get do %>
+                            <%= search_field_tag :keywords, params[:keywords], placeholder: 'Search Products...' %>
+                            <button><i class="fal fa-search"></i></button>
+                        <% end %>
+                    </div>
+                </div>
+                <!-- Search End -->
+
+                <div class="product-sorting single-widget learts-mb-40">
+                    <select class="nice-select">
+                        <option value="menu_order" selected="selected">Default sorting</option>
+                        <option value="popularity">Sort by popularity</option>
+                        <option value="rating">Sort by average rating</option>
+                        <option value="date">Sort by latest</option>
+                        <option value="price">Sort by price: low to high</option>
+                        <option value="price-desc">Sort by price: high to low</option>
+                    </select>
+                </div>
+
+                <!-- Price Range Start -->
+                <div class="single-widget learts-mb-40">
+                    <h3 class="widget-title product-filter-widget-title">Filters by price</h3>
+                    <div class="widget-price-range">
+                        <input class="range-slider" type="text" data-min="0" data-max="350" data-from="0" data-to="350" />
+                    </div>
+                </div>
+                <!-- Price Range End -->
+
+                <!-- Categories Start -->
+                <div class="single-widget learts-mb-40">
+                    <h3 class="widget-title product-filter-widget-title">Product categories</h3>
+                    <ul class="widget-list">
+                        <li><a href="#">Gift ideas</a> <span class="count">16</span></li>
+                        <li><a href="#">Home Decor</a> <span class="count">16</span></li>
+                        <li><a href="#">Kids &amp; Babies</a> <span class="count">6</span></li>
+                        <li><a href="#">Kitchen</a> <span class="count">15</span></li>
+                        <li><a href="#">Kniting &amp; Sewing</a> <span class="count">4</span></li>
+                        <li><a href="#">Pots</a> <span class="count">4</span></li>
+                        <li><a href="#">Toys</a> <span class="count">6</span></li>
+                    </ul>
+                </div>
+                <!-- Categories End -->
+
+                <div class="single-widget learts-mb-40" >
+                    <h3 class="widget-title product-filter-widget-title">Brands</h3>
+                    <ul class="widget-list product-filter-widget"style="overflow: auto">
+                        <li><a href="#">Alexander</a> <span class="count">(2)</span></li>
+                        <li><a href="#">Carmella</a> <span class="count">(4)</span></li>
+                        <li><a href="#">Danielle</a> <span class="count">(7)</span></li>
+                        <li><a href="#">Diana Day</a> <span class="count">(13)</span></li>
+                        <li><a href="#">Emilia</a> <span class="count">(2)</span></li>
+                        <li><a href="#">Gasmine</a> <span class="count">(15)</span></li>
+                        <li><a href="#">Jack &amp; Ella</a> <span class="count">(7)</span></li>
+                        <li><a href="#">Juliette</a> <span class="count">(11)</span></li>
+                    </ul>
+                </div>
+
+                <div class="single-widget learts-mb-40">
+                    <h3 class="widget-title product-filter-widget-title">Filters by colors</h3>
+                    <ul class="widget-colors product-filter-widget customScroll">
+                        <li><a href="#" class="hintT-top" data-hint="Black"><span data-bg-color="#000000">Black</span></a></li>
+                        <li><a href="#" class="hintT-top" data-hint="White"><span data-bg-color="#FFFFFF">White</span></a></li>
+                        <li><a href="#" class="hintT-top" data-hint="Dark Red"><span data-bg-color="#b2483c">Dark Red</span></a></li>
+                        <li><a href="#" class="hintT-top" data-hint="Flaxen"><span data-bg-color="#d5b85a">Flaxen</span></a></li>
+                        <li><a href="#" class="hintT-top" data-hint="Pine"><span data-bg-color="#01796f">Pine</span></a></li>
+                        <li><a href="#" class="hintT-top" data-hint="Tortilla"><span data-bg-color="#997950">Tortilla</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Tags Start -->
+                <div class="single-widget learts-mb-40">
+                    <h3 class="widget-title product-filter-widget-title">Product Tags</h3>
+                    <div class="widget-tags">
+                        <a href="#">handmade</a>
+                        <a href="#">learts</a>
+                        <a href="#">mug</a>
+                        <a href="#">product</a>
+                        <a href="#">learts</a>
+                    </div>
+                </div>
+                <!-- Tags End -->
+
+            </div>
+        </div>
+    </div>
+</div>

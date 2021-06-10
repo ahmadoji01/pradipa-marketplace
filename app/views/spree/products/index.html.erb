@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-12 learts-mb-10 order-lg-1">
+                <div class="col-lg-3 col-12 learts-mb-10 order-lg-1 d-lg-block d-none">
 
                     <div class="product-column-toggle d-none d-xl-flex single-widget learts-mb-40">
                         <button class="toggle hintT-top" data-hint="5 Column" data-column="5"><i class="ti-layout-grid4-alt"></i></button>
@@ -32,10 +32,10 @@
                     <!-- Search Start -->
                     <div class="single-widget learts-mb-40">
                         <div class="widget-search">
-                            <form action="#">
-                                <input type="text" placeholder="Search products...." value="<%= params[:keywords] %>">
+                            <%= form_tag spree.products_path, method: :get do %>
+                                <%= search_field_tag :keywords, params[:keywords], placeholder: 'Search Products...' %>
                                 <button><i class="fal fa-search"></i></button>
-                            </form>
+                            <% end %>
                         </div>
                     </div>
                     <!-- Search End -->
@@ -122,3 +122,5 @@
 
 </div>
 <!-- Shop Products Section End -->
+<%= render partial: 'spree/offcanvases/filter' %>
+<button class="offcanvas-toggle fab-button d-lg-none d-xl-none" href="#offcanvas-filter" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><i class="fas fa-filter"></i> Filter</button>
