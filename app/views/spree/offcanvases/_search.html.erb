@@ -7,13 +7,13 @@
                 <% cache [I18n.locale, @taxons] do %>
                     <div class="row no-gutters">
                         <div class="col-lg-4 col-sm-12">
-                            <%= select_tag :taxon2, 
+                            <%= select_tag :taxon, 
                                 options_for_select([[t('spree.all_departments'), '']] +
                                                         @taxons.map {|t| [t.name, t.id]},
-                                                        @taxon ? @taxon.id : params[:taxon]), class: 'search-select select2-basic', 'aria-label' => 'Taxon' %>
+                                                        @taxon ? @taxon.id : params[:taxon]), class: 'search-select select2-basic', 'aria-label' => 'Taxon', id: :taxon2 %>
                         </div>
                         <div class="col-lg-8 col-sm-12">
-                            <%= search_field_tag :keywords2, params[:keywords], placeholder: 'What can we help you find?' %>
+                            <%= search_field_tag :keywords, params[:keywords], placeholder: 'What can we help you find?', id: :keyword2 %>
                         </div>
                     </div>
                 <% end %>

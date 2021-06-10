@@ -2,24 +2,24 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def terms-and-conditions
+  def terms_and_conditions
   end
 
-  def privacy-policy
+  def privacy_policy
   end
 
-  def return-policy
+  def return_policy
   end
 
   def faq
   end
 
-  def order-status
+  def order_status
   end
 
-  def track-my-package
+  def track_my_package
   end
 
-  def contact-us
+  def contact_us
   end
 end

@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get 'static_pages/about'
-  get 'static_pages/terms-and-conditions'
-  get 'static_pages/privacy-policy'
-  get 'static_pages/return-policy'
-  get 'static_pages/faq'
-  get 'static_pages/order-status'
-  get 'static_pages/track-my-package'
-  get 'static_pages/contact-us'
+  get '/about-us', :to => 'static_pages#about', :as => 'about_us_page'
+  get '/terms-and-conditions', :to => 'static_pages#terms_and_conditions', :as => 'terms_and_conditions_page'
+  get '/privacy-policy', :to => 'static_pages#privacy_policy', :as => 'privacy_policy_page'
+  get '/return-policy', :to => 'static_pages#return_policy', :as => 'return_policy_page'
+  get '/faq', :to => 'static_pages#faq', :as => 'faq_page'
+  get '/order-status', :to => 'static_pages#order_status', :as => 'order_status_page'
+  get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
+  get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.

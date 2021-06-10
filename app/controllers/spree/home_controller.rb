@@ -8,6 +8,7 @@ module Spree
         @products = @searcher.retrieve_products
         @taxonomies = Spree::Taxonomy.includes(root: :children)
         @featured_products = @products.order("created_at DESC").slice(0,5)
+        @recent_products = @products.order("created_at DESC").slice(0,8)
       end
     end
   end
