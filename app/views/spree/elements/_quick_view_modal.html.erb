@@ -27,7 +27,12 @@
                             <span class="star-rating">
                             <span class="rating-active" style="width: 100%;">ratings</span>
                             </span>
-                            <a href="#reviews" class="review-link">(<span class="count">3</span> customer reviews)</a>
+                            <% if current_order.nil? %>
+                                <% num_of_items = 0 %>
+                            <% else %>
+                                <% num_of_items = current_order.line_items.count %>
+                            <% end %>
+                            <a href="#reviews" class="review-link">(<span class="count"><%= num_of_items %></span> customer reviews)</a>
                         </div>
                         <h3 class="product-title">Cleaning Dustpan & Brush</h3>
                         <div class="product-price">£38.00 – £50.00</div>

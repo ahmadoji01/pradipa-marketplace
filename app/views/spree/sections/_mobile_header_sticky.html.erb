@@ -15,7 +15,12 @@
                         <a href="#offcanvas-search" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-search"><i class="fal fa-search"></i></a>
                     </div>
                     <div class="header-cart">
-                        <a href="#offcanvas-cart" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><span class="cart-count">3</span><i class="fal fa-shopping-cart"></i></a>
+                        <% if current_order.nil? %>
+                            <% num_of_items = 0 %>
+                        <% else %>
+                            <% num_of_items = current_order.line_items.count %>
+                        <% end %>
+                        <a href="#offcanvas-cart" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart"></i></a>
                     </div>
                     <div class="mobile-menu-toggle">
                         <a href="#offcanvas-mobile-menu" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-mobile-menu">

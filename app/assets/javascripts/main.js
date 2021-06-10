@@ -862,7 +862,7 @@
     /*--
         Resize Function
     -----------------------------------*/
-    $window.resize(function () {
+    $window.on('resize', function () {
         subMenuMegaMenuAlignment();
         $isotopeGrid.isotope( 'reloadItems' ).isotope();
     });
