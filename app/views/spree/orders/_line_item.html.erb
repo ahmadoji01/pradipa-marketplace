@@ -1,10 +1,18 @@
 <% variant = line_item.variant -%>
 <%= order_form.fields_for :line_items, line_item do |item_form| -%>
-  <tr>
+  <tr class="<%= cycle('', 'alt') %> line-item">
       <td class="thumbnail"><%= link_to(render('spree/shared/image',
         image: (variant.gallery.images.first || variant.product.gallery.images.first),
         size: :small), variant.product) %></td>
-      <td class="name"><%= link_to line_item.name, product_path(variant.product) %></td>
+      <td class="name">
+        <%= link_to line_item.name, product_path(variant.product) %><br>
+        <%= variant.options_text %><br>
+        <% if line_item.insufficient_stock? %>
+          <span class="out-of-stock">
+            <%= t('spree.out_of_stock') %>&nbsp;&nbsp;<br />
+          </span>
+        <% end %>
+      </td>
       <td class="price"><span>$<%= line_item.price %></span></td>
       <td class="quantity">
           <div class="product-quantity">
@@ -14,6 +22,6 @@
           </div>
       </td>
       <td class="subtotal"><span><%= line_item.display_amount.to_html unless line_item.quantity.nil? %></span></td>
-      <td class="remove"><%= link_to 'x', '#', class: 'delete', id: "delete_#{dom_id(line_item)}" %></td>
+      <td class="remove" data-hook="cart_item_delete"><%= link_to 'x', '#', class: 'delete', id: "delete_#{dom_id(line_item)}", remote: true %></td>
   </tr>
 <% end -%>
