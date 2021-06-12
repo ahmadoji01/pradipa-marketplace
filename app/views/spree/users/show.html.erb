@@ -1,0 +1,187 @@
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="<%= image_url 'bg/page-title-1.jpg' %>">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="page-title">
+                    <h1 class="title">My Account</h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">My Account</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Title/Header End -->
+
+<!-- My Account Section Start -->
+<div class="section section-padding">
+    <div class="container">
+        <div class="row learts-mb-n30">
+
+            <!-- My Account Tab List Start -->
+            <div class="col-lg-4 col-12 learts-mb-30">
+                <div class="myaccount-tab-list nav">
+                    <a data-bs-target="#dashboard" class="active" data-bs-toggle="tab">Dashboard <i class="far fa-home"></i></a>
+                    <a data-bs-target="#orders" data-bs-toggle="tab">Orders <i class="far fa-file-alt"></i></a>
+                    <a data-bs-target="#address" data-bs-toggle="tab">address <i class="far fa-map-marker-alt"></i></a>
+                    <a data-bs-target="#account-info" data-bs-toggle="tab">Account Details <i class="far fa-user"></i></a>
+                    <a href="login-register.html">Logout <i class="far fa-sign-out-alt"></i></a>
+                </div>
+            </div>
+            <!-- My Account Tab List End -->
+
+            <!-- My Account Tab Content Start -->
+            <div class="col-lg-8 col-12 learts-mb-30">
+                <div class="tab-content">
+
+                    <!-- Single Tab Content Start -->
+                    <div class="tab-pane fade show active" id="dashboard">
+                        <div class="myaccount-content dashboard">
+                            <p>Hello <strong><%= @user.bill_address.name %></strong> (not <strong><%= @user.bill_address.name %></strong>? <a href="login-register.html">Log out</a>)</p>
+                            <p>From your account dashboard you can view your <span>recent orders</span>, manage your <span>shipping and billing addresses</span>, and <span>edit your password and account details</span>.</p>
+                        </div>
+                    </div>
+                    <!-- Single Tab Content End -->
+
+                    <!-- Single Tab Content Start -->
+                    <div class="tab-pane fade" id="orders">
+                      <div class="myaccount-content order">
+                          <div class="table-responsive">
+                            <% if @orders.present? %>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th class="order-number"><%= t(:number, scope: 'activerecord.attributes.spree/order') %></th>
+                                    <th class="order-date"><%= t('spree.date') %></th>
+                                    <th class="order-status"><%= t('spree.status') %></th>
+                                    <th class="order-payment-state"><%= t('spree.payment_state') %></th>
+                                    <th class="order-shipment-state"><%= t('spree.shipment_state') %></th>
+                                    <th class="order-total"><%= t('spree.total') %></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% @orders.each do |order| %>
+                                    <tr class="<%= cycle('even', 'odd') %>">
+                                      <td class="order-number"><%= link_to order.number, order_url(order) %></td>
+                                      <td class="order-date"><%= l order.completed_at.to_date %></td>
+                                      <td class="order-status"><%= t("spree.order_state.#{order.state}").titleize %></td>
+                                      <td class="order-payment-state"><%= t("spree.payment_states.#{order.payment_state}").titleize if order.payment_state %></td>
+                                      <td class="order-shipment-state"><%= t("spree.shipment_states.#{order.shipment_state}").titleize if order.shipment_state %></td>
+                                      <td class="order-total"><%= order.display_total %></td>
+                                    </tr>
+                                  <% end %>
+                                </tbody>
+                              </table>
+                            <% else %>
+                              <p><%= t('spree.you_have_no_orders_yet') %></p>
+                            <% end %>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!-- Single Tab Content Start -->
+                    <div class="tab-pane fade" id="address">
+                        <div class="myaccount-content address">
+                            <p>The following addresses will be used on the checkout page by default.</p>
+                            <div class="row learts-mb-n30">
+                                <div class="col-md-6 col-12 learts-mb-30">
+                                    <h4 class="title">Billing Address <a href="#" class="edit-link">edit</a></h4>
+                                    <% if !@user.bill_address.nil? %>
+                                    <address>
+                                        <p><strong><%= @user.bill_address.name %></strong></p>
+                                        <p><%= @user.bill_address.address1 %><br>
+                                          <%= @user.bill_address.address2 %><br>
+                                          <%= @user.bill_address.city %>, <%= @user.bill_address.state.name %><br>
+                                          <%= @user.bill_address.country.name %>, <%= @user.bill_address.zipcode %></p>
+                                        <p><% if !@user.bill_address.phone == "" %>Mobile: <%= @user.bill_address.phone %><% end %></p>
+                                    </address>
+                                    <% else %>
+                                      You have not set any billing address yet
+                                    <% end %>
+                                </div>
+                                <div class="col-md-6 col-12 learts-mb-30">
+                                    <h4 class="title">Shipping Address <a href="#" class="edit-link">edit</a></h4>
+                                    <% if !@user.ship_address.nil? %>
+                                    <address>
+                                        <p><strong><%= @user.ship_address.name %></strong></p>
+                                        <p><%= @user.ship_address.address1 %><br>
+                                          <%= @user.ship_address.address2 %><br>
+                                          <%= @user.ship_address.city %>, <%= @user.ship_address.state.name %><br>
+                                          <%= @user.ship_address.country.name %>, <%= @user.ship_address.zipcode %></p>
+                                        <p><% if !@user.ship_address.phone == "" %>Mobile: <%= @user.ship_address.phone %><% end %></p>
+                                    </address>
+                                    <% else %>
+                                      You have not set any shipping address yet
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Tab Content End -->
+
+                    <!-- Single Tab Content Start -->
+                    <div class="tab-pane fade" id="account-info">
+                        <div class="myaccount-content account-details">
+                            <div class="account-details-form">
+                                <form action="#">
+                                    <div class="row learts-mb-n30">
+                                        <div class="col-md-6 col-12 learts-mb-30">
+                                            <div class="single-input-item">
+                                                <label for="first-name">First Name <abbr class="required">*</abbr></label>
+                                                <input type="text" id="first-name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 learts-mb-30">
+                                            <div class="single-input-item">
+                                                <label for="last-name">Last Name <abbr class="required">*</abbr></label>
+                                                <input type="text" id="last-name">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 learts-mb-30">
+                                            <label for="display-name">Display Name <abbr class="required">*</abbr></label>
+                                            <input type="text" id="display-name" value="didiv91396">
+                                            <p>This will be how your name will be displayed in the account section and in reviews</p>
+                                        </div>
+                                        <div class="col-12 learts-mb-30">
+                                            <label for="email">Email Addres <abbr class="required">*</abbr></label>
+                                            <input type="email" id="email" value="didiv91396@ismailgul.net">
+                                        </div>
+                                        <div class="col-12 learts-mb-30 learts-mt-30">
+                                            <fieldset>
+                                                <legend>Password change</legend>
+                                                <div class="row learts-mb-n30">
+                                                    <div class="col-12 learts-mb-30">
+                                                        <label for="current-pwd">Current password (leave blank to leave unchanged)</label>
+                                                        <input type="password" id="current-pwd">
+                                                    </div>
+                                                    <div class="col-12 learts-mb-30">
+                                                        <label for="new-pwd">New password (leave blank to leave unchanged)</label>
+                                                        <input type="password" id="new-pwd">
+                                                    </div>
+                                                    <div class="col-12 learts-mb-30">
+                                                        <label for="confirm-pwd">Confirm new password</label>
+                                                        <input type="password" id="confirm-pwd">
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-12 learts-mb-30">
+                                            <button class="btn btn-dark btn-outline-hover-dark">Save Changes</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- Single Tab Content End -->
+
+                </div>
+            </div> <!-- My Account Tab Content End -->
+        </div>
+    </div>
+</div>
+<!-- My Account Section End -->

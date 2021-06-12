@@ -1,6 +1,6 @@
 <% order = current_order %>
 <% if order.nil? %>
-    <% item_total = 0 %>
+    <% item_total = '$0' %>
 <% else %>
     <% item_total = order.display_item_total %>
 <% end %>
@@ -24,7 +24,7 @@
         <div class="foot">
             <div class="sub-total">
                 <strong>Subtotal :</strong>
-                <span class="amount">$<%= item_total %></span>
+                <span class="amount"><%= item_total %></span>
             </div>
             <div class="buttons">
                 <a href="/cart" class="btn btn-dark btn-hover-primary">view cart</a>
