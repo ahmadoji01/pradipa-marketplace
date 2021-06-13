@@ -30,7 +30,7 @@
                     <a data-bs-target="#orders" data-bs-toggle="tab">Orders <i class="far fa-file-alt"></i></a>
                     <a data-bs-target="#address" data-bs-toggle="tab">address <i class="far fa-map-marker-alt"></i></a>
                     <a data-bs-target="#account-info" data-bs-toggle="tab">Account Details <i class="far fa-user"></i></a>
-                    <a href="login-register.html">Logout <i class="far fa-sign-out-alt"></i></a>
+                    <a href="/logout">Logout <i class="far fa-sign-out-alt"></i></a>
                 </div>
             </div>
             <!-- My Account Tab List End -->
@@ -42,7 +42,7 @@
                     <!-- Single Tab Content Start -->
                     <div class="tab-pane fade show active" id="dashboard">
                         <div class="myaccount-content dashboard">
-                            <p>Hello <strong><%= @user.bill_address.name %></strong> (not <strong><%= @user.bill_address.name %></strong>? <a href="login-register.html">Log out</a>)</p>
+                            <p>Hello <strong><%= @user.bill_address.name %></strong> (not <strong><%= @user.bill_address.name %></strong>? <a href="/logout">Log out</a>)</p>
                             <p>From your account dashboard you can view your <span>recent orders</span>, manage your <span>shipping and billing addresses</span>, and <span>edit your password and account details</span>.</p>
                         </div>
                     </div>
