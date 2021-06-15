@@ -1,0 +1,59 @@
+<div class="section section-padding">
+  <div class="container">
+    <div data-hook="inside_cart_form">
+      <div data-hook="cart_items">
+        <%= render 'spree/shared/error_messages', target: order %>
+        <table class="cart-wishlist-table table">
+            <thead>
+              <tr>
+                <th class="name" colspan="2"><%= t('spree.item') %></th>
+                <th class="price"><%= t('spree.price') %></th>
+                <th class="quantity"><%= t('spree.qty') %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% order.line_items.each do |item| %>
+                <tr class="<%= cycle('', 'alt') %> line-item">
+                  <td class="thumbnail"><%= link_to(render('spree/shared/image',
+                    image: (item.variant.gallery.images.first || item.variant.product.gallery.images.first),
+                    size: :small), item.variant.product) %></td>
+                  <td class="name">
+                    <%= link_to item.name, product_path(item.variant.product) %><br>
+                    <%= "(" + item.variant.options_text + ")" unless item.variant.option_values.empty? %>
+                  </td>
+                  <td class="price"><span><%= item.single_money.to_html %></span></td>
+                  <td class="quantity">
+                      <div class="product-quantity">
+                          <%= item.quantity %>
+                      </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+        <div class="row mt-4">
+          <div class="col">
+            <div class="checkout-totals">
+              <table>
+                  <tbody>
+                      <% if order.all_adjustments.nonzero.any? || order.shipments.any? %>
+                        <tr class="subtotal">
+                            <th><%= t('spree.cart_subtotal', count: order.line_items.sum(:quantity)) %></th>
+                            <td><span class="amount"><%= order.display_item_total %></span></td>
+                        </tr>
+                        <%= render "spree/orders/adjustments" %>
+                      <% end %>
+                      <tr class="total">
+                          <th><%= t('spree.total') %></th>
+                          <td><strong><span class="amount"><%= order.display_total %></span></strong></td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,32 +1,101 @@
-<div id="checkout" data-hook>
-  <%= render partial: 'spree/shared/error_messages', locals: { target: @order } %>
+<div class="section section-padding">
+  <div class="container">
+      <div class="row learts-mb-n40">
 
-  <div class="row" data-hook="checkout_header">
-    <h1 class="columns three alpha" data-hook="checkout_title"><%= t('spree.checkout') %></h1>
-    <div class="columns thirteen omega" data-hook="checkout_progress"><%= checkout_progress %></div>
-  </div>
+          <div class="col-lg-8 col-md-8 col-sm-12 learts-mb-40">
+              <!-- Section Title Start -->
+              <div class="section-title2">
+                  <h2 class="title">Accordion</h2>
+              </div>
+              <!-- Section Title End -->
+              <div class="row">
+                  <div class="col">
+                      <div class="accordion" id="faq-accordion">
+                          <div class="card accordion-item">
+                              <div class="card-header accordion-header">
+                                  <button class="btn btn-link accordion-button <%= if !@order.state == 'confirm' then 'collapsed' end %>" data-bs-toggle="" data-bs-target="#faq-accordion-1" style="white-space: normal;">
+                                      <p>Where should we ship this order?</p>
+                                      <div style="font-family: 'Futura', Arial, Helvetica, sans-serif;">
+                                          <p>123</p>
+                                      </div>
+                                  </button>
+                              </div>
 
-  <div class="row" data-hook="checkout_content">
-    <div class="columns <%= if @order.state != 'confirm' then 'alpha twelve' else 'alpha omega sixteen' end %>" data-hook="checkout_form_wrapper">
-      <%= form_for @order, url: update_checkout_path(@order.state), html: { id: "checkout_form_#{@order.state}" } do |form| %>
-        <% if @order.state == 'address' || !@order.email? %>
-          <div class="field field-required" style='clear: both'>
-            <%= form.label :email %><br />
-            <%= form.email_field :email, required: true %>
+                              <div id="faq-accordion-1" class="accordion-collapse collapse <%= if @order.state == 'confirm' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                  <div class="card-body accordion-body">
+                                    <p>Learts appears professional in design and responsive in performance. It proves to be highly customizable and efficient for building eCommerce shops. Engage yourself in the most effortless and well-appointed process with Learts.</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="card accordion-item">
+                              <div class="card-header accordion-header">
+                                  <button class="btn btn-link accordion-button <%= if !@order.state == 'address' then 'collapsed' end %>" data-bs-toggle="" data-bs-target="#faq-accordion-2" style="white-space: normal;">How long can I get theme updates for free?</button>
+                              </div>
+                              <div id="faq-accordion-2" class="accordion-collapse collapse <%= if @order.state == 'address' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                    <div class="card-body accordion-body">
+                                        <%= form_for @order, url: update_checkout_path('address'), html: { id: "checkout_form_address" } do |form| %>
+                                            <% if @order.state == 'address' || !@order.email? %>
+                                                <div class="field field-required" style='clear: both'>
+                                                    <%= form.label :email %><br />
+                                                    <%= form.email_field :email, required: true %>
+                                                </div>
+                                            <% end %>
+                                            <%= render 'address', form: form %>
+                                        <% end %>
+                                    </div>
+                              </div>
+                          </div>
+                            <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <button class="btn btn-link accordion-button <%= if !@order.state == 'delivery' then 'collapsed' end %>" data-bs-toggle="" data-bs-target="#faq-accordion-3" style="white-space: normal;">Is the support period extendable?</button>
+                                    </div>
+                                    <div id="faq-accordion-3" class="accordion-collapse collapse <%= if @order.state == 'delivery' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                            <div class="card-body accordion-body">
+                                                <%= form_for @order, url: update_checkout_path('delivery'), html: { id: "checkout_form_delivery" } do |form| %>
+                                                    <%= render 'delivery', form: form %>
+                                                <% end %>
+                                            </div>
+                                    </div>
+                            </div>
+                            <div class="card accordion-item">
+                                <div class="card-header accordion-header">
+                                    <button class="btn btn-link accordion-button <%= if !@order.state == 'payment' then 'collapsed' end %>" data-bs-toggle="" data-bs-target="#faq-accordion-4" style="white-space: normal;">Do you accept extra theme services?</button>
+                                </div>
+
+                                <div id="faq-accordion-4" class="accordion-collapse collapse <%= if @order.state == 'payment' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                    <div class="card-body accordion-body">
+                                        <%= form_for @order, url: update_checkout_path('payment'), html: { id: "checkout_form_payment" } do |form| %>
+                                            <%= render 'payment', form: form %>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card accordion-item">
+                                <div class="card-header accordion-header">
+                                    <button class="btn btn-link accordion-button <%= if !@order.state == 'confirm' then 'collapsed' end %>" data-bs-toggle="" data-bs-target="#faq-accordion-5" style="white-space: normal;">
+                                        Everything look good?
+                                    </button>
+                                </div>
+
+                                <div id="faq-accordion-5" class="accordion-collapse collapse <%= if @order.state == 'confirm' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                    <div class="card-body accordion-body">
+                                        <%= form_for @order, url: update_checkout_path('confirm'), html: { id: "checkout_form_confirm" } do |form| %>
+                                            <%= render 'confirm', form: form %>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-        <% end %>
-        <%= render @order.state, form: form %>
-      <% end %>
-    </div>
-    <% if @order.state != 'confirm' %>
-      <div id="checkout-summary" data-hook="checkout_summary_box" class="columns omega four">
-        <%= render partial: 'summary', locals: { order: @order } %>
+
+          <div class="col-lg-4 col-md-4 col-sm-12  learts-mb-40">
+              <div class="order-review">
+                <%= render partial: 'order_details', locals: { order: @order } %>
+              </div>
+          </div>
+
       </div>
-    <% end %>
   </div>
 </div>
-
-<script>
-Spree.current_order_id = "<%= @order.number %>"
-Spree.current_order_token = "<%= @order.guest_token %>"
-</script>
