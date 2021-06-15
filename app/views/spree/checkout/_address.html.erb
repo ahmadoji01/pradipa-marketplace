@@ -1,33 +1,39 @@
 <div class="columns alpha six" data-hook="billing_fieldset_wrapper">
-  <fieldset id="billing" data-hook>
+  <div id="billing" data-hook>
     <%= form.fields_for :bill_address do |bill_form| %>
-      <legend align="center"><%= t('spree.billing_address') %></legend>
+      <h5 class="mb-2"><%= t('spree.billing_address') %></h5>
       <%= render partial: 'spree/address/form', locals: { form: bill_form, address_type: 'billing', address: @order.bill_address } %>
     <% end %>
-  </fieldset>
+  </div>
 </div>
 
-<div class="columns omega six" data-hook="shipping_fieldset_wrapper">
-  <fieldset id="shipping" data-hook>
+<div class="columns omega six mt-8" data-hook="shipping_fieldset_wrapper">
+  <div id="shipping" data-hook>
     <%= form.fields_for :ship_address do |ship_form| %>
-      <legend align="center"><%= t('spree.shipping_address') %></legend>
-      <div class="checkbox" data-hook="use_billing">
+      <h5 class="mb-2"><%= t('spree.shipping_address') %></h5>
+      <div class="pretty p-icon p-round p-smooth checkbox" data-hook="use_billing">
         <%= check_box_tag 'order[use_billing]', '1', @order.shipping_eq_billing_address? %>
-        <%= label_tag :order_use_billing, t('spree.use_billing_address'), id: 'use_billing' %>
+        <div class="state p-success">
+          <i class="icon fa fa-check"></i>
+          <%= label_tag :order_use_billing, t('spree.use_billing_address'), id: 'use_billing' %>
+        </div>
       </div>
       <%= render partial: 'spree/address/form', locals: { form: ship_form, address_type: 'shipping', address: @order.ship_address } %>
     <% end %>
-  </fieldset>
+  </div>
 </div>
 <hr class="clear" />
-
-<div class="form-buttons" data-hook="buttons">
-  <%= submit_tag t('spree.save_and_continue'), class: 'continue button primary' %>
-  <% if try_spree_current_user %>
-    <span data-hook="save_user_address">
-      &nbsp; &nbsp;
-      <%= check_box_tag 'save_user_address', '1', try_spree_current_user.respond_to?(:persist_order_address) %>
+<% if try_spree_current_user %>
+  <div class="pretty p-icon p-round p-smooth" data-hook="save_user_address">
+    <%= check_box_tag 'save_user_address', '1', try_spree_current_user.respond_to?(:persist_order_address) %>
+    <div class="state p-success">
+      <i class="icon fa fa-check"></i>
       <%= label_tag :save_user_address, t('spree.save_my_address') %>
-    </span>
+    </div>
+  </div>
+<% end %><br/>
+<div class="form-buttons" data-hook="buttons" style="margin:auto;width:50%">
+  <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
+    <i class="fa fa-pencil"></i> <%= t('spree.save_and_continue') %>
   <% end %>
 </div>

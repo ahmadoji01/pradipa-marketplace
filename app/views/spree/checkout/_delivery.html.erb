@@ -104,5 +104,7 @@
 <br />
 
 <div class="form-buttons" data-hook="buttons">
-  <%= submit_tag t('spree.save_and_continue'), class: 'continue button primary' %>
+  <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
+    <i class="fa fa-pencil"></i> <%= t('spree.save_and_continue') %>
+  <% end %>
 </div>
