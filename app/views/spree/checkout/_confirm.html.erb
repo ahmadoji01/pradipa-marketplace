@@ -1,25 +1,16 @@
-<fieldset id="order_details" data-hook>
-  <div class="clear"></div>
-  <legend align="center"><%= t('spree.confirm') %></legend>
-  <%= render partial: 'spree/shared/order_details', locals: { order: @order } %>
-</fieldset>
+<div id="order_details" class="checkout-confirm" data-hook>
+  <div class="state p-success">
+    <p style="white-space:normal;">
+      By clicking Place Order, I agree to the <a href="/terms-and-conditions" target="_blank">Terms and Conditions</a> 
+      and <a href="/return-policy" target="_blank">Return Policy</a> of Hallchant for this purchase. I am responsible for
+      for my own action as stated previously and acknowledge the <a href="/privacy-policy" target="_blank">Privacy Policy</a> 
+      when using Hallchant's service.
+    </p>
+  </div>
 
-<br />
-
-<div class="form-buttons" data-hook="buttons">
-  <% true.tap do |requires_acceptance| %>
-    <% if requires_acceptance %>
-      <div class="terms_and_conditions" data-hook="terms_and_conditions">
-        <div class="policy"><%= render partial: "spree/checkout/terms_and_conditions" %></div>
-        <%= check_box_tag :accept_terms_and_conditions, 'accepted', false %>
-        <%= label_tag :accept_terms_and_conditions, t('spree.agree_to_terms_of_service') %>
-      </div>
+  <div class="form-buttons mt-4" data-hook="buttons" style="margin:auto;width:50%;text-align:center">
+    <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
+      <i class="fa fa-cash-register"></i> <%= t('spree.place_order') %>
     <% end %>
-
-    <%= submit_tag t('spree.place_order'),
-      disabled: requires_acceptance,
-      class: "continue button primary #{ 'disabled' if requires_acceptance }" %>
-  <% end %>
-
-  <script>Spree.disableSaveOnClick();</script>
+  </div>
 </div>

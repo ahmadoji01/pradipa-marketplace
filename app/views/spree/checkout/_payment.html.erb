@@ -32,7 +32,7 @@
   </div>
 <% end %>
 <div class="col-12">
-    <p class="mb-4 pb-2">Choose your preferred payment</p>
+    <p class="mb-4 pb-2"><h5>Choose your preferred payment</h5></p>
 </div>
 <div class="col-12 pb-5 choose-payment-section">
     <% @order.available_payment_methods.each do |method| %>
@@ -56,14 +56,14 @@
         </label>
     <% end %>
 </div>
-<ul id="payment-methods" class="payment-method-form" data-hook>
+<ul id="payment-methods" class="checkout-form-list" data-hook>
   <% @order.available_payment_methods.each do |method| %>
     <li id="payment_method_<%= method.id %>" class="<%= 'last' if method == @order.available_payment_methods.last %>" data-hook style="<%= 'text-align:center' if method.name != 'Credit Card' %>">
       <%= render partial: "spree/checkout/payment/#{method.partial_name}", locals: { payment_method: method } %>
     </li>
   <% end %>
 </ul>
-<div class="form-buttons" data-hook="buttons">
+<div class="form-buttons save-btn-container" data-hook="buttons">
   <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
     <i class="fa fa-pencil"></i> <%= t('spree.save_and_continue') %>
   <% end %>
