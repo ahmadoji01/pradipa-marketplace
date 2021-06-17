@@ -24,14 +24,14 @@
                           <div class="card accordion-item">
                                 <div class="card-header accordion-header">
                                     <button class="btn btn-link accordion-button <%= if @order.state != 'address' then 'collapsed' end %>" data-bs-toggle="" data-bs-target="#faq-accordion-2" style="white-space: normal;">
-                                        <% if @order.ship_address.address1 == '' %>
+                                        <% if @order.ship_address.address1 == '' || @order.ship_address.address1.nil? %>
                                             <p>Where should we ship this order?</p>
                                         <% else %>
                                             <p>Address</p>
                                             <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_state_path(:address) unless @order.completed? %></p>
                                         <% end %>
                                         <div class="checkout-edit">
-                                            <% if @order.ship_address.address1 != '' %><p><%= @order.ship_address.address1 + ', ' + @order.ship_address.country.name %></p><% end %>
+                                            <% if @order.ship_address.address1 != '' && !@order.ship_address.address1.nil? %><p><%= @order.ship_address.address1 + ', ' + @order.ship_address.country.name %></p><% end %>
                                         </div>
                                     </button>
                                 </div>

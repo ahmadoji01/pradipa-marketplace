@@ -31,7 +31,7 @@
                     <a href="#download" data-toggle="tab">Download <i class="far fa-arrow-to-bottom"></i></a>
                     <a href="#address" data-toggle="tab">address <i class="far fa-map-marker-alt"></i></a>
                     <a href="#account-info" data-toggle="tab">Account Details <i class="far fa-user"></i></a>
-                    <a href="/logout">Logout <i class="far fa-sign-out-alt"></i></a>
+                    <%= link_to spree_logout_path, :method => :delete do %><%= t('spree.logout') %> <i class='fa fa-sign-out'></i><% end %>
                 </div>
             </div>
             <!-- My Account Tab List End -->

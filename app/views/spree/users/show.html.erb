@@ -28,9 +28,15 @@
                 <div class="myaccount-tab-list nav">
                     <a data-bs-target="#dashboard" class="active" data-bs-toggle="tab">Dashboard <i class="far fa-home"></i></a>
                     <a data-bs-target="#orders" data-bs-toggle="tab">Orders <i class="far fa-file-alt"></i></a>
-                    <a data-bs-target="#address" data-bs-toggle="tab">address <i class="far fa-map-marker-alt"></i></a>
+                    <a data-bs-target="#address" data-bs-toggle="tab">Address <i class="far fa-map-marker-alt"></i></a>
                     <a data-bs-target="#account-info" data-bs-toggle="tab">Account Details <i class="far fa-user"></i></a>
-                    <a href="/logout">Logout <i class="far fa-sign-out-alt"></i></a>
+                    <% if try_spree_current_user %>
+                        <% if respond_to? :spree_logout_path %>
+                            <%= link_to spree_logout_path, :method => :delete do %>
+                                <%= t('spree.logout') %> <i class='fa fa-sign-out'></i>
+                            <% end %>
+                        <% end %>
+                    <% end %>
                 </div>
             </div>
             <!-- My Account Tab List End -->
