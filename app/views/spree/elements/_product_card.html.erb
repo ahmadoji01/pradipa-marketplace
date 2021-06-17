@@ -8,10 +8,9 @@
                 </span>
                 <%= render('spree/shared/image', 
                     image: product.gallery.images.first, size: :product, itemprop: "image") %>
-                <!-- <% if !product.gallery.images.second.nil? %>
-                    <%= render('spree/shared/image', 
-                        image: product.gallery.images.second, class: 'image-hover', size: :product, itemprop: "image") %>
-                <% end %> -->
+                <% if !product.gallery.images.second.nil? %>
+                    <%= render('spree/shared/image', image: product.gallery.images.second, size: :product, itemprop: "image", imgclass: "image-hover") %>
+                <% end %>
             </a>
         </div>
         <div class="product-info">
@@ -21,8 +20,17 @@
             <span class="new">$<%= product.price %></span>
             </span>
             <div class="product-buttons">
-                <a data-bs-target="#quickViewModal" data-bs-toggle="modal" class="product-button hintT-top" data-hint="Quick View"><i class="fal fa-search"></i></a>
-                <a href="#" class="product-button hintT-top" data-hint="Add to Cart"><i class="fal fa-shopping-cart"></i></a>
+                <%= link_to spree.product_path(product, taxon_id: @taxon.try(:id)), id: product.slug, class: 'product-button hintT-top',
+                    data: { 'bs-target': '#quickViewModal', 'bs-toggle': 'modal', hint: 'Quick View' }, remote: true do %>
+                    <i class="fal fa-search"></i>
+                <% end %>
+            </div>
+            <div class="product-stock-status">
+                <div class="bar">
+                    <div class="progress" style="width: 84%;"></div>
+                </div>
+                <span class="sold">Sold: <span>8</span></span>
+                <span class="available">Available: <span>42</span></span>
             </div>
         </div>
     </div>

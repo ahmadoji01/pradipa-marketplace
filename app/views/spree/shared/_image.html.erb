@@ -1,13 +1,14 @@
 <% size ||= :mini %>
 <% itemprop ||= nil %>
 <% options ||= {} %>
+<% imgclass ||= "" %>
 
 <% if image_url = image.try(:url, size)  %>
   <% if image_alt = image.try(:alt) %>
-    <%= image_tag image_url, { alt: image_alt, itemprop: itemprop }.merge(options) %>
+    <%= image_tag image_url, { alt: image_alt, itemprop: itemprop, class: imgclass }.merge(options) %>
   <% else %>
-    <%= image_tag image_url, { itemprop: itemprop }.merge(options) %>
+    <%= image_tag image_url, { itemprop: itemprop, class: imgclass }.merge(options) %>
   <% end %>
 <% else %>
-  <span class="image-placeholder <%= size %>"></span>
+  <span class="image-placeholder <%= size %> <%= imgclass %>"></span>
 <% end %>
