@@ -14,16 +14,12 @@
             </a>
         </div>
         <div class="product-info">
-            <h6 class="title"><a href="product-details.html"><%= product.name %></a></h6>
-            <span class="price">
+            <h6 class="title2"><a href="<%= url %>"><%= product.name %></a></h6>
+            <span class="price2">
                 <!-- <span class="old">$30.00</span> -->
             <span class="new">$<%= product.price %></span>
             </span>
             <div class="product-buttons">
-                <%= link_to spree.product_path(product, taxon_id: @taxon.try(:id)), id: product.slug, class: 'product-button hintT-top',
-                    data: { 'bs-target': '#quickViewModal', 'bs-toggle': 'modal', hint: 'Quick View' }, remote: true do %>
-                    <i class="fal fa-search"></i>
-                <% end %>
             </div>
             <div class="product-stock-status">
                 <div class="bar">
