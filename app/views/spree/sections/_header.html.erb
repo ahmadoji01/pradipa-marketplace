@@ -1,3 +1,4 @@
+<% @categories = Spree::Taxon.find_by(name: "Categories").children %>
 <div class="header-section section bg-white d-none d-xl-block">
     <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -10,9 +11,8 @@
 
             <div class="col">
                 <div class="header6-search">
-                    <% @categories = Spree::Taxon.find_by(name: "Categories").children %>
-                        <%= form_tag spree.products_path, method: :get do %>
-                        <% cache [I18n.locale, @taxons] do %>
+                    <%= form_tag spree.products_path, method: :get do %>
+                        <% cache [I18n.locale, @categories] do %>
                             <div class="row no-gutters">
                                 <div class="col-auto">
                                     <%= select_tag :taxon, 

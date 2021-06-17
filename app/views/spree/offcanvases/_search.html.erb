@@ -2,14 +2,13 @@
     <div class="inner">
         <div class="offcanvas-search-form">
             <button class="offcanvas-close close-btn" data-bs-dismiss="offcanvas" aria-label="Close">×</button>
-            <% @taxons = @taxon && @taxon.parent ? @taxon.parent.children : Spree::Taxon.roots %>
             <%= form_tag spree.products_path, method: :get do %>
-                <% cache [I18n.locale, @taxons] do %>
+                <% cache [I18n.locale, @categories] do %>
                     <div class="row no-gutters">
                         <div class="col-lg-4 col-sm-12">
                             <%= select_tag :taxon, 
                                 options_for_select([[t('spree.all_departments'), '']] +
-                                                        @taxons.map {|t| [t.name, t.id]},
+                                                        @categories.map {|t| [t.name, t.id]},
                                                         @taxon ? @taxon.id : params[:taxon]), class: 'search-select select2-basic', 'aria-label' => 'Taxon', id: :taxon2 %>
                         </div>
                         <div class="col-lg-8 col-sm-12">
