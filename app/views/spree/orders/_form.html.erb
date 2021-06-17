@@ -24,9 +24,11 @@
   <div class="row justify-content-between mb-n3">
       <div class="col-auto mb-3">
           <div class="cart-coupon">
-            <%= form_tag order_coupon_codes_path(@order), method: :post do %>
-              <%= text_field_tag :coupon_code, nil, placeholder: t("spree.coupon_code"), size: 10 %>
-              <%= submit_tag t("spree.apply_code") %>
+            <% if !@order.coupon_code.nil? %>
+              <%= form_tag order_coupon_codes_path(@order), method: :post do %>
+                <%= text_field_tag :coupon_code, nil, placeholder: t("spree.coupon_code"), size: 10 %>
+                <%= submit_tag t("spree.apply_code") %>
+              <% end %>
             <% end %>
           </div>
       </div>
@@ -36,24 +38,26 @@
       </div>
   </div>
 </form>
-<div class="cart-totals mt-5">
-  <h2 class="title">Cart totals</h2>
-  <table>
-      <tbody>
-          <% if order.all_adjustments.nonzero.any? || order.shipments.any? %>
-            <tr class="subtotal">
-                <th><%= t('spree.cart_subtotal', count: order.line_items.sum(:quantity)) %></th>
-                <td><span class="amount"><%= order.display_item_total %></span></td>
+<% if !@order.line_items.empty? %>
+  <div class="cart-totals mt-5">
+    <h2 class="title">Cart totals</h2>
+    <table>
+        <tbody>
+            <% if order.all_adjustments.nonzero.any? || order.shipments.any? %>
+              <tr class="subtotal">
+                  <th><%= t('spree.cart_subtotal', count: order.line_items.sum(:quantity)) %></th>
+                  <td><span class="amount"><%= order.display_item_total %></span></td>
+              </tr>
+              <%= render "spree/orders/adjustments" %>
+            <% end %>
+            <tr class="total">
+                <th><%= t('spree.total') %></th>
+                <td><strong><span class="amount"><%= order.display_total %></span></strong></td>
             </tr>
-            <%= render "spree/orders/adjustments" %>
-          <% end %>
-          <tr class="total">
-              <th><%= t('spree.total') %></th>
-              <td><strong><span class="amount"><%= order.display_total %></span></strong></td>
-          </tr>
-      </tbody>
-  </table>
-  <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', id: 'checkout-link', name: 'checkout' do %>
-    <%= t('spree.checkout') %>
-  <% end %>
-</div>
+        </tbody>
+    </table>
+    <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', id: 'checkout-link', name: 'checkout' do %>
+      <%= t('spree.checkout') %>
+    <% end %>
+  </div>
+<% end %>

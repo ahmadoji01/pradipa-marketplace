@@ -81,7 +81,13 @@
                                             <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_state_path(:payment) unless @order.completed? %></p>
                                         <% end %>
                                         <div class="checkout-edit">
-                                            <% if !@order.payments.valid.first.nil? %><p><%= @order.payments.valid.first.source.payment_method.name %></p><% end %>
+                                            <% if !@order.payments.valid.first.nil? %>
+                                                <% if !@order.payments.valid.first.source.nil? %>
+                                                    <p><%= @order.payments.valid.first.source.payment_method.name %></p>
+                                                <% else %>
+                                                    <p><%= @order.payments.valid.first.payment_method.name %></p>
+                                                <% end %>
+                                            <% end %>
                                         </div>
                                     </button>
                                 </div>

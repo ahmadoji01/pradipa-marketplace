@@ -1,7 +1,7 @@
 <div id="offcanvas-search" class="offcanvas offcanvas-top search-menu">
     <div class="inner">
         <div class="offcanvas-search-form">
-            <button class="offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">×</button>
+            <button class="offcanvas-close close-btn" data-bs-dismiss="offcanvas" aria-label="Close">×</button>
             <% @taxons = @taxon && @taxon.parent ? @taxon.parent.children : Spree::Taxon.roots %>
             <%= form_tag spree.products_path, method: :get do %>
                 <% cache [I18n.locale, @taxons] do %>
