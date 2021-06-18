@@ -3,11 +3,52 @@
 <% end %>
 
 <% @body_id = 'login' %>
-<div id="existing-customer">
-  <h6><%= t('spree.login_as_existing') %></h6>
-  <div data-hook="login">
-    <%= render partial: 'spree/shared/login' %>
-    <%= t('spree.or') %>&nbsp;<%= link_to t('spree.create_a_new_account'), spree.signup_path %> | <%= link_to t('spree.forgot_password'), spree.recover_password_path %>
+<div class="section section-padding">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <div class="user-login-register bg-light">
+          <div class="login-register-title">
+            <h2 class="title">Login</h2>
+            <p class="desc">Great to have you back!</p>
+          </div>
+          <div class="login-register-form">
+            <%= form_for Spree::User.new, as: :spree_user, url: spree.create_new_session_path do |f| %>
+              <div id="row learts-mb-n50">
+                <div class="col-12 learts-mb-50">
+                  <%= f.label :email, t('spree.email') %><br />
+                  <%= f.email_field :email, class: 'title', tabindex: 1, autofocus: true %>
+                </div>
+                <div class="col-12 learts-mb-50">
+                  <%= f.label :password, t('spree.password') %><br />
+                  <%= f.password_field :password, class: 'title', tabindex: 2 %>
+                </div>
+              </div>
+              <div class="col-12 learts-mb-50">
+                <div class="row learts-mb-n20">
+                  <div class="col-12 learts-mb-20">
+                    <div class="form-check">
+                      <%= f.check_box :remember_me, tabindex: 3, class: "form-check-input" %>
+                      <%= f.label :remember_me, t('spree.remember_me'), class: "form-check-label" %>
+                    </div>
+                  </div>
+                  <div class="col-12 text-center learts-mb-50">
+                    <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
+                      <%= t('spree.login') %>
+                    <% end %>
+                    <div data-hook="login_extras"></div>
+                  </div>
+                  <div class="col-12 learts-mb-20">
+                    <%= t('spree.or') %>&nbsp;<%= link_to t('spree.create_a_new_account'), spree.signup_path %> | <%= link_to t('spree.forgot_password'), spree.recover_password_path %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3"></div>
+    </div>
   </div>
 </div>
-<div data-hook="login_extras"></div>

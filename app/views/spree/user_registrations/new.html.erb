@@ -1,21 +1,52 @@
+<% if flash[:alert] %>
+  <div class="flash errors"><%= flash[:alert] %></div>
+<% end %>
+
 <% @body_id = 'signup' %>
 
 <%= render 'spree/shared/error_messages', target: resource %>
-
-<div id="new-customer">
-  <h6><%= t('spree.new_customer') %></h6>
-
-  <div data-hook="signup">
-    <%= form_for resource, as: :spree_user, url: spree.registration_path(resource) do |f| %>
-      <div data-hook="signup_inside_form">
-        <%= render partial: 'spree/shared/user_form', locals: { f: f } %>
-        <p><%= f.submit t('spree.create'), class: 'button primary' %></p>
+<div class="section section-padding">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <div class="user-login-register bg-light">
+          <div class="login-register-title">
+            <h2 class="title">Sign Up</h2>
+            <p class="desc">Join with us so we can find better offers for you!</p>
+          </div>
+          <div class="login-register-form">
+            <%= form_for resource, as: :spree_user, url: spree.registration_path(resource) do |f| %>
+              <div id="row learts-mb-n50">
+                <div class="col-12 learts-mb-50">
+                  <%= f.label :email, t('spree.email') %><br />
+                  <%= f.email_field :email, class: 'title', tabindex: 1, autofocus: true %>
+                </div>
+                <div class="col-12 learts-mb-50">
+                  <%= f.label :password, t('spree.password') %><br />
+                  <%= f.password_field :password, class: 'title', tabindex: 2 %>
+                </div>
+                <div class="col-12 learts-mb-50">
+                  <%= f.label :password_confirmation, t('spree.confirm_password') %><br />
+                  <%= f.password_field :password_confirmation, class: 'title' %>
+                </div>
+                <div class="col-12 text-center learts-mb-50">
+                  <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
+                    <%= t('spree.create') %>
+                  <% end %>
+                </div>
+                <div data-hook="login_extras"></div>
+              </div>
+              <div class="col-12 learts-mb-50">
+                <div class="col-12 learts-mb-20">
+                  <%= t('spree.or') %>&nbsp;<%= link_to t('spree.login_as_existing'), spree.login_path %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
-    <% end %>
-    <%= t('spree.or') %>&nbsp;<%= link_to t('spree.login_as_existing'), spree.login_path %>
-
+      <div class="col-lg-3"></div>
+    </div>
   </div>
-
 </div>
-
-<div data-hook="login_extras"></div>

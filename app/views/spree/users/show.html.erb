@@ -48,7 +48,9 @@
                     <!-- Single Tab Content Start -->
                     <div class="tab-pane fade show active" id="dashboard">
                         <div class="myaccount-content dashboard">
-                            <p>Hello <strong><%= @user.bill_address.name %></strong> (not <strong><%= @user.bill_address.name %></strong>? <a href="/logout">Log out</a>)</p>
+                            <% if !@user.bill_address.nil? %>
+                                <p>Hello <strong><%= @user.bill_address.name %></strong> (not <strong><%= @user.bill_address.name %></strong>? <%= link_to spree_logout_path, :method => :delete do %>Log out<% end %>)</p>
+                            <% end %>
                             <p>From your account dashboard you can view your <span>recent orders</span>, manage your <span>shipping and billing addresses</span>, and <span>edit your password and account details</span>.</p>
                         </div>
                     </div>
@@ -136,48 +138,28 @@
                             <div class="account-details-form">
                                 <form action="#">
                                     <div class="row learts-mb-n30">
-                                        <div class="col-md-6 col-12 learts-mb-30">
-                                            <div class="single-input-item">
-                                                <label for="first-name">First Name <abbr class="required">*</abbr></label>
-                                                <input type="text" id="first-name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12 learts-mb-30">
-                                            <div class="single-input-item">
-                                                <label for="last-name">Last Name <abbr class="required">*</abbr></label>
-                                                <input type="text" id="last-name">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 learts-mb-30">
-                                            <label for="display-name">Display Name <abbr class="required">*</abbr></label>
-                                            <input type="text" id="display-name" value="didiv91396">
-                                            <p>This will be how your name will be displayed in the account section and in reviews</p>
-                                        </div>
-                                        <div class="col-12 learts-mb-30">
-                                            <label for="email">Email Addres <abbr class="required">*</abbr></label>
-                                            <input type="email" id="email" value="didiv91396@ismailgul.net">
-                                        </div>
                                         <div class="col-12 learts-mb-30 learts-mt-30">
-                                            <fieldset>
+                                            <%= form_for Spree::User.new, as: @user, url: spree.user_path(@user), method: :put do |f| %>
+                                                <div class="col-12 learts-mb-30">
+                                                    <%= f.label :email, t('spree.email') %><br />
+                                                    <%= f.email_field :email, class: 'title' %>
+                                                </div>
                                                 <legend>Password change</legend>
-                                                <div class="row learts-mb-n30">
+                                                <div id="password-credentials">
                                                     <div class="col-12 learts-mb-30">
-                                                        <label for="current-pwd">Current password (leave blank to leave unchanged)</label>
-                                                        <input type="password" id="current-pwd">
+                                                        <%= f.label :password, t('spree.password') %><br />
+                                                        <%= f.password_field :password, class: 'title' %>
                                                     </div>
+
                                                     <div class="col-12 learts-mb-30">
-                                                        <label for="new-pwd">New password (leave blank to leave unchanged)</label>
-                                                        <input type="password" id="new-pwd">
-                                                    </div>
-                                                    <div class="col-12 learts-mb-30">
-                                                        <label for="confirm-pwd">Confirm new password</label>
-                                                        <input type="password" id="confirm-pwd">
+                                                        <%= f.label :password_confirmation, t('spree.confirm_password') %><br />
+                                                        <%= f.password_field :password_confirmation, class: 'title' %>
                                                     </div>
                                                 </div>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-12 learts-mb-30">
-                                            <button class="btn btn-dark btn-outline-hover-dark">Save Changes</button>
+                                                <div class="col-12 learts-mb-30">
+                                                    <%= button_tag t('spree.update'), class: 'btn btn-dark btn-outline-hover-dark', type: :submit %>
+                                                </div>
+                                            <% end %>
                                         </div>
                                     </div>
                                 </form>

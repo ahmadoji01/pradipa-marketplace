@@ -1,22 +1,94 @@
-<%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
-<h1><%= t('spree.registration') %></h1>
-<div id="registration" data-hook>
-  <div id="account" class="columns alpha eight">
-    <%= render template: 'spree/user_sessions/new' %>
+<div class="section section-padding">
+  <div class="container">
+      <div class="row learts-mb-n40">
+
+          <div class="col-lg-8 col-md-8 col-sm-12 learts-mb-40">
+              <!-- Section Title Start -->
+              <div class="section-title2">
+                  <h2 class="title">Accordion</h2>
+              </div>
+              <!-- Section Title End -->
+              <div class="row">
+                  <div class="col">
+                      <div class="accordion" id="faq-accordion">
+                          <div class="card accordion-item">
+                            <div class="card-header accordion-header">
+                                <button class="btn btn-link accordion-button" style="white-space: normal;">
+                                    <p>How should we reach you?</p>
+                                    <div style="font-family: 'Futura', Arial, Helvetica, sans-serif;">
+                                      <% if @order.email? %><p><%= @order.email %></p><% end %>
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="faq-accordion-2" class="accordion-collapse collapse show" data-bs-parent="#faq-accordion">
+                              <div class="card-body accordion-body">
+                                <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
+                                <h1><%= t('spree.registration') %></h1>
+                                <div id="registration" data-hook>
+                                  <div id="account" class="columns alpha eight">
+                                    <%= render template: 'spree/user_sessions/new' %>
+                                  </div>
+                                  <% if Spree::Config[:allow_guest_checkout] %>
+                                    <div id="guest_checkout" data-hook class="columns omega eight">
+                                      <h6><%= t('spree.guest_user_account') %></h6>
+                                      <% if flash[:registration_error] %>
+                                        <div class='flash error'><%= flash[:registration_error] %></div>
+                                      <% end %>
+                                      <%= form_for @order, url: update_checkout_registration_path, method: :put, html: { id: 'checkout_form_registration' } do |f| %>
+                                        <p>
+                                          <%= f.label :email, t('spree.email') %><br />
+                                          <%= f.email_field :email, class: 'title' %>
+                                        </p>
+                                        <p><%= f.submit t('spree.continue'), class: 'button primary' %></p>
+                                      <% end %>
+                                    </div>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card accordion-item">
+                            <div class="card-header accordion-header">
+                              <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-2" style="white-space: normal;">
+                                <p>Where should we ship this order?</p>
+                              </button>
+                            </div>
+                          </div>
+                            <div class="card accordion-item">
+                              <div class="card-header accordion-header">
+                                <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-3" style="white-space: normal;">
+                                  <p>How should we ship your order?</p>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="card accordion-item">
+                              <div class="card-header accordion-header">
+                                <button class="btn btn-link accordion-button checkout-accordion collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-4" style="white-space: normal;">
+                                  <p>What's your payment information?</p>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="card accordion-item">
+                              <div class="card-header accordion-header">
+                                <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-5" style="white-space: normal;">
+                                    Everything look good?
+                                </button>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-12  learts-mb-40">
+              <div class="order-review">
+                <%= render partial: 'order_details', locals: { order: @order } %>
+              </div>
+          </div>
+
+      </div>
   </div>
-  <% if Spree::Config[:allow_guest_checkout] %>
-    <div id="guest_checkout" data-hook class="columns omega eight">
-      <h6><%= t('spree.guest_user_account') %></h6>
-      <% if flash[:registration_error] %>
-        <div class='flash error'><%= flash[:registration_error] %></div>
-      <% end %>
-      <%= form_for @order, url: update_checkout_registration_path, method: :put, html: { id: 'checkout_form_registration' } do |f| %>
-        <p>
-          <%= f.label :email, t('spree.email') %><br />
-          <%= f.email_field :email, class: 'title' %>
-        </p>
-        <p><%= f.submit t('spree.continue'), class: 'button primary' %></p>
-      <% end %>
-    </div>
-  <% end %>
 </div>
+
+
+
