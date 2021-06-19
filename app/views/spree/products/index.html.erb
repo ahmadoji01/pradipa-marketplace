@@ -1,3 +1,4 @@
+
 <!-- Shop Products Section Start -->
 <div class="section section-padding pt-0">
 
@@ -6,13 +7,24 @@
             <div class="row learts-mb-n50">
 
                 <div class="col-lg-9 col-12 learts-mb-50 order-lg-2">
+                    <%  paginated_products = @searcher.retrieve_products if params.key?(:keywords)
+                        paginated_products ||= @products %>
+                    <% content_for :head do %>
+                        <% if paginated_products.respond_to?(:total_pages) %>
+                            <%= rel_next_prev_link_tags paginated_products %>
+                        <% end %>
+                    <% end %>
+
                     <!-- Products Start -->
                     <div id="shop-products" class="products isotope-grid row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
                         <div class="grid-sizer col-1"></div>
                         <% @products.each do |product| %>
-                          <div class="grid-item col">
-                            <%= render partial: 'spree/elements/product_card', locals: { product: product } %>
-                          </div>
+                            <div class="grid-item col">
+                                <%= render partial: 'spree/elements/product_card', locals: { product: product } %>
+                            </div>
+                        <% end %>
+                        <% if paginated_products.respond_to?(:total_pages) %>
+                            <%= paginate paginated_products %>
                         <% end %>
                     </div>
                     <!-- Products End -->
