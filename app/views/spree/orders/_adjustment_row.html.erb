@@ -2,7 +2,7 @@
   <tr>
     <th><%= type %>: <%= label %></th>
     <td>
-      <strong><span class="amount"><%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %></span></strong>
+      <span class="amount"><%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %></span>
     </td>
   </tr>
 <% end %>

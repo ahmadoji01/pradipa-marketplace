@@ -1,4 +1,3 @@
-<span><h5><%= t('spree.shipping_method') %></h5></span>
 <div class="inner mt-4" data-hook="shipping_method_inner">
   <div id="methods">
     <%= form.fields_for :shipments do |ship_form| %>
@@ -68,7 +67,7 @@
 
 <br />
 
-<div class="form-buttons save-btn-container" data-hook="buttons">
+<div class="form-buttons save-btn-container text-center" data-hook="buttons">
   <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
     <i class="fa fa-pencil"></i> <%= t('spree.save_and_continue') %>
   <% end %>

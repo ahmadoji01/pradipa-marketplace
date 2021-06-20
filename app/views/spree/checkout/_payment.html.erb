@@ -31,7 +31,7 @@
     </div>
   </div>
 <% end %>
-<div class="col-12 pb-5 choose-payment-section">
+<div class="col-12 choose-payment-section">
     <% @order.available_payment_methods.each do |method| %>
         <% method_icon, method_label = '' %>
 
@@ -60,7 +60,7 @@
     </li>
   <% end %>
 </ul>
-<div class="form-buttons save-btn-container" data-hook="buttons">
+<div class="form-buttons save-btn-container text-center" data-hook="buttons">
   <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
     <i class="fa fa-pencil"></i> <%= t('spree.save_and_continue') %>
   <% end %>

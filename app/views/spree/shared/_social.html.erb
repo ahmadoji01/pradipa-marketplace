@@ -5,18 +5,14 @@
     <% Spree::AuthenticationMethod.available_for(spree_current_user).each do |method| %>
         <% if method.provider == "google_oauth2" %>
             <div class="google btn social-btn mt-2">
-                <%= link_to(content_tag(:i, ' Login with Google', class: "fab fa-google"),
-                spree.send("spree_user_#{method.provider}_omniauth_authorize_path", r: rand),
-                title: t('spree.sign_in_with', provider: method.provider), class: "social-btn") if method.active do %>
-                    <i class="fab fa-google"></i> Login with Google
+                <%= link_to spree.send("spree_user_#{method.provider}_omniauth_authorize_path", r: rand), style: 'color: #fff' do %>
+                    <i class="fab fa-google"></i> <span class="d-none d-lg-block">Login with Google</span>
                 <% end %>
             </div>
         <% elsif method.provider == "facebook" %>
             <div class="facebook btn social-btn mt-2">
-                <%= link_to(content_tag(:i, ' Login with Facebook', class: "fab fa-facebook"),
-                spree.send("spree_user_#{method.provider}_omniauth_authorize_path", r: rand),
-                title: t('spree.sign_in_with', provider: method.provider), class: "social-btn") if method.active do %>
-                    <i class="fab fa-facebook"></i> Login with Facebook
+                <%= link_to spree.send("spree_user_#{method.provider}_omniauth_authorize_path", r: rand), style: 'color: #fff' do %>
+                    <i class="fab fa-facebook"></i> <span class="d-none d-lg-block">Login with Facebook</span>
                 <% end %>
             </div>
         <% end %>
