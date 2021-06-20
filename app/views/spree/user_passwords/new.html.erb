@@ -1,15 +1,22 @@
-<div id="forgot-password">
-  <h6><%= t('spree.forgot_password') %></h6>
+<div class="section section-padding">
+    <div class="container">
 
-  <p><%= t('spree.instructions_to_reset_password') %></p>
-
-  <%= form_for Spree::User.new, as: :spree_user, url: spree.reset_password_path do |f| %>
-    <p>
-      <%= f.label :email, t('spree.email') %><br />
-      <%= f.email_field :email, required: true %>
-    </p>
-    <p>
-      <%= f.submit t('spree.reset_password'), class: 'button primary' %>
-    </p>
-  <% end %>
+        <div class="lost-password">
+          <div class="login-register-title" style="margin-bottom:10px">
+            <h2 class="title">Forgot Password?</h2>
+            <p>Please enter your email address. You will receive a link to create a new password via email.</p>
+          </div>
+          <%= form_for Spree::User.new, as: :spree_user, url: spree.reset_password_path do |f| %>
+            <div class="row learts-mb-n30">
+                <div class="col-12 learts-mb-30">
+                  <%= f.label :email, t('spree.email') %>
+                  <%= f.email_field :email, required: true %>
+                </div>
+                <div class="col-12 text-center learts-mb-30">
+                  <%= button_tag t('spree.reset_password'), type: 'submit', class: 'btn btn-dark btn-outline-hover-dark' %>
+                </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
 </div>

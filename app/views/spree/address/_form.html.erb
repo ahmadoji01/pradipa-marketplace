@@ -31,7 +31,7 @@
     <%= form.label :country_id, t('spree.country'), class: "mb-2" %>
     <span id=<%="#{address_id}country-selection" %>>
       <%= form.collection_select :country_id, available_countries, :id, :name, {},
-          class: 'required',
+          class: 'select2 required',
           autocomplete: address_type + ' country-name',
           required: true
         %>
@@ -49,7 +49,7 @@
             :state_id, address.country.states, :id, :name,
             {include_blank: true},
             {
-              class: have_states ? 'required' : '',
+              class: have_states ? 'select2 required' : 'select2',
               style: have_states ? '' : 'display: none;',
               disabled: !have_states,
               autocomplete: address_type + ' address-level1',
@@ -66,7 +66,7 @@
         %>
       </span>
       <noscript>
-        <%= form.text_field :state_name, class: 'required', autocomplete: address_type + ' address-level1',  required: true %>
+        <%= form.text_field :state_name, class: 'select2 required', autocomplete: address_type + ' address-level1',  required: true %>
       </noscript>
     </div>
   <% end %>

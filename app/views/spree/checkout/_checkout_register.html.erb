@@ -1,0 +1,69 @@
+<% if flash[:alert] %>
+  <div class="flash errors"><%= flash[:alert] %></div>
+<% end %>
+
+<% @body_id = 'login' %>
+<div class="section">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-lg-6">
+        <div class="user-login-register bg-light" style="padding:20px">
+          <div class="login-register-title" style="margin-bottom:10px">
+            <h2 class="title">Login</h2>
+            <p class="desc">For easier tracking and faster checkout</p>
+          </div>
+          <div class="login-register-form">
+            <%= form_for Spree::User.new, as: :spree_user, url: spree.create_new_session_path do |f| %>
+              <div id="row learts-mb-n10">
+                <div class="col-12 learts-mb-10">
+                  <%= f.label :email, t('spree.email') %>
+                  <%= f.email_field :email, class: 'title', tabindex: 1, autofocus: true %>
+                </div>
+                <div class="col-12 learts-mb-10">
+                  <%= f.label :password, t('spree.password') %>
+                  <%= f.password_field :password, class: 'title', tabindex: 2 %>
+                </div>
+              </div>
+              <div class="col-12 learts-mb-10">
+                <div class="row learts-mb-n20">
+                  <div class="col-12 learts-mb-20">
+                    <div class="form-check">
+                      <%= f.check_box :remember_me, tabindex: 3, class: "form-check-input" %>
+                      <%= f.label :remember_me, t('spree.remember_me'), class: "form-check-label" %>
+                    </div>
+                  </div>
+                  <div class="col-12 text-center learts-mb-10">
+                    <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
+                      <%= t('spree.login') %>
+                    <% end %>
+                    <%= render partial: 'spree/shared/social' %>
+                  </div>
+                  <div class="col-12 learts-mb-20">
+                    <%= t('spree.or') %>&nbsp;<%= link_to t('spree.create_a_new_account'), spree.signup_path %> | <%= link_to t('spree.forgot_password'), spree.recover_password_path %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% if Spree::Config[:allow_guest_checkout] %>
+        <div id="guest_checkout" data-hook class="columns omega eight col-lg-6">
+          <h6>Or</h6>
+          <% if flash[:registration_error] %>
+            <div class='flash error'><%= flash[:registration_error] %></div>
+          <% end %>
+          <%= form_for @order, url: update_checkout_registration_path, method: :put, html: { id: 'checkout_form_registration' } do |f| %>
+            <div class="col-12 learts-mb-10">
+              <%= f.label :email, t('spree.email') %>
+              <%= f.email_field :email, class: 'title' %>
+            </div>
+            <div class="col-12 text-center learts-mb-10">
+              <%= button_tag t('spree.guest_user_account'), class: 'btn btn-dark btn-outline-hover-dark', type: :submit %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -27,8 +27,8 @@ Spree::SocialConfig.configure do |config|
       api_secret: ENV['GITHUB_API_SECRET'],
     },
     google_oauth2: {
-      api_key: ENV['GOOGLE_OAUTH2_API_KEY'],
-      api_secret: ENV['GOOGLE_OAUTH2_API_SECRET'],
+      api_key: Rails.application.credentials.google_oauth2_client_id,
+      api_secret: Rails.application.credentials.google_oauth2_client_secret,
     },
     amazon: {
       api_key: ENV['AMAZON_API_KEY'],

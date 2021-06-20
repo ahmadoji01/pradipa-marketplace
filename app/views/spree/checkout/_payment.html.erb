@@ -31,9 +31,6 @@
     </div>
   </div>
 <% end %>
-<div class="col-12">
-    <p class="mb-4 pb-2"><h5>Choose your preferred payment</h5></p>
-</div>
 <div class="col-12 pb-5 choose-payment-section">
     <% @order.available_payment_methods.each do |method| %>
         <% method_icon, method_label = '' %>
