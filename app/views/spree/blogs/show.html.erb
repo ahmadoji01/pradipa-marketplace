@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @spree_blog.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @spree_blog.body %>
+</p>
+
+<p>
+  <strong>Meta title:</strong>
+  <%= @spree_blog.meta_title %>
+</p>
+
+<p>
+  <strong>Meta keyword:</strong>
+  <%= @spree_blog.meta_keyword %>
+</p>
+
+<p>
+  <strong>Subtitle:</strong>
+  <%= @spree_blog.subtitle %>
+</p>
+
+<p>
+  <strong>Featured image:</strong>
+  <%= @spree_blog.featured_image %>
+</p>
+
+<p>
+  <strong>Edited at:</strong>
+  <%= @spree_blog.edited_at %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @spree_blog.category %>
+</p>
+
+<%= link_to 'Edit', edit_spree_blog_path(@spree_blog) %> |
+<%= link_to 'Back', spree_blogs_path %>

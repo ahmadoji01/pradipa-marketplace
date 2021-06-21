@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Spree Blogs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Meta title</th>
+      <th>Meta keyword</th>
+      <th>Subtitle</th>
+      <th>Featured image</th>
+      <th>Edited at</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spree_blogs.each do |spree_blog| %>
+      <tr>
+        <td><%= spree_blog.title %></td>
+        <td><%= spree_blog.body %></td>
+        <td><%= spree_blog.meta_title %></td>
+        <td><%= spree_blog.meta_keyword %></td>
+        <td><%= spree_blog.subtitle %></td>
+        <td><%= spree_blog.featured_image %></td>
+        <td><%= spree_blog.edited_at %></td>
+        <td><%= spree_blog.category %></td>
+        <td><%= link_to 'Show', spree_blog %></td>
+        <td><%= link_to 'Edit', edit_spree_blog_path(spree_blog) %></td>
+        <td><%= link_to 'Destroy', spree_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spree Blog', new_spree_blog_path %>

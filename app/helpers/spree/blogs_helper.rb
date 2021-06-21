@@ -1,0 +1,2 @@
+module Spree::BlogsHelper
+end

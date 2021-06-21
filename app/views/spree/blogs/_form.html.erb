@@ -1,0 +1,57 @@
+<%= form_with(model: spree_blog) do |form| %>
+  <% if spree_blog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(spree_blog.errors.count, "error") %> prohibited this spree_blog from being saved:</h2>
+
+      <ul>
+        <% spree_blog.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_field :body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meta_title %>
+    <%= form.text_field :meta_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meta_keyword %>
+    <%= form.text_field :meta_keyword %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subtitle %>
+    <%= form.text_field :subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :featured_image %>
+    <%= form.text_field :featured_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edited_at %>
+    <%= form.datetime_select :edited_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_060613) do
+ActiveRecord::Schema.define(version: 2021_06_21_165420) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 2021_06_15_060613) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "blog_categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "parent_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["parent_category_id"], name: "index_blog_categories_on_parent_category_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -178,6 +186,20 @@ ActiveRecord::Schema.define(version: 2021_06_15_060613) do
     t.text "summary"
     t.integer "author_id"
     t.index ["author_id"], name: "index_spree_blog_entries_on_author_id"
+  end
+
+  create_table "spree_blogs", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.string "meta_title"
+    t.string "meta_keyword"
+    t.string "subtitle"
+    t.string "featured_image"
+    t.datetime "edited_at"
+    t.integer "blog_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_category_id"], name: "index_spree_blogs_on_blog_category_id"
   end
 
   create_table "spree_calculators", force: :cascade do |t|
@@ -1289,6 +1311,7 @@ ActiveRecord::Schema.define(version: 2021_06_15_060613) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_categories", "category", column: "parent_category_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
