@@ -1,11 +1,11 @@
 <% name ||= "Category" %>
 <% image ||= "banner/category/banner-s4-1.jpg" %>
 <% color ||= "#f4ede7" %>
-<% url ||= "/t/categories/" %>
+<% permalink ||= "" %>
 
 <div class="col learts-mb-40">
     <div class="category-banner4">
-        <a href="<%= url %>" class="inner">
+        <a href="<%= '/t/categories/' + permalink %>" class="inner">
             <div class="image"><%= image_tag image %></div>
             <div class="content" data-bg-color="<%= color %>">
                 <h3 class="title"><%= name %></h3>
