@@ -1,4 +1,4 @@
-<%= form_with(model: spree_blog) do |form| %>
+<%= form_for spree_blog, as: :spree_blog, url: main_app.new_blog_path do |form| %>
   <% if spree_blog.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(spree_blog.errors.count, "error") %> prohibited this spree_blog from being saved:</h2>
@@ -47,8 +47,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
+    <%= form.label :blog_category %>
+    <%= form.text_field :blog_category %>
   </div>
 
   <div class="actions">

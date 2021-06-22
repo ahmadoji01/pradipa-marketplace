@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_165420) do
+ActiveRecord::Schema.define(version: 2021_06_22_043933) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 2021_06_21_165420) do
 
   create_table "blog_categories", force: :cascade do |t|
     t.string "name"
-    t.integer "parent_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "parent_category_id"
     t.index ["parent_category_id"], name: "index_blog_categories_on_parent_category_id"
   end
 
@@ -1311,7 +1311,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_165420) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "blog_categories", "category", column: "parent_category_id"
+  add_foreign_key "blog_categories", "blog_categories", column: "parent_category_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
