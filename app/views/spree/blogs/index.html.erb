@@ -27,10 +27,10 @@
         <td><%= spree_blog.subtitle %></td>
         <td><%= spree_blog.featured_image %></td>
         <td><%= spree_blog.edited_at %></td>
-        <td><%= spree_blog.category %></td>
-        <td><%= link_to 'Show', spree_blog %></td>
-        <td><%= link_to 'Edit', edit_spree_blog_path(spree_blog) %></td>
-        <td><%= link_to 'Destroy', spree_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= spree_blog.blog_category %></td>
+        <td><%= link_to 'Show', main_app.blog_path(spree_blog) %></td>
+        <td><%= link_to 'Edit', main_app.edit_blog_path(spree_blog) %></td>
+        <td><%= link_to 'Destroy', main_app.blog_path(spree_blog), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

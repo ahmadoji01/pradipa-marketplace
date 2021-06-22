@@ -1,4 +1,7 @@
-<%= form_for spree_blog, as: :spree_blog, url: main_app.new_blog_path do |form| %>
+<% method ||= 'post' %>
+<% @url = (method == 'post' ? main_app.blogs_path : main_app.blog_path(spree_blog)) %>
+
+<%= form_for spree_blog, as: :spree_blog, url: @url do |form| %>
   <% if spree_blog.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(spree_blog.errors.count, "error") %> prohibited this spree_blog from being saved:</h2>
@@ -35,10 +38,20 @@
     <%= form.label :subtitle %>
     <%= form.text_field :subtitle %>
   </div>
-
+  
   <div class="field">
-    <%= form.label :featured_image %>
-    <%= form.text_field :featured_image %>
+    <p>
+      <label>Featured Image</label>
+      <%= image_tag(spree_blog.featured_image_url) if spree_blog.featured_image? %>
+      <%= form.file_field :featured_image %>
+    </p>
+
+    <p>
+      <label>
+        <%= form.check_box :remove_featured_image %>
+        Remove Featured Image
+      </label>
+    </p>
   </div>
 
   <div class="field">
@@ -48,7 +61,8 @@
 
   <div class="field">
     <%= form.label :blog_category %>
-    <%= form.text_field :blog_category %>
+    <%= select_tag :blog_category, 
+      options_for_select(@blog_categories.map {|t| [t.name, t.id]}), class: 'search-select select2-basic', 'aria-label' => 'Blog Category', id: :blog_category %>
   </div>
 
   <div class="actions">

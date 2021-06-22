@@ -62,4 +62,4 @@ gem "solidus_api", "~> 3.0"
 gem 'solidus_auth_devise'
 gem 'solidus_paypal_commerce_platform'
 gem 'solidus_social'
-gem 'inline_svg'
+gem 'carrierwave', '~> 2.0'

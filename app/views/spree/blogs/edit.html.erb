@@ -1,6 +1,6 @@
 <h1>Editing Spree Blog</h1>
 
-<%= render 'form', spree_blog: @spree_blog %>
+<%= render partial: 'form', locals: { method: 'patch', spree_blog: @spree_blog } %>
 
-<%= link_to 'Show', @spree_blog %> |
+<%= link_to 'Show', main_app.blog_path(@spree_blog) %> |
 <%= link_to 'Back', main_app.blogs_path %>

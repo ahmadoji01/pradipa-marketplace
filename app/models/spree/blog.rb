@@ -1,3 +1,4 @@
 class Spree::Blog < ApplicationRecord
-    belongs_to :blog_category
+    mount_uploader :featured_image, BlogFeaturedImageUploader
+    belongs_to :blog_category, optional: true
 end

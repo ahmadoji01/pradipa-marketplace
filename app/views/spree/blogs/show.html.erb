@@ -37,8 +37,8 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @spree_blog.category %>
+  <%= @spree_blog.blog_category.name %>
 </p>
 
-<%= link_to 'Edit', main_app.edit_spree_blog_path(@spree_blog) %> |
+<%= link_to 'Edit', main_app.edit_blog_path(@spree_blog) %> |
 <%= link_to 'Back', main_app.blogs_path %>
