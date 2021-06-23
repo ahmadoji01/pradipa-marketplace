@@ -6,10 +6,12 @@ module Spree
     # GET /spree/blogs or /spree/blogs.json
     def index
       @spree_blogs = Spree::Blog.all
+      @blogs = Spree::Blog.last(6)
     end
 
     # GET /spree/blogs/1 or /spree/blogs/1.json
     def show
+      @related_posts = Spree::Blog.where(blog_category: @spree_blog.blog_category).order('created_at desc').limit(2)
     end
 
     # GET /spree/blogs/new

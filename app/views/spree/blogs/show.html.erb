@@ -1,44 +1,92 @@
-<p id="notice"><%= notice %></p>
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="<%= image_url 'bg/page-title-1.jpg' %>">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="page-title">
+                    <h1 class="title">Blog</h1>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/blogs">Blog</a></li>
+                        <li class="breadcrumb-item active"><%= @spree_blog.title %></li>
+                    </ul>
+                </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @spree_blog.title %>
-</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Title/Header End -->
 
-<p>
-  <strong>Body:</strong>
-  <%= @spree_blog.body %>
-</p>
+<!-- Portfolio Section Start -->
+<div class="section section-padding">
+    <div class="container">
+        <div class="row">
 
-<p>
-  <strong>Meta title:</strong>
-  <%= @spree_blog.meta_title %>
-</p>
+            <div class="col-12">
+                <div class="single-blog">
+                    <ul class="category justify-content-center">
+                        <li><a href="#"><%= @spree_blog.blog_category.name if !@spree_blog.blog_category.nil? %></a></li>
+                    </ul>
+                    <h2 class="title text-center mb-5"><%= @spree_blog.title %></h2>
 
-<p>
-  <strong>Meta keyword:</strong>
-  <%= @spree_blog.meta_keyword %>
-</p>
+                    <div class="image mb-5">
+                        <a href="blog-details-right-sidebar.html"><img src="<%= image_url @spree_blog.featured_image.url %>" alt="Blog Image"></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-10 col-12 mx-auto">
+                            <div class="content">
+                                <ul class="meta justify-content-center">
+                                    <li><i class="far fa-calendar"></i><a href="#"><%= @spree_blog.created_at %></a></li>
+                                </ul>
+                                <div class="desc">
+                                  <%= @spree_blog.body %>
+                                </div>
+                            </div>
+                            <div class="blog-footer row no-gutters justify-content-between align-items-center">
+                                <div class="col-auto">
+                                    <ul class="tags">
+                                        <i class="icon fas fa-tags"></i>
+                                        <li><a href="#">design</a></li>
+                                        <li><a href="#">fashion</a></li>
+                                        <li><a href="#">learts</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="post-share">
+                                        Share this post
+                                        <span class="toggle"><i class="fas fa-share-alt"></i></span>
+                                        <ul class="social-list">
+                                            <li class="hintT-top" data-hint="Facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li class="hintT-top" data-hint="Twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li class="hintT-top" data-hint="Pinterest"><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                            <li class="hintT-top" data-hint="Google Plus"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                            <li class="hintT-top" data-hint="Email"><a href="#"><i class="fal fa-envelope-open"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-9 col-lg-10 col-12 mx-auto">
+                        <div class="related-blog">
+                            <div class="block-title pb-0 border-bottom-0">
+                              <h2 class="title">Related Posts</h2>
+                            </div>
+                            <div class="row learts-mb-n40">
+                              <% @related_posts.each do |post| %>
+                                <%= render partial: 'spree/blogs/partials/related_post', locals: { post: post } %>
+                              <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<p>
-  <strong>Subtitle:</strong>
-  <%= @spree_blog.subtitle %>
-</p>
+            </div>
+        </div>
+    </div>
 
-<p>
-  <strong>Featured image:</strong>
-  <%= @spree_blog.featured_image %>
-</p>
-
-<p>
-  <strong>Edited at:</strong>
-  <%= @spree_blog.edited_at %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @spree_blog.blog_category.name %>
-</p>
-
-<%= link_to 'Edit', main_app.edit_blog_path(@spree_blog) %> |
-<%= link_to 'Back', main_app.blogs_path %>
+</div>
+<!-- Portfolio Section End -->
