@@ -10,6 +10,7 @@ module Spree
         @categories = Spree::Taxon.find_by(name: "Categories").children
         @featured_products = @products.order("created_at DESC").slice(0,5)
         @recent_products = @products.order("created_at DESC").slice(0,8)
+        @recent_posts = Spree::Blog.last(5)
       end
     end
   end
