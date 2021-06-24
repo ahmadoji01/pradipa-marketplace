@@ -53,9 +53,9 @@
                 <div class="single-widget learts-mb-40">
                     <h3 class="widget-title product-filter-widget-title">Recent Post</h3>
                     <ul class="widget-blogs">
-                        <%= render partial: 'spree/blogs/partials/recent_post' %>
-                        <%= render partial: 'spree/blogs/partials/recent_post' %>
-                        <%= render partial: 'spree/blogs/partials/recent_post' %>
+                        <% @blogs.first(3).each do |blog| %>
+                            <%= render partial: 'spree/blogs/partials/recent_post', locals: { blog: blog } %>
+                        <% end %>
                     </ul>
                 </div>
                 <!-- Blog Post Widget End -->

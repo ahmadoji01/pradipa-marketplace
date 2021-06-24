@@ -64,6 +64,20 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.delivery_method = :smtp
+  host = 'hallchant.com'
+  config.action_mailer.default_url_options = { host: host }
+
+  # SMTP settings for zoho
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.zoho.com",
+    :port                 => 587,
+    :user_name            => 'admin@hallchant.com',
+    :password             => '5Ud~g;HVW!W/$?]',
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
