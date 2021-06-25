@@ -1,6 +1,16 @@
 <!-- Portfolio Section Start -->
-<div class="section section-padding">
+<div class="section section-padding" style="padding-top:20px">
     <div class="container">
+        <div class="row mb-4">
+            <div class="col">
+                <div class="page-title">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Blogs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="row learts-mb-n50">
 
             <div class="col-xl-9 col-lg-8 col-12 learts-mb-50">
@@ -34,7 +44,7 @@
                 <div class="single-widget learts-mb-40">
                     <h3 class="widget-title product-filter-widget-title">Recent Post</h3>
                     <ul class="widget-blogs">
-                        <% @blogs.first(3).each do |blog| %>
+                        <% @blogs.last(3).each do |blog| %>
                             <%= render partial: 'spree/blogs/partials/recent_post', locals: { blog: blog } %>
                         <% end %>
                     </ul>

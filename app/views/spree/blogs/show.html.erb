@@ -1,10 +1,9 @@
-<!-- Page Title/Header Start -->
-<div class="page-title-section section" data-bg-image="<%= image_url 'bg/page-title-1.jpg' %>">
+<!-- Portfolio Section Start -->
+<div class="section section-padding" style="padding-top:40px">
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-bottom:40px">
             <div class="col">
                 <div class="page-title">
-                    <h1 class="title">Blog</h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
                         <li class="breadcrumb-item"><a href="/blogs">Blog</a></li>
@@ -14,13 +13,6 @@
 
             </div>
         </div>
-    </div>
-</div>
-<!-- Page Title/Header End -->
-
-<!-- Portfolio Section Start -->
-<div class="section section-padding">
-    <div class="container">
         <div class="row">
 
             <div class="col-12">
@@ -31,7 +23,7 @@
                     <h2 class="title text-center mb-5"><%= @spree_blog.title %></h2>
 
                     <div class="image mb-5">
-                        <a href="blog-details-right-sidebar.html"><img src="<%= image_url @spree_blog.featured_image.url %>" alt="Blog Image"></a>
+                        <a href="#"><img src="<%= image_url @spree_blog.featured_image.url %>" alt="Blog Image"></a>
                     </div>
                     <div class="row">
                         <div class="col-xl-9 col-lg-10 col-12 mx-auto">

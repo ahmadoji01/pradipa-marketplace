@@ -1,13 +1,17 @@
-<div class="col-md-6 col-12 learts-mb-40">
+<div class="related-post col-md-6 col-12 learts-mb-40">
     <div class="blog">
         <div class="image">
-            <a href="blog-details-right-sidebar.html"><img src="<%= image_url post.featured_image.url %>" alt="Blog Image"></a>
+            <a href="<%= main_app.blog_path(post) %>"><img src="<%= image_url post.featured_image.url %>" alt="Blog Image"></a>
         </div>
         <div class="content">
             <ul class="meta">
                 <li><i class="far fa-calendar"></i><a href="#"><%= post.created_at %></a></li>
             </ul>
-            <h5 class="title mb-0"><a href="blog-details-right-sidebar.html"><%= post.title %></a></h5>
+            <h5 class="title" style="margin:0"><%= link_to post.title, main_app.blog_path(post), class: 'truncate' %></h5>
+            <div class="desc">
+                <p><%= post.body.to_plain_text.truncate(150) %></p>
+            </div>
+            <%= link_to "Read More", main_app.blog_path(post), class: 'link' %>
         </div>
     </div>
 </div>

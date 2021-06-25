@@ -1,9 +1,9 @@
 <li class="widget-blog">
     <div class="thumbnail">
-        <a href="blog-details-right-sidebar.html"><img src="<%= image_url blog.featured_image.thumb.url %>" alt="Widget Blog Post"></a>
+        <a href="<%= main_app.blog_path(blog) %>"><img src="<%= image_url blog.featured_image.thumb.url %>" alt="Widget Blog Post"></a>
     </div>
     <div class="content">
-        <h6 class="title"><%= link_to blog.title, main_app.blog_path(blog) %></h6>
+        <h6 class="title"><%= link_to blog.title.truncate(40), main_app.blog_path(blog) %></h6>
         <span class="date"><%= blog.created_at %></span>
     </div>
 </li>
