@@ -4,7 +4,7 @@
             <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
             <a href="<%= url %>" class="image">
                 <span class="product-badges">
-                    <span class="onsale">-27%</span>
+                    <!-- <span class="onsale">-27%</span> -->
                 </span>
                 <%= render('spree/shared/image', 
                     image: product.gallery.images.first, size: :product, itemprop: "image") %>

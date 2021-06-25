@@ -16,11 +16,12 @@
                                 image: featured_products.first.gallery.images.first, size: :large, itemprop: "image"), url, itemprop: 'url', class: 'price') %>
                             <div class="content">
                                 <h3 class="title"><%= featured_products.first.name %></h3>
+                                <img class="price" src="<%= image_url 'banner/sale/sale-banner4-1.1.png' %>" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center learts-mt-50">
-                        <a href="/products" class="btn btn-primary btn-hover-black">shop now</a>
+                        <a href="<%= spree.product_path(featured_products.first) %>" class="btn btn-primary btn-hover-black">shop now</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-12 order-lg-1 learts-mb-30">
