@@ -1,0 +1,22 @@
+<div class="col">
+    <div class="product">
+        <div class="product-thumb">
+            <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
+            <a href="<%= url %>" class="image">
+                <%= render('spree/shared/image', 
+                    image: product.gallery.images.first, size: :product, itemprop: "image") %>
+                <% if !product.gallery.images.second.nil? %>
+                    <%= render('spree/shared/image', image: product.gallery.images.second, size: :product, itemprop: "image", imgclass: "image-hover") %>
+                <% end %>
+            </a>
+        </div>
+        <div class="product2-info">
+            <h6 class="title"><a href="<%= url %>"><%= product.name %></a></h6>
+            <span class="price">
+                <%= display_price(product) %>
+            </span>
+        </div>
+        <div class="product2-buttons">
+        </div>
+    </div>
+</div>
