@@ -1,30 +1,24 @@
-<% console %>
-<div class="page-title-section section" data-bg-image="<%= image_url "bg/page-title-1.jpg" %>">
+<% init_url = "for_use/featured_image/" + @taxon.parent.name.downcase + "/" + @taxon.name.downcase + ".jpg" %>
+<% featured_image = asset_exists?(init_url) ? init_url : "portfolio/single/portfolio-1.jpg" %>
+<!-- Portfolio Section Start -->
+<div class="section section-padding border-bottom" style="padding-top:40px">
     <div class="container">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
-
                 <div class="page-title">
-                    <h1 class="title"><%= @taxon.name %></h1>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><%= @taxon.parent.name %></li>
                         <li class="breadcrumb-item active"><%= @taxon.name %></li>
                     </ul>
                 </div>
-
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Portfolio Section Start -->
-<div class="section section-padding border-bottom">
-    <div class="container">
         <div class="row learts-mb-n30">
 
             <div class="col-xl-8 col-12 learts-mb-30">
                 <div class="portfolio-image">
-                  <%= image_tag "portfolio/single/portfolio-1.jpg" %>
+                  <%= image_tag featured_image %>
                 </div>
             </div>
 
