@@ -66,28 +66,32 @@
             <p>Below are the products that we recommend to you based on your liking and popularity of the products</p>
         </div>
         <!-- Section Title End -->
-
-        <div class="row">
-            <div class="col-12">
-                <div class="portfolio-overview">
-                    <div class="row learts-mt-30">
-                        <div class="col-lg-6 col-12 learts-mb-30">
-                            <%= render partial: 'spree/elements/featured_product_card', locals: {product: @taxon.products.first} %>
-                        </div>
-                        <div class="col-lg-6 col-12 learts-mb-30">
-                            <div class="row learts-mb-n30">
-                                <% @taxon.products.last(4).each do |product| %>
-                                    <div class="col-sm-6 col-12 learts-mb-30">
-                                        <%= render partial: 'spree/elements/featured_product_card', locals: {product: product} %>
-                                    </div>
-                                <% end %>
+        <% if @taxon.products.any? %>
+            <div class="row">
+                <div class="col-12">
+                    <div class="portfolio-overview">
+                        <div class="row learts-mt-30">
+                            <div class="col-lg-6 col-12 learts-mb-30">
+                                <%= render partial: 'spree/elements/featured_product_card', locals: {product: @taxon.products.first} %>
+                            </div>
+                            <div class="col-lg-6 col-12 learts-mb-30">
+                                <div class="row learts-mb-n30">
+                                    <% @taxon.products.last(4).each do |product| %>
+                                        <div class="col-sm-6 col-12 learts-mb-30">
+                                            <%= render partial: 'spree/elements/featured_product_card', locals: {product: product} %>
+                                        </div>
+                                    <% end %>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+        <% else %>
+            <div class="row">
+                <h5 style="text-align:center">Come back here later for more updates!</h5>
+            </div>
+        <% end %>
     </div>
 
 </div>
