@@ -12,6 +12,7 @@ module Spree
         def index
             @searcher = build_searcher(params.merge(include_images: true))
             @products = @searcher.retrieve_products
+            @products = sort_products(@products)
             @taxonomies = Spree::Taxonomy.includes(root: :children)
         end
 
@@ -50,6 +51,20 @@ module Spree
 
         def load_taxon
             @taxon = Spree::Taxon.find(params[:taxon]) if params[:taxon].present?
+        end
+
+        def sort_products(products)
+            sort = params[:sort].present? ? params[:sort] : ""
+
+            if sort == "price"
+                return products.sort{|a| a.price}
+            elsif sort == "price-desc"
+                return products.sort{|a,b| b.price <=> a.price}
+            elsif sort == "latest"
+                return products.sort{|a,b| b.created_at <=> a.created_at}
+            end
+
+            return products
         end
     end
 end  
