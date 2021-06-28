@@ -85,6 +85,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="text-center">
+                        <%= link_to "View All Products", spree.products_path(:taxon => @taxon.id), class: "btn btn-primary btn-hover-black" %>
+                    </div>
                 </div>
             </div>
         <% else %>
