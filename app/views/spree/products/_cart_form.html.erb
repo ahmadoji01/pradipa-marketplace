@@ -1,32 +1,43 @@
 <%= form_for :order, url: populate_orders_path do |f| %>
   <div id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-
-    <% if @product.variants_and_option_values_for(current_pricing_options).any? %>
-      <div id="product-variants" class="columns five alpha">
-        <h6 class="product-section-title"><%= t('spree.variants') %></h6>
-        <ul>
-          <% @product.variants_and_option_values_for(current_pricing_options).each_with_index do |variant, index| %>
-            <li>
-              <%= radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_for(current_pricing_options)  %>
-              <%= label_tag "variant_id_#{ variant.id }" do %>
-                <span class="variant-description">
-                  <%= variant_options variant %>
-                </span>
-                <% if variant_price variant %>
-                  <span class="price diff"><%= variant_price variant %></span>
-                <% end %>
-
-                <% unless variant.can_supply? %>
-                  <span class="out-of-stock"><%= t('spree.out_of_stock') %></span>
-                <% end %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% else %>
-      <%= hidden_field_tag "variant_id", @product.master.id %>
-    <% end %>
+    <div class="product-variations">
+        <table class="full-width">
+            <tbody>
+              <tr>
+                <td class="label"><span>Variants</span></td>
+              </tr>
+              <tr>
+                <td class="value">
+                    <% if @product.variants_and_option_values_for(current_pricing_options).any? %>
+                      <div id="product-variants" class="columns five alpha">
+                        <div class="container" style="padding:0">
+                          <% if @product.option_types.where(presentation: "Color").exists? && @product.option_types.count == 1 %>
+                            <%= render partial: 'spree/products/variants/color', locals: { product: @product } %>
+                          <% else %>
+                            <%= render partial: 'spree/products/variants/generic', locals: { product: @product } %>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% else %>
+                      <%= hidden_field_tag "variant_id", @product.master.id %>
+                    <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="label"><span>Quantity</span></td>
+              </tr>
+              <tr>
+                <td class="value full-width">
+                    <div class="product-quantity" style="margin-bottom: 20px">
+                    <span class="qty-btn minus"><i class="ti-minus"></i></span>
+                    <%= number_field_tag :quantity, 1, class: 'input-qty', min: 1 %>
+                    <span class="qty-btn plus"><i class="ti-plus"></i></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
 
     <% if @product.price_for(current_pricing_options) and !@product.price.nil? %>
       <div data-hook="product_price" class="columns five <%= !@product.has_variants? ? 'alpha' : 'omega' %>">
@@ -40,14 +51,8 @@
         </div>
 
         <div class="add-to-cart">
-          <div class="product-quantity" style="margin-bottom: 20px">
-            <span class="qty-btn minus"><i class="ti-minus"></i></span>
-              <%= number_field_tag :quantity, 1, class: 'input-qty', min: 1 %>
-            <span class="qty-btn plus"><i class="ti-plus"></i></span>
-          </div>
-
           <div class="product-buttons">
-            <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', id: 'add-to-cart-button', type: :submit do %>
+            <%= button_tag class: 'full-width btn btn-dark btn-outline-hover-dark', id: 'add-to-cart-button', type: :submit do %>
               <i class="fal fa-shopping-cart"></i> <%= t('spree.add_to_cart') %>
             <% end %>
           </div>

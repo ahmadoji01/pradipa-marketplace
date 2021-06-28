@@ -44,47 +44,10 @@
             <div class="col-lg-6 col-12 learts-mb-40">
                 <div class="product-summery">
                     <h3 class="product-title"><%= @product.name %></h3>
-                    <div class="product-price">$<%= @product.price %></div>
+                    <div class="product-price" id="price-container"><%= @product.price_for(current_pricing_options) %></div>
                     <div class="product-description">
                         <p><%= @product.description %></p>
                     </div>
-                    <% if @product.variant_ids.any? %>
-                      <div class="product-variations">
-                          <table>
-                              <tbody>
-                                  <tr>
-                                      <td class="label"><span>Size</span></td>
-                                      <td class="value">
-                                          <div class="product-sizes">
-                                              <a href="#">Large</a>
-                                              <a href="#">Medium</a>
-                                              <a href="#">Small</a>
-                                          </div>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td class="label"><span>Color</span></td>
-                                      <td class="value">
-                                          <div class="product-colors">
-                                              <a href="#" data-bg-color="#000000"></a>
-                                              <a href="#" data-bg-color="#ffffff"></a>
-                                          </div>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td class="label"><span>Quantity</span></td>
-                                      <td class="value">
-                                          <div class="product-quantity">
-                                              <span class="qty-btn minus"><i class="ti-minus"></i></span>
-                                              <input type="text" class="input-qty" value="1">
-                                              <span class="qty-btn plus"><i class="ti-plus"></i></span>
-                                          </div>
-                                      </td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                    <% end %>
                     <div id="cart-form" data-hook="cart_form">
                       <%= render partial: 'cart_form' %>
                     </div>
@@ -150,7 +113,6 @@
 
         </div>
     </div>
-
 </div>
 
 <div class="section section-padding border-bottom">

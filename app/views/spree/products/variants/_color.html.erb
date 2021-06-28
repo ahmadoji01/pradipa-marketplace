@@ -1,0 +1,10 @@
+<% color_option_id = @product.option_types.where(presentation: "Color").first.id %>
+<% product.variants_and_option_values_for(current_pricing_options).each_with_index do |variant, index| %>
+    <% color = variant.option_values.find_by(option_type_id: color_option_id) %>
+    <% vp = variant_price(variant) ? ", " + variant_price(variant) : "" %>
+    <%= radio_button_tag "variant_id", variant.id, index == 0, 
+        class: 'variant-radio hintT-top', 'data-hint' => variant_options(variant) + vp, 
+        'data-price' => variant.price_for(current_pricing_options), disabled: !variant.can_supply?  %>
+    <%= label_tag "variant_id_#{ variant.id }", nil, class: "variant-label hintT-top", 
+        'data-hint' => variant_options(variant) + vp, style: "background: " + color.name %>
+<% end %>
