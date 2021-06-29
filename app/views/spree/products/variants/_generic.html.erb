@@ -1,7 +1,7 @@
 <div class="col-12 choose-payment-section">
     <% product.variants_and_option_values_for(current_pricing_options).each_with_index do |variant, index| %>
         <%= radio_button_tag "variant_id", variant.id, index == 0, class: 'checkbox-tools'  %>  
-        <%= label_tag "variant_id_#{ variant.id }", class: 'for-checkbox-tools variant-checkbox' do %>
+        <%= label_tag "variant_id_#{ variant.id }", class: 'for-checkbox-tools variant-checkbox', onclick: 'window.changeActiveSlide(' + index.to_s + ')' do %>
             <span class="variant-description">
                 <%= variant_options variant %>
             </span>

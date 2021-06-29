@@ -6,5 +6,5 @@
         class: 'variant-radio hintT-top', 'data-hint' => variant_options(variant) + vp, 
         'data-price' => variant.price_for(current_pricing_options), disabled: !variant.can_supply?  %>
     <%= label_tag "variant_id_#{ variant.id }", nil, class: "variant-label hintT-top", 
-        'data-hint' => variant_options(variant) + vp, style: "background: " + color.name %>
+        'data-hint' => variant_options(variant) + vp, style: "background: " + color.name, onclick: 'window.changeActiveSlide(' + index.to_s + ')' %>
 <% end %>
