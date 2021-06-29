@@ -7,13 +7,23 @@ services:
     volumes:
       - "./db/:/root/db/"
   
-  web:
-    build: .
-    ports:
-      - "3000:3000"
+  app:
+    build: 
+      context: .
+      dockerfile: app.Dockerfile
+    command: bash -c "bundle exec puma -C config/puma.rb"
     depends_on:
       - sqlite3
-    environment:
-      - RAILS_MASTER_KEY=27e3a2700abbb8da46ee1bc5d54d74ff
     volumes:
       - .:/app
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    depends_on:
+      - app
+    environment:
+      - RAILS_MASTER_KEY=27e3a2700abbb8da46ee1bc5d54d74ff
+    ports:
+      - 80:80
