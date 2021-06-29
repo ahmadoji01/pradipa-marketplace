@@ -1,3 +1,21 @@
+GIT
+  remote: https://github.com/solidusio-contrib/solidus_related_products.git
+  revision: 8fd1212a4a3e4d73c8161cbe60608058bf647760
+  specs:
+    solidus_related_products (1.1.0)
+      deface (~> 1.0)
+      solidus_backend (>= 2.0.0, < 4)
+      solidus_core (>= 2.0.0, < 4)
+      solidus_support (~> 0.5)
+
+GIT
+  remote: https://github.com/solidusio-contrib/solidus_reports.git
+  revision: ae5643a0ec0f2cdae9f50cdb1364f8b7f844d19d
+  specs:
+    solidus_reports (1.0.0)
+      solidus_core (>= 2.5, < 3.1)
+      solidus_support (~> 0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -483,6 +501,8 @@ DEPENDENCIES
   solidus_auth_devise
   solidus_core (~> 3.0)
   solidus_paypal_commerce_platform
+  solidus_related_products!
+  solidus_reports!
   solidus_social
   spring
   sqlite3 (~> 1.4)

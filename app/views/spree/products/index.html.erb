@@ -1,7 +1,3 @@
-<script>
-    
-</script>
-
 <!-- Shop Products Section Start -->
 <div class="section section-padding pt-0">
 
@@ -18,6 +14,17 @@
                         <% end %>
                     <% end %>
 
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="page-title">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        Showing results of <strong style="color:black">"<%= params[:keywords] %>"</strong> - <%= @products.count %> items
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Products Start -->
                     <div id="shop-products" class="products isotope-grid row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
                         <div class="grid-sizer col-1"></div>
@@ -68,7 +75,7 @@
 
                     <nav id="taxonomies" class="sidebar-item" data-hook>
                         <div class="single-widget learts-mb-40">
-                            <h3 class="widget-title product-filter-widget-title">Filtery by Category</h3>
+                            <h3 class="widget-title product-filter-widget-title">Filter by Category</h3>
                             <ul class="widget-list">
                                 <% @taxonomies.find_by(name: 'Categories').taxons.each do |taxonomy| %>
                                     <% if taxonomy.name != 'Categories' %>
@@ -79,7 +86,7 @@
                                 <% end %>
                             </ul>
 
-                            <h3 class="widget-title product-filter-widget-title mt-4">Filtery by Brand</h3>
+                            <h3 class="widget-title product-filter-widget-title mt-4">Filter by Brand</h3>
                             <ul class="widget-list">
                                 <% @taxonomies.find_by(name: 'Brand').taxons.each do |taxonomy| %>
                                     <% if taxonomy.name != 'Brand' %>
@@ -91,41 +98,6 @@
                             </ul>
                         </div>
                     </nav>
-
-                    <div class="single-widget learts-mb-40">
-                      <h3 class="widget-title product-filter-widget-title">Filters by colors</h3>
-                      <ul class="widget-colors product-filter-widget customScroll">
-                          <li><a href="#" class="hintT-top" data-hint="Black"><span data-bg-color="#000000">Black</span></a></li>
-                          <li><a href="#" class="hintT-top" data-hint="White"><span data-bg-color="#FFFFFF">White</span></a></li>
-                          <li><a href="#" class="hintT-top" data-hint="Dark Red"><span data-bg-color="#b2483c">Dark Red</span></a></li>
-                          <li><a href="#" class="hintT-top" data-hint="Flaxen"><span data-bg-color="#d5b85a">Flaxen</span></a></li>
-                          <li><a href="#" class="hintT-top" data-hint="Pine"><span data-bg-color="#01796f">Pine</span></a></li>
-                          <li><a href="#" class="hintT-top" data-hint="Tortilla"><span data-bg-color="#997950">Tortilla</span></a></li>
-                      </ul>
-                  </div>
-
-                    <!-- Price Range Start -->
-                    <div class="single-widget learts-mb-40">
-                        <h3 class="widget-title product-filter-widget-title">Filters by price</h3>
-                        <div class="widget-price-range">
-                            <input class="range-slider" type="text" data-min="0" data-max="350" data-from="0" data-to="350" />
-                        </div>
-                    </div>
-                    <!-- Price Range End -->
-
-                    <!-- Tags Start -->
-                    <div class="single-widget learts-mb-40">
-                        <h3 class="widget-title product-filter-widget-title">Product Tags</h3>
-                        <div class="widget-tags">
-                            <a href="#">handmade</a>
-                            <a href="#">learts</a>
-                            <a href="#">mug</a>
-                            <a href="#">product</a>
-                            <a href="#">learts</a>
-                        </div>
-                    </div>
-                    <!-- Tags End -->
-
                 </div>
 
             </div>
