@@ -31,6 +31,6 @@ COPY . /app
 EXPOSE 3000
 RUN RAILS_ENV=production rails db:migrate
 RUN spring stop
-RUN printf "n\nn\nn\nn\nn\ny\npaypal\nadmin@example.com\ntest123\n" | RAILS_ENV=production rails g solidus:install
+RUN printf "n\nn\nn\nn\nn\ny\npaypal\n\n\n" | RAILS_ENV=production rails g solidus:install
 RUN SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec rake assets:precompile
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
