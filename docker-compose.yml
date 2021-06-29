@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  sqlite3:
+    image: sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - "./db/:/root/db/"
+  
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - sqlite3
+    environment:
+      - RAILS_MASTER_KEY=27e3a2700abbb8da46ee1bc5d54d74ff
+    volumes:
+      - .:/app
