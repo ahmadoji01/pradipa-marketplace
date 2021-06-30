@@ -16,13 +16,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
-<%= stylesheet_link_tag 'customFonts.css' %>
-<%= stylesheet_link_tag 'themify-icons.css' %>
+<%= stylesheet_link_tag 'customFonts.css', rel: :stylesheet %>
+<%= stylesheet_link_tag 'themify-icons.css', rel: :stylesheet %>
 
-<%= stylesheet_link_tag :application %>
-<%= stylesheet_link_tag 'style.min' %>
-<%= stylesheet_link_tag 'font-awesome-pro.min' %>
-<%= stylesheet_link_tag 'spree/frontend/all', media: 'screen' %>
+<%= stylesheet_link_tag :application, rel: :stylesheet %>
+<%= stylesheet_link_tag 'style.min', rel: :stylesheet %>
+<%= stylesheet_link_tag 'font-awesome-pro.min', rel: :stylesheet %>
+<%= stylesheet_link_tag 'spree/frontend/all', media: 'screen', rel: :stylesheet %>
 <%= csrf_meta_tags %>
 <%= javascript_include_tag 'spree/frontend/all' %>
 <%= javascript_pack_tag :application %>
