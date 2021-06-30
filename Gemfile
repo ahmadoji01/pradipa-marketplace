@@ -61,7 +61,7 @@ gem "solidus_core", "~> 3.0"
 gem "solidus_api", "~> 3.0"
 gem 'solidus_social'
 gem 'solidus_auth_devise'
-gem 'solidus_paypal_commerce'
+gem 'solidus_paypal_commerce_platform'
 gem 'solidus_reports', github: 'solidusio-contrib/solidus_reports'
 gem 'solidus_related_products', github: 'solidusio-contrib/solidus_related_products'
 gem 'carrierwave', '~> 2.0'
