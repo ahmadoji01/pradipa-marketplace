@@ -25,12 +25,12 @@ WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
-RUN yarn install
 
 COPY . /app
 EXPOSE 3000
-RUN RAILS_ENV=production rails db:migrate
-RUN spring stop
 RUN printf "n\nn\nn\nn\nn\ny\npaypal\n\n\n" | RAILS_ENV=production rails g solidus:install
-RUN SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec rake assets:precompile
+RUN RAILS_ENV=production rails db:migrate
+RUN yarn install
+RUN SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec rails assets:precompile
+RUN RAILS_ENV=production bundle exec rails webpacker:install
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

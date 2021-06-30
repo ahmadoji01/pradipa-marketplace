@@ -14,6 +14,8 @@ services:
     command: bash -c "RAILS_ENV=production bundle exec puma -C config/puma.rb"
     environment:
       - RAILS_MASTER_KEY=27e3a2700abbb8da46ee1bc5d54d74ff
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_LOG_TO_STDOUT=true
     depends_on:
       - sqlite3
     volumes:
