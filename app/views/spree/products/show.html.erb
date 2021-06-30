@@ -176,13 +176,10 @@
   <div class="section section-padding">
       <div class="container">
 
-          <!-- Section Title Start -->
           <div class="section-title2 text-center">
               <h2 class="title">You Might Also Like</h2>
           </div>
-          <!-- Section Title End -->
 
-          <!-- Products Start -->
           <div class="product-carousel">
             <% @relatedproducts.each do |product| %>
               <%= render partial: 'spree/elements/product_card', locals: { product: product } %>

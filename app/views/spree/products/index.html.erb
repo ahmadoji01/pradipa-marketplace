@@ -1,4 +1,3 @@
-<!-- Shop Products Section Start -->
 <div class="section section-padding pt-0">
 
     <div class="section learts-mt-70">
@@ -25,7 +24,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Products Start -->
                     <div id="shop-products" class="products isotope-grid row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
                         <div class="grid-sizer col-1"></div>
                         <% @products.each do |product| %>
@@ -52,7 +50,6 @@
                         <button class="toggle hintT-top" data-hint="3 Column" data-column="3"><i class="ti-layout-grid2-alt"></i></button>
                     </div>
 
-                    <!-- Search Start -->
                     <div class="single-widget learts-mb-40">
                         <div class="widget-search">
                             <%= form_tag spree.products_path, method: :get do %>
@@ -61,7 +58,6 @@
                             <% end %>
                         </div>
                     </div>
-                    <!-- Search End -->
 
                     <div class="product-sorting single-widget learts-mb-40">
                         <select id="product-sorter" class="nice-select" 
@@ -105,6 +101,5 @@
     </div>
 
 </div>
-<!-- Shop Products Section End -->
 <%= render partial: 'spree/offcanvases/filter' %>
 <button class="offcanvas-toggle fab-button d-lg-none d-xl-none" href="#offcanvas-filter" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><i class="fas fa-filter"></i> Filter</button>
