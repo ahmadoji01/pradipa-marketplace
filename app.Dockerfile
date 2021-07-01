@@ -28,9 +28,16 @@ RUN bundle install
 
 COPY . /app
 EXPOSE 3000
-RUN printf "n\nn\nn\nn\nn\ny\npaypal\n\n\n" | RAILS_ENV=production rails g solidus:install
+RUN printf "n\nn\nn\nn\nn\ny\npaypal\n" | RAILS_ENV=production rails generate solidus:install --migrate=false --sample=false --seed=false
+RUN RAILS_ENV=production rails railties:install:migrations
 RUN RAILS_ENV=production rails db:migrate
+RUN printf "\n\n" | RAILS_ENV=production rails db:seed
+RUN RAILS_ENV=production rails spree_sample:load  
 RUN yarn install
 RUN SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec rails assets:precompile
 RUN RAILS_ENV=production bundle exec rails webpacker:install
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
