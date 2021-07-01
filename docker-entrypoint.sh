@@ -1,5 +1,9 @@
 set -e
 
+if [ -f /app/tmp/pids/server.pid ]; then
+  rm /app/tmp/pids/server.pid
+fi
+
 printf "n\nn\nn\nn\nn\ny\npaypal\n" | RAILS_ENV=production rails generate solidus:install --migrate=false --sample=false --seed=false
 RAILS_ENV=production rails railties:install:migrations
 RAILS_ENV=production rails db:migrate
