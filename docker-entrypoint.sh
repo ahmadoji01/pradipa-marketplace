@@ -6,3 +6,4 @@ RAILS_ENV=production rails spree_sample:load
 RAILS_ENV=production yarn install
 SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec rails assets:precompile
 RAILS_ENV=production bundle exec rails webpacker:install
+bundle exec puma -C config/puma.rb
