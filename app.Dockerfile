@@ -27,9 +27,9 @@ COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 
 COPY . /app
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
-#COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-#RUN chmod +x /docker-entrypoint.sh
-#ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
