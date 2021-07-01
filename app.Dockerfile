@@ -28,6 +28,8 @@ RUN bundle install
 
 COPY . /app
 EXPOSE 3000
-COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+#RUN chmod +x /docker-entrypoint.sh
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
