@@ -1,0 +1,6 @@
+docker-compose run app bash -c 'printf "n\nn\nn\nn\nn\ny\npaypal\n" | RAILS_ENV=production rails generate solidus:install --migrate=false --sample=false --seed=false'
+docker-compose run app bash -c 'RAILS_ENV=production rails railties:install:migrations'
+docker-compose run app bash -c 'RAILS_ENV=production rails db:migrate'
+docker-compose run app bash -c 'printf "\n\n" | RAILS_ENV=production rails db:seed'
+docker-compose run app bash -c 'SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec rails assets:precompile'
+docker-compose run app bash -c 'RAILS_ENV=production bundle exec rails webpacker:install'
