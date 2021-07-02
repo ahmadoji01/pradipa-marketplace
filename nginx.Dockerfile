@@ -11,4 +11,5 @@ COPY public public/
 COPY nginx.conf /tmp/docker.nginx
 RUN envsubst '$RAILS_ROOT' < /tmp/docker.nginx > /etc/nginx/conf.d/default.conf
 EXPOSE 80
+EXPOSE 443
 CMD [ "nginx", "-g", "daemon off;" ]

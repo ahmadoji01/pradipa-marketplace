@@ -32,3 +32,4 @@ services:
       - RAILS_MASTER_KEY=27e3a2700abbb8da46ee1bc5d54d74ff
     ports:
       - 80:80
+      - 443:443
