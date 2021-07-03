@@ -290,14 +290,6 @@
 
     var $isotopeGrid = $('.isotope-grid');
     var $isotopeFilter = $('.isotope-filter');
-    $isotopeGrid.imagesLoaded(function () {
-        $isotopeGrid.isotope({
-            itemSelector: '.grid-item',
-            masonry: {
-                columnWidth: '.grid-sizer'
-            }
-        });
-    });
     $isotopeFilter.on('click', 'button', function () {
         var $this = $(this),
             $filterValue = $this.attr('data-filter'),
@@ -313,57 +305,6 @@
         limit: 5
     });
     feed.run();
-
-    $('.instagram-feed').on("DOMNodeInserted", function (e) {
-        if (e.target.className == 'instagram_gallery') {
-            $('.instagram-carousel1 .' + e.target.className).slick({
-                infinite: true,
-                slidesToShow: 5,
-                slidesToScroll: 1,
-                prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
-                nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
-                responsive: [{
-                    breakpoint: 119,
-                    settings: {
-                        slidesToShow: 4
-                    }
-                }, {
-                    breakpoint: 991,
-                    settings: {
-                        slidesToShow: 3
-                    }
-                }, {
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: 2
-                    }
-                }, {
-                    breakpoint: 575,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                }]
-            })
-            $('.instagram-carousel2 .' + e.target.className).slick({
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
-                nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
-                responsive: [{
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: 2
-                    }
-                }, {
-                    breakpoint: 575,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                }]
-            });
-        }
-    });
 
     $('[data-countdown]').each(function () {
         var $this = $(this),
@@ -386,7 +327,6 @@
         if ($this.hasClass('plus')) {
             var newVal = parseFloat(oldValue) + 1;
         } else {
-            // Don't allow decrementing below zero
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
             } else {
@@ -424,32 +364,6 @@
         containerSelector: '.sticky-sidebar-container',
         innerWrapperSelector: '.sticky-sidebar-inner',
         minWidth: 992
-    });
-
-    $(function () {
-        var form = $('#contact-form');
-        var formMessages = $('.form-messege');
-        $(form).submit(function (e) {
-            e.preventDefault();
-            var formData = $(form).serialize();
-            $.ajax({
-                    type: 'POST',
-                    url: $(form).attr('action'),
-                    data: formData
-                })
-                .done(function (response) {
-                    formMessages.removeClass('error text-danger').addClass('success text-success learts-mt-10').text(response);
-                    form.find('input:not([type="submit"]), textarea').val('');
-                })
-                .fail(function (data) {
-                    formMessages.removeClass('success text-success').addClass('error text-danger mt-3');
-                    if (data.responseText !== '') {
-                        formMessages.text(data.responseText);
-                    } else {
-                        formMessages.text('Oops! An error occured and your message could not be sent.');
-                    }
-                });
-        });
     });
 
     $window.on('load', function () {
