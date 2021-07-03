@@ -71,6 +71,32 @@
         }
     }
 
+    function mobileOffCanvasMenu() {
+        var $offCanvasNav = $('.offcanvas-menu, .overlay-menu'),
+            $offCanvasNavSubMenu = $offCanvasNav.find('.sub-menu');
+
+        $offCanvasNavSubMenu.parent().prepend('<span class="menu-expand"></span>');
+
+        $offCanvasNav.on('click', 'li a, .menu-expand', function (e) {
+            var $this = $(this);
+            if ($this.attr('href') === '#' || $this.hasClass('menu-expand')) {
+                e.preventDefault();
+                if ($this.siblings('ul:visible').length) {
+                    $this.parent('li').removeClass('active');
+                    $this.siblings('ul').slideUp();
+                    $this.parent('li').find('li').removeClass('active');
+                    $this.parent('li').find('ul:visible').slideUp();
+                } else {
+                    $this.parent('li').addClass('active');
+                    $this.closest('li').siblings('li').removeClass('active').find('li').removeClass('active');
+                    $this.closest('li').siblings('li').find('ul:visible').slideUp();
+                    $this.siblings('ul').slideDown();
+                }
+            }
+        });
+    }
+    mobileOffCanvasMenu();
+
     $('.header-categories').on('click', '.category-toggle', function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -157,14 +183,12 @@
         ]
     });
 
-    // Product List Slider
     $('.product-list-slider').slick({
         rows: 3,
         prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
         nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
 
-    // Single Product Slider
     $('.product-gallery-slider').slick({
         dots: true,
         infinite: true,
@@ -264,27 +288,6 @@
         ]
     });
 
-    $('.category-banner1-carousel').slick({
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        prevArrow: '<button class="slick-prev"><i class="fal fa-long-arrow-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="fal fa-long-arrow-right"></i></button>',
-        responsive: [{
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
-
     var $isotopeGrid = $('.isotope-grid');
     var $isotopeFilter = $('.isotope-filter');
     $isotopeGrid.imagesLoaded(function () {
@@ -305,16 +308,10 @@
         });
     });
 
-    $.instagramFeed({
-        'username': 'ecommerce.devitems',
-        'container': ".instagram-feed",
-        'display_profile': false,
-        'display_biography': false,
-        'display_gallery': true,
-        'styling': false,
-        'items': 12,
-        "image_size": "320",
+    var feed = new Instafeed({
+        accessToken: 'IGQVJXT3J0MG5rRldyaEoyOXZAjZAXpEZAlhpbGpueU9kNVNnTU9WRmpUT3NDR2o4Uk1wc3pBVnQ5MndlY1FrQmhHczE1cmwzR21Tay1hak9rQXdUTDRGaGxaWDZAWdnZACbFFfeFN6ZAHpyNnNKZAWUwUFc3egZDZD'
     });
+
     $('.instagram-feed').on("DOMNodeInserted", function (e) {
         if (e.target.className == 'instagram_gallery') {
             $('.instagram-carousel1 .' + e.target.className).slick({
@@ -472,6 +469,7 @@
     $window.on('load', function () {
         subMenuMegaMenuAlignment();
         $isotopeGrid.isotope( 'reloadItems' ).isotope();
+        feed.run();
     });
 
     $window.on('resize', function () {
