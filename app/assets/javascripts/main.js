@@ -114,48 +114,6 @@
         prefix: "$",
     });
 
-    (function () {
-        if (typeof mojs == 'undefined') {
-            return;
-        }
-        var burst = new mojs.Burst({
-            left: 0,
-            top: 0,
-            radius: {
-                4: 32
-            },
-            angle: 45,
-            count: 14,
-            children: {
-                radius: 2.5,
-                fill: ['#F8796C'],
-                scale: {
-                    1: 0,
-                    easing: 'quad.in'
-                },
-                pathScale: [.8, null],
-                degreeShift: [13, null],
-                duration: [500, 700],
-                easing: 'quint.out'
-            }
-        });
-        $('.add-to-wishlist').on('click', function (e) {
-            var $this = $(this),
-                offset = $this.offset(),
-                width = $this.width(),
-                height = $this.height(),
-                coords = {
-                    x: offset.left + width / 2,
-                    y: offset.top + height / 2
-                };
-            if (!$this.hasClass('wishlist-added')) {
-                e.preventDefault();
-                $this.addClass('wishlist-added').find('i').removeClass('far').addClass('fas');
-                burst.tune(coords).replay();
-            }
-        });
-    })();
-
     var $home12Slider = new Swiper('.home12-slider', {
         loop: true,
         speed: 750,
@@ -226,7 +184,6 @@
         nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
 
-    // Blog Carousel
     $('.blog-carousel').slick({
         infinite: true,
         slidesToShow: 3,
@@ -249,7 +206,6 @@
         ]
     });
 
-    // Brand Carousel
     $('.brand-carousel').slick({
         infinite: true,
         slidesToShow: 5,
@@ -280,7 +236,6 @@
         }]
     });
 
-    // Testimonial SLider/Carousel
     $('.testimonial-slider').slick({
         infinite: true,
         slidesToShow: 1,
@@ -309,7 +264,6 @@
         ]
     });
 
-    // Category Banner Slider/Carousel
     $('.category-banner1-carousel').slick({
         infinite: true,
         slidesToShow: 3,
@@ -331,11 +285,6 @@
         ]
     });
 
-
-
-    /*--
-        Isotpe
-    -----------------------------------*/
     var $isotopeGrid = $('.isotope-grid');
     var $isotopeFilter = $('.isotope-filter');
     $isotopeGrid.imagesLoaded(function () {
