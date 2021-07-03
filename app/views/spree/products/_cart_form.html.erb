@@ -3,26 +3,26 @@
     <div class="product-variations">
         <table class="full-width">
             <tbody>
-              <tr>
-                <td class="label"><span>Variants</span></td>
-              </tr>
-              <tr>
-                <td class="value">
-                    <% if @product.variants_and_option_values_for(current_pricing_options).any? %>
-                      <div id="product-variants" class="columns five alpha">
-                        <div class="container" style="padding:0">
-                          <% if @product.option_types.where(presentation: "Color").exists? && @product.option_types.count == 1 %>
-                            <%= render partial: 'spree/products/variants/color', locals: { product: @product } %>
-                          <% else %>
-                            <%= render partial: 'spree/products/variants/generic', locals: { product: @product } %>
-                          <% end %>
+              <% if @product.variants_and_option_values_for(current_pricing_options).any? %>
+                <tr>
+                  <td class="label"><span>Variants</span></td>
+                </tr>
+                <tr>
+                  <td class="value">
+                        <div id="product-variants" class="columns five alpha">
+                          <div class="container" style="padding:0">
+                            <% if @product.option_types.where(presentation: "Color").exists? && @product.option_types.count == 1 %>
+                              <%= render partial: 'spree/products/variants/color', locals: { product: @product } %>
+                            <% else %>
+                              <%= render partial: 'spree/products/variants/generic', locals: { product: @product } %>
+                            <% end %>
+                          </div>
                         </div>
-                      </div>
-                    <% else %>
-                      <%= hidden_field_tag "variant_id", @product.master.id %>
-                    <% end %>
-                </td>
-              </tr>
+                  </td>
+                </tr>
+              <% else %>
+                <%= hidden_field_tag "variant_id", @product.master.id %>
+              <% end %>
               <tr>
                 <td class="label"><span>Quantity</span></td>
               </tr>

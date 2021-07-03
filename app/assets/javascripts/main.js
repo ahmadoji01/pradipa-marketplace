@@ -432,18 +432,6 @@
         $(this).closest('.card').removeClass('active');
     });
 
-    /* Modal */
-    $('#quickViewModal').on('shown.bs.modal', function (e) {
-        $('.product-gallery-slider-quickview').slick({
-            dots: true,
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
-            nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
-        });
-    })
-
     $('.qty-btn').on('click', function () {
         var $this = $(this);
         var oldValue = $this.siblings('input').val();
