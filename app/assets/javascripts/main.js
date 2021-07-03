@@ -309,8 +309,10 @@
     });
 
     var feed = new Instafeed({
-        accessToken: 'IGQVJXT3J0MG5rRldyaEoyOXZAjZAXpEZAlhpbGpueU9kNVNnTU9WRmpUT3NDR2o4Uk1wc3pBVnQ5MndlY1FrQmhHczE1cmwzR21Tay1hak9rQXdUTDRGaGxaWDZAWdnZACbFFfeFN6ZAHpyNnNKZAWUwUFc3egZDZD'
+        accessToken: 'IGQVJXT3J0MG5rRldyaEoyOXZAjZAXpEZAlhpbGpueU9kNVNnTU9WRmpUT3NDR2o4Uk1wc3pBVnQ5MndlY1FrQmhHczE1cmwzR21Tay1hak9rQXdUTDRGaGxaWDZAWdnZACbFFfeFN6ZAHpyNnNKZAWUwUFc3egZDZD',
+        limit: 5
     });
+    feed.run();
 
     $('.instagram-feed').on("DOMNodeInserted", function (e) {
         if (e.target.className == 'instagram_gallery') {
@@ -408,22 +410,6 @@
         scrollText: '<i class="fal fa-long-arrow-up"></i>',
     });
 
-    var $productPopupGalleryBtn = $('.product-gallery-popup'),
-        $productPopupGallery = $productPopupGalleryBtn.data('images'),
-        $openPhotoSwipe = function () {
-            var pswpElement = $('.pswp')[0],
-                items = $productPopupGallery,
-                options = {
-                    history: false,
-                    focus: false,
-                    closeOnScroll: false,
-                    showAnimationDuration: 0,
-                    hideAnimationDuration: 0
-                };
-            new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options).init();
-        };
-    $productPopupGalleryBtn.on('click', $openPhotoSwipe);
-
     $('.product-zoom').each(function () {
         var $this = $(this),
             $image = $this.data('image');
@@ -469,7 +455,6 @@
     $window.on('load', function () {
         subMenuMegaMenuAlignment();
         $isotopeGrid.isotope( 'reloadItems' ).isotope();
-        feed.run();
     });
 
     $window.on('resize', function () {
