@@ -413,8 +413,8 @@
         slidesToShow: 4,
         slidesToScroll: 1,
         focusOnSelect: true,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></i></button>',
         responsive: [{
                 breakpoint: 991,
                 settings: {
@@ -439,8 +439,8 @@
     // Product List Slider
     $('.product-list-slider').slick({
         rows: 3,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
 
     // Single Product Slider
@@ -450,8 +450,8 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         asNavFor: '.product-thumb-slider, .product-thumb-slider-vertical',
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
     $('.product-thumb-slider').slick({
         infinite: true,
@@ -459,18 +459,8 @@
         slidesToScroll: 1,
         focusOnSelect: true,
         asNavFor: '.product-gallery-slider',
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
-    });
-    $('.product-thumb-slider-vertical').slick({
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        vertical: true,
-        focusOnSelect: true,
-        asNavFor: '.product-gallery-slider',
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-up"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-down"></i></button>'
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
 
     // Blog Carousel
@@ -479,8 +469,8 @@
         slidesToShow: 3,
         slidesToScroll: 1,
         focusOnSelect: true,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
         responsive: [{
                 breakpoint: 991,
                 settings: {
@@ -502,8 +492,8 @@
         slidesToShow: 5,
         slidesToScroll: 1,
         focusOnSelect: true,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
         responsive: [{
             breakpoint: 1199,
             settings: {
@@ -532,15 +522,15 @@
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
     $('.testimonial-carousel').slick({
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
         responsive: [{
                 breakpoint: 991,
                 settings: {
@@ -622,8 +612,8 @@
                 infinite: true,
                 slidesToShow: 5,
                 slidesToScroll: 1,
-                prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-                nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+                prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+                nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
                 responsive: [{
                     breakpoint: 119,
                     settings: {
@@ -650,8 +640,8 @@
                 infinite: true,
                 slidesToShow: 3,
                 slidesToScroll: 1,
-                prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-                nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+                prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+                nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
                 responsive: [{
                     breakpoint: 767,
                     settings: {
@@ -696,8 +686,8 @@
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-            nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
+            prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+            nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
         });
     })
 

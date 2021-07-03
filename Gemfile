@@ -67,4 +67,3 @@ gem 'solidus_related_products', github: 'solidusio-contrib/solidus_related_produ
 gem 'carrierwave', '~> 2.0'
 gem 'terser'
 gem 'gutentag', '~> 2.5'
-gem 'device_detector'
