@@ -7,9 +7,9 @@
         <div class="content">
             <%= link_to line_item.name, product_path(variant.product) %>
             <div class="product-quantity" style="max-width: 175px;">
-              <span class="qty-btn minus"><i class="ti-minus"></i></span>
+              <span class="qty-btn minus"><i class="fal fa-minus"></i></span>
                 <%= item_form.number_field :quantity, min: 0, class: "line_item_quantity", size: 5 %>
-              <span class="qty-btn plus" style="margin-right: 10px"><i class="ti-plus"></i></span>
+              <span class="qty-btn plus" style="margin-right: 10px"><i class="fal fa-plus"></i></span>
               x <span class="amount"><%= line_item.price %></span>
             </div>
             <td class="remove" data-hook="cart_item_delete"><%= link_to 'x', '#', class: 'delete remove', id: "delete_#{dom_id(line_item)}", remote: true %></td>

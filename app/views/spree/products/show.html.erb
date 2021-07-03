@@ -16,9 +16,9 @@
             <div class="col-lg-6 col-12 learts-mb-40">
                 <div class="product-images">
                     <button class="product-gallery-popup hintT-left" data-hint="Click to enlarge" 
-                      data-images='[
+                    data-images='[
                         <% @product.gallery.images.each do |image| %>
-                          {"src": "<%= image.url %>", "w": 600, "h": 600 },
+                        {"src": "<%= image.url %>", "w": 600, "h": 600 },
                         <% end %>
                     ]'><i class="far fa-expand"></i></button>
                     <a href="https://www.youtube.com/watch?v=1jSsy7DtYgc" class="product-video-popup video-popup hintT-left" data-hint="Click to see video"><i class="fal fa-play"></i></a>

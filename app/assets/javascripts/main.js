@@ -1,16 +1,8 @@
 (function ($) {
     "use strict";
+    
+    var $window = $(window);
 
-    /*--
-        Commons Variables
-    -----------------------------------*/
-    var $window = $(window),
-        $body = $('body');
-
-    /*--
-        Custom script to call Background
-        Image & Color from html data attribute
-    -----------------------------------*/
     $('[data-bg-image]').each(function () {
         var $this = $(this),
             $image = $this.data('bg-image');
@@ -22,9 +14,6 @@
         $this.css('background-color', $color);
     });
 
-    /*--
-        Header Sticky
-    -----------------------------------*/
     $window.on('scroll', function () {
         if ($window.scrollTop() > 350) {
             $('.sticky-header').addClass('is-sticky');
@@ -33,9 +22,6 @@
         }
     });
 
-    /*--
-        Sub Menu & Mega Menu Alignment
-    -----------------------------------*/
     var subMenuMegaMenuAlignment = () => {
         var $this,
             $subMenu,
@@ -85,68 +71,6 @@
         }
     }
 
-    /*--
-        Off Canvas Function
-    -----------------------------------*/
-    /*(function () {
-        var $offCanvasToggle = $('.offcanvas-toggle'),
-            $offCanvas = $('.offcanvas'),
-            $offCanvasOverlay = $('.offcanvas-overlay'),
-            $mobileMenuToggle = $('.mobile-menu-toggle');
-        $offCanvasToggle.on('click', function (e) {
-            e.preventDefault();
-            var $this = $(this),
-                $target = $this.attr('href');
-            $body.addClass('offcanvas-open');
-            $($target).addClass('offcanvas-open');
-            $offCanvasOverlay.fadeIn();
-            if ($this.parent().hasClass('mobile-menu-toggle')) {
-                $this.addClass('close');
-            }
-        });
-        $('.offcanvas-close, .offcanvas-overlay').on('click', function (e) {
-            e.preventDefault();
-            $body.removeClass('offcanvas-open');
-            $offCanvas.removeClass('offcanvas-open');
-            $offCanvasOverlay.fadeOut();
-            $mobileMenuToggle.find('a').removeClass('close');
-        });
-    })();*/
-
-    /*--
-        Off Canvas Menu
-    -----------------------------------*/
-    // function mobileOffCanvasMenu() {
-    //     var $offCanvasNav = $('.offcanvas-menu, .overlay-menu'),
-    //         $offCanvasNavSubMenu = $offCanvasNav.find('.sub-menu');
-
-    //     /*Add Toggle Button With Off Canvas Sub Menu*/
-    //     $offCanvasNavSubMenu.parent().prepend('<span class="menu-expand"></span>');
-
-    //     /*Category Sub Menu Toggle*/
-    //     $offCanvasNav.on('click', 'li a, .menu-expand', function (e) {
-    //         var $this = $(this);
-    //         if ($this.attr('href') === '#' || $this.hasClass('menu-expand')) {
-    //             e.preventDefault();
-    //             if ($this.siblings('ul:visible').length) {
-    //                 $this.parent('li').removeClass('active');
-    //                 $this.siblings('ul').slideUp();
-    //                 $this.parent('li').find('li').removeClass('active');
-    //                 $this.parent('li').find('ul:visible').slideUp();
-    //             } else {
-    //                 $this.parent('li').addClass('active');
-    //                 $this.closest('li').siblings('li').removeClass('active').find('li').removeClass('active');
-    //                 $this.closest('li').siblings('li').find('ul:visible').slideUp();
-    //                 $this.siblings('ul').slideDown();
-    //             }
-    //         }
-    //     });
-    // }
-    // mobileOffCanvasMenu();
-
-    /*--
-        Header Category
-    -----------------------------------*/
     $('.header-categories').on('click', '.category-toggle', function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -157,21 +81,14 @@
         }
     })
 
-    /*--
-        Shop Toolbar
-    -----------------------------------*/
-
-    // Filter Toggle
     $('.product-filter-toggle').on('click', function (e) {
         e.preventDefault();
         var $this = $(this),
             $target = $this.attr('href');
         $this.toggleClass('active');
         $($target).slideToggle();
-        $('.customScroll').perfectScrollbar('update');
     });
 
-    // Column Toggle
     $('.product-column-toggle').on('click', '.toggle', function (e) {
         e.preventDefault();
         var $this = $(this),
@@ -183,46 +100,13 @@
         $('.isotope-grid').isotope('layout');
     });
 
-    /*--
-        Custom Scrollbar (Perfect Scrollbar)
-    -----------------------------------*/
-    /*$('.customScroll').perfectScrollbar({
-        suppressScrollX: !0
-    });
-    */
-    /*--
-        Select2
-    -----------------------------------*/
-
-    // Basic
     $('.select2-basic').select2();
-    // No Search Field
     $('.select2-noSearch').select2({
         minimumResultsForSearch: Infinity
     });
-
-    // Custom Scrollbar For Select2 Result
-    $('.select2-basic, .select2-noSearch').on('select2:open', function () {
-        $('.select2-results__options').each(function () {
-            var ps = new PerfectScrollbar($(this)[0], {
-                suppressScrollX: true
-            });
-        });
-    });
-
-    /*--
-        Nice Select
-    -----------------------------------*/
-    $('.nice-select').niceSelect();
-
-    /*--
-        Match Height
-    -----------------------------------*/
+    
     $('.isotope-grid .product').matchHeight();
 
-    /*--
-        ion Range Slider
-    -----------------------------------*/
     $(".range-slider").ionRangeSlider({
         skin: "learts",
         hide_min_max: true,
@@ -230,9 +114,6 @@
         prefix: "$",
     });
 
-    /*--
-        Add To Wishlist
-    -----------------------------------*/
     (function () {
         if (typeof mojs == 'undefined') {
             return;
@@ -275,128 +156,6 @@
         });
     })();
 
-    /*--
-        Parallax
-    -----------------------------------*/
-    $.Scrollax();
-
-    /*--
-        Swipper Slider Activation
-    -----------------------------------*/
-
-    // Home 1 Slider
-    var $home1Slider = new Swiper('.home1-slider', {
-        loop: true,
-        speed: 750,
-        effect: 'fade',
-        navigation: {
-            nextEl: '.home1-slider-next',
-            prevEl: '.home1-slider-prev',
-        },
-        autoplay: {},
-    });
-
-    // Home 2 Slider
-    var $home2Slider = new Swiper('.home2-slider', {
-        loop: true,
-        speed: 750,
-        effect: 'fade',
-        navigation: {
-            nextEl: '.home2-slider-next',
-            prevEl: '.home2-slider-prev',
-        },
-        autoplay: {},
-        on: {
-            slideChange: function () {
-                this.$el.find('.slide-product').removeClass('active');
-            },
-        }
-    });
-    $('.home2-slider').on('click', '.slide-pointer', function (e) {
-        e.preventDefault();
-        $(this).siblings('.slide-product').toggleClass('active');
-    })
-
-    // Home 3 Slider
-    var $home3Slider = new Swiper('.home3-slider', {
-        loop: true,
-        speed: 750,
-        effect: 'fade',
-        navigation: {
-            nextEl: '.home3-slider-next',
-            prevEl: '.home3-slider-prev',
-        },
-        autoplay: {},
-    });
-
-    // Home 4 Slider
-    var $home4Slider = new Swiper('.home4-slider', {
-        loop: true,
-        loopedSlides: 2,
-        speed: 750,
-        spaceBetween: 200,
-        pagination: {
-            el: '.home4-slider-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.home4-slider-next',
-            prevEl: '.home4-slider-prev',
-        },
-        autoplay: {},
-    });
-
-    // Home 5 Slider
-    var $home5Slider = new Swiper('.home5-slider', {
-        loop: true,
-        speed: 750,
-        spaceBetween: 30,
-        pagination: {
-            el: '.home5-slider-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.home5-slider-next',
-            prevEl: '.home5-slider-prev',
-        },
-        //autoplay: {},
-    });
-
-    // Home 7 Slider
-    var $home7Slider = new Swiper('.home7-slider', {
-        loop: true,
-        speed: 750,
-        spaceBetween: 30,
-        effect: 'fade',
-        pagination: {
-            el: '.home7-slider-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.home7-slider-next',
-            prevEl: '.home7-slider-prev',
-        },
-        //autoplay: {},
-    });
-
-    // Home 8 Slider
-    var $home8Slider = new Swiper('.home8-slider', {
-        loop: true,
-        speed: 750,
-        spaceBetween: 30,
-        effect: 'fade',
-        pagination: {
-            el: '.home8-slider-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.home8-slider-next',
-            prevEl: '.home8-slider-prev',
-        },
-        //autoplay: {},
-    });
-
-    // Home 12 Slider
     var $home12Slider = new Swiper('.home12-slider', {
         loop: true,
         speed: 750,
@@ -409,22 +168,16 @@
         navigation: {
             nextEl: '.home12-slider-next',
             prevEl: '.home12-slider-prev',
-        },
-        //autoplay: {},
+        }
     });
 
-    /*--
-        Slick Slider Activation
-    -----------------------------------*/
-
-    // Product Slider
     $('.product-carousel').slick({
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 1,
         focusOnSelect: true,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></i></button>',
         responsive: [{
                 breakpoint: 991,
                 settings: {
@@ -449,8 +202,8 @@
     // Product List Slider
     $('.product-list-slider').slick({
         rows: 3,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
 
     // Single Product Slider
@@ -460,8 +213,8 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         asNavFor: '.product-thumb-slider, .product-thumb-slider-vertical',
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
     $('.product-thumb-slider').slick({
         infinite: true,
@@ -469,18 +222,8 @@
         slidesToScroll: 1,
         focusOnSelect: true,
         asNavFor: '.product-gallery-slider',
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
-    });
-    $('.product-thumb-slider-vertical').slick({
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        vertical: true,
-        focusOnSelect: true,
-        asNavFor: '.product-gallery-slider',
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-up"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-down"></i></button>'
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
 
     // Blog Carousel
@@ -489,8 +232,8 @@
         slidesToShow: 3,
         slidesToScroll: 1,
         focusOnSelect: true,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
         responsive: [{
                 breakpoint: 991,
                 settings: {
@@ -512,8 +255,8 @@
         slidesToShow: 5,
         slidesToScroll: 1,
         focusOnSelect: true,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
         responsive: [{
             breakpoint: 1199,
             settings: {
@@ -542,15 +285,15 @@
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
     });
     $('.testimonial-carousel').slick({
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
-        prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-        nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+        prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+        nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
         responsive: [{
                 breakpoint: 991,
                 settings: {
@@ -613,29 +356,6 @@
         });
     });
 
-    /*--
-        MailChimp
-    -----------------------------------*/
-    $('#mc-form').ajaxChimp({
-        language: 'en',
-        callback: mailChimpResponse,
-        // ADD YOUR MAILCHIMP URL BELOW HERE!
-        url: 'http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
-
-    });
-
-    function mailChimpResponse(resp) {
-        if (resp.result === 'success') {
-            $('.mailchimp-success').html('' + resp.msg).fadeIn(900);
-            $('.mailchimp-error').fadeOut(400);
-        } else if (resp.result === 'error') {
-            $('.mailchimp-error').html('' + resp.msg).fadeIn(900);
-        }
-    }
-
-    /*--
-        Instagram Feed
-    -----------------------------------*/
     $.instagramFeed({
         'username': 'ecommerce.devitems',
         'container': ".instagram-feed",
@@ -652,8 +372,8 @@
                 infinite: true,
                 slidesToShow: 5,
                 slidesToScroll: 1,
-                prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-                nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+                prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+                nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
                 responsive: [{
                     breakpoint: 119,
                     settings: {
@@ -680,8 +400,8 @@
                 infinite: true,
                 slidesToShow: 3,
                 slidesToScroll: 1,
-                prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-                nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
+                prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+                nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>',
                 responsive: [{
                     breakpoint: 767,
                     settings: {
@@ -696,9 +416,7 @@
             });
         }
     });
-    /*--
-        CountDown
-    -----------------------------------*/
+
     $('[data-countdown]').each(function () {
         var $this = $(this),
             $finalDate = $this.data('countdown');
@@ -707,11 +425,6 @@
         });
     });
 
-    /*--
-        Bootstrap
-    -----------------------------------*/
-
-    /* Accordion/Collapse */
     $('.collapse').on('show.bs.collapse', function (e) {
         $(this).closest('.card').addClass('active').siblings().removeClass('active');
     });
@@ -726,14 +439,11 @@
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-            nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>'
+            prevArrow: '<button class="slick-prev"><i class="fal fa-chevron-left"></i></button>',
+            nextArrow: '<button class="slick-next"><i class="fal fa-chevron-right"></i></button>'
         });
     })
 
-    /*--
-        Product Quantity
-    -----------------------------------*/
     $('.qty-btn').on('click', function () {
         var $this = $(this);
         var oldValue = $this.siblings('input').val();
@@ -750,33 +460,20 @@
         $this.siblings('input').val(newVal);
     });
 
-    /*--
-        Post Share
-    -----------------------------------*/
     $('.post-share').on('click', ".toggle", function () {
         var $this = $(this),
             $target = $this.parent();
         $target.hasClass('active') ? $target.removeClass('active') : $target.addClass('active');
     });
 
-    /*--
-        Magnific Popup
-    -----------------------------------*/
     $('.video-popup').magnificPopup({
         type: 'iframe'
     });
 
-    /*--
-        Scroll Up
-    -----------------------------------*/
     $.scrollUp({
         scrollText: '<i class="fal fa-long-arrow-up"></i>',
     });
 
-
-    /*--
-        Single Product Gallery Popup
-    -----------------------------------*/
     var $productPopupGalleryBtn = $('.product-gallery-popup'),
         $productPopupGallery = $productPopupGalleryBtn.data('images'),
         $openPhotoSwipe = function () {
@@ -801,9 +498,6 @@
         });
     });
 
-    /*--
-        Sticky Sidebar
-    -----------------------------------*/
     $('.sticky-sidebar').stickySidebar({
         topSpacing: 60,
         bottomSpacing: 60,
@@ -812,36 +506,23 @@
         minWidth: 992
     });
 
-    /*--
-        Ajax Contact Form
-    -----------------------------------*/
     $(function () {
-        // Get the form.
         var form = $('#contact-form');
-        // Get the messages div.
         var formMessages = $('.form-messege');
-        // Set up an event listener for the contact form.
         $(form).submit(function (e) {
-            // Stop the browser from submitting the form.
             e.preventDefault();
-            // Serialize the form data.
             var formData = $(form).serialize();
-            // Submit the form using AJAX.
             $.ajax({
                     type: 'POST',
                     url: $(form).attr('action'),
                     data: formData
                 })
                 .done(function (response) {
-                    // Make sure that the formMessages div has the 'success' class.
                     formMessages.removeClass('error text-danger').addClass('success text-success learts-mt-10').text(response);
-                    // Clear the form.
                     form.find('input:not([type="submit"]), textarea').val('');
                 })
                 .fail(function (data) {
-                    // Make sure that the formMessages div has the 'error' class.
                     formMessages.removeClass('success text-success').addClass('error text-danger mt-3');
-                    // Set the message text.
                     if (data.responseText !== '') {
                         formMessages.text(data.responseText);
                     } else {
@@ -851,17 +532,11 @@
         });
     });
 
-    /*--
-        On Load Function
-    -----------------------------------*/
     $window.on('load', function () {
         subMenuMegaMenuAlignment();
         $isotopeGrid.isotope( 'reloadItems' ).isotope();
     });
 
-    /*--
-        Resize Function
-    -----------------------------------*/
     $window.on('resize', function () {
         subMenuMegaMenuAlignment();
         $isotopeGrid.isotope( 'reloadItems' ).isotope();

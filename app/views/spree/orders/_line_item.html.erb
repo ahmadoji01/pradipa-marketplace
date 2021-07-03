@@ -16,9 +16,9 @@
       <td class="price"><span>$<%= line_item.price %></span></td>
       <td class="quantity">
           <div class="product-quantity">
-              <span class="qty-btn minus"><i class="ti-minus"></i></span>
+              <span class="qty-btn minus"><i class="fal fa-minus"></i></span>
               <%= item_form.number_field :quantity, min: 0, class: "line_item_quantity", size: 5 %>
-              <span class="qty-btn plus"><i class="ti-plus"></i></span>
+              <span class="qty-btn plus"><i class="fal fa-plus"></i></span>
           </div>
       </td>
       <td class="subtotal"><span><%= line_item.display_amount.to_html unless line_item.quantity.nil? %></span></td>
