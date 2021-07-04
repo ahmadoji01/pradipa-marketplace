@@ -289,6 +289,13 @@
     });
 
     var $isotopeGrid = $('.isotope-grid');
+    $isotopeGrid.isotope({
+        itemSelector: '.grid-item',
+        masonry: {
+            columnWidth: '.grid-sizer'
+        }
+    });
+
     var $isotopeFilter = $('.isotope-filter');
     $isotopeFilter.on('click', 'button', function () {
         var $this = $(this),
@@ -299,12 +306,6 @@
             filter: $filterValue
         });
     });
-
-    var feed = new Instafeed({
-        accessToken: 'IGQVJXT3J0MG5rRldyaEoyOXZAjZAXpEZAlhpbGpueU9kNVNnTU9WRmpUT3NDR2o4Uk1wc3pBVnQ5MndlY1FrQmhHczE1cmwzR21Tay1hak9rQXdUTDRGaGxaWDZAWdnZACbFFfeFN6ZAHpyNnNKZAWUwUFc3egZDZD',
-        limit: 5
-    });
-    feed.run();
 
     $('[data-countdown]').each(function () {
         var $this = $(this),
