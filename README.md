@@ -1,6 +1,12 @@
 # Hallchant Marketplace ver. 1
 
-The marketplace version 1 utilizes Ruby on Rails version 6 with Ruby 2.7.3 based on Solidus to catalyze the development process. The application has been containerized for easier documentation purposes. The ideal deployment OS is Ubuntu 20.04. Assuming you have prepared the Ubuntu 20.04 server, to start the installation, all you need to do is to follow these steps:
+The marketplace version 1 utilizes Ruby on Rails version 6 with Ruby 2.7.3 based on Solidus to catalyze the development process. The application has been containerized for easier documentation purposes. The ideal deployment OS is Ubuntu 20.04. We will breakdown the installation steps into the following:
+
+- [1. Prepare the Docker and Docker Compose](#prepare-the-docker-and-docker-compose)
+- [2. Build and Up the Built Container Using Docker Compose](#build-and-up-the-built-container-using-docker-compose)
+- [Note: Pulling Update to the Server](#note:-pulling-update-to-the-server)
+
+Assuming you have prepared the Ubuntu 20.04 server, to start the installation, all you need to do is to follow these steps:
 
 ***
 
