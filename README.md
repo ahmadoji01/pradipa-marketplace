@@ -2,15 +2,15 @@
 
 The marketplace version 1 utilizes Ruby on Rails version 6 with Ruby 2.7.3 based on Solidus to catalyze the development process. The application has been containerized for easier documentation purposes. The ideal deployment OS is Ubuntu 20.04. We will breakdown the installation steps into the following:
 
-- [1. Prepare the Docker and Docker Compose](#prepare-the-docker-and-docker-compose)
-- [2. Build and Up the Built Container Using Docker Compose](#build-and-up-the-built-container-using-docker-compose)
-- [Note: Pulling Update to the Server](#note:-pulling-update-to-the-server)
+- [1. Prepare the Docker and Docker Compose](#prep)
+- [2. Build and Up the Built Container Using Docker Compose](#build)
+- [Note: Pulling Update to the Server](#note)
 
 Assuming you have prepared the Ubuntu 20.04 server, to start the installation, all you need to do is to follow these steps:
 
 ***
 
-### 1. Prepare the Docker and Docker Compose
+### <a name="prep"></a>1. Prepare the Docker and Docker Compose
 
 Quoting from DigitalOcean articles on [How To Install and Use Docker on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) and [How To Install and Use Docker Compose on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04), below are the steps to install Docker and Docker Compose:
 
@@ -71,7 +71,7 @@ You’ll see output similar to this:
 
 ***
 
-### 2. Build and Up the Built Container Using Docker Compose
+### <a name="build"></a>2. Build and Up the Built Container Using Docker Compose
 
 Start off the building process by cloning the repository to your server. You can run the command below to clone the repository
 
@@ -98,7 +98,7 @@ Installation should be done if the instance is running properly.
 
 ***
 
-### Note: Pulling Update to the Server
+### <a name="note"></a>Note: Pulling Update to the Server
 
 As for pulling the update to the server, you can run the following command to make changes when update is committed to the repo.
 
