@@ -18,6 +18,12 @@ module HallchantMarketplace
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    
+    config.before_initialize do
+      Dir.glob(File.join(File.dirname(__FILE__), "../lib/spree/permission_sets/*.rb")) do |c|
+        require_dependency(c)
+      end
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #
