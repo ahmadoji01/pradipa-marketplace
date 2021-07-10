@@ -71,6 +71,8 @@ Spree.config do |config|
   )
 end
 
+Spree::PermittedAttributes.product_attributes << :user_id
+
 Spree::Frontend::Config.configure do |config|
   config.locale = 'en'
 end
