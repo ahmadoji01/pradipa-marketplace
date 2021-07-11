@@ -1,0 +1,13 @@
+<% admin_breadcrumb(link_to 'Withdrawal', main_app.admin_withdrawals_path) %>
+<% admin_breadcrumb('New Withdrawal') %>
+
+<% content_for :page_actions do %>
+<% end %>
+<%= render partial: 'spree/shared/error_messages', locals: { target: @withdrawal } %>
+<%= form_for @withdrawal, url: main_app.admin_withdrawals_path, html: { method: :post } do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+
+  <div class="clear"></div>
+
+  <%= render partial: 'spree/admin/shared/new_resource_links', locals: {collection_url: main_app.admin_withdrawals_path} %>
+<% end %>

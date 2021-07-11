@@ -1,0 +1,58 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>$(window).on('load', function () { $('.select2-basic').select2({ allowClear: true, placeholder: "Search for a producer" }); })</script>
+<div data-hook="admin_withdrawal_form_fields">
+
+  <div class="row">
+
+    <div class="left col-9" data-hook="admin_withdrawal_form_fields">
+        <div data-hook="admin_withdrawal_form_user">
+            <%= f.field_container :user do %>
+                <%= f.label :user_id, 'Producer' %>
+                <%= f.select :user_id, Spree::User.all.map { |user| [user.email, user.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_form_bank_number">
+            <%= f.field_container :bank_number do %>
+                <%= f.label :bank_number, class: 'required' %>
+                <%= f.text_field :bank_number, class: 'fullwidth title', required: true %>
+                <%= f.error_message_on :bank_number %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_form_bank_name">
+            <%= f.field_container :bank_name do %>
+                <%= f.label :bank_name, class: 'required' %>
+                <%= f.text_field :bank_name, class: 'fullwidth title', required: true %>
+                <%= f.error_message_on :bank_name %>
+            <% end %>
+        </div>
+        
+        <div data-hook="admin_withdrawal_form_bank_swift_code">
+            <%= f.field_container :bank_swift_code do %>
+                <%= f.label :bank_swift_code, class: 'required' %>
+                <%= f.text_field :bank_swift_code, class: 'fullwidth title', required: true %>
+                <%= f.error_message_on :bank_swift_code %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_form_bank_country">
+            <fieldset class="no-border-bottom">
+                <%= f.field_container :bank_country do %>
+                    <%= f.label :bank_country, plural_resource_name(Spree::Country) %><br>
+                    <%= f.text_field :bank_country, class: 'fullwidth title', required: true %>
+                <% end %>
+            </fieldset>
+        </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="clear"></div>
+
+  <div data-hook="admin_product_form_additional_fields"></div>
+
+  <div class="clear"></div>
+</div>

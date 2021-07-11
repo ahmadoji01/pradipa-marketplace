@@ -1,0 +1,59 @@
+<% if @requests.any? %>
+  <table class="index" id="listing_orders" data-hook>
+    <colgroup>
+       <col style="width: 13%;">
+       <col style="width: 15%;">
+       <col style="width: 20%;">
+       <col style="width: 25%;">
+       <col style="width: 10%;">
+       <col style="width: 8%;">
+       <col style="width: 12%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_orders_index_headers">
+        <% if @show_only_completed %>
+          <th><%= sort_link @search, :completed_at %></th>
+        <% else %>
+          <th><%= sort_link @search, :created_at %></th>
+        <% end %>
+        <th><%= sort_link @search, :status %></th>
+        <th><%= sort_link @search, :balance %></th>
+        <th><%= sort_link @search, :email %></th>
+        <th>Bank Number</th>
+        <th>Bank Name</th>
+        <th>Bank Swift Code</th>
+        <th data-hook="admin_orders_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @requests.each do |request| %>
+      <tr data-hook="admin_orders_index_rows">
+        <td><%= l (@show_only_completed ? request.completed_at : request.created_at).to_date %></td>
+        <td><%= link_to request.balance, edit_admin_withdraw_request_path(request) %></td>
+        <td>
+          <span class="pill pill-<%= request.status %>">
+            <%= t(request.status, scope: 'spree.order_state') %>
+          </span>
+        </td>
+        <td><%= request.balance %></td>
+        <td><%= request.withdrawal.user.email %></td>
+        <td><%= request.withdrawal.bank_number %></td>
+        <td><%= request.withdrawal.bank_name %></td>
+        <td><%= request.withdrawal.bank_swift_code %></td>
+        <td class='actions align-center' data-hook="admin_orders_index_row_actions">
+          <%= link_to_edit_url edit_admin_withdraw_request_path(request), title: "admin_edit_#{dom_id(request)}", no_text: true %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%= paginate @withdrawals, theme: "solidus_admin" %>
+<% else %>
+  <div class="no-objects-found">
+    <% if can? :manage, Spree::Withdrawal %>
+      <%= render 'spree/admin/shared/no_objects_found',
+                   resource: Spree::WithdrawalRequest,
+                   new_resource_url: main_app.new_admin_withdrawal_request_path %>
+    <% end %>
+  </div>
+<% end %>

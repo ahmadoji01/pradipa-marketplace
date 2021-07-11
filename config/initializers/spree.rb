@@ -88,6 +88,18 @@ Spree::Backend::Config.configure do |config|
   #   'icon-name',
   #   url: 'https://solidus.io/'
   # )
+
+  config.menu_items << config.class::MenuItem.new(
+    [:withdrawal],
+    'dollar',
+    url: '/admin/withdrawals'
+  )
+
+  config.menu_items << config.class::MenuItem.new(
+    [:withdrawal_request],
+    'dollar',
+    url: '/admin/withdrawal_requests'
+  )
 end
 
 Spree::Api::Config.configure do |config|
