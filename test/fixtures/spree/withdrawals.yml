@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  bank_name: MyString
+  bank_swift_code: MyString
+  bank_country: MyString
+  widthdrawal_request: one
+
+two:
+  user: two
+  bank_name: MyString
+  bank_swift_code: MyString
+  bank_country: MyString
+  widthdrawal_request: two

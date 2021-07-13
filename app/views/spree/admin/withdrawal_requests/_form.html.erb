@@ -1,0 +1,35 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>$(window).on('load', function () { $('.select2-basic').select2({ allowClear: true, placeholder: "Search for a withdrawer" }); })</script>
+<div data-hook="admin_withdrawal_form_fields">
+
+  <div class="row">
+
+    <div class="left col-9" data-hook="admin_withdrawal_form_fields">
+        <div data-hook="admin_withdrawal_request_form_withdrawal">
+            <%= f.field_container :withdrawal do %>
+                <%= f.label :withdrawal_id, 'Withdrawer' %>
+                <%= f.select :withdrawal_id, Spree::Withdrawal.all.map { |withdrawal| [withdrawal.user.email, withdrawal.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_request_form_balance">
+            <%= f.field_container :balance do %>
+                <%= f.label :balance, class: Spree::Config.require_master_price ? 'required' : '' %>
+                <%= render "spree/admin/shared/number_with_currency",
+                    f: f,
+                    amount_attr: :balance,
+                    required: Spree::Config.require_master_price,
+                    currency: Spree::Config.default_pricing_options.currency %>
+            <% end %>
+        </div>
+    </div>
+
+  </div>
+
+
+  <div class="clear"></div>
+
+  <div data-hook="admin_withdrawal_request_form_additional_fields"></div>
+
+  <div class="clear"></div>
+</div>

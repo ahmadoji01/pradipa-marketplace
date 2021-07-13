@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_051621) do
+ActiveRecord::Schema.define(version: 2021_07_13_035713) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -548,10 +548,12 @@ ActiveRecord::Schema.define(version: 2021_07_09_051621) do
     t.boolean "promotionable", default: true
     t.string "meta_title"
     t.datetime "discontinue_on"
+    t.integer "user_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["name"], name: "index_spree_products_on_name"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
+    t.index ["user_id"], name: "index_spree_products_on_user_id"
   end
 
   create_table "spree_products_taxons", force: :cascade do |t|
@@ -1309,6 +1311,27 @@ ActiveRecord::Schema.define(version: 2021_07_09_051621) do
     t.index ["user_id"], name: "index_spree_wallet_payment_sources_on_user_id"
   end
 
+  create_table "spree_withdrawal_requests", force: :cascade do |t|
+    t.decimal "balance", precision: 10, scale: 2, null: false
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "completed_at"
+    t.integer "withdrawal_id"
+    t.index ["withdrawal_id"], name: "index_spree_withdrawal_requests_on_withdrawal_id"
+  end
+
+  create_table "spree_withdrawals", force: :cascade do |t|
+    t.string "bank_name"
+    t.string "bank_swift_code"
+    t.string "bank_country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "bank_number"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_spree_withdrawals_on_user_id"
+  end
+
   create_table "spree_zone_members", force: :cascade do |t|
     t.string "zoneable_type"
     t.integer "zoneable_id"
@@ -1360,4 +1383,5 @@ ActiveRecord::Schema.define(version: 2021_07_09_051621) do
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
   add_foreign_key "spree_wallet_payment_sources", "spree_users", column: "user_id"
+  add_foreign_key "spree_withdrawal_requests", "spree_withdrawals", column: "withdrawal_id"
 end

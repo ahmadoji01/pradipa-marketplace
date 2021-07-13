@@ -9,7 +9,13 @@ Rails.application.routes.draw do
     get '/order-status', :to => 'static_pages#order_status', :as => 'order_status_page'
     get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
+
+    namespace :admin do
+      resources :withdrawals
+      resources :withdrawal_requests
+    end
   end
+
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
