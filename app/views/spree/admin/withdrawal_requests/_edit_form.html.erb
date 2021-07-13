@@ -1,5 +1,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script>$(window).on('load', function () { $('.select2-basic').select2({ allowClear: true, placeholder: "Search for a withdrawer" }); })</script>
+<script>$(window).on('load', function () { $('.select2-basic').select2({ allowClear: true, placeholder: "Search..." }); })</script>
 <div data-hook="admin_withdrawal_form_fields">
 
   <div class="row">
@@ -20,6 +20,13 @@
                     amount_attr: :balance,
                     required: Spree::Config.require_master_price,
                     currency: Spree::Config.default_pricing_options.currency %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_request_form_withdrawal">
+            <%= f.field_container :status do %>
+                <%= f.label :status, 'Status' %>
+                <%= f.select :status, ['Requested', 'Completed', 'Processing', 'Waiting Confirmation'], {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
             <% end %>
         </div>
     </div>
