@@ -5,14 +5,8 @@
 // the compiled file.
 //
 //= require jquery
+//= require rails-ujs
 //= require spree/frontend
 //= require_tree .
 //= require spree/frontend/solidus_paypal_commerce_platform
 //= require spree/frontend/solidus_reports
-
-$.ajaxPrefilter(function(options, originalOptions, xhr) {
-    if (!options.crossDomain) {
-        token = $('meta[name="csrf-token"]').attr('content');
-        if (token) xhr.setRequestHeader('X-CSRF-Token', token);
-    }
-});
