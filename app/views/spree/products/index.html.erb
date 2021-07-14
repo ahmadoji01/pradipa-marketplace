@@ -37,7 +37,7 @@
                     </div>
                     <% if paginated_products.respond_to?(:total_pages) %>
                         <div class="text-center learts-mt-70">
-                            <%= paginate paginated_products %>
+                            <%= paginate paginated_products, theme: 'store_frontend' %>
                         </div>
                     <% end %>
                 </div>
