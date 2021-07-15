@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
 
+    get '/producer_dashboard', :to => 'producer_dashboard#index', :as => 'producer_dashboard_home_page'
+    get '/producer_dashboard/orders', :to => 'producer_dashboard#orders', :as => 'producer_dashboard_orders_page'
+    get '/producer_dashboard/withdrawals', :to => 'producer_dashboard#withdrawals', :as => 'producer_dashboard_withdrawals_page'
+    get '/producer_dashboard/request_withdrawal', :to => 'producer_dashboards#request_withdrawal', :as => 'producer_dashboard_request_withdrawal_page'
+
     namespace :admin do
       resources :withdrawals
       resources :withdrawal_requests
