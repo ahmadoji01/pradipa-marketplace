@@ -22,7 +22,7 @@ Rails.application.config.assets.precompile += %w(
     producer_dashboard/dashboard.js
     producer_dashboard/Chart.roundedBarCharts.js
     producer_dashboard/vendors/vendor.bundle.base.js
-    producer_dashboard/style.css
+    producer-dashboard-style.css
 
     producer_dashboard/vendors/vendor.bundle.base.css
 )
