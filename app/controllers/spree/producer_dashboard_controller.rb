@@ -1,5 +1,9 @@
 module Spree
-  class StaticPagesController < Spree::StoreController
+  class ProducerDashboardController < Spree::StoreController
+
+    layout 'spree/layouts/producer_dashboard'
+    helper_method :spree_current_user
+
     def index
     end
 
@@ -11,5 +15,10 @@ module Spree
 
     def request_withdrawal
     end
+
+    def spree_current_user
+      current_user
+    end
+
   end
 end

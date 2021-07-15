@@ -11,4 +11,18 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w( main.js customFonts.css instafeed.min.js )
+Rails.application.config.assets.precompile += %w( 
+    main.js customFonts.css instafeed.min.js 
+
+    producer_dashboard/off-canvas.js
+    producer_dashboard/hoverable-collapse.js
+    producer_dashboard/template.js
+    producer_dashboard/settings.js
+    producer_dashboard/todolist.js
+    producer_dashboard/dashboard.js
+    producer_dashboard/Chart.roundedBarCharts.js
+    producer_dashboard/vendors/vendor.bundle.base.js
+    producer_dashboard/style.css
+
+    producer_dashboard/vendors/vendor.bundle.base.css
+)
