@@ -1,44 +1,47 @@
+<% line_items ||= [] 
+   badge = 'info'
+   status = 'Pending'
+%>
+
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Orders</h4>
         <p class="card-description">
-            Add class <code>.table-hover</code>
+            <button type="submit" class="btn btn-primary mr-2">See All Orders</button>
         </p>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>User</th>
+                        <th></th>
                         <th>Product</th>
-                        <th>Sale</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Jacob</td>
-                        <td>Photoshop</td>
-                        <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                        <td><label class="badge badge-danger">Pending</label></td>
-                    </tr>
-                    <tr>
-                        <td>John</td>
-                        <td>Premier</td>
-                        <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                        <td><label class="badge badge-info">Fixed</label></td>
-                    </tr>
-                    <tr>
-                        <td>Peter</td>
-                        <td>After effects</td>
-                        <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                        <td><label class="badge badge-success">Completed</label></td>
-                    </tr>
-                    <tr>
-                        <td>Dave</td>
-                        <td>53275535</td>
-                        <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                        <td><label class="badge badge-warning">In progress</label></td>
-                    </tr>
+                    <% line_items.each do |line_item| %>
+                        <% if line_item.order.shipment_state == 'shipped'
+                            badge = 'success'
+                            status = 'Shipped to Customer' 
+                           elsif line_item.order.shipment_state == 'ready' 
+                            badge = 'info' 
+                            status = 'Ready to be Shipped' 
+                           elsif line_item.order.shipment_state == 'pending' 
+                            badge = 'warning'
+                            status = 'Pending' 
+                        end %>
+                        <tr>
+                            <td class="py-1">
+                                <%= image_tag line_item.product.gallery.images.first.try(:url, :mini) %>
+                            </td>
+                            <td><%= line_item.name %></td>
+                            <td><%= line_item.quantity %></td>
+                            <td class="text-danger">$<%= line_item.quantity * line_item.price %></td>
+                            <td><label class="badge badge-<%= badge %>"><%= status %></label></td>
+                        </tr>
+                    <% end %>
                 </tbody>
             </table>
         </div>
