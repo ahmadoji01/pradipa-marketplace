@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_035713) do
+ActiveRecord::Schema.define(version: 2021_07_16_071418) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -1329,6 +1329,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_035713) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "bank_number"
     t.integer "user_id"
+    t.decimal "balance", precision: 10, scale: 2
     t.index ["user_id"], name: "index_spree_withdrawals_on_user_id"
   end
 

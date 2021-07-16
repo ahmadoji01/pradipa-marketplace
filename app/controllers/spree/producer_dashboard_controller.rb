@@ -2,23 +2,30 @@ module Spree
   class ProducerDashboardController < Spree::StoreController
 
     layout 'spree/layouts/producer_dashboard'
-    helper_method :spree_current_user
 
     def index
+      @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => 1})
     end
 
     def orders
     end
 
+    def products
+    end
+
+    def payment_info
+    end
+
     def withdrawals
+    end
+
+    def support
     end
 
     def request_withdrawal
     end
 
-    def spree_current_user
-      current_user
-    end
+    private
 
   end
 end
