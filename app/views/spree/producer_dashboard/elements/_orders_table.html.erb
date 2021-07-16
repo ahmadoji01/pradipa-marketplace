@@ -1,13 +1,14 @@
 <% line_items ||= [] 
    badge = 'info'
    status = 'Pending'
+   home ||= false
 %>
 
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Orders</h4>
         <p class="card-description">
-            <button type="submit" class="btn btn-primary mr-2">See All Orders</button>
+            <% if home %><a href="<%= main_app.producer_dashboard_orders_page_path %>" class="btn btn-primary mr-2">See All Orders</a><% end %>
         </p>
         <div class="table-responsive">
             <table class="table table-hover">
