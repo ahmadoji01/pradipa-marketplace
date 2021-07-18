@@ -28,6 +28,22 @@ module Spree
       @account = spree_current_user
     end
 
+    def update_payment_info
+
+      @withdrawal = Spree::Withdrawal.find_by(user_id: @user.id)
+      @withdrawal.assign_attributes(withdrawal_params)
+
+      respond_to do |format|
+        if @withdrawal.save
+          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, notice: "Withdrawal was successfully updated." }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_payment_info_page_path }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @withdrawal.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     def withdrawals
       @wd_requests = Spree::WithdrawalRequest.where(:user_id => @user.id)
     end
@@ -39,6 +55,22 @@ module Spree
     end
 
     private
+
+      def withdrawal_params
+        if params[:withdrawal] && !params[:withdrawal].empty?
+          params.require(:withdrawal).permit(:id, :spree_user_id, :bank_name, :bank_number, :bank_swift_code, :bank_country, :full_name, :address)
+        else
+          {}
+        end
+      end
+
+      def authorized(user_id)
+        if user_id == spree_current_user.id
+          return true
+        end
+        
+        return false
+      end
 
       def init_user
         @user = spree_current_user
