@@ -1,2 +1,6 @@
-<h1>ProducerDashboard#orders</h1>
-<p>Find me in app/views/producer_dashboard/orders.html.erb</p>
+<h3>Your Orders</h3>
+<div class="row mt-4">
+    <div class="col-md-12">
+        <%= render partial: 'spree/producer_dashboard/elements/orders_table', locals: { line_items: @line_items } %>
+    </div>
+</div>

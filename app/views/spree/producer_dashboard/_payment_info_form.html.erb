@@ -1,0 +1,38 @@
+<% info ||= Spree::Withdrawal.new
+ %>
+
+<div class="card m-2">
+    <div class="card-body">
+        <h4 class="card-title">Payment Info for Withdrawal</h4>
+        <p class="card-description">
+            Enter your bank account information where we can send the withdrawal to you
+        </p>
+        <form class="forms-sample">
+            <div class="form-group">
+                <label for="payment-full-name">Full Name</label>
+                <input type="text" class="form-control" value="<%= info.bank_name %>" id="payment-full-name" placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                <label for="payment-bank-name">Bank Name</label>
+                <input type="email" class="form-control" value="<%= info.bank_name %>" id="payment-bank-name" placeholder="Bank Name">
+            </div>
+            <div class="form-group">
+                <label for="payment-account-number">Bank Account Number</label>
+                <input type="text" class="form-control" value="<%= info.bank_number %>" id="payment-account-number" placeholder="Bank Account Number">
+            </div>
+            <div class="form-group">
+                <label for="payment-full-address">Full Address</label>
+                <input type="password" class="form-control" id="payment-full-address" placeholder="Full Address">
+            </div>
+            <div class="form-group">
+                <label for="payment-state">State</label>
+                <input type="text" class="form-control" id="payment-state" placeholder="State">
+            </div>
+            <div class="form-group">
+                <label for="payment-country">Country</label>
+                <input type="text" class="form-control" value="<%= info.bank_country %>" id="payment-country" placeholder="Country">
+            </div>
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        </form>
+    </div>
+</div>

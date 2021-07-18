@@ -2,32 +2,34 @@ module Spree
   class ProducerDashboardController < Spree::StoreController
 
     before_action :init_withdrawal, only: :index
+    before_action :init_user
     layout 'spree/layouts/producer_dashboard'
 
     def index
-      @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => 1}).last(5)
+      @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => @user.id}).last(5)
       @shipped_items = count_shipped_items(@line_items)
-      @info = Spree::Withdrawal.where(:user_id => 1)
-      @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => 1}).last(5)
+      @info = Spree::Withdrawal.where(:user_id => @user.id)
+      @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}).last(5)
 
       withdrawn_balance(@wd_requests)
       @available_balance = @balance - @wd_balance
     end
 
     def orders
-      @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => 1})
+      @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => @user.id})
     end
 
     def products
-      @products = Spree::Product.where(:user_id => 1)
+      @products = Spree::Product.where(:user_id => @user.id)
     end
 
     def payment_info
-      @info = Spree::Withdrawal.where(:user_id => 1)
+      @info = Spree::Withdrawal.where(:user_id => @user.id).first
+      @account = spree_current_user
     end
 
     def withdrawals
-      @wd_requests = Spree::WithdrawalRequest.where(:user_id => 1)
+      @wd_requests = Spree::WithdrawalRequest.where(:user_id => @user.id)
     end
 
     def request_withdrawal
@@ -37,6 +39,11 @@ module Spree
     end
 
     private
+
+      def init_user
+        @user = spree_current_user
+      end
+
       def init_withdrawal
         @balance = 0
         @wd_balance = 0

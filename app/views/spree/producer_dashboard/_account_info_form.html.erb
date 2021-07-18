@@ -1,0 +1,30 @@
+<% account ||= Spree::User.new
+%>
+
+<div class="card m-2">
+    <div class="card-body">
+        <h4 class="card-title">Account Info</h4>
+        <p class="card-description">
+            Below are your account information where we could reach you
+        </p>
+        <form class="forms-sample">
+            <div class="form-group">
+                <label for="account-email">Email</label>
+                <input type="text" value="<%= account.email %>" class="form-control" id="account-email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="account-current-password">Current Password (Leave blank to unchange)</label>
+                <input type="password" class="form-control" id="account-current-password" placeholder="Current Password">
+            </div>
+            <div class="form-group">
+                <label for="account-new-password">New Password (Leave blank to unchange)</label>
+                <input type="password" class="form-control" id="account-new-password" placeholder="New Password">
+            </div>
+            <div class="form-group">
+                <label for="account-confirm-password">Confirm New Password (Leave blank to unchange)</label>
+                <input type="password" class="form-control" id="account-confirm-password" placeholder="Confirm New Password">
+            </div>
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        </form>
+    </div>
+</div>
