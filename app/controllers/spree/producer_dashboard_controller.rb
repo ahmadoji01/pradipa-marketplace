@@ -3,6 +3,7 @@ module Spree
 
     before_action :init_withdrawal, only: :index
     before_action :init_user
+    before_action :authorize
     layout 'spree/layouts/producer_dashboard'
 
     def index
@@ -64,12 +65,18 @@ module Spree
         end
       end
 
-      def authorized(user_id)
-        if user_id == spree_current_user.id
-          return true
+      def authorize
+        if spree_current_user.nil?
+          redirect_to login_path
+          return
         end
-        
-        return false
+
+        spree_current_user.spree_roles.each do |role|
+          if role.name == 'producer'
+            return
+          end
+        end
+        raise ActionController::RoutingError.new('Not Found')
       end
 
       def init_user
