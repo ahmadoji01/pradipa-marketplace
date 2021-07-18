@@ -62,7 +62,7 @@ module Spree
 
         def withdrawal_params
           if params[:withdrawal] && !params[:withdrawal].empty?
-            params.require(:withdrawal).permit(:id, :spree_user_id, :bank_name, :bank_number, :bank_swift_code, :bank_country)
+            params.require(:withdrawal).permit(:id, :spree_user_id, :bank_name, :bank_number, :bank_swift_code, :bank_country, :full_name, :address)
           else
             {}
           end

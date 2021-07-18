@@ -10,7 +10,7 @@
         <form class="forms-sample">
             <div class="form-group">
                 <label for="payment-full-name">Full Name</label>
-                <input type="text" class="form-control" value="<%= info.bank_name %>" id="payment-full-name" placeholder="Full Name">
+                <input type="text" class="form-control" value="<%= info.full_name %>" id="payment-full-name" placeholder="Full Name">
             </div>
             <div class="form-group">
                 <label for="payment-bank-name">Bank Name</label>
@@ -22,11 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="payment-full-address">Full Address</label>
-                <input type="password" class="form-control" id="payment-full-address" placeholder="Full Address">
-            </div>
-            <div class="form-group">
-                <label for="payment-state">State</label>
-                <input type="text" class="form-control" id="payment-state" placeholder="State">
+                <input type="text" class="form-control" value="<%= info.address %>" id="payment-full-address" placeholder="Full Address">
             </div>
             <div class="form-group">
                 <label for="payment-country">Country</label>
