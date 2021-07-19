@@ -23,7 +23,7 @@
                     <% wd_requests.each do |wd_request| %>
                         <% if wd_request.status == 'Completed' 
                             badge = 'success' 
-                           elsif wd_request.status 'Waiting Confirmation' || 'Processing' 
+                           else
                             badge = 'warning' 
                         end %>
                         <tr>

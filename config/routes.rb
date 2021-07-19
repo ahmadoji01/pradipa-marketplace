@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get '/producer_dashboard/request_withdrawal', :to => 'producer_dashboard#request_withdrawal', :as => 'producer_dashboard_request_withdrawal_page'
 
     put '/producer_dashboard/update_payment_info', :to => 'producer_dashboard#update_payment_info'
+    post '/producer_dashboard/create_wd_request', :to => 'producer_dashboard#create_wd_request'
 
     namespace :admin do
       resources :withdrawals

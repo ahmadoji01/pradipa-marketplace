@@ -1,3 +1,6 @@
+<% home ||= false
+%>
+
 <div class="card">
     <div class="card-body">
         <p class="card-title">Withdrawal Summary</p>
@@ -24,7 +27,9 @@
         </div>
         <div class="row">
             <div class="col-12 w-100 text-center">
-                <a href="<%= main_app.producer_dashboard_request_withdrawal_page_path %>" class="btn btn-primary mr-2">Submit Withdraw Request</a>
+                <% if home %>
+                    <a href="<%= main_app.producer_dashboard_request_withdrawal_page_path %>" class="btn btn-primary mr-2">Submit Withdraw Request</a>
+                <% end %>
             </div>
         </div>
     </div>

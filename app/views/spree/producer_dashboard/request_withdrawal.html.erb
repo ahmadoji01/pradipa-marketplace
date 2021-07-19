@@ -1,2 +1,8 @@
-<h1>ProducerDashboard#request_withdrawal</h1>
-<p>Find me in app/views/producer_dashboard/request_withdrawal.html.erb</p>
+<div class="row">
+    <div class="col-sm-12 col-md-6 grid-margin stretch-card">
+        <%= render partial: 'spree/producer_dashboard/elements/withdrawal_summary' %>
+    </div>
+    <div col="col-sm-12 col-md-6 grid-margin stretch-card">
+        <%= render partial: 'spree/producer_dashboard/withdrawal_request_form' %>
+    </div>
+</div>

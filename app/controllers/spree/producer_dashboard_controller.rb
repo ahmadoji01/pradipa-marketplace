@@ -1,7 +1,7 @@
 module Spree
   class ProducerDashboardController < Spree::StoreController
 
-    before_action :init_withdrawal, only: :index
+    before_action :init_withdrawal, only: [:index, :request_withdrawal]
     before_action :init_user
     before_action :authorize
     layout 'spree/layouts/producer_dashboard'
@@ -32,6 +32,11 @@ module Spree
     def update_payment_info
 
       @withdrawal = Spree::Withdrawal.find_by(user_id: @user.id)
+      if @withdrawal.nil?
+        @withdrawal = Spree::Withdrawal.new
+        @withdrawal.user = @user
+      end
+
       @withdrawal.assign_attributes(withdrawal_params)
 
       respond_to do |format|
@@ -46,10 +51,40 @@ module Spree
     end
 
     def withdrawals
-      @wd_requests = Spree::WithdrawalRequest.where(:user_id => @user.id)
+      @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id})
     end
 
     def request_withdrawal
+      @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => @user.id})
+      @shipped_items = count_shipped_items(@line_items)
+      @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}).last(5)
+      @wd_request = Spree::WithdrawalRequest.new
+      
+      withdrawn_balance(@wd_requests)
+      @available_balance = @balance - @wd_balance
+    end
+
+    def create_wd_request
+      @request = Spree::WithdrawalRequest.new(wd_request_params)
+      @withdrawal = Spree::Withdrawal.where(:user_id => @user.id).first
+
+      if @withdrawal.nil?
+        redirect_to main_app.producer_dashboard_payment_info_page_path
+        return
+      end
+
+      @request.withdrawal = @withdrawal
+      @request.status = 'Requested'
+      
+      respond_to do |format|
+        if @request.save
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, notice: "Withdrawal request was successfully created." }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_request_withdrawal_page_path }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
     def support
@@ -60,6 +95,14 @@ module Spree
       def withdrawal_params
         if params[:withdrawal] && !params[:withdrawal].empty?
           params.require(:withdrawal).permit(:id, :spree_user_id, :bank_name, :bank_number, :bank_swift_code, :bank_country, :full_name, :address)
+        else
+          {}
+        end
+      end
+
+      def wd_request_params
+        if params[:withdrawal_request] && !params[:withdrawal_request].empty?  
+          params.require(:withdrawal_request).permit(:id, :withdrawal_id, :balance, :status)
         else
           {}
         end
