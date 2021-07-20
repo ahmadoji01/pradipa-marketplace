@@ -1,0 +1,20 @@
+<div class="card m-2">
+    <div class="card-body">
+        <h4 class="card-title">Payment Info for Withdrawal</h4>
+        <p class="card-description">
+            Enter your bank account information where we can send the withdrawal to you
+        </p>
+        <%= form_for @wd_request, url: main_app.producer_dashboard_create_wd_request_path, html: { method: :post } do |f| %>
+            <%= f.hidden_field :available_balance, value: @available_balance %>
+            <%= f.field_container :balance do %>
+                <%= f.label :balance, class: Spree::Config.require_master_price ? 'required' : '' %>
+                <%= render "spree/admin/shared/number_with_currency",
+                    f: f,
+                    amount_attr: :balance,
+                    required: Spree::Config.require_master_price,
+                    currency: Spree::Config.default_pricing_options.currency %>
+            <% end %>
+            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+        <% end %>
+    </div>
+</div>

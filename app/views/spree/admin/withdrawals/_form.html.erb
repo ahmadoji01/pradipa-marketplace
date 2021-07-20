@@ -13,6 +13,14 @@
         </div>
 
         <div data-hook="admin_withdrawal_form_bank_number">
+            <%= f.field_container :full_name do %>
+                <%= f.label :full_name, class: 'required' %>
+                <%= f.text_field :full_name, class: 'fullwidth title', required: true %>
+                <%= f.error_message_on :full_name %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_form_bank_number">
             <%= f.field_container :bank_number do %>
                 <%= f.label :bank_number, class: 'required' %>
                 <%= f.text_field :bank_number, class: 'fullwidth title', required: true %>
@@ -33,6 +41,14 @@
                 <%= f.label :bank_swift_code, class: 'required' %>
                 <%= f.text_field :bank_swift_code, class: 'fullwidth title', required: true %>
                 <%= f.error_message_on :bank_swift_code %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_form_bank_number">
+            <%= f.field_container :address do %>
+                <%= f.label :address, class: 'required' %>
+                <%= f.text_field :address, class: 'fullwidth title', required: true %>
+                <%= f.error_message_on :address %>
             <% end %>
         </div>
 

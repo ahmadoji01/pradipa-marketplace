@@ -1,0 +1,35 @@
+<% info ||= Spree::Withdrawal.new
+ %>
+
+<div class="card m-2">
+    <div class="card-body">
+        <h4 class="card-title">Payment Info for Withdrawal</h4>
+        <p class="card-description">
+            Enter your bank account information where we can send the withdrawal to you
+        </p>
+        <%= form_for info, url: main_app.producer_dashboard_update_payment_info_path, html: { method: :put } do |f| %>
+            <%= f.hidden_field :user_id, value: spree_current_user.id, required: true %>
+            <div class="form-group">
+                <label for="payment-full-name">Full Name</label>
+                <%= f.text_field :full_name, class: 'form-control', required: true %>
+            </div>
+            <div class="form-group">
+                <label for="payment-bank-name">Bank Name</label>
+                <%= f.text_field :bank_name, class: 'form-control', required: true %>
+            </div>
+            <div class="form-group">
+                <label for="payment-account-number">Bank Account Number</label>
+                <%= f.text_field :bank_number, class: 'form-control', required: true %>
+            </div>
+            <div class="form-group">
+                <label for="payment-full-address">Full Address</label>
+                <%= f.text_field :address, class: 'form-control', required: true %>
+            </div>
+            <div class="form-group">
+                <label for="payment-country">Country</label>
+                <%= f.text_field :bank_country, class: 'form-control', required: true %>
+            </div>
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <% end %>
+    </div>
+</div>

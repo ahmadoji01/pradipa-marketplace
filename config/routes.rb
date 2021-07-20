@@ -10,6 +10,18 @@ Rails.application.routes.draw do
     get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
 
+    get '/producer_dashboard', :to => 'producer_dashboard#index', :as => 'producer_dashboard_home_page'
+    get '/producer_dashboard/orders', :to => 'producer_dashboard#orders', :as => 'producer_dashboard_orders_page'
+    get '/producer_dashboard/products', :to => 'producer_dashboard#products', :as => 'producer_dashboard_products_page'
+    get '/producer_dashboard/payment_info', :to => 'producer_dashboard#payment_info', :as => 'producer_dashboard_payment_info_page'
+    get '/producer_dashboard/support', :to => 'producer_dashboard#support', :as => 'producer_dashboard_support_page'
+    get '/producer_dashboard/withdrawals', :to => 'producer_dashboard#withdrawals', :as => 'producer_dashboard_withdrawals_page'
+    get '/producer_dashboard/request_withdrawal', :to => 'producer_dashboard#request_withdrawal', :as => 'producer_dashboard_request_withdrawal_page'
+
+    put '/producer_dashboard/update_payment_info', :to => 'producer_dashboard#update_payment_info'
+    post '/producer_dashboard/create_wd_request', :to => 'producer_dashboard#create_wd_request'
+    post '/producer_dashboard/submit_ticket', :to => 'producer_dashboard#submit_ticket'
+
     namespace :admin do
       resources :withdrawals
       resources :withdrawal_requests

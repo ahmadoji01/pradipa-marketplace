@@ -43,6 +43,10 @@ module Spree
           authorize! :update, Withdrawal
 
           @withdrawal = Spree::Withdrawal.find(params[:id])
+          if @withdrawal.nil?
+            @withdrawal = Spree::Withdrawal.new
+          end
+
           @user = Spree::User.find(params[:withdrawal][:user_id])
           @withdrawal.assign_attributes(withdrawal_params)
           @withdrawal.user = @user
@@ -62,7 +66,7 @@ module Spree
 
         def withdrawal_params
           if params[:withdrawal] && !params[:withdrawal].empty?
-            params.require(:withdrawal).permit(:id, :spree_user_id, :bank_name, :bank_number, :bank_swift_code, :bank_country)
+            params.require(:withdrawal).permit(:id, :spree_user_id, :bank_name, :bank_number, :bank_swift_code, :bank_country, :full_name, :address)
           else
             {}
           end

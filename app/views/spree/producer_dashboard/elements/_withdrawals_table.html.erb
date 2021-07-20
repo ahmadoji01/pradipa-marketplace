@@ -1,0 +1,40 @@
+<% wd_requests ||= [] 
+    badge ||= 'info'
+    home ||= false
+%>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Withdrawal Requests</h4>
+        <p class="card-description">
+            <% if home %><a href="<%= main_app.producer_dashboard_withdrawals_page_path %>" class="btn btn-primary mr-2">See All Requests</a><% end %>
+        </p>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Balance</th>
+                        <th>Status</th>
+                        <th>Requested At</th>
+                        <th>Completed At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% wd_requests.each do |wd_request| %>
+                        <% if wd_request.status == 'Completed' 
+                            badge = 'success' 
+                           else
+                            badge = 'warning' 
+                        end %>
+                        <tr>
+                            <td>$<%= wd_request.balance %></td>
+                            <td><label class="badge badge-<%= badge %>"><%= wd_request.status %></label></td>
+                            <td><%= wd_request.created_at %></td>
+                            <td><%= wd_request.completed_at %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

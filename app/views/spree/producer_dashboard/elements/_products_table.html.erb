@@ -1,0 +1,39 @@
+<% products ||= []
+%>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Products</h4>
+        <p class="card-description">
+            Below are your products available on our store
+        </p>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Default Price</th>
+                        <th>Variants</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.each do |product| %>
+                        <tr>
+                            <td class="py-1">
+                                <%= image_tag product.gallery.images.first.try(:url, :mini) %>
+                            </td>
+                            <td><%= product.name %></td>
+                            <td class="text-danger">$<%= product.price %></td>
+                            <td>
+                                <% product.variants.each do |variant| %>
+                                    <%= variant.options_text %>, Price: $<%= variant.price %><br>
+                                <% end %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
