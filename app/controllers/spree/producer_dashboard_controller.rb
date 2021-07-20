@@ -5,6 +5,7 @@ module Spree
     before_action :init_user
     before_action :authorize
     layout 'spree/layouts/producer_dashboard'
+    attr_accessor :available_balance
 
     def index
       @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => @user.id}).last(5)
@@ -65,11 +66,18 @@ module Spree
     end
 
     def create_wd_request
-      @request = Spree::WithdrawalRequest.new(wd_request_params)
       @withdrawal = Spree::Withdrawal.where(:user_id => @user.id).first
-
       if @withdrawal.nil?
         redirect_to main_app.producer_dashboard_payment_info_page_path
+        return
+      end
+
+      @request = Spree::WithdrawalRequest.new
+      @request.balance = params[:withdrawal_request][:balance]
+      if @request.balance > params[:withdrawal_request][:available_balance].to_d
+        respond_to do |format|
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, notice: "Your requested withdrawal exceeds the available balance" }
+        end
         return
       end
 
@@ -102,7 +110,7 @@ module Spree
 
       def wd_request_params
         if params[:withdrawal_request] && !params[:withdrawal_request].empty?  
-          params.require(:withdrawal_request).permit(:id, :withdrawal_id, :balance, :status)
+          params.require(:withdrawal_request).permit(:id, :withdrawal_id, :available_balance, :balance, :status)
         else
           {}
         end

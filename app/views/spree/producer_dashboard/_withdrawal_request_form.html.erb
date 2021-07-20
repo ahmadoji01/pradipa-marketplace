@@ -5,6 +5,7 @@
             Enter your bank account information where we can send the withdrawal to you
         </p>
         <%= form_for @wd_request, url: main_app.producer_dashboard_create_wd_request_path, html: { method: :post } do |f| %>
+            <%= f.hidden_field :available_balance, value: @available_balance %>
             <%= f.field_container :balance do %>
                 <%= f.label :balance, class: Spree::Config.require_master_price ? 'required' : '' %>
                 <%= render "spree/admin/shared/number_with_currency",
