@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_18_170919) do
+ActiveRecord::Schema.define(version: 2021_07_20_061509) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -1169,6 +1169,17 @@ ActiveRecord::Schema.define(version: 2021_07_18_170919) do
     t.index ["position"], name: "index_spree_taxons_on_position"
     t.index ["rgt"], name: "index_spree_taxons_on_rgt"
     t.index ["taxonomy_id"], name: "index_taxons_on_taxonomy_id"
+  end
+
+  create_table "spree_tickets", force: :cascade do |t|
+    t.string "title"
+    t.string "status"
+    t.string "body"
+    t.string "picture"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_spree_tickets_on_user_id"
   end
 
   create_table "spree_unit_cancels", force: :cascade do |t|

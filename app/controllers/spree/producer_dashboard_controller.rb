@@ -96,6 +96,22 @@ module Spree
     end
 
     def support
+      @ticket = Ticket.new
+    end
+
+    def submit_ticket
+      @ticket = Ticket.new(ticket_params)
+      @ticket.status = 'open'
+
+      respond_to do |format|
+        if @ticket.save
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, notice: "Ticket was successfully created. We will reach you via your email" }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_support_page_path }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
     private
@@ -111,6 +127,14 @@ module Spree
       def wd_request_params
         if params[:withdrawal_request] && !params[:withdrawal_request].empty?  
           params.require(:withdrawal_request).permit(:id, :withdrawal_id, :available_balance, :balance, :status)
+        else
+          {}
+        end
+      end
+
+      def ticket_params
+        if params[:ticket] && !params[:ticket].empty?
+          params.require(:ticket).permit(:id, :user_id, :title, :body, :status, :picture)
         else
           {}
         end

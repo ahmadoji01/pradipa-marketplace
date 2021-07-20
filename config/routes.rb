@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     put '/producer_dashboard/update_payment_info', :to => 'producer_dashboard#update_payment_info'
     post '/producer_dashboard/create_wd_request', :to => 'producer_dashboard#create_wd_request'
+    post '/producer_dashboard/submit_ticket', :to => 'producer_dashboard#submit_ticket'
 
     namespace :admin do
       resources :withdrawals
