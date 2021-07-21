@@ -100,6 +100,12 @@ Spree::Backend::Config.configure do |config|
     'dollar',
     url: '/admin/withdrawal_requests'
   )
+
+  config.menu_items << config.class::MenuItem.new(
+    [:ticket],
+    'dollar',
+    url: '/admin/tickets'
+  )
 end
 
 Spree::Api::Config.configure do |config|
