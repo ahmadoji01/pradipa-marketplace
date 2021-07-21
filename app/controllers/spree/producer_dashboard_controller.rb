@@ -42,10 +42,10 @@ module Spree
 
       respond_to do |format|
         if @withdrawal.save
-          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, notice: "Withdrawal was successfully updated." }
+          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, info: "Withdrawal was successfully updated." }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_payment_info_page_path }
         else
-          format.html { render :edit, status: :unprocessable_entity }
+          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
           format.json { render json: @withdrawal.errors, status: :unprocessable_entity }
         end
       end
@@ -76,7 +76,7 @@ module Spree
       @request.balance = params[:withdrawal_request][:balance]
       if @request.balance > params[:withdrawal_request][:available_balance].to_d
         respond_to do |format|
-          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, notice: "Your requested withdrawal exceeds the available balance" }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, warning: "Your requested withdrawal exceeds the available balance" }
         end
         return
       end
@@ -86,10 +86,10 @@ module Spree
       
       respond_to do |format|
         if @request.save
-          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, notice: "Withdrawal request was successfully created." }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, info: "Withdrawal request was successfully created." }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_request_withdrawal_page_path }
         else
-          format.html { render :new, status: :unprocessable_entity }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
           format.json { render json: @request.errors, status: :unprocessable_entity }
         end
       end
@@ -105,10 +105,10 @@ module Spree
 
       respond_to do |format|
         if @ticket.save
-          format.html { redirect_to main_app.producer_dashboard_support_page_path, notice: "Ticket was successfully created. We will reach you via your email" }
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, info: "Ticket was successfully created. We will reach you via your email" }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_support_page_path }
         else
-          format.html { render :new, status: :unprocessable_entity }
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
           format.json { render json: @request.errors, status: :unprocessable_entity }
         end
       end

@@ -1,5 +1,5 @@
 <% flash.each do |type, msg| %>
-    <%= render partial: 'spree/producer_dashboard/elements/alert', locals: { message: msg } %>
+    <%= render partial: 'spree/producer_dashboard/elements/alert', locals: { message: msg, type: type } %>
 <% end %>
 <div class="row">
     <%= render partial: 'spree/producer_dashboard/ticket_form' %>
