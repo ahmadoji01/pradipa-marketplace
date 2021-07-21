@@ -1,0 +1,53 @@
+<% admin_breadcrumb(link_to(plural_resource_name(Spree::Blog), main_app.admin_blogs_path)) %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Blog Post', main_app.new_admin_blog_url, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<% if @blogs.any? %>
+  <table class="index" id="listing_orders" data-hook>
+    <colgroup>
+       <col style="width: 15%;">
+       <col style="width: 25%;">
+       <col style="width: 20%;">
+       <col style="width: 10%;">
+       <col style="width: 15%;">
+       <col style="width: 10%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_orders_index_headers">
+        <th><%= link_to "Title", main_app.admin_withdrawal_requests_path(sort: "email asc") %></th>
+        <th><%= link_to "Body", main_app.admin_withdrawal_requests_path(sort: "balance asc") %></th>
+        <th><%= link_to "Published", main_app.admin_withdrawal_requests_path(sort: "published asc") %></th>
+        <th><%= link_to "Blog Category", main_app.admin_withdrawal_requests_path(sort: "published asc") %></th>
+        <th><%= link_to "Created At", main_app.admin_withdrawal_requests_path(sort: "created_at asc") %></th>
+        <th data-hook="admin_orders_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @blogs.each do |blog| %>
+      <tr data-hook="admin_orders_index_rows">
+        <td><%= blog.title %></td>
+        <td><%= blog.body %></td>
+        <td><%= blog.published %></td>
+        <td><% if !blog.blog_category.nil? %><%= blog.blog_category.name %><% end %></td>
+        <td><%= blog.created_at %></td>
+        <td class='actions align-center' data-hook="admin_orders_index_row_actions">
+          <%= link_to_edit_url main_app.edit_admin_blog_path(blog), title: "admin_edit_#{dom_id(blog)}", no_text: true %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%= paginate @blogs, theme: "solidus_admin" %>
+<% else %>
+  <div class="no-objects-found">
+    <% if can? :manage, Spree::Blog %>
+      <%= render 'spree/admin/shared/no_objects_found',
+                   resource: Spree::Blog,
+                   new_resource_url: main_app.new_admin_blog_path %>
+    <% end %>
+  </div>
+<% end %>

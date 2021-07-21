@@ -90,6 +90,18 @@ Spree::Backend::Config.configure do |config|
   # )
 
   config.menu_items << config.class::MenuItem.new(
+    [:blog],
+    'dollar',
+    url: '/admin/blogs'
+  )
+
+  config.menu_items << config.class::MenuItem.new(
+    [:ticket],
+    'dollar',
+    url: '/admin/tickets'
+  )
+
+  config.menu_items << config.class::MenuItem.new(
     [:withdrawal],
     'dollar',
     url: '/admin/withdrawals'
@@ -99,12 +111,6 @@ Spree::Backend::Config.configure do |config|
     [:withdrawal_request],
     'dollar',
     url: '/admin/withdrawal_requests'
-  )
-
-  config.menu_items << config.class::MenuItem.new(
-    [:ticket],
-    'dollar',
-    url: '/admin/tickets'
   )
 end
 

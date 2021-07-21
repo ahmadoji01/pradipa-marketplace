@@ -1,0 +1,17 @@
+<% admin_breadcrumb(link_to(plural_resource_name(Spree::WithdrawalRequest), main_app.admin_withdrawal_requests_path)) %>
+<% admin_breadcrumb('Edit Withdrawal Request') %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Blog', main_app.new_admin_blog_url, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<%= form_for @blog, url: main_app.new_admin_blog_url, html: { method: :put } do |f| %>
+  <fieldset class="no-border-top">
+    <%= render 'form', f: f %>
+    <% if can? :update, @blog %>
+      <%= render partial: 'spree/admin/shared/edit_resource_links', locals: {collection_url: main_app.admin_blogs_path} %>
+    <% end %>
+  </fieldset>
+<% end %>
