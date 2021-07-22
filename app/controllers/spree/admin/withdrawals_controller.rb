@@ -3,8 +3,8 @@ module Spree
       class WithdrawalsController < Spree::Admin::BaseController
 
         def index
-          @withdrawals = Spree::Withdrawal.all
           @search = Spree::Withdrawal.accessible_by(current_ability, :index).ransack(params[:q])
+          @search.sorts = 'created_at desc' if @search.sorts.empty?
           @withdrawals = @search.result.includes([:user]).
             page(params[:page]).
             per(params[:per_page] || Spree::Config[:orders_per_page])

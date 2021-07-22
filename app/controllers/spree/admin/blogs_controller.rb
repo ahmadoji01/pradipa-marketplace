@@ -5,8 +5,8 @@ module Spree
             before_action :set_blog_categories
 
             def index
-                @blogs = Spree::Blog.all
                 @search = Spree::Blog.accessible_by(current_ability, :index).ransack(params[:q])
+                @search.sorts = 'created_at desc' if @search.sorts.empty?
                 @blogs = @search.result.
                     page(params[:page]).
                     per(params[:per_page] || Spree::Config[:orders_per_page])
