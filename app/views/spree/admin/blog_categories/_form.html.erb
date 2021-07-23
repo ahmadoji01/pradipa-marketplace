@@ -1,0 +1,26 @@
+<% method ||= 'post' %>
+
+<% if @blog_category.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@blog_category.errors.count, "error") %> prohibited this spree_blog from being saved:</h2>
+
+    <ul>
+      <% @blog_category.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div data-hook="admin_ticket_form_fields">
+  <div class="row">
+    <div class="left col-9" data-hook="admin_withdrawal_form_fields">
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :name do %>
+          <%= f.label :name, class: 'required' %>
+          <%= f.text_field :name, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

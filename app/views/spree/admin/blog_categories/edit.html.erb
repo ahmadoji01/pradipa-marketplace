@@ -1,0 +1,17 @@
+<% admin_breadcrumb(link_to(plural_resource_name(BlogCategory), main_app.admin_blog_categories_path)) %>
+<% admin_breadcrumb('Edit Blog Category') %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Blog Category', main_app.new_admin_blog_category_url, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<%= form_for @blog_category, url: main_app.admin_blog_category_path, html: { method: :put } do |f| %>
+  <fieldset class="no-border-top">
+    <%= render 'form', f: f %>
+    <% if can? :update, @blog_category %>
+      <%= render partial: 'spree/admin/shared/edit_resource_links', locals: {collection_url: main_app.admin_blog_categories_path} %>
+    <% end %>
+  </fieldset>
+<% end %>

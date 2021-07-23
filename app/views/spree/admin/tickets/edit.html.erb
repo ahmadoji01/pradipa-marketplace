@@ -1,0 +1,17 @@
+<% admin_breadcrumb(link_to(plural_resource_name(Spree::Ticket), main_app.admin_tickets_path)) %>
+<% admin_breadcrumb('Edit Ticket') %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Ticket', main_app.new_admin_ticket_url, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<%= form_for @ticket, url: main_app.admin_ticket_path, html: { method: :put } do |f| %>
+  <fieldset class="no-border-top">
+    <%= render 'form', f: f %>
+    <% if can? :update, @ticket %>
+      <%= render partial: 'spree/admin/shared/edit_resource_links', locals: {collection_url: main_app.admin_tickets_path} %>
+    <% end %>
+  </fieldset>
+<% end %>
