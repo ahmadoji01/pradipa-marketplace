@@ -3,12 +3,12 @@ module Spree
         class TicketsController < Spree::Admin::BaseController
 
             def index
+                @show_only_open = false
                 @search = Spree::Ticket.accessible_by(current_ability, :index).ransack(params[:q])
                 @search.sorts = 'created_at desc' if @search.sorts.empty?
                 @tickets = @search.result.
                     page(params[:page]).
                     per(params[:per_page] || Spree::Config[:orders_per_page])
-                @show_only_open = false
             end
 
             def new

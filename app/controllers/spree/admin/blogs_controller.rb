@@ -6,10 +6,9 @@ module Spree
 
             def index
                 params[:q] ||= {}
-                params[:q][:published] ||= '1' if params[:q][:published].nil?
+                params[:q][:published] ||= '1' if !params[:q][:published].nil?
                 @show_only_published = params[:q][:published] == '1'
                 params[:q][:s] ||= 'created_at desc'
-                params[:q][:completed_at_not_null] = '' unless @show_only_completed
 
                 created_at_gt = params[:q][:created_at_gt]
                 created_at_lt = params[:q][:created_at_lt]

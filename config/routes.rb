@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :withdrawal_requests
       resources :tickets
       resources :blogs
+      resources :blog_categories
     end
   end
 

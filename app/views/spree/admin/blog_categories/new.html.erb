@@ -1,0 +1,13 @@
+<% admin_breadcrumb(link_to 'Blog Categories', main_app.admin_blog_categories_path) %>
+<% admin_breadcrumb('New Blog Category') %>
+
+<% content_for :page_actions do %>
+<% end %>
+<%= render partial: 'spree/shared/error_messages', locals: { target: @blog_category } %>
+<%= form_for @blog_category, url: main_app.admin_blog_categories_path, html: { method: :post } do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+
+  <div class="clear"></div>
+
+  <%= render partial: 'spree/admin/shared/new_resource_links', locals: {collection_url: main_app.admin_blog_categories_path} %>
+<% end %>
