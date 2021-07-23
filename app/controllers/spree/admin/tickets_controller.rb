@@ -3,7 +3,29 @@ module Spree
         class TicketsController < Spree::Admin::BaseController
 
             def index
-                @show_only_open = false
+                params[:q] ||= {}
+                params[:q][:status] ||= ''
+                params[:q][:s] ||= 'status desc'
+
+                created_at_gt = params[:q][:created_at_gt]
+                created_at_lt = params[:q][:created_at_lt]
+
+                if params[:q][:created_at_gt].present?
+                params[:q][:created_at_gt] = begin
+                                                Time.zone.parse(params[:q][:created_at_gt]).beginning_of_day
+                                            rescue StandardError
+                                                ""
+                                            end
+                end
+
+                if params[:q][:created_at_lt].present?
+                params[:q][:created_at_lt] = begin
+                                                Time.zone.parse(params[:q][:created_at_lt]).end_of_day
+                                            rescue StandardError
+                                                ""
+                                            end
+                end
+
                 @search = Spree::Ticket.accessible_by(current_ability, :index).ransack(params[:q])
                 @search.sorts = 'created_at desc' if @search.sorts.empty?
                 @tickets = @search.result.
