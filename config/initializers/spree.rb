@@ -96,6 +96,12 @@ Spree::Backend::Config.configure do |config|
   )
 
   config.menu_items << config.class::MenuItem.new(
+    [:blog_category],
+    'list',
+    url: '/admin/blog_categories'
+  )
+
+  config.menu_items << config.class::MenuItem.new(
     [:ticket],
     'info',
     url: '/admin/tickets'

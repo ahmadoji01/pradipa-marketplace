@@ -7,7 +7,7 @@
   </li>
 <% end %>
 
-<%= form_for @blog, url: main_app.new_admin_blog_url, html: { method: :put } do |f| %>
+<%= form_for @blog, url: main_app.admin_blog_path, html: { method: :put } do |f| %>
   <fieldset class="no-border-top">
     <%= render 'form', f: f %>
     <% if can? :update, @blog %>

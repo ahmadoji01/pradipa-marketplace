@@ -6,6 +6,61 @@
   </li>
 <% end %>
 
+<% content_for :table_filter_title do %>
+  <%= t('spree.filter') %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_blogs_index_search">
+    <%= search_form_for @search, url: main_app.admin_blogs_path do |f| %>
+      <div class="row">
+        <div class="field-block col-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="date-range-filter field">
+            <%= label_tag :q_created_at_gt, t('spree.date_range') %>
+            <div class="date-range-fields input-group">
+              <%= f.text_field :created_at_gt, class: 'datepicker form-control datepicker-from', value: params[:q][:created_at_gt], placeholder: t('spree.start') %>
+
+              <div class="input-group-prepend input-group-append">
+                <span class="input-group-text range-divider">
+                  <i class="fa fa-arrow-right"></i>
+                </span>
+              </div>
+
+              <%= f.text_field :created_at_lt, class: 'datepicker form-control datepicker-to', value: params[:q][:created_at_lt], placeholder: t('spree.stop') %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= label_tag :title_cont, 'Title' %>
+            <%= f.text_field :title_cont, value: params[:q][:title_cont], size: 25 %>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="field">
+            <%= label_tag :q_blog_category_id, 'Category' %>
+            <%= f.select :blog_category_id, BlogCategory.all.map { |bc| [bc.name, bc.id] }, { include_blank: true }, { class: "custom-select fullwidth" } %>
+          </div>
+
+          <div class="field">
+            <%= label_tag :q_published, 'Published' %>
+            <%= f.check_box :published, { checked: @show_only_published }, "1", "0" %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="actions filter-actions">
+        <div data-hook="admin_orders_index_search_buttons">
+          <%= button_tag t('spree.filter_results'), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
 <% if @blogs.any? %>
   <table class="index" id="listing_orders" data-hook>
     <colgroup>
