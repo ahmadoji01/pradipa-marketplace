@@ -35,6 +35,7 @@ en:
     admin:
       tab:
         blog: "Blog"
+        blog_category: "Blog Category"
         ticket: "Ticket"
         withdrawal: "Withdrawal"
         withdrawal_request: "Withdrawal Request"
