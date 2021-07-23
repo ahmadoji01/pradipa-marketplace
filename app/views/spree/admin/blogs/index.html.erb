@@ -91,6 +91,8 @@
         <td><%= blog.created_at %></td>
         <td class='actions align-center' data-hook="admin_orders_index_row_actions">
           <%= link_to_edit_url main_app.edit_admin_blog_path(blog), title: "admin_edit_#{dom_id(blog)}", no_text: true %>
+          <%= link_to 'Preview', main_app.blog_path(blog), target: '_blank' %>
+          <%= link_to main_app.admin_blog_path(blog), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fa fa-trash"><% end %></td>
         </td>
       </tr>
     <% end %>
