@@ -1,6 +1,7 @@
 module Spree
     module Admin
         class TicketsController < Spree::Admin::BaseController
+            before_action :set_ticket, only: %i[ edit update destroy ]
 
             def index
                 params[:q] ||= {}
@@ -38,7 +39,6 @@ module Spree
             end
 
             def edit
-                @ticket = Spree::Ticket.find(params[:id])
                 authorize! action, @ticket
             rescue ActiveRecord::RecordNotFound
                 resource_not_found(flash_class: Spree::Ticket, redirect_url: admin_tickets_path)
@@ -66,7 +66,6 @@ module Spree
             def update
                 authorize! :update, Ticket
       
-                @ticket = Spree::Ticket.find(params[:id])
                 @withdrawal = Spree::User.find(params[:withdrawal_request][:withdrawal_id])
                 @ticket.assign_attributes(ticket_params)
                 @ticket.user = @user
@@ -80,9 +79,23 @@ module Spree
                     format.json { render json: @request.errors, status: :unprocessable_entity }
                   end
                 end
-              end
+            end
+
+            
+            # DELETE /spree/blogs/1 or /spree/blogs/1.json
+            def destroy
+                @ticket.destroy
+                respond_to do |format|
+                    format.html { redirect_to main_app.admin_tickets_path, notice: "Ticket was successfully destroyed." }
+                    format.json { head :no_content }
+                end
+            end
 
             private
+
+            def set_ticket
+                @ticket = Spree::Ticket.find(params[:id])
+            end
 
             def ticket_params
                 if params[:ticket] && !params[:ticket].empty?

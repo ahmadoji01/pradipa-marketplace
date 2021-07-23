@@ -1,6 +1,7 @@
 module Spree
     module Admin
       class WithdrawalsController < Spree::Admin::BaseController
+        before_action :set_withdrawal, only: %i[ edit update destroy ]
 
         def index
           @search = Spree::Withdrawal.accessible_by(current_ability, :index).ransack(params[:q])
@@ -62,7 +63,20 @@ module Spree
           end
         end
 
+        # DELETE /spree/blogs/1 or /spree/blogs/1.json
+        def destroy
+          @withdrawal.destroy
+          respond_to do |format|
+              format.html { redirect_to main_app.admin_withdrawals_path, notice: "Withdrawal was successfully destroyed." }
+              format.json { head :no_content }
+          end
+        end
+
         private
+
+        def set_withdrawal
+          @withdrawal = Spree::Withdrawal.find(params[:id])
+        end
 
         def withdrawal_params
           if params[:withdrawal] && !params[:withdrawal].empty?

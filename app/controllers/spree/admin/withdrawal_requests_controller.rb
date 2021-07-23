@@ -1,8 +1,32 @@
 module Spree
     module Admin
       class WithdrawalRequestsController < Spree::Admin::BaseController
+        before_action :set_request, only: %i[ edit update destroy ]
 
         def index
+          params[:q] ||= {}
+          params[:q][:status] ||= ''
+          params[:q][:s] ||= 'status desc'
+
+          created_at_gt = params[:q][:created_at_gt]
+          created_at_lt = params[:q][:created_at_lt]
+
+          if params[:q][:created_at_gt].present?
+          params[:q][:created_at_gt] = begin
+                                          Time.zone.parse(params[:q][:created_at_gt]).beginning_of_day
+                                      rescue StandardError
+                                          ""
+                                      end
+          end
+
+          if params[:q][:created_at_lt].present?
+          params[:q][:created_at_lt] = begin
+                                          Time.zone.parse(params[:q][:created_at_lt]).end_of_day
+                                      rescue StandardError
+                                          ""
+                                      end
+          end
+
           @search = Spree::WithdrawalRequest.accessible_by(current_ability, :index).ransack(params[:q])
           @search.sorts = 'created_at desc' if @search.sorts.empty?
           @requests = @search.result.includes([:withdrawal]).
@@ -12,7 +36,6 @@ module Spree
         end
 
         def edit
-          @request = Spree::WithdrawalRequest.find(params[:id])
           authorize! action, @request
         rescue ActiveRecord::RecordNotFound
           resource_not_found(flash_class: Spree::WithdrawalRequest, redirect_url: admin_withdrawal_requests_path)
@@ -44,7 +67,6 @@ module Spree
         def update
           authorize! :update, WithdrawalRequest
 
-          @request = Spree::WithdrawalRequest.find(params[:id])
           @withdrawal = Spree::Withdrawal.find(params[:withdrawal_request][:withdrawal_id])
           @request.assign_attributes(withdrawal_request_params)
           @request.withdrawal = @withdrawal
@@ -64,7 +86,20 @@ module Spree
           end
         end
 
+        # DELETE /spree/blogs/1 or /spree/blogs/1.json
+        def destroy
+          @request.destroy
+          respond_to do |format|
+              format.html { redirect_to main_app.admin_withdrawal_requests_path, notice: "Withdrawal request was successfully destroyed." }
+              format.json { head :no_content }
+          end
+        end
+
         private
+
+        def set_request
+          @request = Spree::WithdrawalRequest.find(params[:id])
+        end
 
         def withdrawal_request_params
           if params[:withdrawal_request] && !params[:withdrawal_request].empty?

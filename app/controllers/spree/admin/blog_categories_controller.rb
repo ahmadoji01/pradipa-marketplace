@@ -1,7 +1,7 @@
 module Spree
     module Admin
         class BlogCategoriesController < Spree::Admin::BaseController
-            before_action :set_blog_category, only: %i[ show edit update destroy ]
+            before_action :set_blog_category, only: %i[ edit update destroy ]
 
             def index
                 params[:q] ||= {}
@@ -13,24 +13,21 @@ module Spree
                     per(params[:per_page] || Spree::Config[:orders_per_page])
             end
         
-            # GET /spree/blogs/new
             def new
                 @blog_category = BlogCategory.new
             end
         
-            # GET /spree/blogs/1/edit
             def edit
                 @blog_category = BlogCategory.find(params[:id])
             end
         
-            # POST /spree/blogs or /spree/blogs.json
             def create
                 @blog_category = BlogCategory.new(blog_params)
         
                 respond_to do |format|
                 if @blog_category.save
-                    format.html { redirect_to main_app.admin_blog_category_path(@blog_category), notice: "Blog was successfully created." }
-                    format.json { render :show, status: :created, location: main_app.admin_blog_categories_path }
+                    format.html { redirect_to main_app.admin_blog_categories_path, notice: "Blog category was successfully created." }
+                    format.json { render :index, status: :created, location: main_app.admin_blog_categories_path }
                 else
                     format.html { render :new, status: :unprocessable_entity }
                     format.json { render json: @blog_category.errors, status: :unprocessable_entity }
@@ -38,12 +35,11 @@ module Spree
                 end
             end
         
-            # PATCH/PUT /spree/blogs/1 or /spree/blogs/1.json
             def update
                 respond_to do |format|
                     if @blog_category.update(blog_params)
-                        format.html { redirect_to main_app.admin_blog_category_path(@blog_category), notice: "Blog was successfully updated." }
-                        format.json { render :show, status: :ok, location: main_app.admin_blog_category_path(@blog_category) }
+                        format.html { redirect_to main_app.admin_blog_categories_path, notice: "Blog category was successfully updated." }
+                        format.json { render :index, status: :ok, location: main_app.admin_blog_categories_path }
                     else
                         format.html { render :edit, status: :unprocessable_entity }
                         format.json { render json: @blog_category.errors, status: :unprocessable_entity }
@@ -51,11 +47,10 @@ module Spree
                 end
             end
         
-            # DELETE /spree/blogs/1 or /spree/blogs/1.json
             def destroy
                 @blog_category.destroy
                 respond_to do |format|
-                    format.html { redirect_to main_app.admin_blog_categories_path, notice: "Blog was successfully destroyed." }
+                    format.html { redirect_to main_app.admin_blog_categories_path, notice: "Blog category was successfully destroyed." }
                     format.json { head :no_content }
                 end
             end
