@@ -26,7 +26,7 @@
         <div data-hook="admin_withdrawal_request_form_withdrawal">
             <%= f.field_container :status do %>
                 <%= f.label :status, 'Status' %>
-                <%= f.select :status, ['Requested', 'Completed', 'Processing', 'Waiting Confirmation'], {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+                <%= f.select :status, [ ['Requested', 'requested'], ['Completed', 'completed'], ['Processing', 'processing'], ['Waiting Confirmation', 'confirming'] ], {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
             <% end %>
         </div>
     </div>
