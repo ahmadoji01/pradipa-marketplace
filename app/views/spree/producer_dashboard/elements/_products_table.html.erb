@@ -23,7 +23,7 @@
                             <td class="py-1">
                                 <%= image_tag product.gallery.images.first.try(:url, :mini) %>
                             </td>
-                            <td><%= product.name %></td>
+                            <td><%= product.name.truncate(75) %></td>
                             <td class="text-danger">$<%= product.price %></td>
                             <td>
                                 <% product.variants.each do |variant| %>

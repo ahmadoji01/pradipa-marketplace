@@ -31,12 +31,9 @@
                                 <%= render partial: 'spree/elements/product_card', locals: { product: product } %>
                             </div>
                         <% end %>
-                        <% if paginated_products.respond_to?(:total_pages) %>
-                            <%= paginate paginated_products %>
-                        <% end %>
                     </div>
                     <% if paginated_products.respond_to?(:total_pages) %>
-                        <div class="text-center learts-mt-70">
+                        <div class="text-center learts-mt-70 enable-x-scroll bring-to-front">
                             <%= paginate paginated_products, theme: 'store_frontend' %>
                         </div>
                     <% end %>

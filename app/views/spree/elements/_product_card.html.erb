@@ -14,7 +14,7 @@
             </a>
         </div>
         <div class="product-info">
-            <h6 class="title2"><a href="<%= url %>"><%= product.name %></a></h6>
+            <h6 class="title2"><a href="<%= url %>"><%= product.name.truncate(50) %></a></h6>
             <span class="price2">
                 <!-- <span class="old">$30.00</span> -->
             <span class="new">$<%= product.price %></span>
