@@ -550,9 +550,11 @@ ActiveRecord::Schema.define(version: 2021_07_21_120540) do
     t.string "meta_title"
     t.datetime "discontinue_on"
     t.integer "user_id"
+    t.integer "producer_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["name"], name: "index_spree_products_on_name"
+    t.index ["producer_id"], name: "index_spree_products_on_producer_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
     t.index ["user_id"], name: "index_spree_products_on_user_id"
   end
@@ -1393,6 +1395,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_120540) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_categories", "blog_categories", column: "parent_category_id"
+  add_foreign_key "spree_products", "spree_users", column: "producer_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
