@@ -12,6 +12,7 @@ module Spree
         def index
             @searcher = build_searcher(params.merge(include_images: true))
             @products = @searcher.retrieve_products
+            @total = @products.total_count
             @products = sort_products(@products)
             @taxonomies = Spree::Taxonomy.includes(root: :children)
         end
