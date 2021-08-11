@@ -61,7 +61,7 @@ module Spree
                 
                 respond_to do |format|
                     if @blog.save
-                        format.html { redirect_to main_app.blog_path(@blog), notice: "Blog was successfully created." }
+                        format.html { redirect_to main_app.post_page_path(@blog.slug), notice: "Blog was successfully created." }
                         format.json { render :show, status: :created, location: main_app.blogs_path(@spree_blog) }
                     else
                         format.html { render :new, status: :unprocessable_entity }
