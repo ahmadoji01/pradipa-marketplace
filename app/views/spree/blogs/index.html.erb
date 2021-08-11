@@ -11,6 +11,8 @@
             </div>
         </div>
         <div class="row learts-mb-n50">
+            <%  paginated_blogs = @blogs if params.key?(:keywords)
+                paginated_blogs ||= @blogs %>
 
             <div class="col-xl-9 col-lg-8 col-12 learts-mb-50">
                 <div class="row isotope-grid learts-mb-n40">
@@ -21,9 +23,11 @@
                 </div>
 
                 <div class="row learts-mt-50">
-                    <div class="col text-center">
-                        <a href="#" class="btn btn-dark btn-outline-hover-dark">Load More</a>
-                    </div>
+                    <% if paginated_blogs.respond_to?(:total_pages) %>
+                        <div class="text-center learts-mt-70 enable-x-scroll bring-to-front">
+                            <%= paginate paginated_blogs, theme: 'store_frontend' %>
+                        </div>
+                    <% end %>
                 </div>
             </div>
 

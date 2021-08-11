@@ -1,17 +1,17 @@
 <div class="grid-item col-md-6 col-12 learts-mb-40">
     <div class="blog">
         <div class="image">
-            <a href="<%= main_app.blog_path(blog) %>"><%= image_tag blog.featured_image.url %></a>
+            <a href="<%= main_app.post_page_path(blog.slug) %>"><%= image_tag blog.featured_image.url %></a>
         </div>
         <div class="content">
             <ul class="meta">
                 <li><i class="far fa-calendar"></i><a href="#"><%= blog.created_at %></a></li>
             </ul>
-            <h5 class="title" style="margin:0"><%= link_to blog.title, main_app.blog_path(blog), class: 'truncate' %></h5>
+            <h5 class="title" style="margin:0"><%= link_to blog.title, main_app.post_page_path(blog.slug), class: 'truncate' %></h5>
             <div class="desc">
                 <p><%= blog.body.to_plain_text.truncate(150) %></p>
             </div>
-            <%= link_to "Read More", main_app.blog_path(blog), class: 'link' %>
+            <%= link_to "Read More", main_app.post_page_path(blog.slug), class: 'link' %>
         </div>
     </div>
 </div>

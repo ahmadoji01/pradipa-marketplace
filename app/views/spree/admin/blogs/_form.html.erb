@@ -24,6 +24,13 @@
       </div>
 
       <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :slug do %>
+          <%= f.label :slug, class: 'required' %>
+          <%= f.text_field :slug, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
         <%= f.field_container :body do %>
           <%= f.label :body, class: 'required' %>
           <%= f.text_area :body, class: 'fullwidth title', row: 4 %>

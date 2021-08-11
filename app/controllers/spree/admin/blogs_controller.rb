@@ -54,15 +54,19 @@ module Spree
             # POST /spree/blogs or /spree/blogs.json
             def create
                 @blog = Spree::Blog.new(blog_params)
-                 
-                respond_to do |format|
-                if @blog.save
-                    format.html { redirect_to main_app.blog_path(@blog), notice: "Blog was successfully created." }
-                    format.json { render :show, status: :created, location: main_app.blogs_path(@spree_blog) }
-                else
-                    format.html { render :new, status: :unprocessable_entity }
-                    format.json { render json: @spree_blog.errors, status: :unprocessable_entity }
+
+                if @blog.slug == ''
+                    @blog.slug = generate_slug(@blog.title)
                 end
+                
+                respond_to do |format|
+                    if @blog.save
+                        format.html { redirect_to main_app.post_page_path(@blog.slug), notice: "Blog was successfully created." }
+                        format.json { render :show, status: :created, location: main_app.blogs_path(@spree_blog) }
+                    else
+                        format.html { render :new, status: :unprocessable_entity }
+                        format.json { render json: @spree_blog.errors, status: :unprocessable_entity }
+                    end
                 end
             end
         
@@ -92,6 +96,16 @@ module Spree
                 def set_blog_categories
                     @blog_categories = BlogCategory.all
                 end
+
+                def generate_slug(title)
+                    i = 1
+                    slug = title.parameterize
+                    while !Spree::Blog.find_by(slug: slug).nil?
+                        i = i + 1
+                        slug = title.parameterize + "-" + i.to_s
+                    end
+                    return slug
+                end
         
                 # Use callbacks to share common setup or constraints between actions.
                 def set_blog
@@ -100,7 +114,7 @@ module Spree
         
                 # Only allow a list of trusted parameters through.
                 def blog_params
-                    params.fetch(:blog, {}).permit(:title, :body, :published, :meta_title, :meta_keyword, :subtitle, :featured_image, :edited_at, :blog_category_id)
+                    params.fetch(:blog, {}).permit(:title, :slug, :body, :published, :meta_title, :meta_keyword, :subtitle, :featured_image, :edited_at, :blog_category_id)
                 end
         end
     end
