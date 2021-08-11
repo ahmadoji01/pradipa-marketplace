@@ -85,7 +85,7 @@
     <% @blogs.each do |blog| %>
       <tr data-hook="admin_orders_index_rows">
         <td><%= blog.title %></td>
-        <td><%= blog.body %></td>
+        <td><%= blog.body.to_plain_text.truncate(150) %></td>
         <td><%= blog.published %></td>
         <td><% if !blog.blog_category.nil? %><%= blog.blog_category.name %><% end %></td>
         <td><%= blog.created_at %></td>
