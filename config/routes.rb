@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   scope module: 'spree' do
     resources :blogs
+
+    get '/post/:slug', :to => 'blogs#show_post', :as => 'post_page'
+
     get '/about-us', :to => 'static_pages#about', :as => 'about_us_page'
     get '/terms-and-conditions', :to => 'static_pages#terms_and_conditions', :as => 'terms_and_conditions_page'
     get '/privacy-policy', :to => 'static_pages#privacy_policy', :as => 'privacy_policy_page'
