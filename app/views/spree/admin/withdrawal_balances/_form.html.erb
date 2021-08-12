@@ -1,0 +1,75 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>$(window).on('load', function () { $('.select2-basic').select2({ allowClear: true, placeholder: "Search for a withdrawer" }); })</script>
+<div data-hook="admin_withdrawal_form_fields">
+
+  <div class="row">
+
+    <div class="left col-9" data-hook="admin_withdrawal_form_fields">
+        <div data-hook="admin_withdrawal_request_form_withdrawal">
+            <%= f.field_container :user do %>
+                <%= f.label :user_id, 'Withdrawer' %>
+                <%= f.select :user_id, Spree::User.all.map { |user| [user.email, user.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_request_form_withdrawal">
+            <%= f.field_container :order do %>
+                <%= f.label :order_id, 'Order' %>
+                <%= f.select :order_id, Spree::Order.all.map { |order| [order.number, order.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_request_form_balance">
+            <%= f.field_container :balance do %>
+                <%= f.label :balance, class: Spree::Config.require_master_price ? 'required' : '' %>
+                <%= render "spree/admin/shared/number_with_currency",
+                    f: f,
+                    amount_attr: :balance,
+                    required: Spree::Config.require_master_price,
+                    currency: Spree::Config.default_pricing_options.currency %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_request_form_balance">
+            <%= f.field_container :shipping do %>
+                <%= f.label :shipping, class: Spree::Config.require_master_price ? 'required' : '' %>
+                <%= render "spree/admin/shared/number_with_currency",
+                    f: f,
+                    amount_attr: :shipping,
+                    required: Spree::Config.require_master_price,
+                    currency: Spree::Config.default_pricing_options.currency %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_request_form_balance">
+            <%= f.field_container :tax do %>
+                <%= f.label :tax, class: Spree::Config.require_master_price ? 'required' : '' %>
+                <%= render "spree/admin/shared/number_with_currency",
+                    f: f,
+                    amount_attr: :tax,
+                    required: Spree::Config.require_master_price,
+                    currency: Spree::Config.default_pricing_options.currency %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_request_form_balance">
+            <%= f.field_container :handling_fee do %>
+                <%= f.label :handling_fee, class: Spree::Config.require_master_price ? 'required' : '' %>
+                <%= render "spree/admin/shared/number_with_currency",
+                    f: f,
+                    amount_attr: :handling_fee,
+                    required: Spree::Config.require_master_price,
+                    currency: Spree::Config.default_pricing_options.currency %>
+            <% end %>
+        </div>
+    </div>
+
+  </div>
+
+
+  <div class="clear"></div>
+
+  <div data-hook="admin_withdrawal_request_form_additional_fields"></div>
+
+  <div class="clear"></div>
+</div>
