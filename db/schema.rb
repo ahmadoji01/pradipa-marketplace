@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_153735) do
+ActiveRecord::Schema.define(version: 2021_08_13_114056) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -1344,9 +1344,9 @@ ActiveRecord::Schema.define(version: 2021_08_12_153735) do
     t.decimal "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "order_id"
     t.decimal "handling_fee"
     t.integer "user_id"
+    t.integer "order_id"
     t.index ["order_id"], name: "index_spree_withdrawal_balances_on_order_id"
     t.index ["user_id"], name: "index_spree_withdrawal_balances_on_user_id"
   end
@@ -1428,6 +1428,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_153735) do
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
   add_foreign_key "spree_wallet_payment_sources", "spree_users", column: "user_id"
+  add_foreign_key "spree_withdrawal_balances", "spree_orders", column: "order_id"
   add_foreign_key "spree_withdrawal_balances", "spree_users", column: "user_id"
   add_foreign_key "spree_withdrawal_requests", "spree_withdrawals", column: "withdrawal_id"
 end
