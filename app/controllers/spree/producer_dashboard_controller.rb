@@ -2,6 +2,7 @@ module Spree
   class ProducerDashboardController < Spree::StoreController
 
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
+    before_action :set_brand, only: [:brand_info]
     before_action :init_user
     before_action :authorize
     layout 'spree/layouts/producer_dashboard'
@@ -131,7 +132,37 @@ module Spree
       end
     end
 
+    def brand_info
+    end
+
+    def submit_brand_info
+      @brand = Spree::Brand.where(user_id: spree_current_user.id).first
+      if @brand.nil?
+        @brand = Spree::Brand.new(brand_params)
+      else
+        @brand.assign_attributes(brand_params)
+      end
+
+      respond_to do |format|
+        if @brand.save
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: "Brand info was successfully updated" }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_brand_info_page_path }
+        else
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.json { render json: @brand.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     private
+
+      def set_brand
+        @brand = Spree::Brand.where(user_id: spree_current_user.id).first
+        if @brand.nil?
+          @brand = Spree::Brand.new
+          @brand.user = @user
+        end
+      end
 
       def withdrawal_params
         if params[:withdrawal] && !params[:withdrawal].empty?
@@ -152,6 +183,14 @@ module Spree
       def ticket_params
         if params[:ticket] && !params[:ticket].empty?
           params.require(:ticket).permit(:id, :user_id, :title, :body, :status, :picture)
+        else
+          {}
+        end
+      end
+
+      def brand_params
+        if params[:brand] && !params[:brand].empty?
+          params.require(:brand).permit(:id, :user_id, :name, :description, :brand_banner, :brand_photo)
         else
           {}
         end

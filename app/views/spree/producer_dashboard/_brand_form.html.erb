@@ -1,0 +1,49 @@
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Your Brand Information</h4>
+            <p class="card-description">
+                Tell us about your brand
+            </p>
+
+            <%= form_for @brand, url: main_app.producer_dashboard_submit_brand_info_path, html: { method: :post } do |f| %>
+                <%= f.hidden_field :user_id, value: spree_current_user.id, required: true %>
+                <div class="form-group">
+                    <label for="payment-full-name">Brand Name</label>
+                    <%= f.text_field :name, class: 'form-control', required: true %>
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea1">How would you describe your brand?</label>
+                    <%= f.text_area :description, class: 'form-control', required: true, rows: 4 %>
+                </div>
+                <div class="form-group">
+                    <label>Select your brand logo</label>
+                    <div class="row">
+                        <div class="col-12">
+                            <%= image_tag(@brand.brand_photo_url) if @brand.brand_photo? %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <%= f.file_field :brand_photo, id:"file-input-2"%>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select banner for your brand</label>
+                    <div class="row">
+                        <div class="col-12">
+                            <%= image_tag(@brand.brand_banner_url) if @brand.brand_banner? %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <%= f.file_field :brand_banner, id:"file-input"%>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            <% end %>
+        </div>
+    </div>
+</div>

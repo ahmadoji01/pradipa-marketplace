@@ -1,7 +1,7 @@
 class BrandBannerUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -28,11 +28,11 @@ class BrandBannerUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  process resize_to_fit: [1500, 1500]
+  process :resize_to_fit => [1500, 1500]
 
   # Create different versions of your uploaded files:
   version :small do
-    process resize_to_fit: [800, 800]
+    process :resize_to_fit => [800, 800]
   end
 
   # Add an allowlist of extensions which are allowed to be uploaded.

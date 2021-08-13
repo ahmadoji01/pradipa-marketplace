@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
     get '/producer_dashboard', :to => 'producer_dashboard#redirect_to_home'
     get '/producer_dashboard/home', :to => 'producer_dashboard#index', :as => 'producer_dashboard_home_page'
+    get '/producer_dashboard/brand_info', :to => 'producer_dashboard#brand_info', :as => 'producer_dashboard_brand_info_page'
     get '/producer_dashboard/orders', :to => 'producer_dashboard#orders', :as => 'producer_dashboard_orders_page'
     get '/producer_dashboard/products', :to => 'producer_dashboard#products', :as => 'producer_dashboard_products_page'
     get '/producer_dashboard/payment_info', :to => 'producer_dashboard#payment_info', :as => 'producer_dashboard_payment_info_page'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     put '/producer_dashboard/update_payment_info', :to => 'producer_dashboard#update_payment_info'
     post '/producer_dashboard/create_wd_request', :to => 'producer_dashboard#create_wd_request'
     post '/producer_dashboard/submit_ticket', :to => 'producer_dashboard#submit_ticket'
+    post '/producer_dashboard/submit_brand_info', :to => 'producer_dashboard#submit_brand_info'
 
     namespace :admin do
       resources :withdrawals
