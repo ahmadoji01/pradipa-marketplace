@@ -12,9 +12,15 @@ module Spree
       @shipped_items = count_shipped_items(@line_items)
       @info = Spree::Withdrawal.where(:user_id => @user.id)
       @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}).last(5)
+      @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id)
+      count_balance(@wd_balances)
 
       withdrawn_balance(@wd_requests)
       @available_balance = @balance - @wd_balance
+    end
+
+    def redirect_to_home
+      redirect_to main_app.producer_dashboard_home_page_path
     end
 
     def orders
@@ -53,6 +59,7 @@ module Spree
 
     def withdrawals
       @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id})
+      @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id)
     end
 
     def request_withdrawal
@@ -60,6 +67,8 @@ module Spree
       @shipped_items = count_shipped_items(@line_items)
       @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}).last(5)
       @wd_request = Spree::WithdrawalRequest.new
+      @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id)
+      count_balance(@wd_balances)
       
       withdrawn_balance(@wd_requests)
       @available_balance = @balance - @wd_balance
@@ -68,12 +77,20 @@ module Spree
     def create_wd_request
       @withdrawal = Spree::Withdrawal.where(:user_id => @user.id).first
       if @withdrawal.nil?
+        flash[:warning] = "You have to fill in your bank information where the withdrawal will be sent"
         redirect_to main_app.producer_dashboard_payment_info_page_path
         return
       end
 
       @request = Spree::WithdrawalRequest.new
       @request.balance = params[:withdrawal_request][:balance]
+
+      if @request.balance <= 0.0
+        flash[:warning] = "Withdrawal balance cannot be zero"
+        redirect_to main_app.producer_dashboard_request_withdrawal_page_path
+        return
+      end
+
       if @request.balance > params[:withdrawal_request][:available_balance].to_d
         respond_to do |format|
           format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, warning: "Your requested withdrawal exceeds the available balance" }
@@ -164,12 +181,17 @@ module Spree
         @available_balance = 0
       end
 
+      def count_balance(wd_balances)
+        wd_balances.each do |wd_balance|
+          @balance += wd_balance.total
+        end
+      end
+
       def count_shipped_items(line_items)
         results = []
         line_items.each do |line_item|
           if line_item.order.shipment_state == 'shipped'
             results.push(line_item)
-            @balance += line_item.price * line_item.quantity
           end
         end
 

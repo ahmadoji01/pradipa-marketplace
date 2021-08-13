@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
 
-    get '/producer_dashboard', :to => 'producer_dashboard#index', :as => 'producer_dashboard_home_page'
+    get '/producer_dashboard', :to => 'producer_dashboard#redirect_to_home'
+    get '/producer_dashboard/home', :to => 'producer_dashboard#index', :as => 'producer_dashboard_home_page'
     get '/producer_dashboard/orders', :to => 'producer_dashboard#orders', :as => 'producer_dashboard_orders_page'
     get '/producer_dashboard/products', :to => 'producer_dashboard#products', :as => 'producer_dashboard_products_page'
     get '/producer_dashboard/payment_info', :to => 'producer_dashboard#payment_info', :as => 'producer_dashboard_payment_info_page'
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :withdrawals
       resources :withdrawal_requests
+      resources :withdrawal_balances
       resources :tickets
       resources :blogs
       resources :blog_categories

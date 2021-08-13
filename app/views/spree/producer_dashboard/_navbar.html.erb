@@ -81,10 +81,11 @@
             <i class="ti-settings text-primary"></i>
             Settings
           </a>
-          <a class="dropdown-item">
-            <i class="ti-power-off text-primary"></i>
-            Logout
-          </a>
+          <% if respond_to? :spree_logout_path %>
+            <%= link_to spree_logout_path, class: 'dropdown-item', :method => :delete do %>
+              <i class="ti-power-off text-primary"></i> <%= t('spree.logout') %>
+            <% end %>
+          <% end %>
         </div>
       </li>
     </ul>

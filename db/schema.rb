@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_023518) do
+ActiveRecord::Schema.define(version: 2021_08_13_114056) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -222,6 +222,17 @@ ActiveRecord::Schema.define(version: 2021_08_11_023518) do
     t.boolean "published"
     t.string "slug"
     t.index ["blog_category_id"], name: "index_spree_blogs_on_blog_category_id"
+  end
+
+  create_table "spree_brands", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "brand_banner"
+    t.string "brand_photo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_spree_brands_on_user_id"
   end
 
   create_table "spree_calculators", force: :cascade do |t|
@@ -1326,6 +1337,20 @@ ActiveRecord::Schema.define(version: 2021_08_11_023518) do
     t.index ["user_id"], name: "index_spree_wallet_payment_sources_on_user_id"
   end
 
+  create_table "spree_withdrawal_balances", force: :cascade do |t|
+    t.decimal "balance"
+    t.decimal "shipping"
+    t.decimal "tax"
+    t.decimal "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "handling_fee"
+    t.integer "user_id"
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_spree_withdrawal_balances_on_order_id"
+    t.index ["user_id"], name: "index_spree_withdrawal_balances_on_user_id"
+  end
+
   create_table "spree_withdrawal_requests", force: :cascade do |t|
     t.decimal "balance", precision: 10, scale: 2, null: false
     t.string "status"
@@ -1396,11 +1421,14 @@ ActiveRecord::Schema.define(version: 2021_08_11_023518) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_categories", "blog_categories", column: "parent_category_id"
+  add_foreign_key "spree_brands", "spree_users", column: "user_id"
   add_foreign_key "spree_products", "spree_users", column: "producer_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
   add_foreign_key "spree_wallet_payment_sources", "spree_users", column: "user_id"
+  add_foreign_key "spree_withdrawal_balances", "spree_orders", column: "order_id"
+  add_foreign_key "spree_withdrawal_balances", "spree_users", column: "user_id"
   add_foreign_key "spree_withdrawal_requests", "spree_withdrawals", column: "withdrawal_id"
 end

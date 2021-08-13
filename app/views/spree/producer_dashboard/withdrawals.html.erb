@@ -2,4 +2,7 @@
   <div class="col-md-12 grid-margin stretch-card">
     <%= render partial: 'spree/producer_dashboard/elements/withdrawals_table', locals: { wd_requests: @wd_requests } %>
   </div>
+  <div class="col-md-12 grid-margin stretch-card">
+    <%= render partial: 'spree/producer_dashboard/elements/withdrawal_balances_table', locals: { wd_balances: @wd_balances } %>
+  </div>
 </div>

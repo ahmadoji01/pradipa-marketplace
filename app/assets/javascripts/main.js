@@ -132,7 +132,7 @@
     });
     
     $('.isotope-grid .product').matchHeight();
-
+    
     $(".range-slider").ionRangeSlider({
         skin: "learts",
         hide_min_max: true,

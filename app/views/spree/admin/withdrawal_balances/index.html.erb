@@ -1,0 +1,97 @@
+<% admin_breadcrumb(link_to(plural_resource_name(Spree::WithdrawalBalance), main_app.admin_withdrawal_balances_path)) %>
+<script>$(window).on('load', function () { $('.select2-basic').select2({ allowClear: true, placeholder: "Search withdrawer's email" }); })</script>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Withdrawal Balance', main_app.new_admin_withdrawal_balance_url, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= t('spree.filter') %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_blogs_index_search">
+    <%= search_form_for @search, url: main_app.admin_withdrawal_balances_path do |f| %>
+      <div class="row">
+        <div class="field-block col-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="date-range-filter field">
+            <%= label_tag :q_created_at_gt, t('spree.date_range') %>
+            <div class="date-range-fields input-group">
+              <%= f.text_field :created_at_gt, class: 'datepicker form-control datepicker-from', value: params[:q][:created_at_gt], placeholder: t('spree.start') %>
+
+              <div class="input-group-prepend input-group-append">
+                <span class="input-group-text range-divider">
+                  <i class="fa fa-arrow-right"></i>
+                </span>
+              </div>
+
+              <%= f.text_field :created_at_lt, class: 'datepicker form-control datepicker-to', value: params[:q][:created_at_lt], placeholder: t('spree.stop') %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= label_tag :user_id_eq, 'Email' %>
+            <%= f.select :user_id_eq, Spree::User.all.map { |user| [user.email, user.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="actions filter-actions">
+        <div data-hook="admin_orders_index_search_buttons">
+          <%= button_tag t('spree.filter_results'), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @balances.any? %>
+  <table class="index" id="listing_orders" data-hook>
+    <colgroup>
+       <col style="width: 15%;">
+       <col style="width: 25%;">
+       <col style="width: 20%;">
+       <col style="width: 10%;">
+       <col style="width: 15%;">
+       <col style="width: 10%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_orders_index_headers">
+        <th><%= link_to "Producer's Email", main_app.admin_withdrawal_requests_path(sort: "email asc") %></th>
+        <th><%= link_to "Balance", main_app.admin_withdrawal_requests_path(sort: "balance asc") %></th>
+        <th><%= link_to "Shipping Cost", main_app.admin_withdrawal_requests_path(sort: "shipping asc") %></th>
+        <th><%= link_to "Tax", main_app.admin_withdrawal_requests_path(sort: "tax asc") %></th>
+        <th><%= link_to "Net Total", main_app.admin_withdrawal_requests_path(sort: "total asc") %></th>
+        <th data-hook="admin_orders_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @balances.each do |b| %>
+      <tr data-hook="admin_orders_index_rows">
+        <td><%= link_to b.user.email, edit_admin_user_path(b.user) %></td>
+        <td><%= b.balance %></td>
+        <td><%= b.shipping %></td>
+        <td><%= b.tax %></td>
+        <td><%= b.total %></td>
+        <td class='actions align-center' data-hook="admin_orders_index_row_actions">
+          <%= link_to_edit_url main_app.edit_admin_withdrawal_balance_path(b), title: "admin_edit_#{dom_id(b)}", no_text: true %>
+          <%= link_to main_app.admin_withdrawal_balance_path(b), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fa fa-trash"><% end %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%= paginate @balances, theme: "solidus_admin" %>
+<% else %>
+  <div class="no-objects-found">
+    <% if can? :manage, Spree::WithdrawalBalance %>
+      <%= render 'spree/admin/shared/no_objects_found',
+                   resource: Spree::WithdrawalBalance,
+                   new_resource_url: main_app.new_admin_withdrawal_balance_path %>
+    <% end %>
+  </div>
+<% end %>
