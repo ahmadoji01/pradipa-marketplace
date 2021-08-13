@@ -5,6 +5,7 @@ module Spree
     before_action :set_brand, only: [:brand_info]
     before_action :init_user
     before_action :authorize
+    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info]
     layout 'spree/layouts/producer_dashboard'
     attr_accessor :available_balance
 
@@ -155,6 +156,16 @@ module Spree
     end
 
     private
+
+      def set_avatar
+        @avatar = ''
+        brand = Spree::Brand.where(user_id: spree_current_user.id).first
+        if !brand.nil?
+          if brand.brand_photo_url
+            @avatar = brand.brand_photo
+          end
+        end
+      end
 
       def set_brand
         @brand = Spree::Brand.where(user_id: spree_current_user.id).first
