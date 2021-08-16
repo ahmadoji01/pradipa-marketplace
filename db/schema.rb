@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_114056) do
+ActiveRecord::Schema.define(version: 2021_08_16_093424) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -98,6 +98,18 @@ ActiveRecord::Schema.define(version: 2021_08_13_114056) do
     t.integer "taggings_count", default: 0, null: false
     t.index ["name"], name: "index_gutentag_tags_on_name", unique: true
     t.index ["taggings_count"], name: "index_gutentag_tags_on_taggings_count"
+  end
+
+  create_table "order_notifications", force: :cascade do |t|
+    t.string "title"
+    t.string "notif_type"
+    t.boolean "read"
+    t.integer "user_id"
+    t.integer "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_notifications_on_order_id"
+    t.index ["user_id"], name: "index_order_notifications_on_user_id"
   end
 
   create_table "paypal_commerce_platform_sources", force: :cascade do |t|
@@ -1421,6 +1433,8 @@ ActiveRecord::Schema.define(version: 2021_08_13_114056) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_categories", "blog_categories", column: "parent_category_id"
+  add_foreign_key "order_notifications", "spree_orders", column: "order_id"
+  add_foreign_key "order_notifications", "spree_users", column: "user_id"
   add_foreign_key "spree_brands", "spree_users", column: "user_id"
   add_foreign_key "spree_products", "spree_users", column: "producer_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
