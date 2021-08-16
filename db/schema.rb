@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2021_08_16_093424) do
   create_table "order_notifications", force: :cascade do |t|
     t.string "title"
     t.string "notif_type"
+    t.string "status"
     t.boolean "read"
     t.integer "user_id"
     t.integer "order_id"

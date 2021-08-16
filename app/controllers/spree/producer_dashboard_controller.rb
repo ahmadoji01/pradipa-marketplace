@@ -2,10 +2,9 @@ module Spree
   class ProducerDashboardController < Spree::StoreController
 
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
-    before_action :set_brand, only: [:brand_info]
     before_action :init_user
     before_action :authorize
-    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info]
+    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications]
     layout 'spree/layouts/producer_dashboard'
     attr_accessor :available_balance
 
@@ -134,6 +133,7 @@ module Spree
     end
 
     def brand_info
+      set_brand()
     end
 
     def submit_brand_info
@@ -153,6 +153,17 @@ module Spree
           format.json { render json: @brand.errors, status: :unprocessable_entity }
         end
       end
+    end
+
+    def notifications
+      @notifications = OrderNotification.where(user_id: @user.id)
+    end
+
+    def shipping_requests
+      @requests = OrderNotification.where(notif_type: "shipping_request", user_id: @user.id)
+    end
+
+    def update_notif_status
     end
 
     private

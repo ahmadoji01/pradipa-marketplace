@@ -1,0 +1,59 @@
+<% requests ||= [] 
+   badge = 'info'
+   status = 'Pending'
+   home ||= false
+%>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Orders</h4>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <colgroup>
+                    <col style="width: 20%;">
+                    <col style="width: 60%;">
+                    <col style="width: 20%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Order Number</th>
+                        <th>Products</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% requests.each do |request| %>
+                        <% line_items = request.order.line_items.select { |line_item| line_item.product.producer_id == spree_current_user.id } %>
+                        <% if request.status == 'shipped'
+                            badge = 'success'
+                            status = 'Shipped to Customer' 
+                           elsif request.status == 'processing' 
+                            badge = 'info' 
+                            status = 'Ready to be Shipped' 
+                           elsif request.status == 'pending' 
+                            badge = 'warning'
+                            status = 'Pending' 
+                        end %>
+                        <tr>
+                            <td><%= request.order.number %></td>
+                            <td>
+                                <table style="width:100%">
+                                    <tbody>
+                                            <% line_items.each do |line_item| %>
+                                                <tr>
+                                                    <td style="border-top:0"><%= image_tag line_item.product.gallery.images.first.try(:url, :mini) %></td> 
+                                                    <td style="border-top:0"><%= line_item.product.name %></td> 
+                                                    <td style="border-top:0"><%= line_item.quantity %></td>
+                                                </tr>
+                                            <% end %>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td><label class="badge badge-<%= badge %>"><%= status %></label></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

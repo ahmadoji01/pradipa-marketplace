@@ -31,6 +31,18 @@
 
 en:
   hello: "Hello world"
+  pd:
+    home: "Home"
+    brand_info: "Brand Information"
+    withdrawal: "Withdrawal"
+    wd_requests: "Withdrawals"
+    submit_wd: "Submit Withdrawal"
+    order: "Orders"
+    products: "Products"
+    payment_info: "Payment Info"
+    support: "Support"
+    shipping_requests: "Shipping Requests"
+    all_notifications: "All Notifications"
   spree:
     admin:
       tab:

@@ -91,6 +91,7 @@ module Spree
             notification.title = "new"
             notification.notif_type = "shipping_request"
             notification.read = false
+            notification.status = "pending"
             notifications = notifications.push(notification) 
           end
 
