@@ -31,6 +31,8 @@
 
 en:
   hello: "Hello world"
+  notif:
+    new_shipping_request: "Incoming shipping request. Check your shipping request page"
   pd:
     home: "Home"
     brand_info: "Brand Information"

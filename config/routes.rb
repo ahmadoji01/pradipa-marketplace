@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get '/producer_dashboard/withdrawals', :to => 'producer_dashboard#withdrawals', :as => 'producer_dashboard_withdrawals_page'
     get '/producer_dashboard/request_withdrawal', :to => 'producer_dashboard#request_withdrawal', :as => 'producer_dashboard_request_withdrawal_page'
     get '/producer_dashboard/shipping_requests', :to => 'producer_dashboard#shipping_requests', :as => 'producer_dashboard_shipping_requests_page'
+    get '/producer_dashboard/shipping_request/:id', :to => 'producer_dashboard#show_shipping_request', :as => 'producer_dashboard_shipping_request_page'
     get '/producer_dashboard/notifications', :to => 'producer_dashboard#notifications', :as => 'producer_dashboard_notifications_page'
 
     put '/producer_dashboard/update_payment_info', :to => 'producer_dashboard#update_payment_info'

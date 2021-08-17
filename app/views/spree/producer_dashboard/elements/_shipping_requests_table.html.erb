@@ -39,13 +39,13 @@
                             <td>
                                 <table style="width:100%">
                                     <tbody>
-                                            <% line_items.each do |line_item| %>
-                                                <tr>
-                                                    <td style="border-top:0"><%= image_tag line_item.product.gallery.images.first.try(:url, :mini) %></td> 
-                                                    <td style="border-top:0"><%= line_item.product.name %></td> 
-                                                    <td style="border-top:0"><%= line_item.quantity %></td>
-                                                </tr>
-                                            <% end %>
+                                        <% line_items.each do |line_item| %>
+                                            <tr>
+                                                <td style="border-top:0"><%= image_tag line_item.product.gallery.images.first.try(:url, :mini) %></td> 
+                                                <td style="border-top:0"><%= line_item.product.name %></td> 
+                                                <td style="border-top:0"><%= line_item.quantity %></td>
+                                            </tr>
+                                        <% end %>
                                     </tbody>
                                 </table>
                             </td>
