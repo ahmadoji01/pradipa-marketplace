@@ -2,10 +2,10 @@ module Spree
   class ProducerDashboardController < Spree::StoreController
 
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
-    before_action :set_brand, only: [:brand_info]
     before_action :init_user
     before_action :authorize
-    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info]
+    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications, :show_shipping_request]
+    before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications, :show_shipping_request]
     layout 'spree/layouts/producer_dashboard'
     attr_accessor :available_balance
 
@@ -128,12 +128,13 @@ module Spree
           format.json { render :show, status: :created, location: main_app.producer_dashboard_support_page_path }
         else
           format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
-          format.json { render json: @request.errors, status: :unprocessable_entity }
+          format.json { render json: @ticket.errors, status: :unprocessable_entity }
         end
       end
     end
 
     def brand_info
+      set_brand()
     end
 
     def submit_brand_info
@@ -155,7 +156,59 @@ module Spree
       end
     end
 
+    def notifications
+      @notifications = OrderNotification.where(user_id: @user.id)
+    end
+
+    def shipping_requests
+      @requests = OrderNotification.where(notif_type: "shipping_request", user_id: @user.id)
+    end
+
+    def show_shipping_request
+      @request = OrderNotification.find(params[:id])
+      
+      if @request.nil?
+        redirect_to main_app.producer_dashboard_home_page_path
+        return
+      end
+
+      if @user.id != @request.user_id
+        redirect_to main_app.producer_dashboard_home_page_path
+        return
+      end
+    end
+
+    def update_notif
+      @request = OrderNotification.find(params[:order_notification][:id])
+      @request.assign_attributes(order_notif_params)
+
+      respond_to do |format|
+        if @request.save
+          format.html { redirect_to main_app.producer_dashboard_shipping_request_page_path(@request), info: "Notification was successfully updated" }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_shipping_request_page_path(@request) }
+        else
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     private
+
+      def notif_display(notification)
+        if notification.notif_type == "shipping_request"
+          case notification.title
+          when "new"
+            return I18n.t 'notif.new_shipping_request'
+          else
+            return ""
+          end
+        end
+      end
+
+      def set_short_notifs
+        @short_notifs = OrderNotification.where(user_id: spree_current_user.id).last(3)
+      end
 
       def set_avatar
         @avatar = ''
@@ -186,6 +239,14 @@ module Spree
       def wd_request_params
         if params[:withdrawal_request] && !params[:withdrawal_request].empty?  
           params.require(:withdrawal_request).permit(:id, :withdrawal_id, :available_balance, :balance, :status)
+        else
+          {}
+        end
+      end
+
+      def order_notif_params
+        if params[:order_notification] && !params[:order_notification].empty?  
+          params.require(:order_notification).permit(:id, :user_id, :order_id, :notif_type, :title, :read, :status)
         else
           {}
         end

@@ -1,0 +1,47 @@
+<% notifications ||= [] 
+   badge = 'info'
+   status = 'Pending'
+   home ||= false
+%>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Orders</h4>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% line_items.each do |line_item| %>
+                        <% if line_item.order.shipment_state == 'shipped'
+                            badge = 'success'
+                            status = 'Shipped to Customer' 
+                           elsif line_item.order.shipment_state == 'ready' 
+                            badge = 'info' 
+                            status = 'Ready to be Shipped' 
+                           elsif line_item.order.shipment_state == 'pending' 
+                            badge = 'warning'
+                            status = 'Pending' 
+                        end %>
+                        <tr>
+                            <td class="py-1">
+                                <%= image_tag line_item.product.gallery.images.first.try(:url, :mini) %>
+                            </td>
+                            <td><%= line_item.name %></td>
+                            <td><%= line_item.quantity %></td>
+                            <td class="text-danger">$<%= line_item.quantity * line_item.price %></td>
+                            <td><label class="badge badge-<%= badge %>"><%= status %></label></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

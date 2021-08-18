@@ -3,50 +3,62 @@
     <li class="nav-item">
       <a class="nav-link" href="/producer_dashboard/home">
         <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Home</span>
+        <span class="menu-title"><%= t('pd.home') %></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/producer_dashboard/shipping_requests">
+        <i class="icon-columns menu-icon"></i>
+        <span class="menu-title"><%= t('pd.shipping_requests') %></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/producer_dashboard/notifications">
+        <i class="icon-columns menu-icon"></i>
+        <span class="menu-title"><%= t('pd.all_notifications') %></span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/producer_dashboard/brand_info">
         <i class="icon-columns menu-icon"></i>
-        <span class="menu-title">Your Brand Information</span>
+        <span class="menu-title"><%= t('pd.brand_info') %></span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <i class="icon-layout menu-icon"></i>
-        <span class="menu-title">Your Withdrawal</span>
+        <span class="menu-title"><%= t('pd.withdrawal') %></span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="/producer_dashboard/withdrawals">Withdrawals</a></li>
-          <li class="nav-item"> <a class="nav-link" href="/producer_dashboard/request_withdrawal">Submit Request</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/producer_dashboard/withdrawals"><%= t('pd.wd_requests') %></a></li>
+          <li class="nav-item"> <a class="nav-link" href="/producer_dashboard/request_withdrawal"><%= t('pd.submit_wd') %></a></li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/producer_dashboard/orders">
         <i class="icon-columns menu-icon"></i>
-        <span class="menu-title">Your Orders</span>
+        <span class="menu-title"><%= t('pd.order') %></span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/producer_dashboard/products">
         <i class="icon-bar-graph menu-icon"></i>
-        <span class="menu-title">Your Products</span>
+        <span class="menu-title"><%= t('pd.products') %></span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/producer_dashboard/payment_info">
         <i class="icon-grid-2 menu-icon"></i>
-        <span class="menu-title">Your Payment Info</span>
+        <span class="menu-title"><%= t('pd.payment_info') %></span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/producer_dashboard/support">
         <i class="icon-contract menu-icon"></i>
-        <span class="menu-title">Support</span>
+        <span class="menu-title"><%= t('pd.support') %></span>
       </a>
     </li>
   </ul>
