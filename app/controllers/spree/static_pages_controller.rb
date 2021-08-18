@@ -50,7 +50,7 @@ module Spree
 
       def ticket_params
         if params[:ticket] && !params[:ticket].empty?
-          params.require(:ticket).permit(:id, :user_id, :title, :body, :status, :picture)
+          params.require(:ticket).permit(:id, :user_id, :title, :body, :status, :picture, :name, :email)
         else
           {}
         end

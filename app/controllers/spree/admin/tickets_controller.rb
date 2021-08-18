@@ -65,11 +65,14 @@ module Spree
 
             def update
                 authorize! :update, Ticket
-      
-                @withdrawal = Spree::User.find(params[:withdrawal_request][:withdrawal_id])
+                
+                if params[:ticket][:user_id] != ""
+                    @user = Spree::User.find(params[:ticket][:user_id])
+                    @ticket.user = @user
+                end
+                
                 @ticket.assign_attributes(ticket_params)
-                @ticket.user = @user
-      
+                
                 respond_to do |format|
                   if @ticket.save
                     format.html { redirect_to main_app.edit_admin_ticket_path(@ticket), notice: "Ticket was successfully updated." }
@@ -99,7 +102,7 @@ module Spree
 
             def ticket_params
                 if params[:ticket] && !params[:ticket].empty?
-                    params.require(:ticket).permit(:id, :title, :body, :picture, :user_id, :status)
+                    params.require(:ticket).permit(:id, :title, :body, :picture, :user_id, :status, :name, :email)
                 else
                     {}
                 end
