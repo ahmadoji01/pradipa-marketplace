@@ -4,8 +4,8 @@ module Spree
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
     before_action :init_user
     before_action :authorize
-    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications]
-    before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications]
+    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications, :show_shipping_request]
+    before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications, :show_shipping_request]
     layout 'spree/layouts/producer_dashboard'
     attr_accessor :available_balance
 
@@ -167,7 +167,7 @@ module Spree
     def show_shipping_request
       @request = OrderNotification.find(params[:id])
       
-      if @request.nil
+      if @request.nil?
         redirect_to main_app.producer_dashboard_home_page_path
         return
       end

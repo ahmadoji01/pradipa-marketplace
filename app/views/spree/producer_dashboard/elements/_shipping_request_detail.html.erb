@@ -1,0 +1,50 @@
+<% order = @request.order %>
+<% line_items = @request.order.line_items.select { |line_item| line_item.product.producer_id == spree_current_user.id } %>
+
+<div class="card">
+    <div class="card-body">
+        <p class="card-title">Order Details</p>
+        <table class="w-100 mb-4">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Number</td>
+                    <td><%= order.number %></td>
+                </tr>
+                <tr>
+                    <td>Customer's Email</td>
+                    <td><%= order.email %></td>
+                </tr>
+                <tr>
+                    <td>Shipping Address</td>
+                    <td><%= order.ship_address %></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="card-title">Requested Products</p>
+        <table class="w-100">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% line_items.each do |line_item| %>
+                    <tr>
+                        <td><%= image_tag line_item.product.gallery.images.first.try(:url, :mini) %></td> 
+                        <td><%= line_item.product.name %></td> 
+                        <td><%= line_item.quantity %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

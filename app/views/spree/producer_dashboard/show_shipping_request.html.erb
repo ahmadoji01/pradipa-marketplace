@@ -1,0 +1,11 @@
+<% flash.each do |type, msg| %>
+    <%= render partial: 'spree/producer_dashboard/elements/alert', locals: { message: msg, type: type } %>
+<% end %>
+<div class="row">
+  <div class="col-sm-12 col-md-6 grid-margin stretch-card">
+    <%= render partial: 'spree/producer_dashboard/elements/shipping_request_detail' %>
+  </div>
+  <div class="col-sm-12 col-md-6 grid-margin stretch-card">
+    <%= render partial: 'spree/producer_dashboard/elements/shipping_request_form' %>
+  </div>
+</div>

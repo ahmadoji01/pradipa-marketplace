@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     post '/producer_dashboard/create_wd_request', :to => 'producer_dashboard#create_wd_request'
     post '/producer_dashboard/submit_ticket', :to => 'producer_dashboard#submit_ticket'
     post '/producer_dashboard/submit_brand_info', :to => 'producer_dashboard#submit_brand_info'
-    put '/producer_dashboard/update_notification_status', :to => 'producer_dashboard#update_notif_status'
+    put '/producer_dashboard/update_notif', :to => 'producer_dashboard#update_notif'
 
     namespace :admin do
       resources :withdrawals

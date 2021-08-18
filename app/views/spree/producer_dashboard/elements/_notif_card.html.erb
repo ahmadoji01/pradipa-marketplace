@@ -1,10 +1,12 @@
 <%
     notif ||= OrderNotification.new
+    url = ""
     title = ""
     badge = "info"
     if notif.notif_type == "shipping_request"
         case notif.title
         when "new"
+            url = main_app.producer_dashboard_shipping_requests_page_path
             title = I18n.t 'notif.new_shipping_request'
             badge = "info"
         else
@@ -13,7 +15,7 @@
     end
 %>
 
-<a class="dropdown-item preview-item">
+<a href="<%= url %>" class="dropdown-item preview-item">
     <div class="preview-thumbnail">
         <div class="preview-icon bg-<%= badge %>">
             <i class="ti-settings mx-0"></i>

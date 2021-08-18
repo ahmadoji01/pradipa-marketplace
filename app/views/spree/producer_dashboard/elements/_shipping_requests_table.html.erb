@@ -17,7 +17,7 @@
                 <thead>
                     <tr>
                         <th>Order Number</th>
-                        <th>Products</th>
+                        <th>Requested Products</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -35,19 +35,21 @@
                             status = 'Pending' 
                         end %>
                         <tr>
-                            <td><%= request.order.number %></td>
+                            <td><a href="<%= main_app.producer_dashboard_shipping_request_page_path(request) %>"><%= request.order.number %></a></td>
                             <td>
-                                <table style="width:100%">
-                                    <tbody>
-                                        <% line_items.each do |line_item| %>
-                                            <tr>
-                                                <td style="border-top:0"><%= image_tag line_item.product.gallery.images.first.try(:url, :mini) %></td> 
-                                                <td style="border-top:0"><%= line_item.product.name %></td> 
-                                                <td style="border-top:0"><%= line_item.quantity %></td>
-                                            </tr>
-                                        <% end %>
-                                    </tbody>
-                                </table>
+                                <a href="<%= main_app.producer_dashboard_shipping_request_page_path(request) %>">
+                                    <table style="width:100%">
+                                        <tbody>
+                                            <% line_items.each do |line_item| %>
+                                                <tr>
+                                                    <td style="border-top:0"><%= image_tag line_item.product.gallery.images.first.try(:url, :mini) %></td> 
+                                                    <td style="border-top:0"><%= line_item.product.name %></td> 
+                                                    <td style="border-top:0"><%= line_item.quantity %></td>
+                                                </tr>
+                                            <% end %>
+                                        </tbody>
+                                    </table>
+                                </a>
                             </td>
                             <td><label class="badge badge-<%= badge %>"><%= status %></label></td>
                         </tr>
