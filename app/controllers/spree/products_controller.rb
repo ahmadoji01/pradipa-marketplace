@@ -27,6 +27,10 @@ module Spree
             @product_properties = @product.product_properties.includes(:property)
             @taxon = Spree::Taxon.find(params[:taxon_id]) if params[:taxon_id]
 
+            if !@product.producer.nil?
+                @brand = Spree::Brand.where(user_id: @product.producer.id)
+            end
+
             @searcher = build_searcher(params.merge(taxon: @product.taxon_ids.first))
             @relatedproducts = @searcher.retrieve_products
         end

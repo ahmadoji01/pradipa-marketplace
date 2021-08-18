@@ -49,20 +49,20 @@
                     <h3 class="product-title"><%= @product.name %></h3>
                     <div class="product-price" id="price-container"><%= @product.price_for(current_pricing_options) %></div>
                     <div class="product-description">
-                        <p><%= @product.description %></p>
+                        <p><%= @product.meta_description %></p>
                     </div>
                     <div id="cart-form" data-hook="cart_form">
                       <%= render partial: 'cart_form' %>
                     </div>
-                    <% brand = @product.taxons.where("permalink like ?", "brand%").first %>
-                    <% if !brand.nil? %>
+                    <% if !@brand.nil? %>
+                        <% brand = @brand.first %>
                         <div class="product-brands">
                             <span class="title">Brands</span>
                             <div class="brands">
-                                <% if brand.icon.exists? %>
-                                    <%= link_to spree.nested_taxons_path(brand) do %><%= image_tag brand.icon.url %><% end %>
+                                <% if !brand.brand_photo.nil? %>
+                                    <%= image_tag brand.brand_photo.thumb.url, class: 'pp-brand-icon mr-2' %>
                                 <% else %>
-                                    <%= link_to brand.name, spree.nested_taxons_path(brand) %>
+                                    <%= brand.name %>
                                 <% end %>
                             </div>
                         </div>
@@ -123,37 +123,32 @@
 
         <ul class="nav product-info-tab-list">
             <li><a class="active" data-bs-toggle="tab" data-bs-target="#tab-description">Description</a></li>
-            <li><a data-bs-toggle="tab" data-bs-target="#tab-pwb_tab">Brand</a></li>
+            <% if !@brand.nil? %><li><a data-bs-toggle="tab" data-bs-target="#tab-pwb_tab">Brand</a></li><% end %>
             <li><a data-bs-toggle="tab" data-bs-target="#tab-additional_information">Additional information</a></li>
         </ul>
         <div class="tab-content product-infor-tab-content">
             <div class="tab-pane fade show active" id="tab-description">
                 <div class="row">
                     <div class="col-lg-10 col-12 mx-auto">
-                        <p>Easy clip-on handle – Hold the brush and dustpan together for storage; the dustpan edge is serrated to allow easy scraping off the hair without entanglement. High-quality bristles – no burr damage, no scratches, thick and durable, comfortable to remove dust and smaller particles. Rubber lip – The rubber lip on the front of the dustpan helps to remove all dust at once.</p>
+                        <p><%= @product.description %></p>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="tab-pwb_tab">
-                <div class="row learts-mb-n30">
-                    <div class="col-12 learts-mb-30">
-                        <div class="row learts-mb-n10">
-                            <div class="col-lg-2 col-md-3 col-12 learts-mb-10"><img src="<%= image_url 'brands/brand-3.png' %>" alt=""></div>
-                            <div class="col learts-mb-10">
-                                <p>We’ve worked with numerous industries and famous fashion brands around the world. We have also created tremendous impacts on fashion manufacturing and online sales. When we partner with an eCommerce agency, we connect every activity to set the trend and win customers’ trust. We make sure our customers are always happy with our products.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 learts-mb-30">
-                        <div class="row learts-mb-n10">
-                            <div class="col-lg-2 col-md-3 col-12 learts-mb-10"><img src="assets/images/brands/brand-8.png" alt=""></div>
-                            <div class="col learts-mb-10">
-                                <p>Prior to Houdini, there have been many clothing brands that achieved such a roaring success. However, there’s no other brand that can obtain such a precious position like us. We have successfully built our site to make more people know about our products as well as our motto. We’ve been the inspiration for many other small and medium-sized businesses.</p>
+            <% if !@brand.nil? %>
+                <% brand = @brand.first %>
+                <div class="tab-pane fade" id="tab-pwb_tab">
+                    <div class="row learts-mb-n30">
+                        <div class="col-12 learts-mb-30">
+                            <div class="row learts-mb-n10">
+                                <div class="col-lg-2 col-md-3 col-12 learts-mb-10"><img src="<%= image_url brand.brand_photo.url %>" alt=""></div>
+                                <div class="col learts-mb-10">
+                                    <p><%= brand.description %></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <% end %>
             <div class="tab-pane fade" id="tab-additional_information">
                 <div class="row">
                     <div class="col-lg-8 col-md-10 col-12 mx-auto">
