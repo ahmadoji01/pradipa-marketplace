@@ -17,6 +17,9 @@
             <div class="col-xl-9 col-lg-8 col-12 learts-mb-50">
                 <div class="row isotope-grid learts-mb-n40">
                     <div class="col-1 grid-sizer"></div>
+                    <% if !@blogs.any? %>
+                        <h5>Your query does not yield any result. Please try again with another query</h5>
+                    <% end %>
                     <% @blogs.each do |blog| %>
                         <%= render partial: 'spree/blogs/partials/grid', locals: { blog: blog } %>
                     <% end %>
@@ -49,7 +52,7 @@
                 <div class="single-widget learts-mb-40">
                     <h3 class="widget-title product-filter-widget-title">Recent Post</h3>
                     <ul class="widget-blogs">
-                        <% @blogs.last(3).each do |blog| %>
+                        <% @recent_blogs.each do |blog| %>
                             <%= render partial: 'spree/blogs/partials/recent_post', locals: { blog: blog } %>
                         <% end %>
                     </ul>

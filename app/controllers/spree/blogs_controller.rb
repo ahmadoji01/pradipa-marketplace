@@ -17,7 +17,8 @@ module Spree
       @blogs = @q.result(distinct: true).
         page(params[:page]).
         per(params[:per_page] || Spree::Config[:orders_per_page])
-      
+      @recent_blogs = Spree::Blog.all.last(3)
+
       @categories = BlogCategory.all
     end
 
