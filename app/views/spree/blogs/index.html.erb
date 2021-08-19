@@ -33,14 +33,19 @@
 
             <div class="col-xl-3 col-lg-4 col-12 learts-mb-10">
                 <div class="single-widget learts-mb-40">
-                    <div class="widget-search">
-                        <form action="#">
-                            <input type="text" placeholder="Search posts....">
-                            <button><i class="fal fa-search"></i></button>
-                        </form>
+                    <div class="">
+                        <%= search_form_for @q, url: main_app.blogs_path do |f| %>
+                            <%= f.search_field :title_or_body_cont, placeholder: "Search posts..." %>
+
+                            <h4 class="mt-4">Categories</h4>
+                            <%= f.select :blog_category_id_eq, BlogCategory.all.map {|t| [t.name, t.id]}, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+                            <%= button_tag class: 'full-width btn btn-dark btn-outline-hover-dark mt-4', id: 'add-to-cart-button', type: :submit do %>
+                                <i class="fal fa-search"></i> <%= t('spree.search') %>
+                            <% end %>
+                        <% end %>
                     </div>
                 </div>
-
+                
                 <div class="single-widget learts-mb-40">
                     <h3 class="widget-title product-filter-widget-title">Recent Post</h3>
                     <ul class="widget-blogs">
@@ -56,14 +61,6 @@
                     </div>
                 </div>
 
-                <div class="single-widget learts-mb-40">
-                    <h3 class="widget-title product-filter-widget-title">Categories</h3>
-                    <ul class="widget-list">
-                        <li><a href="#">Gift ideas</a> <span class="count">11</span></li>
-                        <li><a href="#">Feature</a> <span class="count">2</span></li>
-                        <li><a href="#">Kitchen</a> <span class="count">11</span></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
