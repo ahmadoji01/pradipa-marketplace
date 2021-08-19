@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="<%= I18n.locale %>">
+  <head data-hook="inside_head">
+    <meta charset="utf-8">
+    <title>Hallchant - Find Your Perfect Craft Here</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport">
+    <link rel="icon" href="<%= image_url 'favicon.png' %>">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <%= stylesheet_link_tag 'customFonts.css' %>
+
+    <%= stylesheet_link_tag 'style.min' %>
+    <%= csrf_meta_tags %>
+    <%= javascript_pack_tag :application %>
+    <%= yield :head %>
+
+  </head>
+  <body id="<%= @body_id || 'default' %>" data-hook="body">
+
+    <%= yield %>
+    <%= yield :templates %>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
+    <%= javascript_include_tag 'main.js' %>
+  </body>
+</html>

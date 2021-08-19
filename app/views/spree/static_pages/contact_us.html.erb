@@ -56,21 +56,27 @@
 
 <div class="section section-padding pt-0">
     <div class="container">
+
         <div class="section-title2 text-center">
-            <h2 class="title">Send a message</h2>
+            <h2 class="title">Send us a message</h2>
         </div>
 
         <div class="row">
+            <% flash.each do |type, msg| %>
+                <%= render partial: 'spree/shared/flash_message', locals: { message: msg, type: type } %>
+            <% end %>
             <div class="col-lg-8 col-12 mx-auto">
                 <div class="contact-form">
-                    <form action="assets/php/contact-mail.php" id="contact-form" method="post">
+                    <%= form_for @ticket, url: main_app.submit_ticket_path, html: { method: :post } do |f| %>
+                        <%= f.hidden_field :user_id, value: spree_current_user.id, required: true %>
                         <div class="row learts-mb-n30">
-                            <div class="col-md-6 col-12 learts-mb-30"><input type="text" placeholder="Your Name *" name="name"></div>
-                            <div class="col-md-6 col-12 learts-mb-30"><input type="email" placeholder="Email *" name="email"></div>
-                            <div class="col-12 learts-mb-30"><textarea name="message" placeholder="Message"></textarea></div>
-                            <div class="col-12 text-center learts-mb-30"><button class="btn btn-dark btn-outline-hover-dark">Submit</button></div>
+                            <div class="col-md-6 col-12 learts-mb-30"><%= f.text_field :name, class: 'form-control', placeholder: 'Your Name *', required: true %></div>
+                            <div class="col-md-6 col-12 learts-mb-30"><%= f.text_field :email, class: 'form-control', placeholder: 'Email *', required: true %></div>
+                            <div class="col-12 learts-mb-30"><%= f.text_field :title, placeholder: 'Subject *', class: 'form-control', required: true %></div>
+                            <div class="col-12 learts-mb-30"><%= f.text_area :body, class: 'form-control', placeholder: 'Message', required: true, rows: 4 %></div>
                         </div>
-                    </form>
+                        <div class="col-12 text-center learts-mb-30"><button class="btn btn-dark btn-outline-hover-dark">Submit</button></div>
+                    <% end %>
                     <p class="form-messege"></p>
                 </div>
             </div>

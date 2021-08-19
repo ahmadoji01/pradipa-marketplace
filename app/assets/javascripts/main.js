@@ -347,10 +347,6 @@
         type: 'iframe'
     });
 
-    $.scrollUp({
-        scrollText: '<i class="fal fa-long-arrow-up"></i>',
-    });
-
     $('.product-zoom').each(function () {
         var $this = $(this),
             $image = $this.data('image');

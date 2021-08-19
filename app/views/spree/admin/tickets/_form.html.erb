@@ -13,6 +13,22 @@
         </div>
 
         <div data-hook="admin_withdrawal_form_bank_number">
+            <%= f.field_container :name do %>
+                <%= f.label :name, class: 'required' %>
+                <%= f.text_field :name, class: 'fullwidth title', required: true %>
+                <%= f.error_message_on :name %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_form_bank_number">
+            <%= f.field_container :email do %>
+                <%= f.label :email, class: 'required' %>
+                <%= f.text_field :email, class: 'fullwidth title', required: true %>
+                <%= f.error_message_on :email %>
+            <% end %>
+        </div>
+
+        <div data-hook="admin_withdrawal_form_bank_number">
             <%= f.field_container :title do %>
                 <%= f.label :title, class: 'required' %>
                 <%= f.text_field :title, class: 'fullwidth title', required: true %>
@@ -40,7 +56,7 @@
             <%= image_tag(@ticket.picture_url) if @ticket.picture? %>
             <%= f.field_container :picture do %>
                 <%= f.label :picture, class: 'required' %>
-                <%= f.file_field :picture, class: 'fullwidth title', required: true %>
+                <%= f.file_field :picture, class: 'fullwidth title' %>
                 <%= f.error_message_on :picture %>
             <% end %>
         </div>

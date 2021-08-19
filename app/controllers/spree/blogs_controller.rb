@@ -5,7 +5,21 @@ module Spree
 
     # GET /spree/blogs or /spree/blogs.json
     def index
-      @blogs = Spree::Blog.where(published: true)
+
+      params[:q] ||= {}
+
+      if !params[:category_id].nil?
+        params[:q][:blog_category_id_eq] = params[:category_id]
+      end
+
+      params[:q][:published_true] = '1'
+      @q = Spree::Blog.ransack(params[:q])
+      @blogs = @q.result(distinct: true).
+        page(params[:page]).
+        per(params[:per_page] || Spree::Config[:orders_per_page])
+      @recent_blogs = Spree::Blog.all.last(3)
+
+      @categories = BlogCategory.all
     end
 
     # GET /spree/blogs/1 or /spree/blogs/1.json

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  match '/404', via: :all, to: 'errors#not_found'
+  match '/422', via: :all, to: 'errors#unprocessable_entity'
+  match '/500', via: :all, to: 'errors#server_error'
+
   scope module: 'spree' do
     resources :blogs
 
@@ -12,6 +17,8 @@ Rails.application.routes.draw do
     get '/order-status', :to => 'static_pages#order_status', :as => 'order_status_page'
     get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
+
+    post '/producer_dashboard/submit_ticket', :to => 'static_pages#submit_ticket', :as => 'submit_ticket'
 
     get '/producer_dashboard', :to => 'producer_dashboard#redirect_to_home'
     get '/producer_dashboard/home', :to => 'producer_dashboard#index', :as => 'producer_dashboard_home_page'

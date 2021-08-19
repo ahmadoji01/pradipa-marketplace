@@ -121,6 +121,8 @@ module Spree
     def submit_ticket
       @ticket = Ticket.new(ticket_params)
       @ticket.status = 'open'
+      @ticket.name = ''
+      @ticket.email = ''
 
       respond_to do |format|
         if @ticket.save
