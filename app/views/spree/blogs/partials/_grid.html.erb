@@ -5,7 +5,7 @@
         </div>
         <div class="content">
             <ul class="meta">
-                <li><i class="far fa-calendar"></i><a href="#"><%= blog.created_at %></a></li>
+                <li><i class="far fa-calendar"></i><a href="#"><span class="moment-container"><%= blog.created_at %></span></a></li>
             </ul>
             <h5 class="title" style="margin:0"><%= link_to blog.title, main_app.post_page_path(blog.slug), class: 'truncate' %></h5>
             <div class="desc">

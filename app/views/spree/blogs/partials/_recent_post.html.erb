@@ -4,6 +4,6 @@
     </div>
     <div class="content">
         <h6 class="title"><%= link_to blog.title.truncate(40), main_app.post_page_path(blog.slug) %></h6>
-        <span class="date"><%= blog.created_at %></span>
+        <span class="date moment-container"><%= blog.created_at %></span>
     </div>
 </li>
