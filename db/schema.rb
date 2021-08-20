@@ -80,26 +80,6 @@ ActiveRecord::Schema.define(version: 2021_08_20_142513) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "gutentag_taggings", force: :cascade do |t|
-    t.integer "tag_id", null: false
-    t.integer "taggable_id", null: false
-    t.string "taggable_type", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tag_id"], name: "index_gutentag_taggings_on_tag_id"
-    t.index ["taggable_type", "taggable_id", "tag_id"], name: "unique_taggings", unique: true
-    t.index ["taggable_type", "taggable_id"], name: "index_gutentag_taggings_on_taggable_type_and_taggable_id"
-  end
-
-  create_table "gutentag_tags", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "taggings_count", default: 0, null: false
-    t.index ["name"], name: "index_gutentag_tags_on_name", unique: true
-    t.index ["taggings_count"], name: "index_gutentag_tags_on_taggings_count"
-  end
-
   create_table "order_notifications", force: :cascade do |t|
     t.string "title"
     t.string "notif_type"
