@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <%= link_to "View All Products", spree.products_path, class: "btn btn-primary btn-hover-black" %>
+                        <%= link_to "View All Products", "/products?brand=" + @brand.user.id.to_s, class: "btn btn-primary btn-hover-black" %>
                     </div>
                 </div>
             </div>
