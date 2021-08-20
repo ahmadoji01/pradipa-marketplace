@@ -1,6 +1,6 @@
 <% title %>
-<% description @spree_blog.meta_title %>
-<% keywords @spree_blog.meta_keyword %>
+<% description @blog.meta_title %>
+<% keywords @blog.meta_keyword %>
 <% nofollow %>
 <% noindex %>
 <% refresh 3 %>
@@ -13,7 +13,7 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
                         <li class="breadcrumb-item"><a href="/blogs">Blog</a></li>
-                        <li class="breadcrumb-item active"><%= @spree_blog.title %></li>
+                        <li class="breadcrumb-item active"><%= @blog.title %></li>
                     </ul>
                 </div>
 
@@ -24,30 +24,30 @@
             <div class="col-12">
                 <div class="single-blog">
                     <ul class="category justify-content-center">
-                        <li><a href="#"><%= @spree_blog.blog_category.name if !@spree_blog.blog_category.nil? %></a></li>
+                        <li><a href="#"><%= @blog.blog_category.name if !@blog.blog_category.nil? %></a></li>
                     </ul>
-                    <h2 class="title text-center mb-5"><%= @spree_blog.title %></h2>
+                    <h2 class="title text-center mb-5"><%= @blog.title %></h2>
 
                     <div class="image mb-5">
-                        <a href="#"><img src="<%= image_url @spree_blog.featured_image.url %>" alt="Blog Image"></a>
+                        <a href="#"><img src="<%= image_url @blog.featured_image.url %>" alt="Blog Image"></a>
                     </div>
                     <div class="row">
                         <div class="col-xl-9 col-lg-10 col-12 mx-auto">
                             <div class="content">
                                 <ul class="meta justify-content-center">
-                                    <li><i class="far fa-calendar"></i><a href="#"><%= @spree_blog.created_at %></a></li>
+                                    <li><i class="far fa-calendar"></i><a href="#"><%= @blog.created_at %></a></li>
                                 </ul>
                                 <div class="desc">
-                                  <%= @spree_blog.body %>
+                                  <%= @blog.body %>
                                 </div>
                             </div>
                             <div class="blog-footer row no-gutters justify-content-between align-items-center">
                                 <div class="col-auto">
                                     <ul class="tags">
                                         <i class="icon fas fa-tags"></i>
-                                        <li><a href="#">design</a></li>
-                                        <li><a href="#">fashion</a></li>
-                                        <li><a href="#">learts</a></li>
+                                        <% @tags.each do |tag| %>
+                                            <li><%= link_to '/blogs?tag=' + tag do %><%= tag %><% end %></li>
+                                        <% end %>
                                     </ul>
                                 </div>
                                 <div class="col-auto">
