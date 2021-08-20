@@ -12,5 +12,10 @@ module Spree
       @recent_products = @products.order("created_at DESC").slice(0,8)
       @recent_posts = Spree::Blog.last(5)
     end
+
+    def brand
+      @brand = Spree::Brand.find_by(slug: params[:slug])
+      @products = Spree::Product.where(producer_id: @brand.user.id)
+    end
   end
 end

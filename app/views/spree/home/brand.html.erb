@@ -1,0 +1,103 @@
+<% init_url = "for_use/bg/about-us-title.jpg" %>
+<% featured_image = asset_exists?(init_url) ? init_url : "portfolio/single/portfolio-1.jpg" %>
+<div class="section section-padding border-bottom" style="padding-top:40px">
+    <div class="container">
+        <div class="page-title-section section" data-bg-image="<%= @brand.brand_banner %>">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+
+                        <div class="page-title">
+                            <h1 class="title"><%= @brand.name %></h1>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active"><%= @brand.name %></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row learts-mb-n30">
+
+            <div class="col-xl-4 col-12 learts-mb-30">
+                <div class="portfolio-image">
+                  <%= image_tag @brand.brand_photo_url %>
+                </div>
+            </div>
+
+            <div class="col-xl-8 col-12 learts-mb-30">
+                <div class="portfolio-content">
+                    <h2 class="title"><%= @brand.name %></h2>
+                    <div class="desc">
+                        <p><%= @brand.description %></p>
+                    </div>
+                    <ul class="meta">
+                        <li>
+                            <span class="name">Meta Keywords:</span>
+                            <span class="value category">
+                                <a href="#">Decor</a>
+                                <a href="#">Toy</a>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="name">Share:</span>
+                            <span class="value social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                <a href="#"><i class="fal fa-envelope"></i></a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="section section-padding">
+    <div class="container">
+
+        <div class="section-title2 text-center">
+            <h2 class="title title-icon-both">Project Overview</h2>
+            <p>Below are the products that this brand has for you</p>
+        </div>
+        <% if @products.any? %>
+            <div class="row">
+                <div class="col-12">
+                    <div class="portfolio-overview">
+                        <div class="row learts-mt-30">
+                            <div class="col-lg-6 col-12 learts-mb-30">
+                                <%= render partial: 'spree/elements/featured_product_card', locals: {product: @products.first} %>
+                            </div>
+                            <div class="col-lg-6 col-12 learts-mb-30">
+                                <div class="row learts-mb-n30">
+                                    <% @products.last(4).each do |product| %>
+                                        <% if product != @products.first %>
+                                            <div class="col-sm-6 col-12 learts-mb-30">
+                                                <%= render partial: 'spree/elements/featured_product_card', locals: {product: product} %>
+                                            </div>
+                                        <% end %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <%= link_to "View All Products", "/products?brand=" + @brand.user.id.to_s, class: "btn btn-primary btn-hover-black" %>
+                    </div>
+                </div>
+            </div>
+        <% else %>
+            <div class="row">
+                <h5 style="text-align:center">Come back here later for more updates!</h5>
+            </div>
+        <% end %>
+    </div>
+
+</div>

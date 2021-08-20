@@ -14,5 +14,5 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
-require("blogs")
 require("products")
+require("blogs")

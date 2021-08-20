@@ -10,6 +10,14 @@ module Spree
         respond_to :html
 
         def index
+
+            if !params[:brand].nil?
+                @products = Spree::Product.where(producer_id: params[:brand])
+                @total = @products.count
+                @taxonomies = Spree::Taxonomy.includes(root: :children)
+                return    
+            end
+
             @searcher = build_searcher(params.merge(include_images: true))
             @products = @searcher.retrieve_products
             @total = @products.total_count

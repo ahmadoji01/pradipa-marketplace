@@ -1,6 +1,6 @@
 module Spree
   class BlogsController < Spree::StoreController
-    before_action :set_spree_blog, only: %i[ show ]
+    before_action :set_blog, only: %i[ show ]
     before_action :set_blog_categories
 
     # GET /spree/blogs or /spree/blogs.json
@@ -10,6 +10,10 @@ module Spree
 
       if !params[:category_id].nil?
         params[:q][:blog_category_id_eq] = params[:category_id]
+      end
+
+      if !params[:tag].nil?
+        params[:q][:meta_keyword_cont] = params[:tag]
       end
 
       params[:q][:published_true] = '1'
@@ -24,12 +28,13 @@ module Spree
 
     # GET /spree/blogs/1 or /spree/blogs/1.json
     def show
-      @related_posts = Spree::Blog.where(blog_category: @spree_blog.blog_category).order('created_at desc').limit(2)
+      @related_posts = Spree::Blog.where(blog_category: @blog.blog_category).order('created_at desc').limit(2)
     end
 
     def show_post
-      @spree_blog = Spree::Blog.find_by(slug: params["slug"])
-      @related_posts = Spree::Blog.where(blog_category: @spree_blog.blog_category).order('created_at desc').limit(2)
+      @blog = Spree::Blog.find_by(slug: params["slug"])
+      @related_posts = Spree::Blog.where(blog_category: @blog.blog_category).order('created_at desc').limit(2)
+      @tags = @blog.meta_keyword.split(", ")
     end
 
     private
@@ -38,8 +43,8 @@ module Spree
       end
 
       # Use callbacks to share common setup or constraints between actions.
-      def set_spree_blog
-        @spree_blog = Spree::Blog.find(params[:id])
+      def set_blog
+        @blog = Spree::Blog.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
     get '/post/:slug', :to => 'blogs#show_post', :as => 'post_page'
 
+    get '/brand/:slug', :to => 'home#brand', :as => 'brand_page'
+
     get '/about-us', :to => 'static_pages#about', :as => 'about_us_page'
     get '/terms-and-conditions', :to => 'static_pages#terms_and_conditions', :as => 'terms_and_conditions_page'
     get '/privacy-policy', :to => 'static_pages#privacy_policy', :as => 'privacy_policy_page'
@@ -17,8 +19,6 @@ Rails.application.routes.draw do
     get '/order-status', :to => 'static_pages#order_status', :as => 'order_status_page'
     get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
-
-    post '/producer_dashboard/submit_ticket', :to => 'static_pages#submit_ticket', :as => 'submit_ticket'
 
     get '/producer_dashboard', :to => 'producer_dashboard#redirect_to_home'
     get '/producer_dashboard/home', :to => 'producer_dashboard#index', :as => 'producer_dashboard_home_page'

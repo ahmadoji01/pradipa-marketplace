@@ -39,9 +39,8 @@
                     <div class="">
                         <%= search_form_for @q, url: main_app.blogs_path do |f| %>
                             <%= f.search_field :title_or_body_cont, placeholder: "Search posts..." %>
-
                             <h4 class="mt-4">Categories</h4>
-                            <%= f.select :blog_category_id_eq, BlogCategory.all.map {|t| [t.name, t.id]}, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+                            <%= f.select :blog_category_id_eq, BlogCategory.all.map {|t| [t.name, t.id]}, {include_blank: true, required: true, include_hidden: true, prompt: 'Select Category'}, class: 'form-control select2-basic content-search' %>
                             <%= button_tag class: 'full-width btn btn-dark btn-outline-hover-dark mt-4', id: 'add-to-cart-button', type: :submit do %>
                                 <i class="fal fa-search"></i> <%= t('spree.search') %>
                             <% end %>
