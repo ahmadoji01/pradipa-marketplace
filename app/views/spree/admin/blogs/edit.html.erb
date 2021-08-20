@@ -6,7 +6,7 @@
     <%= link_to 'New Blog', main_app.new_admin_blog_url, class: 'btn btn-primary' %>
   </li>
   <li>
-    <%= link_to 'View Blog', main_app.blog_path(@blog), class: 'btn btn-secondary' %>
+    <%= link_to 'View Blog', main_app.post_page_path(@blog.slug), class: 'btn btn-secondary' %>
   </li>
 <% end %>
 
