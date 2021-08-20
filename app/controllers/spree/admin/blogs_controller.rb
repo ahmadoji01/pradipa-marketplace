@@ -54,10 +54,6 @@ module Spree
             # POST /spree/blogs or /spree/blogs.json
             def create
                 @blog = Spree::Blog.new(blog_params)
-
-                if @blog.slug == ''
-                    @blog.slug = generate_slug(@blog.title)
-                end
                 
                 respond_to do |format|
                     if @blog.save
@@ -95,16 +91,6 @@ module Spree
             private
                 def set_blog_categories
                     @blog_categories = BlogCategory.all
-                end
-
-                def generate_slug(title)
-                    i = 1
-                    slug = title.parameterize
-                    while !Spree::Blog.find_by(slug: slug).nil?
-                        i = i + 1
-                        slug = title.parameterize + "-" + i.to_s
-                    end
-                    return slug
                 end
         
                 # Use callbacks to share common setup or constraints between actions.
