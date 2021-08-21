@@ -38,7 +38,7 @@ At the prompt, type a secure passphrase. For more information, see "Working with
 Then open your GitHub profile page. Go to Access tab and add your newly generated SSH key there.
 After adding your SSH key, you can now pull your repository with ease by running this command:
 
-    > git pull https://github.com/uzzybotak/pradipa-marketplace.git
+    git pull https://github.com/uzzybotak/pradipa-marketplace.git
 
 ### <a name="prep"></a>1. Prepare the Docker and Docker Compose
 
