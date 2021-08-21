@@ -2,13 +2,43 @@
 
 The marketplace version 1 utilizes Ruby on Rails version 6 with Ruby 2.7.3 based on Solidus to catalyze the development process. The application has been containerized for easier documentation purposes. The ideal deployment OS is Ubuntu 20.04. We will breakdown the installation steps into the following:
 
+- [Pre-Installation: Setting Up GitHub Access](#github)
 - [1. Prepare the Docker and Docker Compose](#prep)
 - [2. Build and Up the Built Container Using Docker Compose](#build)
-- [Note: Pulling Update to the Server](#note)
+- [Note: Pulling Update to the Server](#pull-update)
+- [Note: Increase Entropy to Prevent docker-compose Hangs](#entropy)
 
 Assuming you have prepared the Ubuntu 20.04 server, to start the installation, all you need to do is to follow these steps:
 
 ***
+
+### <a name="prep"></a>Pre-Installation: Setting Up GitHub Access
+The following steps are straightly taken from GitHub Docs on [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+First, Open Terminal.
+
+Second, Paste the text below, substituting in your GitHub email address.
+
+    ssh-keygen -t ed25519 -C "your_email@example.com"
+
+Note: If you are using a legacy system that doesn't support the Ed25519 algorithm, use:
+
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+This creates a new ssh key, using the provided email as a label.
+When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+
+    > Enter a file in which to save the key (/Users/you/.ssh/id_ed25519): [Press enter]
+
+At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases."
+
+    > Enter passphrase (empty for no passphrase): [Type a passphrase]
+    > Enter same passphrase again: [Type passphrase again]
+
+Then open your GitHub profile page. Go to Access tab and add your newly generated SSH key there.
+After adding your SSH key, you can now pull your repository with ease by running this command:
+
+    > git pull https://github.com/uzzybotak/pradipa-marketplace.git
 
 ### <a name="prep"></a>1. Prepare the Docker and Docker Compose
 
@@ -98,11 +128,17 @@ Installation should be done if the instance is running properly.
 
 ***
 
-### <a name="note"></a>Note: Pulling Update to the Server
+### <a name="pull-update"></a>Note: Pulling Update to the Server
 
 As for pulling the update to the server, you can run the following command to make changes when update is committed to the repo.
 
     git pull
     ./update-rails-app.sh
 
+### <a name="pull-update"></a>Note: Increase Entropy to Prevent docker-compose Hangs
+
+Sometimes docker-compose command will hang if there is not enough entropy. To prevent this, we can increase the entropy by running the following command:
+
+    sudo apt install haveged
+    haveged
 
