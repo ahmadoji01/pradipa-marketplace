@@ -12,7 +12,7 @@ Assuming you have prepared the Ubuntu 20.04 server, to start the installation, a
 
 ***
 
-### <a name="prep"></a>Pre-Installation: Setting Up GitHub Access
+### <a name="github"></a>Pre-Installation: Setting Up GitHub Access
 The following steps are straightly taken from GitHub Docs on [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 First, Open Terminal.
@@ -106,13 +106,9 @@ You’ll see output similar to this:
 
 ### <a name="build"></a>2. Build and Up the Built Container Using Docker Compose
 
-Start off the building process by cloning the repository to your server. You can run the command below to clone the repository
+Assuming you have completed the [Pre-Installation: Setting Up GitHub Access](#github), let the Docker Compose do the rest for the building process by running the following commands
 
-    git clone https://github.com/uzzybotak/hallchant-marketplace.git
-
-Then let the Docker Compose do the rest for the building process by running the following commands
-
-    cd hallchant-marketplace
+    cd pradipa-marketplace
     docker-compose up -d --build
 
 There are three containers, sqlite, app, and nginx. Make sure all the containers are running by running this command:
@@ -121,7 +117,7 @@ There are three containers, sqlite, app, and nginx. Make sure all the containers
 
 After that, we can use the init-rails-app.sh and load-sample.sh to prepare all the databases and webpacker installation for the app to run properly. Run these commands:
 
-    chmod +x init-rails-app.sh sample.sh update-rails-app.sh
+    chmod +x init-rails-app.sh load-sample.sh update-rails-app.sh
     ./init-rails-app.sh
     ./load-sample.sh
 
