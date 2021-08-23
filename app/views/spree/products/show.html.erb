@@ -54,7 +54,7 @@
                     <div id="cart-form" data-hook="cart_form">
                       <%= render partial: 'cart_form' %>
                     </div>
-                    <% if !@brand.nil? %>
+                    <% if @brand.any? %>
                         <% brand = @brand.first %>
                         <div class="product-brands">
                             <span class="title">Brands</span>
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             </div>
-            <% if !@brand.nil? %>
+            <% if @brand.any? %>
                 <% brand = @brand.first %>
                 <div class="tab-pane fade" id="tab-pwb_tab">
                     <div class="row learts-mb-n30">
