@@ -123,7 +123,7 @@
 
         <ul class="nav product-info-tab-list">
             <li><a class="active" data-bs-toggle="tab" data-bs-target="#tab-description">Description</a></li>
-            <% if !@brand.nil? %><li><a data-bs-toggle="tab" data-bs-target="#tab-pwb_tab">Brand</a></li><% end %>
+            <% if @brand.any? %><li><a data-bs-toggle="tab" data-bs-target="#tab-pwb_tab">Brand</a></li><% end %>
             <li><a data-bs-toggle="tab" data-bs-target="#tab-additional_information">Additional information</a></li>
         </ul>
         <div class="tab-content product-infor-tab-content">

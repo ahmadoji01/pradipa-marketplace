@@ -140,6 +140,21 @@
         prefix: "$",
     });
 
+    var $home12Slider = new Swiper('.home12-slider', {
+        loop: true,
+        speed: 750,
+        spaceBetween: 30,
+        effect: 'fade',
+        pagination: {
+            el: '.home12-slider-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.home12-slider-next',
+            prevEl: '.home12-slider-prev',
+        }
+    });
+
     $('.product-carousel').slick({
         infinite: true,
         slidesToShow: 4,

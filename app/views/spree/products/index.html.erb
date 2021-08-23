@@ -31,6 +31,7 @@
                             </div>
                         </div>
                     </div>
+                    <% if @total == 0 %><div class="row"><h3>No products found. You can try to change your query for better results</h3></div><% end %>
                     <div id="shop-products" class="products isotope-grid row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
                         <div class="grid-sizer col-1"></div>
                         <% @products.each do |product| %>
