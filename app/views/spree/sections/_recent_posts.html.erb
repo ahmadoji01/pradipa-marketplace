@@ -26,11 +26,11 @@
                                     <ul class="meta">
                                         <li><i class="far fa-calendar"></i><a href="<%= main_app.post_page_path(post.slug) %>"><span class="moment-container"><%= post.created_at %></span></a></li>
                                     </ul>
-                                    <h5 class="title"><a href="<%= main_app.blog_path(post) %>"><%= post.title %></a></h5>
+                                    <h5 class="title"><a href="<%= main_app.post_page_path(post.slug) %>"><%= post.title %></a></h5>
                                     <div class="desc">
                                         <%= post.body.to_plain_text.truncate(150) %>
                                     </div>
-                                    <a href="<%= main_app.blog_path(post) %>" class="link">Read More</a>
+                                    <a href="<%= main_app.post_page_path(post.slug) %>" class="link">Read More</a>
                                 </div>
                             </div>
                         </div>
