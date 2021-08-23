@@ -1,10 +1,10 @@
 <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-end" style="padding:50px 40px;">
     <div class="inner customScroll">
         <div class="offcanvas-menu-search-form">
-            <form action="#">
-                <input type="text" placeholder="Search...">
-                <button><i class="fal fa-search"></i></button>
-            </form>
+            <%= form_tag spree.products_path, method: :get do %>
+                <%= search_field_tag :keywords, params[:keywords], placeholder: 'What can we help you find?', id: :keyword3 %>
+                <button type="submit"><i class="fal fa-search"></i></button>
+            <% end %>
         </div>
         <div class="offcanvas-menu">
             <ul>
