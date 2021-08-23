@@ -10,34 +10,37 @@
             <span class="title"><strong>Cart</strong></span>
             <button class="offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">×</button>
         </div>
-        <div class="body customScroll cartScroll">
-            <% if !order.nil? %>
-                <% if order.line_items.any? %>
-                    <%= form_for order, url: update_cart_path, html: {id: 'update-cart'} do |order_form| %>
+
+        <% if !order.nil? %>
+            <% if order.line_items.any? %>
+                <%= form_for order, url: update_cart_path, html: {id: 'update-cart'} do |order_form| %>
+                    <div class="body customScroll cartScroll">
                         <ul class="minicart-product-list">
                             <%= render partial: 'spree/offcanvases/line_item', collection: order_form.object.line_items, locals: { order_form: order_form } %>
                         </ul>
-                        <div class="foot">
-                            <div class="sub-total">
-                                <strong>Subtotal :</strong>
-                                <span class="amount"><%= item_total %></span>
-                            </div>
-                            <div class="buttons">
-                                <%= button_tag 'View Cart', class: "btn btn-dark btn-outline-hover-dark mr-3 mb-3 full-width", id: "update-button" %>
-                                <%= button_tag class: 'btn btn-light btn-outline-hover-dark full-width', id: 'checkout-link', name: 'checkout' do %>
-                                    <%= t('spree.checkout') %>
-                                <% end %>
-                            </div>
-                            <p class="minicart-message" style="text-align: center">Free Shipping on All Orders!</p>
-                        </div>
-                    <% end %>
-                <% else %>
+                    </div>
                     <div class="foot">
+                        <div class="sub-total">
+                            <strong>Subtotal :</strong>
+                            <span class="amount"><%= item_total %></span>
+                        </div>
+                        <div class="buttons">
+                            <%= button_tag 'View Cart', class: "btn btn-dark btn-outline-hover-dark mr-3 mb-3 full-width", id: "update-button" %>
+                            <%= button_tag class: 'btn btn-light btn-outline-hover-dark full-width', id: 'checkout-link', name: 'checkout' do %>
+                                <%= t('spree.checkout') %>
+                            <% end %>
+                        </div>
                         <p class="minicart-message" style="text-align: center">Free Shipping on All Orders!</p>
                     </div>
                 <% end %>
+            <% else %>
+                <div class="body customScroll cartScroll" style="padding:20px">
+                    <p>Your cart is empty. Any items you add on the cart will be displayed here</p>
+                </div>
+                <div class="foot">
+                    <p class="minicart-message" style="text-align: center">Free Shipping on All Orders!</p>
+                </div>
             <% end %>
-        </div>
-        
+        <% end %>
     </div>
 </div>
