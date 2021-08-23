@@ -13,7 +13,7 @@
 
         <% if !order.nil? %>
             <% if order.line_items.any? %>
-                <%= form_for order, url: update_cart_path, html: {id: 'update-cart'} do |order_form| %>
+                <%= form_for order, url: update_cart_path, html: {id: 'update-offcart', class: 'update-cart-form'} do |order_form| %>
                     <div class="body customScroll cartScroll">
                         <ul class="minicart-product-list">
                             <%= render partial: 'spree/offcanvases/line_item', collection: order_form.object.line_items, locals: { order_form: order_form } %>
@@ -25,8 +25,8 @@
                             <span class="amount"><%= item_total %></span>
                         </div>
                         <div class="buttons">
-                            <%= button_tag 'View Cart', class: "btn btn-dark btn-outline-hover-dark mr-3 mb-3 full-width", id: "update-button" %>
-                            <%= button_tag class: 'btn btn-light btn-outline-hover-dark full-width', id: 'checkout-link', name: 'checkout' do %>
+                            <%= button_tag 'View Cart', class: "btn btn-dark btn-outline-hover-dark mr-3 mb-3 full-width", id: "update-offcart-button" %>
+                            <%= button_tag class: 'btn btn-light btn-outline-hover-dark full-width', id: 'checkout-offcart-link', name: 'checkout' do %>
                                 <%= t('spree.checkout') %>
                             <% end %>
                         </div>
