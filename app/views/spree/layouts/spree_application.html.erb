@@ -13,7 +13,9 @@
     <%= render partial: 'spree/offcanvases/cart' %>
     <%= render partial: 'spree/offcanvases/mobile_menu' %>
 
-    <%= render partial: 'spree/elements/whatsapp_fab' %>
+    <% if !current_page?(products_path) %>
+      <%= render partial: 'spree/elements/whatsapp_fab' %>
+    <% end %>
 
     <%= yield %>
     <%= yield :templates %>
