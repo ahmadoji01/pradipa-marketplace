@@ -8,7 +8,8 @@
             <%= link_to line_item.name, product_path(variant.product) %>
             <div class="product-quantity" style="max-width: 175px;">
               <span class="qty-btn minus"><i class="fal fa-minus"></i></span>
-                <%= item_form.number_field :quantity, min: 0, class: "line_item_quantity", size: 5 %>
+                <%= item_form.number_field :quantity, min: 0, class: "line_item_quantity", size: 5, id: "offcart-item-qty-" + line_item.id.to_s, 
+                  oninput: "window.updateCart()", onkeyup: "window.updateCart()" %>
               <span class="qty-btn plus" style="margin-right: 10px"><i class="fal fa-plus"></i></span>
               x <span class="amount"><%= line_item.price %></span>
             </div>

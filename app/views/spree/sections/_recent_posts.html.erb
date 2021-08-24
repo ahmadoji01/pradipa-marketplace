@@ -9,7 +9,7 @@
                 </div>
                 <ul class="widget-list">
                     <% @recent_posts.each do |post| %>
-                        <li><i class="fal fa-long-arrow-right"></i><%= link_to post.title, main_app.blog_path(post) %></li>
+                        <li><i class="fal fa-long-arrow-right"></i><%= link_to post.title, main_app.post_page_path(post.slug) %></li>
                     <% end %>
                 </ul>
             </div>
@@ -20,17 +20,17 @@
                         <div class="col-md-6 col-12 learts-mb-40">
                             <div class="blog">
                                 <div class="image">
-                                    <a href="<%= main_app.blog_path(post) %>"><%= image_tag post.featured_image.url, class: 'recent-post-img' %></a>
+                                    <a href="<%= main_app.post_page_path(post.slug) %>"><%= image_tag post.featured_image.url, class: 'recent-post-img' %></a>
                                 </div>
                                 <div class="content">
                                     <ul class="meta">
-                                        <li><i class="far fa-calendar"></i><a href="#"><%= post.created_at %></a></li>
+                                        <li><i class="far fa-calendar"></i><a href="<%= main_app.post_page_path(post.slug) %>"><span class="moment-container"><%= post.created_at %></span></a></li>
                                     </ul>
-                                    <h5 class="title"><a href="<%= main_app.blog_path(post) %>"><%= post.title %></a></h5>
+                                    <h5 class="title"><a href="<%= main_app.post_page_path(post.slug) %>"><%= post.title %></a></h5>
                                     <div class="desc">
                                         <%= post.body.to_plain_text.truncate(150) %>
                                     </div>
-                                    <a href="<%= main_app.blog_path(post) %>" class="link">Read More</a>
+                                    <a href="<%= main_app.post_page_path(post.slug) %>" class="link">Read More</a>
                                 </div>
                             </div>
                         </div>

@@ -335,6 +335,7 @@
             }
         }
         $this.siblings('input').val(newVal);
+        window.updateCart();
     });
 
     $('.post-share').on('click', ".toggle", function () {
@@ -368,6 +369,7 @@
     $window.on('load', function () {
         subMenuMegaMenuAlignment();
         $isotopeGrid.isotope( 'reloadItems' ).isotope();
+        $('#spinner-container').hide();
     });
 
     $window.on('resize', function () {

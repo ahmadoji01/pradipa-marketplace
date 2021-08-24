@@ -35,6 +35,7 @@ module Spree
             @product_properties = @product.product_properties.includes(:property)
             @taxon = Spree::Taxon.find(params[:taxon_id]) if params[:taxon_id]
 
+            @brand = Spree::Brand.where(user_id: -1)
             if !@product.producer.nil?
                 @brand = Spree::Brand.where(user_id: @product.producer.id)
             end

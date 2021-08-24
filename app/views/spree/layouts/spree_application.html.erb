@@ -10,14 +10,20 @@
     <%= render partial: 'spree/sections/mobile_header_sticky' %>
     
     <%= render partial: 'spree/offcanvases/search' %>
-    <%= render partial: 'spree/offcanvases/cart' %>
     <%= render partial: 'spree/offcanvases/mobile_menu' %>
+    
+    <% if !current_page?(cart_path) %>
+      <%= render partial: 'spree/offcanvases/cart' %>
+    <% end %>
 
-    <%= render partial: 'spree/elements/whatsapp_fab' %>
+    <% if !current_page?(products_path) %>
+      <%= render partial: 'spree/elements/whatsapp_fab' %>
+    <% end %>
 
     <%= yield %>
     <%= yield :templates %>
 
+    <%= render partial: 'spree/elements/spinner' %>
     <%= render partial: 'spree/shared/footer' %>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

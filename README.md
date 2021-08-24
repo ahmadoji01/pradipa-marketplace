@@ -1,4 +1,4 @@
-# Hallchant Marketplace ver. 1
+# Pradipa Marketplace ver. 1
 
 The marketplace version 1 utilizes Ruby on Rails version 6 with Ruby 2.7.3 based on Solidus to catalyze the development process. The application has been containerized for easier documentation purposes. The ideal deployment OS is Ubuntu 20.04. We will breakdown the installation steps into the following:
 

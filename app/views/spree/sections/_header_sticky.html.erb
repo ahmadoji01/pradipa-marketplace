@@ -71,7 +71,11 @@
                         <% else %>
                             <% num_of_items = current_order.line_items.count %>
                         <% end %>
-                        <a href="#offcanvas-cart" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart"></i></a>
+                        <% if !current_page?(cart_path) %>
+                            <a href="#offcanvas-cart" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart"></i></a>
+                        <% else %>
+                            <a href="/cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart"></i></a>
+                        <% end %>
                     </div>
                     <div class="mobile-menu-toggle d-xl-none">
                         <a href="#offcanvas-mobile-menu" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-mobile-menu">
