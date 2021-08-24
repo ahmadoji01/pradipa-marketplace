@@ -23,12 +23,13 @@ module Spree
             params[:q] = build_search_params(params)
             @p = set_searched_object(params)
 
-            @q = @p.ransack(params[:q])
+            @q = @p.accessible_by(current_ability, :index).ransack(params[:q])
             @products = @q.result(distinct: true).
                 page(params[:page]).
-                per(params[:per_page] || Spree::Config[:admin_products_per_page])
-            @total = @q.result.count
-            @taxonomies = Spree::Taxonomy.includes(root: :children)  
+                per(params[:per_page] || Spree::Config[:orders_per_page])
+            @products = sort_products(@products)
+            @total = @q.result(distinct: true).count
+            @taxonomies = Spree::Taxonomy.includes(root: :children)
         end
 
         def show
@@ -56,9 +57,7 @@ module Spree
             p = Spree::Product
             if !params[:taxon].nil?
                 p = Spree::Taxon.where(id: params[:taxon])
-                if !p.any?
-                    p = Spree::Product
-                else
+                if p.any?
                     p = p.first.products
                 end
             end
@@ -125,7 +124,7 @@ module Spree
             sort = params[:sort].present? ? params[:sort] : ""
 
             if sort == "price"
-                return products.sort{|a| a.price}
+                return products.sort{|a,b| a.price <=> b.price}
             elsif sort == "price-desc"
                 return products.sort{|a,b| b.price <=> a.price}
             elsif sort == "latest"
