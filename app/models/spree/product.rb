@@ -132,7 +132,7 @@ module Spree
       alias :options :product_option_types
   
       self.whitelisted_ransackable_associations = %w[stores variants_including_master master variants]
-      self.whitelisted_ransackable_attributes = %w[name slug]
+      self.whitelisted_ransackable_attributes = %w[name slug producer_id meta_keywords taxon_ids]
   
       def self.ransackable_scopes(_auth_object = nil)
         %i(with_discarded with_variant_sku_cont)

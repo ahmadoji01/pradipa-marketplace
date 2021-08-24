@@ -6,23 +6,29 @@ module Spree
         before_action :load_taxon, only: :index
 
         helper 'spree/taxons', 'spree/taxon_filters'
+        helper Rails.application.routes.url_helpers
 
         respond_to :html
 
         def index
-
-            if !params[:brand].nil?
-                @products = Spree::Product.where(producer_id: params[:brand])
-                @total = @products.count
-                @taxonomies = Spree::Taxonomy.includes(root: :children)
-                return    
-            end
-
             @searcher = build_searcher(params.merge(include_images: true))
             @products = @searcher.retrieve_products
             @total = @products.total_count
             @products = sort_products(@products)
             @taxonomies = Spree::Taxonomy.includes(root: :children)
+        end
+
+        def shop
+            params[:q] ||= {}
+            params[:q] = build_search_params(params)
+            @p = set_searched_object(params)
+
+            @q = @p.ransack(params[:q])
+            @products = @q.result(distinct: true).
+                page(params[:page]).
+                per(params[:per_page] || Spree::Config[:admin_products_per_page])
+            @total = @q.result.count
+            @taxonomies = Spree::Taxonomy.includes(root: :children)  
         end
 
         def show
@@ -45,6 +51,54 @@ module Spree
         end
 
         private
+
+        def set_searched_object(params)
+            p = Spree::Product
+            if !params[:taxon].nil?
+                p = Spree::Taxon.where(id: params[:taxon])
+                if !p.any?
+                    p = Spree::Product
+                else
+                    p = p.first.products
+                end
+            end
+            return p
+        end
+
+        def build_search_params(params)
+            params[:q] ||= {}
+
+            if !params[:keywords].nil?
+                params[:q][:name_cont] = params[:keywords]
+            end
+
+            if !params[:brand].nil?
+                params[:q][:producer_id_eq] = params[:brand]
+            end
+
+            if !params[:tag].nil?
+                params[:q][:meta_keywords_cont] = params[:tag]
+            end
+
+            if !params[:taxon].nil?
+                params[:q][:taxon_id_eq] = params[:taxon]
+            end
+
+            if !params[:sort].nil?
+                sort = params[:sort]
+
+                case sort
+                when "price"
+                    params[:q][:s] = "price asc"
+                when "price-desc"
+                    params[:q][:s] = "price desc"
+                else
+                    params[:q][:s] = "created_at desc"
+                end
+            end
+
+            return params[:q]
+        end
 
         def accurate_title
             if @product
