@@ -6,30 +6,21 @@ module Spree
         before_action :load_taxon, only: :index
 
         helper 'spree/taxons', 'spree/taxon_filters'
-        helper Rails.application.routes.url_helpers
 
         respond_to :html
 
         def index
             @searcher = build_searcher(params.merge(include_images: true))
             @products = @searcher.retrieve_products
+            @products = sort_products(@products)
+
+            if !params[:tag].nil?
+              @products = @products.in_keywords(params[:tag])
+            end
+
             @total = @products.total_count
-            @products = sort_products(@products)
             @taxonomies = Spree::Taxonomy.includes(root: :children)
-        end
-
-        def shop
-            params[:q] ||= {}
-            params[:q] = build_search_params(params)
-            @p = set_searched_object(params)
-
-            @q = @p.accessible_by(current_ability, :index).ransack(params[:q])
-            @products = @q.result(distinct: true).
-                page(params[:page]).
-                per(params[:per_page] || Spree::Config[:orders_per_page])
-            @products = sort_products(@products)
-            @total = @q.result(distinct: true).count
-            @taxonomies = Spree::Taxonomy.includes(root: :children)
+            console
         end
 
         def show
@@ -52,52 +43,6 @@ module Spree
         end
 
         private
-
-        def set_searched_object(params)
-            p = Spree::Product
-            if !params[:taxon].nil?
-                p = Spree::Taxon.where(id: params[:taxon])
-                if p.any?
-                    p = p.first.products
-                end
-            end
-            return p
-        end
-
-        def build_search_params(params)
-            params[:q] ||= {}
-
-            if !params[:keywords].nil?
-                params[:q][:name_cont] = params[:keywords]
-            end
-
-            if !params[:brand].nil?
-                params[:q][:producer_id_eq] = params[:brand]
-            end
-
-            if !params[:tag].nil?
-                params[:q][:meta_keywords_cont] = params[:tag]
-            end
-
-            if !params[:taxon].nil?
-                params[:q][:taxon_id_eq] = params[:taxon]
-            end
-
-            if !params[:sort].nil?
-                sort = params[:sort]
-
-                case sort
-                when "price"
-                    params[:q][:s] = "price asc"
-                when "price-desc"
-                    params[:q][:s] = "price desc"
-                else
-                    params[:q][:s] = "created_at desc"
-                end
-            end
-
-            return params[:q]
-        end
 
         def accurate_title
             if @product
@@ -124,11 +69,11 @@ module Spree
             sort = params[:sort].present? ? params[:sort] : ""
 
             if sort == "price"
-                return products.sort{|a,b| a.price <=> b.price}
+                return products.ascend_by_master_price
             elsif sort == "price-desc"
-                return products.sort{|a,b| b.price <=> a.price}
+                return products.descend_by_master_price
             elsif sort == "latest"
-                return products.sort{|a,b| b.created_at <=> a.created_at}
+                return products.descend_by_updated_at
             end
 
             return products

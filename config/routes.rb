@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
     get '/brand/:slug', :to => 'home#brand', :as => 'brand_page'
 
-    get '/shop', :to => 'products#shop', :as => 'shop_page'
-
     get '/about-us', :to => 'static_pages#about', :as => 'about_us_page'
     get '/terms-and-conditions', :to => 'static_pages#terms_and_conditions', :as => 'terms_and_conditions_page'
     get '/privacy-policy', :to => 'static_pages#privacy_policy', :as => 'privacy_policy_page'
