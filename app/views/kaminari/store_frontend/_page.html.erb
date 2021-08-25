@@ -1,9 +1,9 @@
 <% if page.current? %>
-    <li class="btn btn-dark btn-outline-hover-dark active page-frontend">
+    <li class="btn btn-dark btn-outline-hover-dark active page-frontend bring-to-front">
         <%= content_tag :a, page, remote: remote, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: '' %>
     </li>
 <% else %>
-    <li class="btn btn-dark btn-outline-hover-dark page-frontend">
+    <li class="btn btn-dark btn-outline-hover-dark page-frontend bring-to-front">
         <%= link_to page, url, remote: remote, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: '' %>
     </li>
 <% end %>

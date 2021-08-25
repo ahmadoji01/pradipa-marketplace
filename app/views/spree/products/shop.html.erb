@@ -1,0 +1,109 @@
+<% title %>
+<% description 'Get your handmade items from our partners!' %>
+<% keywords 'Handmade, Items, Shop, Handicrafts' %>
+<% nofollow %>
+<% noindex %>
+<% refresh 3 %>
+
+<div class="section section-padding pt-0">
+
+    <div class="section learts-mt-40">
+        <div class="container">
+            <div class="row learts-mb-n50">
+
+                <div class="col-lg-9 col-12 learts-mb-50 order-lg-2">
+                    <%  paginated_products ||= @products %>
+                    <% content_for :head do %>
+                        <% if paginated_products.respond_to?(:total_pages) %>
+                            <%= rel_next_prev_link_tags paginated_products %>
+                        <% end %>
+                    <% end %>
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="page-title">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        Showing results of <strong style="color:black">"<%= params[:keywords] %>"</strong> - <%= @total %> items
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <% if @total == 0 %><div class="row"><h5>No products found. You can try to change your query for better results</h5></div><% end %>
+                    <div id="shop-products" class="products isotope-grid row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
+                        <div class="grid-sizer col-1"></div>
+                        <% @products.each do |product| %>
+                            <div class="grid-item col">
+                                <%= render partial: 'spree/elements/product_card', locals: { product: product } %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <% if paginated_products.respond_to?(:total_pages) %>
+                        <div class="text-center learts-mt-70 enable-x-scroll bring-to-front">
+                            <%= paginate paginated_products, theme: 'store_frontend' %>
+                        </div>
+                    <% end %>
+                </div>
+
+                <div class="col-lg-3 col-12 learts-mb-10 order-lg-1 d-lg-block d-none">
+
+                    <div class="product-column-toggle d-none d-xl-flex single-widget learts-mb-40">
+                        <button class="toggle hintT-top" data-hint="5 Column" data-column="5"><i class="fas fa-grip-horizontal"></i></button>
+                        <button class="toggle active hintT-top" data-hint="4 Column" data-column="4"><i class="fas fa-grip-vertical"></i></button>
+                        <button class="toggle hintT-top" data-hint="3 Column" data-column="3"><i class="fas fa-grip-lines"></i></button>
+                    </div>
+
+                    <div class="single-widget learts-mb-40">
+                        <div class="widget-search">
+                            <%= form_tag shop_page_path, method: :get do %>
+                                <%= search_field_tag :keywords, params[:keywords], placeholder: 'Search Products...' %>
+                                <button><i class="fal fa-search"></i></button>
+                            <% end %>
+                        </div>
+                    </div>
+
+                    <div class="product-sorting single-widget learts-mb-40">
+                        <select id="product-sorter" class="nice-select" 
+                            onchange="window.sortChange($('#product-sorter').val())" >
+                            <option value="menu_order" <%= params[:sort] == 'menu_order' ? 'selected' : '' %>>Default sorting</option>
+                            <option value="latest" <%= params[:sort] == 'latest' ? 'selected' : '' %>>Sort by latest</option>
+                            <option value="price" <%= params[:sort] == 'price' ? 'selected' : '' %>>Sort by price: low to high</option>
+                            <option value="price-desc" <%= params[:sort] == 'price-desc' ? 'selected' : '' %>>Sort by price: high to low</option>
+                        </select>
+                    </div>
+
+                    <nav id="taxonomies" class="sidebar-item" data-hook>
+                        <div class="single-widget learts-mb-40">
+                            <h3 class="widget-title product-filter-widget-title">Filter by Category</h3>
+                            <ul class="widget-list filter-by-taxon">
+                                <% @taxonomies.find_by(name: 'Categories').taxons.each do |taxonomy| %>
+                                    <% if taxonomy.name != 'Categories' %>
+                                        <li style="margin-top: 10px">
+                                            <%= link_to taxonomy.name, :sort => params[:sort], :keywords => params[:keywords], :taxon => taxonomy.id %>
+                                        </li>
+                                    <% end %>
+                                <% end %>
+                            </ul>
+
+                            <h3 class="widget-title product-filter-widget-title mt-4">Filter by Brand</h3>
+                            <ul class="widget-list filter-by-taxon">
+                                <% @taxonomies.find_by(name: 'Brand').taxons.each do |taxonomy| %>
+                                    <% if taxonomy.name != 'Brand' %>
+                                        <li style="margin-top: 10px">
+                                            <%= link_to taxonomy.name, :sort => params[:sort], :keywords => params[:keywords], :taxon => taxonomy.id %>
+                                        </li>
+                                    <% end %>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<%= render partial: 'spree/offcanvases/filter' %>
+<button class="offcanvas-toggle fab-button d-lg-none d-xl-none" href="#offcanvas-filter" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><i class="fas fa-filter"></i> Filter</button>

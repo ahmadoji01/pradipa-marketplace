@@ -10,18 +10,15 @@ module Spree
         respond_to :html
 
         def index
-
-            if !params[:brand].nil?
-                @products = Spree::Product.where(producer_id: params[:brand])
-                @total = @products.count
-                @taxonomies = Spree::Taxonomy.includes(root: :children)
-                return    
-            end
-
             @searcher = build_searcher(params.merge(include_images: true))
             @products = @searcher.retrieve_products
-            @total = @products.total_count
             @products = sort_products(@products)
+
+            if !params[:tag].nil?
+              @products = @products.in_keywords(params[:tag])
+            end
+
+            @total = @products.total_count
             @taxonomies = Spree::Taxonomy.includes(root: :children)
         end
 
@@ -42,6 +39,7 @@ module Spree
 
             @searcher = build_searcher(params.merge(taxon: @product.taxon_ids.first))
             @relatedproducts = @searcher.retrieve_products
+            @tags = @product.meta_keywords.split(", ")
         end
 
         private
@@ -71,11 +69,11 @@ module Spree
             sort = params[:sort].present? ? params[:sort] : ""
 
             if sort == "price"
-                return products.sort{|a| a.price}
+                return products.ascend_by_master_price
             elsif sort == "price-desc"
-                return products.sort{|a,b| b.price <=> a.price}
+                return products.descend_by_master_price
             elsif sort == "latest"
-                return products.sort{|a,b| b.created_at <=> a.created_at}
+                return products.descend_by_updated_at
             end
 
             return products
