@@ -88,11 +88,9 @@
                                     <td class="label"><span>Tags</span></td>
                                     <td class="value">
                                         <ul class="product-tags">
-                                            <li><a href="#">handmade</a></li>
-                                            <li><a href="#">learts</a></li>
-                                            <li><a href="#">mug</a></li>
-                                            <li><a href="#">product</a></li>
-                                            <li><a href="#">learts</a></li>
+                                            <% @tags.each do |tag| %>
+                                                <li><%= link_to '/products?tag=' + tag do %><%= tag %><% end %></li>
+                                            <% end %>
                                         </ul>
                                     </td>
                                 </tr>
