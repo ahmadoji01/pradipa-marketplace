@@ -140,6 +140,21 @@
         prefix: "$",
     });
 
+    $('#price-slider').ionRangeSlider({
+        skin: "learts",
+        hide_min_max: true,
+        type: 'double',
+        prefix: "$",
+        onFinish: function (data) {
+            var from = data.from;
+            var to = data.to;
+            var url = new URL(window.location);
+            url.searchParams.set('pricefrom', from);
+            url.searchParams.set('priceto', to);
+            window.location = url;
+        },
+    });
+
     var $home12Slider = new Swiper('.home12-slider', {
         loop: true,
         speed: 750,

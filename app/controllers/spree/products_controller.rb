@@ -18,6 +18,10 @@ module Spree
               @products = @products.in_keywords(params[:tag])
             end
 
+            if !params[:pricefrom].nil? && !params[:priceto].nil?
+              @products = @products.price_between(params[:pricefrom], params[:priceto])
+            end
+
             @total = @products.total_count
             @taxonomies = Spree::Taxonomy.includes(root: :children)
         end
