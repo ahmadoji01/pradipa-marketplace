@@ -140,7 +140,7 @@
         prefix: "$",
     });
 
-    $('#price-slider').ionRangeSlider({
+    $('.price-slider').ionRangeSlider({
         skin: "learts",
         hide_min_max: true,
         type: 'double',

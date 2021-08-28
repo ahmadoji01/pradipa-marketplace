@@ -1,0 +1,132 @@
+<div class="section section-padding checkout-mobile">
+    <div class="container">
+        <div class="row learts-mb-n40">
+            <div class="col-lg-8 col-md-8 col-sm-12 learts-mb-40">
+                <div class="container-fluid">
+                    <ul class="list-unstyled multi-steps">
+                        <li class="">Contact Info</li>
+                        <li class="<%= @order.state == 'address' ? "is-active" : "" %>">Address</li>
+                        <li class="<%= @order.state == 'delivery' ? "is-active" : "" %>">Shipping</li>
+                        <li class="<%= @order.state == 'payment' ? "is-active" : "" %>">Payment</li>
+                        <li class="<%= @order.state == 'confirm' ? "is-active" : "" %>">Confirm</li>
+                    </ul>
+                </div>
+                <div>
+                    <%= render 'spree/shared/error_messages', target: @order %>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="accordion" id="faq-accordion">
+                            <% if @order.state == 'address' then %>
+                                <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-2" style="white-space: normal;">
+                                            <% if @order.ship_address.address1 == '' || @order.ship_address.address1.nil? %>
+                                                <p>Where should we ship this order?</p>
+                                            <% else %>
+                                                <p>Address</p>
+                                                <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_state_path(:address) unless @order.completed? %></p>
+                                            <% end %>
+                                            <div class="checkout-edit">
+                                                <% if @order.ship_address.address1 != '' && !@order.ship_address.address1.nil? %><p><%= @order.ship_address.address1 + ', ' + @order.ship_address.country.name %></p><% end %>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div id="faq-accordion-2" class="accordion-collapse collapse <%= if @order.state == 'address' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                        <div class="accordion-body checkout-card">
+                                            <%= form_for @order, url: update_checkout_path('address'), html: { id: "checkout_form_address" } do |form| %>
+                                                <% if !@order.email? %>
+                                                    <div class="field field-required" style='clear: both'>
+                                                        <%= form.label :email %>
+                                                        <%= form.email_field :email, required: true %>
+                                                    </div>
+                                                <% end %>
+                                                <%= render 'address', form: form %>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                            <% if @order.state == 'delivery' then %>
+                                <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-3" style="white-space: normal;">
+                                            <% if @order.shipments.first.nil? %>
+                                                <p>How should we ship your order?</p>
+                                            <% else %>
+                                                <p>Shipping</p>
+                                                <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_state_path(:delivery) unless @order.completed? %></p>
+                                            <% end %>
+                                            <div class="checkout-edit">
+                                                <% if !@order.shipments.first.nil? %><p><%= @order.shipments.first.shipping_method.name %></p><% end %>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div id="faq-accordion-3" class="accordion-collapse collapse <%= if @order.state == 'delivery' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                        <div class="accordion-body checkout-card">
+                                            <h4>How should we ship your order?</h4>
+                                            <%= form_for @order, url: update_checkout_path('delivery'), html: { id: "checkout_form_delivery" } do |form| %>
+                                                <%= render 'delivery', form: form %>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                            <% if @order.state == 'payment' then %>
+                                <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <button class="btn btn-link accordion-button checkout-accordion collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-4" style="white-space: normal;">
+                                            <% if @order.payments.valid.first.nil? %>
+                                                <p>What's your payment information?</p>
+                                            <% else %>
+                                                <p>Payment</p>
+                                                <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_state_path(:payment) unless @order.completed? %></p>
+                                            <% end %>
+                                            <div class="checkout-edit">
+                                                <% if !@order.payments.valid.first.nil? %>
+                                                    <% if !@order.payments.valid.first.source.nil? %>
+                                                        <p><%= @order.payments.valid.first.source.payment_method.name %></p>
+                                                    <% else %>
+                                                        <p><%= @order.payments.valid.first.payment_method.name %></p>
+                                                    <% end %>
+                                                <% end %>
+                                            </div>
+                                        </button>
+                                    </div>
+
+                                    <div id="faq-accordion-4" class="accordion-collapse collapse <%= if @order.state == 'payment' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                        <div class="accordion-body checkout-card">
+                                            <%= form_for @order, url: update_checkout_path('payment'), html: { id: "checkout_form_payment" } do |form| %>
+                                                <%= render 'payment', form: form %>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                            <% if @order.state == 'confirm' then %>
+                                <div class="card accordion-item">
+                                    <div class="card-header accordion-header">
+                                        <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-5" style="white-space: normal;">
+                                            Everything look good?
+                                        </button>
+                                    </div>
+
+                                    <div id="faq-accordion-5" class="accordion-collapse collapse <%= if @order.state == 'confirm' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                        <div class="order-review">
+                                            <%= render partial: 'order_details', locals: { order: @order } %>
+                                        </div>
+                                        <div class="accordion-body checkout-card">
+                                            <%= form_for @order, url: update_checkout_path('confirm'), html: { id: "checkout_form_confirm" } do |form| %>
+                                                <%= render 'confirm', form: form %>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

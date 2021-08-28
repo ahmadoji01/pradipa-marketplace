@@ -32,7 +32,7 @@
         </table>
         <div class="row mt-4">
           <div class="col">
-            <div class="checkout-totals">
+            <div class="checkout-totals" style="<%= if mobile_device? then 'width:100%' end%>">
               <table>
                   <tbody>
                       <% if order.all_adjustments.nonzero.any? || order.shipments.any? %>

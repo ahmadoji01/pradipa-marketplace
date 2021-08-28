@@ -43,7 +43,7 @@ module Spree
 
             @searcher = build_searcher(params.merge(taxon: @product.taxon_ids.first))
             @relatedproducts = @searcher.retrieve_products
-            @tags = @product.meta_keywords.split(", ")
+            @tags = @product.meta_keywords.nil? ? [] : @product.meta_keywords.split(", ")
         end
 
         private

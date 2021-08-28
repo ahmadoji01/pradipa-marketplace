@@ -78,8 +78,8 @@
                         <h3 class="widget-title product-filter-widget-title">Filters by price</h3>
                         <div class="widget-price-range">
                             <% from = params[:pricefrom].nil? ? 0 : params[:pricefrom]
-                               to = params[:priceto].nil? ? 0 : params[:priceto] %>
-                            <input id="price-slider" type="text" data-min="0" data-max="350" data-from="<%= from %>" data-to="<%= to %>" />
+                               to = params[:priceto].nil? ? 350 : params[:priceto] %>
+                            <input class="price-slider" type="text" data-min="0" data-max="350" data-from="<%= from %>" data-to="<%= to %>" />
                         </div>
                     </div>
 

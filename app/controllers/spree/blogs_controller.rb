@@ -34,7 +34,7 @@ module Spree
     def show_post
       @blog = Spree::Blog.find_by(slug: params["slug"])
       @related_posts = Spree::Blog.where(blog_category: @blog.blog_category).order('created_at desc').limit(2)
-      @tags = @blog.meta_keyword.split(", ")
+      @tags = @blog.meta_keyword.nil? ? [] : @blog.meta_keyword.split(", ")
     end
 
     private
