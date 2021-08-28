@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_142513) do
+ActiveRecord::Schema.define(version: 2021_08_28_062024) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
