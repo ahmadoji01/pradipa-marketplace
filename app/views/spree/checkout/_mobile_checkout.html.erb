@@ -20,10 +20,10 @@
                             <% if @order.state == 'address' then %>
                                 <div class="card accordion-item">
                                     <div class="card-header accordion-header">
-                                        <h6 style="padding-left:15px;margin-top:15px">Where should we ship this order?</h6>
+                                        <h6 style="padding-left:20px;margin-top:15px">Where should we ship this order?</h6>
                                     </div>
                                     <div id="faq-accordion-2" class="accordion-collapse collapse <%= if @order.state == 'address' then 'show' end %>" data-bs-parent="#faq-accordion">
-                                        <div class="accordion-body checkout-card">
+                                        <div class="accordion-body" style="padding-left:20px;padding-top:0px">
                                             <%= form_for @order, url: update_checkout_path('address'), html: { id: "checkout_form_address" } do |form| %>
                                                 <% if !@order.email? %>
                                                     <div class="field field-required" style='clear: both'>
@@ -40,10 +40,10 @@
                             <% if @order.state == 'delivery' then %>
                                 <div class="card accordion-item">
                                     <div class="card-header accordion-header">
-                                        <h6 style="padding-left:15px;margin-top:15px">How should we ship your order?</h6>
+                                        <h6 style="padding-left:20px;margin-top:15px">How should we ship your order?</h6>
                                     </div>
                                     <div id="faq-accordion-3" class="accordion-collapse collapse <%= if @order.state == 'delivery' then 'show' end %>" data-bs-parent="#faq-accordion">
-                                        <div class="accordion-body checkout-card">
+                                        <div class="accordion-body" style="padding-left:20px;padding-top:0px">
                                             <%= form_for @order, url: update_checkout_path('delivery'), html: { id: "checkout_form_delivery" } do |form| %>
                                                 <%= render 'delivery', form: form %>
                                             <% end %>
@@ -54,10 +54,10 @@
                             <% if @order.state == 'payment' then %>
                                 <div class="card accordion-item">
                                     <div class="card-header accordion-header">
-                                        <h6 style="padding-left:15px;margin-top:15px">What's your payment information?</h6>
+                                        <h6 style="padding-left:20px;margin-top:15px">What's your payment information?</h6>
                                     </div>
                                     <div id="faq-accordion-4" class="accordion-collapse collapse <%= if @order.state == 'payment' then 'show' end %>" data-bs-parent="#faq-accordion">
-                                        <div class="accordion-body checkout-card">
+                                        <div class="accordion-body" style="padding-left:20px;padding-top:0px">
                                             <%= form_for @order, url: update_checkout_path('payment'), html: { id: "checkout_form_payment" } do |form| %>
                                                 <%= render 'payment', form: form %>
                                             <% end %>
@@ -69,15 +69,60 @@
                                 <div class="card accordion-item">
                                     <div class="card-header accordion-header">
                                         <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-5" style="white-space: normal;">
-                                            Everything look good?
+                                            Everything looks good?
                                         </button>
                                     </div>
+                                    <div id="faq-accordion-5" class="accordion-collapse show" data-bs-parent="#faq-accordion">
+                                        <div class="card-header accordion-header">
+                                            <h6 style="padding-left:20px;margin-top:15px">Contact Info</h6>
+                                            <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_registration_path() unless !spree_current_user.nil? %></p>       
+                                        </div>
+                                        <div id="faq-accordion-3" class="accordion-collapse show" data-bs-parent="#faq-accordion">
+                                            <div class="accordion-body" style="padding-left:20px;padding-top:0px">
+                                                <% if @order.email? %><p><%= @order.email %></p><% end %>
+                                            </div>
+                                        </div>
 
-                                    <div id="faq-accordion-5" class="accordion-collapse collapse <%= if @order.state == 'confirm' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                        <div class="card-header accordion-header">
+                                            <h6 style="padding-left:20px;margin-top:15px">Address</h6>
+                                            <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_state_path(:address) unless @order.completed? %></p>    
+                                        </div>
+                                        <div id="faq-accordion-3" class="accordion-collapse show" data-bs-parent="#faq-accordion">
+                                            <div class="accordion-body" style="padding-left:20px;padding-top:0px">
+                                                <% if @order.ship_address.address1 != '' && !@order.ship_address.address1.nil? %><p><%= @order.ship_address.address1 + ', ' + @order.ship_address.country.name %></p><% end %>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-header accordion-header">
+                                            <h6 style="padding-left:20px;margin-top:15px">Shipping</h6>
+                                            <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_state_path(:delivery) unless @order.completed? %></p>   
+                                        </div>
+                                        <div id="faq-accordion-3" class="accordion-collapse show" data-bs-parent="#faq-accordion">
+                                            <div class="accordion-body" style="padding-left:20px;padding-top:0px">
+                                                <% if !@order.shipments.first.nil? %><p><%= @order.shipments.first.shipping_method.name %></p><% end %>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-header accordion-header">
+                                            <h6 style="padding-left:20px;margin-top:15px">Payment</h6>
+                                            <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_state_path(:payment) unless @order.completed? %></p>   
+                                        </div>
+                                        <div id="faq-accordion-3" class="accordion-collapse show" data-bs-parent="#faq-accordion">
+                                            <div class="accordion-body" style="padding-left:20px;padding-top:0px">
+                                                <% if !@order.payments.valid.first.nil? %>
+                                                    <% if !@order.payments.valid.first.source.nil? %>
+                                                        <p><%= @order.payments.valid.first.source.payment_method.name %></p>
+                                                    <% else %>
+                                                        <p><%= @order.payments.valid.first.payment_method.name %></p>
+                                                    <% end %>
+                                                <% end %>
+                                            </div>
+                                        </div>
+
                                         <div class="order-review">
                                             <%= render partial: 'order_details', locals: { order: @order } %>
                                         </div>
-                                        <div class="accordion-body checkout-card">
+                                        <div class="accordion-body" style="padding-left:20px;padding-top:0px">
                                             <%= form_for @order, url: update_checkout_path('confirm'), html: { id: "checkout_form_confirm" } do |form| %>
                                                 <%= render 'confirm', form: form %>
                                             <% end %>

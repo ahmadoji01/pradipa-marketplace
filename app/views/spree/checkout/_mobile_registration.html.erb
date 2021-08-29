@@ -1,0 +1,41 @@
+<div class="section section-padding checkout-mobile">
+    <div class="container">
+        <div class="row learts-mb-n40">
+            <div class="container-fluid">
+                <ul class="list-unstyled multi-steps">
+                    <li class="is-active">Contact Info</li>
+                    <li>Address</li>
+                    <li>Shipping</li>
+                    <li>Payment</li>
+                    <li>Confirm</li>
+                </ul>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 learts-mb-40">
+                <div class="row">
+                    <div class="col">
+                        <div class="accordion" id="faq-accordion">
+                            <div class="card accordion-item">
+                                <div id="faq-accordion-2" class="accordion-collapse collapse show" data-bs-parent="#faq-accordion">
+                                    <div class="card-body accordion-body">
+                                        <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
+                                        <div id="registration" data-hook>
+                                            <div id="account" class="columns alpha eight">
+                                                <%= render partial: 'checkout_register' %>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12  learts-mb-40">
+                <div class="order-review">
+                    <%= render partial: 'order_details', locals: { order: @order } %>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>

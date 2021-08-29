@@ -15,6 +15,7 @@
                                 <div class="card-header accordion-header">
                                     <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-1" style="white-space: normal;">
                                         <p><% if !@order.email? %>How should we reach you?<% else %>Contact Info<% end %></p>
+                                        <p class="checkout-edit right"><%= link_to "(#{t('spree.actions.edit')})", checkout_registration_path() unless !spree_current_user.nil? %></p>        
                                         <div style="font-family: 'Futura', Arial, Helvetica, sans-serif;">
                                             <% if @order.email? %><p><%= @order.email %></p><% end %>
                                         </div>
@@ -37,7 +38,7 @@
                                             </button>
                                         </div>
                                     <% end %>
-                                <div id="faq-accordion-2" class="accordion-collapse collapse <%= if @order.state == 'address' then 'show' end %>" data-bs-parent="#faq-accordion">
+                                    <div id="faq-accordion-2" class="accordion-collapse collapse <%= if @order.state == 'address' then 'show' end %>" data-bs-parent="#faq-accordion">
                                         <div class="accordion-body checkout-card">
                                             <%= form_for @order, url: update_checkout_path('address'), html: { id: "checkout_form_address" } do |form| %>
                                                 <% if !@order.email? %>
@@ -113,14 +114,14 @@
                                     <% if @order.state != 'confirm' then %>
                                         <div class="card-header accordion-header">
                                             <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-5" style="white-space: normal;">
-                                                Everything look good?
+                                                Everything looks good?
                                             </button>
                                         </div>
                                     <% end %>
 
                                     <div id="faq-accordion-5" class="accordion-collapse collapse <%= if @order.state == 'confirm' then 'show' end %>" data-bs-parent="#faq-accordion">
                                         <div class="accordion-body checkout-card">
-                                            <h4>Everything look good?</h4>
+                                            <h4>Everything looks good?</h4>
                                             <%= form_for @order, url: update_checkout_path('confirm'), html: { id: "checkout_form_confirm" } do |form| %>
                                                 <%= render 'confirm', form: form %>
                                             <% end %>
