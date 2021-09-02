@@ -1,3 +1,5 @@
+docker-compose pull &&
+docker-compose build app &&
 docker-compose run --rm app bash -c '
   bin/wait-for-services &&
   (bundle check || bundle install) &&
