@@ -1,12 +1,5 @@
 version: '3.8'
 services:
-  sqlite3:
-    image: keinos/sqlite3:latest
-    stdin_open: true
-    tty: true
-    volumes:
-      - "./db/:/root/db/"
-
   app:
     build:
       context: .
@@ -17,8 +10,6 @@ services:
       - RAILS_MASTER_KEY=27e3a2700abbb8da46ee1bc5d54d74ff
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_LOG_TO_STDOUT=true
-    depends_on:
-      - sqlite3
     volumes:
       - .:/app
 

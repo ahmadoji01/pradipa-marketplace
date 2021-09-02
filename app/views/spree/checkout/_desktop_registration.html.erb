@@ -1,0 +1,76 @@
+<div class="section section-padding">
+  <div class="container">
+      <div class="row learts-mb-n40">
+
+          <div class="col-lg-8 col-md-8 col-sm-12 learts-mb-40">
+              <div class="section-title2">
+                  <h2 class="title">Checkout</h2>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <div class="accordion" id="faq-accordion">
+                          <div class="card accordion-item">
+                            <div class="card-header accordion-header">
+                                <button class="btn btn-link accordion-button" style="white-space: normal;">
+                                    <p>How should we reach you?</p>
+                                    <div style="font-family: 'Futura', Arial, Helvetica, sans-serif;">
+                                      <% if @order.email? %><p><%= @order.email %></p><% end %>
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="faq-accordion-2" class="accordion-collapse collapse show" data-bs-parent="#faq-accordion">
+                              <div class="card-body accordion-body">
+                                <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
+                                <div id="registration" data-hook>
+                                  <div id="account" class="columns alpha eight">
+                                    <%= render partial: 'checkout_register' %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card accordion-item">
+                            <div class="card-header accordion-header">
+                              <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-2" style="white-space: normal;">
+                                <p>Where should we ship this order?</p>
+                              </button>
+                            </div>
+                          </div>
+                            <div class="card accordion-item">
+                              <div class="card-header accordion-header">
+                                <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-3" style="white-space: normal;">
+                                  <p>How should we ship your order?</p>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="card accordion-item">
+                              <div class="card-header accordion-header">
+                                <button class="btn btn-link accordion-button checkout-accordion collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-4" style="white-space: normal;">
+                                  <p>What's your payment information?</p>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="card accordion-item">
+                              <div class="card-header accordion-header">
+                                <button class="btn btn-link accordion-button collapsed" data-bs-toggle="" data-bs-target="#faq-accordion-5" style="white-space: normal;">
+                                    Everything looks good?
+                                </button>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-12  learts-mb-40">
+              <div class="order-review">
+                <%= render partial: 'order_details', locals: { order: @order } %>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+

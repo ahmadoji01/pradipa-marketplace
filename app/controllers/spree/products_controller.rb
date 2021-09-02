@@ -18,6 +18,10 @@ module Spree
               @products = @products.in_keywords(params[:tag])
             end
 
+            if !params[:pricefrom].nil? && !params[:priceto].nil?
+              @products = @products.price_between(params[:pricefrom], params[:priceto])
+            end
+
             @total = @products.total_count
             @taxonomies = Spree::Taxonomy.includes(root: :children)
         end
@@ -39,7 +43,7 @@ module Spree
 
             @searcher = build_searcher(params.merge(taxon: @product.taxon_ids.first))
             @relatedproducts = @searcher.retrieve_products
-            @tags = @product.meta_keywords.split(", ")
+            @tags = @product.meta_keywords.nil? ? [] : @product.meta_keywords.split(", ")
         end
 
         private

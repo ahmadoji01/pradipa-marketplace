@@ -32,7 +32,7 @@
     </div>
   </div>
 <% end %><br/>
-<div class="form-buttons text-center" data-hook="buttons" style="margin:auto;width:50%">
+<div class="form-buttons text-center" data-hook="buttons" style="<%= if !mobile_device? then 'margin:auto' end %>;width:50%">
   <%= button_tag class: 'btn btn-dark btn-outline-hover-dark', type: :submit do %>
     <i class="fa fa-pencil"></i> <%= t('spree.save_and_continue') %>
   <% end %>

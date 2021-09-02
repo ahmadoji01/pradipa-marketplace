@@ -21,7 +21,7 @@
                     </div>
                     <div class="foot">
                         <div class="sub-total">
-                            <strong>Subtotal :</strong>
+                            <strong>Subtotal:</strong>
                             <span class="amount"><%= item_total %></span>
                         </div>
                         <div class="buttons">
@@ -33,14 +33,14 @@
                         <p class="minicart-message" style="text-align: center">Free Shipping on All Orders!</p>
                     </div>
                 <% end %>
-            <% else %>
-                <div class="body customScroll cartScroll" style="padding:20px">
-                    <p>Your cart is empty. Any items you add on the cart will be displayed here</p>
-                </div>
-                <div class="foot">
-                    <p class="minicart-message" style="text-align: center">Free Shipping on All Orders!</p>
-                </div>
             <% end %>
+        <% else %>
+            <div class="body customScroll cartScroll" style="padding:20px">
+                <p>Your cart is empty. Any items you add on the cart will be displayed here</p>
+            </div>
+            <div class="foot">
+                <p class="minicart-message" style="text-align: center">Free Shipping on All Orders!</p>
+            </div>
         <% end %>
     </div>
 </div>

@@ -68,7 +68,9 @@
             <div class="col-lg-8 col-12 mx-auto">
                 <div class="contact-form">
                     <%= form_for @ticket, url: main_app.submit_ticket_path, html: { method: :post } do |f| %>
-                        <%= f.hidden_field :user_id, value: spree_current_user.id, required: true %>
+                        <% user_id ||= "" 
+                           user_id = spree_current_user.id if !spree_current_user.nil? %>
+                        <%= f.hidden_field :user_id, value: user_id, required: true %>
                         <div class="row learts-mb-n30">
                             <div class="col-md-6 col-12 learts-mb-30"><%= f.text_field :name, class: 'form-control', placeholder: 'Your Name *', required: true %></div>
                             <div class="col-md-6 col-12 learts-mb-30"><%= f.text_field :email, class: 'form-control', placeholder: 'Email *', required: true %></div>

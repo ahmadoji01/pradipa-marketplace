@@ -6,4 +6,12 @@ module ApplicationHelper
             Rails.application.assets_manifest.assets[path].present?
         end
     end
+
+    def mobile_device?
+        result = request.user_agent =~ /Mobile|webOS/
+        if result.nil?
+            return false
+        end
+        return true
+    end
 end

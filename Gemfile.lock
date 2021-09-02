@@ -134,6 +134,7 @@ GEM
       polyglot
       rails (>= 5.2)
       rainbow (>= 2.1.0)
+    device_detector (1.0.5)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -493,6 +494,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   carrierwave (~> 2.0)
+  device_detector
   jbuilder (~> 2.7)
   listen (~> 3.3)
   meta-tags

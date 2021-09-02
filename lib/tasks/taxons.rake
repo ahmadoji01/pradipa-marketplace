@@ -4,31 +4,38 @@ namespace :taxons do
     taxons = Spree::Taxon.create!([
       {
           taxonomy_id: 1,
+          parent_id: 1,
           name: "Potteries",
       },
       {
           taxonomy_id: 1,
+          parent_id: 1,
           name: "Glasses",
       },
       {
           taxonomy_id: 1,
+          parent_id: 1,
           name: "Metals",
       },
       {
           taxonomy_id: 1,
+          parent_id: 1,
           name: "Fashion",
       },
       {
           taxonomy_id: 1,
-          name: "Gifts"
+          parent_id: 1,
+          name: "Gifts",
       },
       {
           taxonomy_id: 1,
-          name: "Home Decorations"
+          parent_id: 1,
+          name: "Home Decorations",
       },
       {
           taxonomy_id: 1,
-          name: "Accessories"
+          parent_id: 1,
+          name: "Accessories",
       }
     ])
 
@@ -64,22 +71,22 @@ namespace :taxons do
           name: "Bags",
       },
       {
-          parent_id: gifts.id,
+          parent_id: fashion.id,
           taxonomy_id: 1,
           name: "Men",
       },
       {
-          parent_id: gifts.id,
+          parent_id: fashion.id,
           taxonomy_id: 1,
           name: "Women",
       },
       {
-          parent_id: gifts.id,
+          parent_id: fashion.id,
           taxonomy_id: 1,
           name: "Shoes",
       },
       {
-          parent_id: gifts.id,
+          parent_id: fashion.id,
           taxonomy_id: 1,
           name: "Watches",
       }
