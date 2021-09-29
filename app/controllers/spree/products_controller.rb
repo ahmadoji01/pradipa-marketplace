@@ -37,8 +37,8 @@ module Spree
             @taxon = Spree::Taxon.find(params[:taxon_id]) if params[:taxon_id]
 
             @brand = Spree::Brand.where(user_id: -1)
-            if !@product.producer.nil?
-                @brand = Spree::Brand.where(user_id: @product.producer.id)
+            if !@product.user.nil?
+                @brand = Spree::Brand.where(user_id: @product.user.id)
             end
 
             @searcher = build_searcher(params.merge(taxon: @product.taxon_ids.first))

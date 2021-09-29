@@ -558,12 +558,12 @@ ActiveRecord::Schema.define(version: 2021_08_28_062024) do
     t.boolean "promotionable", default: true
     t.string "meta_title"
     t.datetime "discontinue_on"
-    t.bigint "producer_id"
+    t.bigint "user_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["name"], name: "index_spree_products_on_name"
-    t.index ["producer_id"], name: "index_spree_products_on_producer_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
+    t.index ["user_id"], name: "index_spree_products_on_user_id"
   end
 
   create_table "spree_products_taxons", id: :serial, force: :cascade do |t|
@@ -1421,7 +1421,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_062024) do
   add_foreign_key "order_notifications", "spree_orders", column: "order_id"
   add_foreign_key "order_notifications", "spree_users", column: "user_id"
   add_foreign_key "spree_brands", "spree_users", column: "user_id"
-  add_foreign_key "spree_products", "spree_users", column: "producer_id"
+  add_foreign_key "spree_products", "spree_users", column: "user_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"

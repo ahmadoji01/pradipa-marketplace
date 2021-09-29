@@ -36,7 +36,7 @@ module Spree
   
       belongs_to :tax_category, class_name: 'Spree::TaxCategory', optional: true
       belongs_to :shipping_category, class_name: 'Spree::ShippingCategory', inverse_of: :products, optional: true
-      belongs_to :producer, :class_name => "Spree::User", :optional => true
+      belongs_to :user, :class_name => "Spree::User", :optional => true
   
       has_one :master,
         -> { where(is_master: true).with_discarded },
@@ -132,7 +132,7 @@ module Spree
       alias :options :product_option_types
   
       self.whitelisted_ransackable_associations = %w[stores variants_including_master master variants]
-      self.whitelisted_ransackable_attributes = %w[name slug producer_id meta_keywords]
+      self.whitelisted_ransackable_attributes = %w[name slug user_id meta_keywords]
   
       def self.ransackable_scopes(_auth_object = nil)
         %i(with_discarded with_variant_sku_cont)

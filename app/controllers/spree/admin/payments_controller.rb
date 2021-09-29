@@ -75,19 +75,19 @@ module Spree
         private
 
         def set_order_notifications
-          producers = []
+          users = []
           @order.products.each do |product|
-            if !product.producer.nil?
-              producers = producers.push(product.producer)
+            if !product.user.nil?
+              users = users.push(product.user)
             end
           end
-          producers = producers.uniq
+          users = users.uniq
 
           notifications = []
-          producers.each do |producer|
+          users.each do |user|
             notification = OrderNotification.new
             notification.order = @order
-            notification.user = producer
+            notification.user = user
             notification.title = "new"
             notification.notif_type = "shipping_request"
             notification.read = false
