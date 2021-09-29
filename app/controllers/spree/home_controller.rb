@@ -15,7 +15,7 @@ module Spree
 
     def brand
       @brand = Spree::Brand.find_by(slug: params[:slug])
-      @products = Spree::Product.where(producer_id: @brand.user.id)
+      @products = Spree::Product.where(user_id: @brand.user.id)
     end
   end
 end

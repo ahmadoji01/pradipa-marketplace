@@ -179,9 +179,9 @@
       </div>
 
       <div data-hook="admin_product_form_user">
-        <%= f.field_container :producer do %>
-          <%= f.label :producer_id, 'Producers' %>
-          <%= f.select :producer_id, Spree::User.all.map { |user| [user.email, user.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+        <%= f.field_container :user do %>
+          <%= f.label :user_id, 'Producers' %>
+          <%= f.select :user_id, Spree::User.all.map { |user| [user.email, user.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
         <% end %>
       </div>
 

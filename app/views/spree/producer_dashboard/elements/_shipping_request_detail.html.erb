@@ -1,5 +1,5 @@
 <% order = @request.order %>
-<% line_items = @request.order.line_items.select { |line_item| line_item.product.producer_id == spree_current_user.id } %>
+<% line_items = @request.order.line_items.select { |line_item| line_item.product.user_id == spree_current_user.id } %>
 
 <div class="card">
     <div class="card-body">
