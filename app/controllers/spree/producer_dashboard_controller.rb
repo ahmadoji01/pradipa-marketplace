@@ -173,7 +173,14 @@ module Spree
     end
 
     def shipping_requests
-      @requests = OrderNotification.where(notif_type: "shipping_request", user_id: @user.id)
+      params[:q] ||= {}
+
+      if params[:q][:status_eq].nil?
+        params[:q][:status_eq] = 'pending'
+      end
+
+      @q = OrderNotification.where(notif_type: "shipping_request", user_id: @user.id).ransack(params[:q])
+      @pagy, @requests = pagy(@q.result, items: 10)
     end
 
     def show_shipping_request
