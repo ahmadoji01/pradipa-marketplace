@@ -14,7 +14,7 @@ module Spree
       @shipped_items = count_shipped_items(@line_items)
       @info = Spree::Withdrawal.where(:user_id => @user.id)
       @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}).last(5)
-      @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id)
+      @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id).last(5)
       count_balance(@wd_balances)
 
       withdrawn_balance(@wd_requests)
@@ -26,11 +26,13 @@ module Spree
     end
 
     def orders
-      @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => @user.id})
+      @pagy, @line_items = pagy(Spree::LineItem.joins(:product).where(:product => {:user_id => @user.id}), items: 10)
     end
 
     def products
-      @products = Spree::Product.where(:user_id => @user.id)
+      @user_products = Spree::Product.where(:user_id => @user.id)
+      @q = @user_products.ransack(params[:q])
+      @pagy, @products = pagy(@q.result, items: 10)
     end
 
     def payment_info
@@ -60,8 +62,16 @@ module Spree
     end
 
     def withdrawals
-      @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id})
-      @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id)
+      @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}).last(5)
+      @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id).last(5)
+    end
+
+    def withdrawal_requests
+      @pagy, @wd_requests = pagy(Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}))
+    end
+
+    def withdrawal_balances
+      @pagy, @wd_balances = pagy(Spree::WithdrawalBalance.where(:user_id => @user.id))
     end
 
     def request_withdrawal
