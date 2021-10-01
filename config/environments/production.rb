@@ -73,10 +73,10 @@ Rails.application.configure do
 
   # SMTP settings for zoho
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.zoho.com",
+    :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => 'admin@pradipa.co',
-    :password             => '5Ud~g;HVW!W/$?]',
+    :user_name            => "pradipamanager@gmail.com",
+    :password             => "4ManagingPradipa2022!",
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
