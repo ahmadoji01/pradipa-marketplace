@@ -9,15 +9,15 @@
                 </tr>
                 <tr>
                   <td class="value">
-                        <div id="product-variants" class="columns five alpha">
-                          <div class="container" style="padding:0">
-                            <% if @product.option_types.where(presentation: "Color").exists? && @product.option_types.count == 1 %>
-                              <%= render partial: 'spree/products/variants/color', locals: { product: @product } %>
-                            <% else %>
-                              <%= render partial: 'spree/products/variants/generic', locals: { product: @product } %>
-                            <% end %>
-                          </div>
-                        </div>
+                    <div id="product-variants" class="columns five alpha">
+                      <div class="container" style="padding:0">
+                        <% if @product.option_types.where(presentation: "Color").exists? && @product.option_types.count == 1 %>
+                          <%= render partial: 'spree/products/variants/color', locals: { product: @product } %>
+                        <% else %>
+                          <%= render partial: 'spree/products/variants/generic', locals: { product: @product } %>
+                        <% end %>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               <% else %>

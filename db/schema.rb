@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_062024) do
+ActiveRecord::Schema.define(version: 2021_10_04_011348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,29 @@ ActiveRecord::Schema.define(version: 2021_08_28_062024) do
     t.string "refund_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "solidus_importer_imports", force: :cascade do |t|
+    t.string "import_type"
+    t.string "state", limit: 32, default: "created", null: false
+    t.string "file", limit: 1024, default: "", null: false
+    t.text "messages"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "file_file_name"
+    t.string "file_content_type"
+    t.bigint "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  create_table "solidus_importer_rows", force: :cascade do |t|
+    t.bigint "import_id"
+    t.string "state", limit: 32, default: "created", null: false
+    t.text "data"
+    t.text "messages"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["import_id"], name: "index_solidus_importer_rows_on_import_id"
   end
 
   create_table "spree_addresses", id: :serial, force: :cascade do |t|
@@ -425,6 +448,8 @@ ActiveRecord::Schema.define(version: 2021_08_28_062024) do
     t.integer "store_id"
     t.string "approver_name"
     t.boolean "frontend_viewable", default: true, null: false
+    t.integer "invoice_number"
+    t.date "invoice_date"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["completed_at"], name: "index_spree_orders_on_completed_at"

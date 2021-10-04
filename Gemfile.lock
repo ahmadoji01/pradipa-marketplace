@@ -8,6 +8,26 @@ GIT
       i18n
 
 GIT
+  remote: https://github.com/solidusio-contrib/solidus_importer.git
+  revision: 043dd4fda3a880a66e23a07d4a78e1c9e4c02d45
+  branch: master
+  specs:
+    solidus_importer (0.2.0)
+      solidus_core (>= 2.0.0, < 4)
+      solidus_support (~> 0.5)
+
+GIT
+  remote: https://github.com/solidusio-contrib/solidus_print_invoice.git
+  revision: be517cc48fcbead915f7bf69e6c53950327540ac
+  specs:
+    solidus_print_invoice (1.0.2)
+      deface
+      prawn (= 1.0.0)
+      solidus (>= 1.0, < 4)
+      solidus_core (>= 2.0.0, < 4)
+      solidus_support (~> 0.5)
+
+GIT
   remote: https://github.com/solidusio-contrib/solidus_related_products.git
   revision: 8fd1212a4a3e4d73c8161cbe60608058bf647760
   specs:
@@ -287,8 +307,12 @@ GEM
     paypal-checkout-sdk (1.0.3)
       paypalhttp (~> 1.0.0)
     paypalhttp (1.0.0)
+    pdf-core (0.2.5)
     pg (1.2.3)
     polyglot (0.3.5)
+    prawn (1.0.0)
+      pdf-core (~> 0.2.2)
+      ttfunk (~> 1.1.1)
     public_suffix (4.0.6)
     puma (5.3.2)
       nio4r (~> 2.0)
@@ -463,6 +487,7 @@ GEM
     thor (1.1.0)
     tilt (2.0.10)
     truncate_html (0.9.3)
+    ttfunk (1.1.1)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -516,7 +541,9 @@ DEPENDENCIES
   solidus_api (~> 3.0)
   solidus_auth_devise
   solidus_core (~> 3.0)
+  solidus_importer!
   solidus_paypal_commerce_platform
+  solidus_print_invoice!
   solidus_related_products!
   solidus_reports!
   solidus_social

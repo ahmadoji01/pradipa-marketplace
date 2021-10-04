@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'admin@pradipa.co'
+  default from: 'pradipamanager@gmail.com'
   layout 'mailer'
 end

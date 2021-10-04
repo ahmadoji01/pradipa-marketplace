@@ -71,15 +71,25 @@ Rails.application.configure do
   host = 'pradipa.co'
   config.action_mailer.default_url_options = { host: host }
 
-  # SMTP settings for zoho
+  # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => "pradipamanager@gmail.com",
-    :password             => "4ManagingPradipa2022!",
+    :user_name            => 'pradipamanager@gmail.com',
+    :password             => '4ManagingPradipa2022!',
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
+
+  # SMTP settings for privateemail
+  # config.action_mailer.smtp_settings = {
+  #   :address              => "mail.privateemail.com",
+  #   :port                 => 465,
+  #   :user_name            => 'admin@pradipa.co',
+  #   :password             => '*PB#RcfJkT4G<hy',
+  #   :authentication       => "plain",
+  #   :enable_starttls_auto => true
+  # }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

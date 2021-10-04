@@ -11,3 +11,4 @@
 //= require spree/backend/solidus_paypal_commerce_platform
 //= require spree/backend/solidus_reports
 //= require spree/backend/solidus_related_products
+//= require spree/backend/solidus_importer
