@@ -24,7 +24,7 @@
   <div class="row justify-content-between mb-n3">
       <div class="col-auto mb-3">
           <div class="cart-coupon">
-            <% if !@order.coupon_code.nil? %>
+            <% if !@order.id.nil? %>
               <%= form_tag order_coupon_codes_path(@order), method: :post do %>
                 <%= text_field_tag :coupon_code, nil, placeholder: t("spree.coupon_code"), size: 10 %>
                 <%= submit_tag t("spree.apply_code") %>
