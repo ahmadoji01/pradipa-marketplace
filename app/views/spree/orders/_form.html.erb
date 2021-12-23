@@ -25,16 +25,18 @@
 <div class="row justify-content-between mb-n3">
     <div class="col-auto mb-3">
         <div class="cart-coupon">
-          <% if !@order.id.nil? %>
-            <%= form_tag order_coupon_codes_path(@order), method: :post do %>
-              <%= text_field_tag :coupon_code, nil, placeholder: t("spree.coupon_code"), size: 10 %>
-              <%= submit_tag t("spree.apply_code") %>
-            <% end %>
+          <% if !@order.line_items.empty? %>
+            <%= render template: "spree/coupon_codes/new" %>
           <% end %>
         </div>
     </div>
     <div class="col-auto">
+      <%= form_tag empty_cart_path, method: :put do %>
+        <% if !@order.line_items.empty? %>
+          <%= button_tag 'Empty Cart', class: 'btn btn-light btn-hover-dark mr-3 mb-3', type: "submit" %>
+        <% end %>
         <a class="btn btn-light btn-hover-dark mr-3 mb-3" href="/">Continue Shopping</a>
+      <% end %>
     </div>
 </div>
 <% if !@order.line_items.empty? %>
