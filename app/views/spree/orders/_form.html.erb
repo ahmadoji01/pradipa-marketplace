@@ -1,5 +1,8 @@
 <% order = order_form.object %>
 <%= render 'spree/shared/error_messages', target: order %>
+<% flash.each do |type, msg| %>
+    <%= render partial: 'spree/shared/flash_message', locals: { message: msg, type: type } %>
+<% end %>
 <form class="cart-form" action="#">
   <table class="cart-wishlist-table table">
       <thead>
