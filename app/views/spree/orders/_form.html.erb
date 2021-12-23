@@ -21,22 +21,22 @@
         <% end %>
       </tbody>
   </table>
-  <div class="row justify-content-between mb-n3">
-      <div class="col-auto mb-3">
-          <div class="cart-coupon">
-            <% if !@order.id.nil? %>
-              <%= form_tag order_coupon_codes_path(@order), method: :post do %>
-                <%= text_field_tag :coupon_code, nil, placeholder: t("spree.coupon_code"), size: 10 %>
-                <%= submit_tag t("spree.apply_code") %>
-              <% end %>
-            <% end %>
-          </div>
-      </div>
-      <div class="col-auto">
-          <a class="btn btn-light btn-hover-dark mr-3 mb-3" href="/">Continue Shopping</a>
-      </div>
-  </div>
 </form>
+<div class="row justify-content-between mb-n3">
+    <div class="col-auto mb-3">
+        <div class="cart-coupon">
+          <% if !@order.id.nil? %>
+            <%= form_tag order_coupon_codes_path(@order), method: :post do %>
+              <%= text_field_tag :coupon_code, nil, placeholder: t("spree.coupon_code"), size: 10 %>
+              <%= submit_tag t("spree.apply_code") %>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+    <div class="col-auto">
+        <a class="btn btn-light btn-hover-dark mr-3 mb-3" href="/">Continue Shopping</a>
+    </div>
+</div>
 <% if !@order.line_items.empty? %>
   <div class="cart-totals mt-5">
     <h2 class="title">Cart totals</h2>
