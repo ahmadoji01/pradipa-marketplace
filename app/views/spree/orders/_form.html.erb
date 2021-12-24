@@ -1,5 +1,8 @@
 <% order = order_form.object %>
 <%= render 'spree/shared/error_messages', target: order %>
+<% flash.each do |type, msg| %>
+    <%= render partial: 'spree/shared/flash_message', locals: { message: msg, type: type } %>
+<% end %>
 <form class="cart-form" action="#">
   <table class="cart-wishlist-table table">
       <thead>
@@ -21,23 +24,24 @@
         <% end %>
       </tbody>
   </table>
-  <div class="row justify-content-between mb-n3">
-      <div class="col-auto mb-3">
-          <div class="cart-coupon">
-            <% if !@order.coupon_code.nil? %>
-              <%= form_tag order_coupon_codes_path(@order), method: :post do %>
-                <%= text_field_tag :coupon_code, nil, placeholder: t("spree.coupon_code"), size: 10 %>
-                <%= submit_tag t("spree.apply_code") %>
-              <% end %>
-            <% end %>
-          </div>
-      </div>
-      <div class="col-auto">
-          <%= button_tag t("spree.update"), class: "btn btn-dark btn-outline-hover-dark mr-3 mb-3", id: "update-button" %>
-          <a class="btn btn-light btn-hover-dark mr-3 mb-3" href="/">Continue Shopping</a>
-      </div>
-  </div>
 </form>
+<div class="row justify-content-between mb-n3">
+    <div class="col-auto mb-3">
+        <div class="cart-coupon">
+          <% if !@order.line_items.empty? %>
+            <%= render template: "spree/coupon_codes/new" %>
+          <% end %>
+        </div>
+    </div>
+    <div class="col-auto">
+      <%= form_tag empty_cart_path, method: :put do %>
+        <% if !@order.line_items.empty? %>
+          <%= button_tag 'Empty Cart', class: 'btn btn-light btn-hover-dark mr-3 mb-3', type: "submit" %>
+        <% end %>
+        <a class="btn btn-light btn-hover-dark mr-3 mb-3" href="/">Continue Shopping</a>
+      <% end %>
+    </div>
+</div>
 <% if !@order.line_items.empty? %>
   <div class="cart-totals mt-5">
     <h2 class="title">Cart totals</h2>

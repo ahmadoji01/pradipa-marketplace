@@ -15,6 +15,15 @@
                 </div>
             </div>
         </div>
+
+        <% if !@product.available? %>
+            <div class="row">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    This product is currently <b>unavailable</b>. We will let you know through your email when it is ready
+                </div>
+            </div>
+        <% end %>
+
         <div class="row learts-mb-n40">
             
             <div class="col-lg-6 col-12 learts-mb-40">
