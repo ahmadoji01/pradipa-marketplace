@@ -24,5 +24,9 @@ test:
 
 production:
   <<: *default
+  encoding: unicode
+  host: db
+  username: postgres
+  password: PksjHbzYKiwoL920.,!
   database: pradipa_marketplace_production
   #database: db/production.sqlite3

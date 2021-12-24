@@ -10,7 +10,8 @@ RUN apt-get install -y curl \
     build-essential \
     yarn \
     imagemagick \
-    sqlite3 \
+    libpq-dev \
+    postgresql-client \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install NodeJS LTS
