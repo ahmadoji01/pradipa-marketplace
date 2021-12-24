@@ -19,7 +19,7 @@ First, Open Terminal.
 
 Second, Paste the text below, substituting in your GitHub email address.
 
-    ssh-keygen -t ed25519 -C "your_email@example.com"
+    ssh-keygen -t ed25519 -C "pradipamanager@gmail.com"
 
 Note: If you are using a legacy system that doesn't support the Ed25519 algorithm, use:
 
