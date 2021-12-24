@@ -39,6 +39,15 @@ Then open your GitHub profile setting page. Go to SSH and GPG keys tab and add y
 
     cat ~/.ssh/id_ed25519.pub
 
+Now, create the configuration file for your ssh by running this command
+
+    nano ~/.ssh/config
+
+And add inside the configuration file these following lines
+
+    Host github.com
+        IdentityFile ~/.ssh/id_ed25519
+
 After adding your SSH key, you can now pull your repository with ease by running this command:
 
     git clone git@github.com:uzzybotak/pradipa-marketplace.git
