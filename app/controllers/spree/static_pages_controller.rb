@@ -1,6 +1,6 @@
 module Spree
   class StaticPagesController < Spree::StoreController
-    layout "spree/layouts/full_screen", only: [:coming_soon]
+    layout :resolve_layout
 
     def coming_soon
       @mailing = Mailing.new
@@ -47,6 +47,14 @@ module Spree
     end
 
     private
+
+      def resolve_layout
+        if action_name == "coming_soon"
+          "spree/layouts/full_screen"
+        else
+          "spree/layouts/spree_application"
+        end
+      end
 
       def set_user
         if !spree_current_user.nil?
