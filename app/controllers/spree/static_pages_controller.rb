@@ -3,6 +3,7 @@ module Spree
     layout "spree/layouts/full_screen", only: [:coming_soon]
 
     def coming_soon
+      @mailing = Mailing.new
     end
 
     def about
