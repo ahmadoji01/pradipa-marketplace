@@ -2,8 +2,6 @@ version: '3.8'
 services:
   db:
     image: postgres
-    env_file:
-      - .env
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
