@@ -13,6 +13,7 @@ module Spree
 
             respond_to do |format|
                 if @mailing.save
+                    MailingMailer.with(mailing: @mailing).preopening_subs.deliver_later
                     format.html { redirect_to current_path, success: "Your subscription has been added. We will keep you informed!" }
                     format.json { render :show, status: :created, location: current_path }
                 else
