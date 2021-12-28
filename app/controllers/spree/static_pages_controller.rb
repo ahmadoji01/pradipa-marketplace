@@ -1,5 +1,11 @@
 module Spree
   class StaticPagesController < Spree::StoreController
+    layout "spree/layouts/full_screen", only: [:coming_soon]
+
+    def coming_soon
+      @mailing = Mailing.new
+    end
+
     def about
     end
 
