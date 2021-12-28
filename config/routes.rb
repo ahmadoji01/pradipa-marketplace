@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get '/return-policy', :to => 'static_pages#return_policy', :as => 'return_policy_page'
     get '/faq', :to => 'static_pages#faq', :as => 'faq_page'
     get '/order-status', :to => 'static_pages#order_status', :as => 'order_status_page'
+    get '/how-to-order', :to => 'static_pages#how_to_order', :as => 'how_to_order_page'
     get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
     get '/coming-soon', :to => 'static_pages#coming_soon', :as => 'coming_soon_page'
