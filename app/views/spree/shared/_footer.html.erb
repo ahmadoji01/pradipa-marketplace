@@ -39,10 +39,14 @@
 
             <div class="col-xl-4 col-12 learts-mb-40">
                 <h5 class="widget-title mb-2">Newsletter</h5>
-                <form id="mc-form" class="mc-form widget-subscibe2">
-                    <input id="mc-email" autocomplete="off" type="email" placeholder="Enter your e-mail address">
-                    <button id="mc-submit" class="btn">subscribe</button>
-                </form>
+                <% mailing = Mailing.new %>
+                <%= form_for mailing, url: main_app.submit_mailing_path, html: { class: 'mc-form widget-subscibe2', method: :post } do |f| %>
+                    <%= f.text_field :email, class: 'bg-light', type: 'email', placeholder: 'Enter your e-mail address', required: true %>
+                    <button id="mc-submit" class="btn btn-dark">subscribe</button>
+                <% end %>
+                <% flash.each do |type, msg| %>
+                    <%= render partial: 'spree/shared/flash_message', locals: { message: msg, type: type } %>
+                <% end %>
                 
                 <div class="mailchimp-alerts text-centre">
                     <div class="mailchimp-submitting"></div>
