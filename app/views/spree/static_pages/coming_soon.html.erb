@@ -5,7 +5,7 @@
                 <a href="/"><%= image_tag "logo/logo-2.png" %></a>
             </div>
             <h2 class="title">Coming soon</h2>
-            <div class="countdown3" data-countdown="2022/01/01"></div>
+            <div class="countdown3" data-countdown="2022/02/01"></div>
             <div class="coming-soon-subscribe">
                 <%= form_for @mailing, url: main_app.submit_mailing_path, html: { class: 'mc-form widget-subscibe', method: :post } do |f| %>
                     <%= f.text_field :email, class: 'bg-light', type: 'email', placeholder: 'Enter your e-mail address', required: true %>
