@@ -2,6 +2,9 @@ module Spree
   class StaticPagesController < Spree::StoreController
     layout :resolve_layout
 
+    def how_to_order
+    end
+
     def coming_soon
       @mailing = Mailing.new
     end
