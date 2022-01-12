@@ -2,10 +2,7 @@
   <%= render partial: 'spree/producer_dashboard/elements/alert', locals: { message: msg, type: type } %>
 <% end %>
 <div class="row">
-    <div col="col-sm-12 col-md-6">
+    <div class="col-12">
         <%= render partial: 'spree/producer_dashboard/payment_info_form', locals: { info: @info } %>
-    </div>
-    <div col="col-sm-12 col-md-6">
-        <%= render partial: 'spree/producer_dashboard/account_info_form', locals: { account: @account } %>
     </div>
 </div>

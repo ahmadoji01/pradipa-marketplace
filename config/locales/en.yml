@@ -43,7 +43,7 @@ en:
     new_shipping_request: "Incoming shipping request. Click here"
   pd:
     home: "Home"
-    brand_info: "Brand Information"
+    brand_info: "Your Info"
     withdrawal: "Withdrawal"
     wd_requests: "Withdrawals"
     submit_wd: "Submit Withdrawal"
@@ -60,6 +60,12 @@ en:
     bank_account_number: "Bank Account Number"
     address: "Address"
     country: "Country"
+    account_info: "Account Info"
+    account_info_msg: "Below are your account information where we could reach you"
+    email: "Email"
+    current_password: "Password (Leave blank to unchange)"
+    new_password: "New Password (Leave blank to unchange)"
+    confirm_new_password: "Confirm New Password (Leave blank to unchange)"
   spree:
     admin:
       tab:
