@@ -13,6 +13,7 @@ module Spree
       @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => @user.id}).last(5)
       @shipped_items = count_shipped_items(@line_items)
       @info = Spree::Withdrawal.where(:user_id => @user.id)
+      @requests = OrderNotification.where(notif_type: "shipping_request", user_id: @user.id, status: 'pending')
       @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}).last(5)
       @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id).last(5)
       count_balance(@wd_balances)

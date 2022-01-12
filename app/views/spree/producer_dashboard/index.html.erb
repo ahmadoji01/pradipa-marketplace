@@ -10,8 +10,8 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12 grid-margin stretch-card">
-    <%= render partial: 'spree/producer_dashboard/elements/orders_table', locals: { line_items: @line_items, home: true } %>
+  <div class="col-md-12 mb-4">
+    <%= render partial: 'spree/producer_dashboard/elements/shipping_requests_table', locals: { requests: @requests } %>
   </div>
 </div>
 
