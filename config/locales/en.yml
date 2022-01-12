@@ -66,6 +66,15 @@ en:
     current_password: "Password (Leave blank to unchange)"
     new_password: "New Password (Leave blank to unchange)"
     confirm_new_password: "Confirm New Password (Leave blank to unchange)"
+    ask_for_withdrawal: "Ask for Withdrawal"
+    ask_for_withdrawal_msg: "Input the number you would like to withdraw and submit to us"
+    withdrawal_summary: "Withdrawal Summary"
+    withdrawal_summary_msg: "See how much you have balance in your account after fulfilling the orders"
+    balance: "Total Balance"
+    wd_balance: "Withdrawn Balance"
+    orders_fulfilled: "Orders Fulfilled"
+    can_withdraw: "You Can Withdraw"
+    submit_wd_request: "Submit Withdrawal Request"
   spree:
     admin:
       tab:
