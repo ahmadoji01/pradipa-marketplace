@@ -30,6 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  submit: "Submit"
   hello: "Hello world"
   error_msg:
     title_404: "Your requested page is not found"
@@ -52,6 +53,13 @@ en:
     support: "Support"
     shipping_requests: "Shipping Requests"
     all_notifications: "All Notifications"
+    payment_info_for_wd: "Payment Info for Withdrawal"
+    enter_bank_account_info_for_wd: "Enter your bank account information where we can send the withdrawal to you"
+    full_name: "Full Name"
+    bank_name: "Bank Name"
+    bank_account_number: "Bank Account Number"
+    address: "Address"
+    country: "Country"
   spree:
     admin:
       tab:
