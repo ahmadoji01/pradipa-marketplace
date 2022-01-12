@@ -212,6 +212,16 @@ module Spree
       end
     end
 
+    def update_notif_read_status
+      notifs = OrderNotification.where(user_id: spree_current_user.id, read: false)
+
+      notifs.each do |notif|
+        notif = OrderNotification.find(notif.id)
+        notif.read = true
+        notif.save
+      end
+    end
+
     private
 
       def notif_display(notification)
@@ -226,7 +236,12 @@ module Spree
       end
 
       def set_short_notifs
-        @short_notifs = OrderNotification.where(user_id: spree_current_user.id).last(3)
+        @is_notif_empty = false
+        @short_notifs = OrderNotification.where(user_id: spree_current_user.id, read: false)
+
+        if @short_notifs.empty?
+          @is_notif_empty = true
+        end
       end
 
       def set_avatar
