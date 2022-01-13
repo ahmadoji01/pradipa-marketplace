@@ -6,7 +6,13 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Orders</h4>
+        <h4 class="card-title">
+            <% if !home %>
+                <%= t('pd.shipping_request_title') %>
+            <% else %>
+                <%= t('pd.pending_shipment_title') %>
+            <% end %>
+        </h4>
         <div class="table-responsive">
             <table class="table table-hover">
                 <colgroup>
@@ -16,9 +22,9 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>Order Number</th>
-                        <th>Requested Products</th>
-                        <th>Status</th>
+                        <th><%= t('pd.order_number') %></th>
+                        <th><%= t('pd.requested_products') %></th>
+                        <th><%= t('pd.status') %></th>
                     </tr>
                 </thead>
                 <tbody>

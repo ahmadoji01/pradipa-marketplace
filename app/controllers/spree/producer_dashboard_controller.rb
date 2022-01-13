@@ -1,6 +1,5 @@
 module Spree
   class ProducerDashboardController < Spree::StoreController
-
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
     before_action :init_user
     before_action :authorize
@@ -13,6 +12,7 @@ module Spree
       @line_items = Spree::LineItem.joins(:product).where(:product => {:user_id => @user.id}).last(5)
       @shipped_items = count_shipped_items(@line_items)
       @info = Spree::Withdrawal.where(:user_id => @user.id)
+      @requests = OrderNotification.where(notif_type: "shipping_request", user_id: @user.id, status: 'pending')
       @wd_requests = Spree::WithdrawalRequest.joins(:withdrawal).where(:withdrawal => {:user_id => @user.id}).last(5)
       @wd_balances = Spree::WithdrawalBalance.where(:user_id => @user.id).last(5)
       count_balance(@wd_balances)
@@ -52,10 +52,10 @@ module Spree
 
       respond_to do |format|
         if @withdrawal.save
-          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, info: "Withdrawal was successfully updated." }
+          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, info: I18n.t('pd.payment_info_updated') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_payment_info_page_path }
         else
-          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @withdrawal.errors, status: :unprocessable_entity }
         end
       end
@@ -89,7 +89,7 @@ module Spree
     def create_wd_request
       @withdrawal = Spree::Withdrawal.where(:user_id => @user.id).first
       if @withdrawal.nil?
-        flash[:warning] = "You have to fill in your bank information where the withdrawal will be sent"
+        flash[:warning] = I18n.t('pd.wd_info_must_be_filled')
         redirect_to main_app.producer_dashboard_payment_info_page_path
         return
       end
@@ -98,14 +98,14 @@ module Spree
       @request.balance = params[:withdrawal_request][:balance]
 
       if @request.balance <= 0.0
-        flash[:warning] = "Withdrawal balance cannot be zero"
+        flash[:warning] = I18n.t('pd.wd_cannot_be_zero')
         redirect_to main_app.producer_dashboard_request_withdrawal_page_path
         return
       end
 
       if @request.balance > params[:withdrawal_request][:available_balance].to_d
         respond_to do |format|
-          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, warning: "Your requested withdrawal exceeds the available balance" }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, warning: I18n.t('pd.wd_exceeds_balance') }
         end
         return
       end
@@ -115,10 +115,10 @@ module Spree
       
       respond_to do |format|
         if @request.save
-          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, info: "Withdrawal request was successfully created." }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, info: I18n.t('pd.wd_request_created') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_request_withdrawal_page_path }
         else
-          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @request.errors, status: :unprocessable_entity }
         end
       end
@@ -136,10 +136,10 @@ module Spree
 
       respond_to do |format|
         if @ticket.save
-          format.html { redirect_to main_app.producer_dashboard_support_page_path, info: "Ticket was successfully created. We will reach you via your email" }
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, info: I18n.t('pd.ticket_created') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_support_page_path }
         else
-          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @ticket.errors, status: :unprocessable_entity }
         end
       end
@@ -147,6 +147,12 @@ module Spree
 
     def brand_info
       set_brand()
+
+      if spree_current_user.bill_address.nil?
+        @address = Spree::Address.build_default
+      else
+        @address = spree_current_user.bill_address
+      end
     end
 
     def submit_brand_info
@@ -159,10 +165,25 @@ module Spree
 
       respond_to do |format|
         if @brand.save
-          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: "Brand info was successfully updated" }
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: I18n.t('pd.brand_info_updated') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_brand_info_page_path }
         else
-          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: I18n.t('pd.server_error') }
+          format.json { render json: @brand.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def submit_contact_info
+      @address = Spree::Address.new(bill_address_params)
+      @user.bill_address = @address
+
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: I18n.t('pd.contact_info_updated') }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_brand_info_page_path }
+        else
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @brand.errors, status: :unprocessable_entity }
         end
       end
@@ -203,12 +224,22 @@ module Spree
 
       respond_to do |format|
         if @request.save
-          format.html { redirect_to main_app.producer_dashboard_shipping_request_page_path(@request), info: "Notification was successfully updated" }
+          format.html { redirect_to main_app.producer_dashboard_shipping_request_page_path(@request), info: I18n.t('pd.notif_updated') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_shipping_request_page_path(@request) }
         else
-          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @request.errors, status: :unprocessable_entity }
         end
+      end
+    end
+
+    def update_notif_read_status
+      notifs = OrderNotification.where(user_id: spree_current_user.id, read: false)
+
+      notifs.each do |notif|
+        notif = OrderNotification.find(notif.id)
+        notif.read = true
+        notif.save
       end
     end
 
@@ -226,7 +257,12 @@ module Spree
       end
 
       def set_short_notifs
-        @short_notifs = OrderNotification.where(user_id: spree_current_user.id).last(3)
+        @is_notif_empty = false
+        @short_notifs = OrderNotification.where(user_id: spree_current_user.id, read: false)
+
+        if @short_notifs.empty?
+          @is_notif_empty = true
+        end
       end
 
       def set_avatar
@@ -282,6 +318,14 @@ module Spree
       def brand_params
         if params[:brand] && !params[:brand].empty?
           params.require(:brand).permit(:id, :user_id, :name, :description, :brand_banner, :brand_photo)
+        else
+          {}
+        end
+      end
+
+      def bill_address_params
+        if params[:address] && !params[:address].empty?
+          params.require(:address).permit(:id, :user_id, :name, :company, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :alternative_phone)
         else
           {}
         end

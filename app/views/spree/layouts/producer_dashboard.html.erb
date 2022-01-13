@@ -11,12 +11,14 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">   
         <%= stylesheet_link_tag 'producer-dashboard-style' %>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-        <%= stylesheet_link_tag 'font-awesome-pro.min' %> 
-        <link rel="shortcut icon" href="images/favicon.png" />
+        <%= stylesheet_link_tag 'font-awesome-pro.min' %>
+        <%= stylesheet_link_tag 'spree/frontend/all', media: 'screen' %>
+        <%= javascript_include_tag 'spree/frontend/all' %>
+        <%= csrf_meta_tag %>
+        <%= javascript_pack_tag :application %> 
+        <%= favicon_link_tag 'favicon.png' %>
     </head>
     <body>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <div class="container-scroller">
             <%= render partial: 'spree/producer_dashboard/navbar' %>
             <div class="container-fluid page-body-wrapper">
@@ -31,6 +33,8 @@
         </div>
 
         <!-- plugins:js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script><!-- endinject -->
         <!-- Plugin js for this page -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
