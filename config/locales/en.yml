@@ -96,6 +96,16 @@ en:
     support_body: "How could we help you?"
     support_title: "Title"
     support_change_product_info: "To request for changing your products information, fill in the Title column with 'Change Products Info: ' then followed by your products' name. In the Body column, write the explanation of what informations you want to change"
+    wd_info_updated: "Withdrawal was successfully updated"
+    server_error: "Whoops, it is on us. We cannot process your request. Please try again"
+    wd_cannot_be_zero: "Withdrawal balance cannot be zero"
+    wd_info_must_be_filled: "You have to fill in your bank information where the withdrawal will be sent"
+    wd_exceeds_balance: "Your requested withdrawal exceeds the available balance"
+    wd_request_created: "Withdrawal request was successfully created"
+    ticket_created: "Ticket was successfully created. We will reach you via your email"
+    brand_info_updated: "Brand info was successfully updated"
+    notif_updated: "Notification was successfully updated"
+    payment_info_updated: "Payment info was successfully updated"
   spree:
     admin:
       tab:

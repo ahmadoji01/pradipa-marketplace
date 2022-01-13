@@ -1,6 +1,5 @@
 module Spree
   class ProducerDashboardController < Spree::StoreController
-
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
     before_action :init_user
     before_action :authorize
@@ -53,10 +52,10 @@ module Spree
 
       respond_to do |format|
         if @withdrawal.save
-          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, info: "Withdrawal was successfully updated." }
+          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, info: I18n.t('pd.payment_info_updated') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_payment_info_page_path }
         else
-          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_payment_info_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @withdrawal.errors, status: :unprocessable_entity }
         end
       end
@@ -90,7 +89,7 @@ module Spree
     def create_wd_request
       @withdrawal = Spree::Withdrawal.where(:user_id => @user.id).first
       if @withdrawal.nil?
-        flash[:warning] = "You have to fill in your bank information where the withdrawal will be sent"
+        flash[:warning] = I18n.t('pd.wd_info_must_be_filled')
         redirect_to main_app.producer_dashboard_payment_info_page_path
         return
       end
@@ -99,14 +98,14 @@ module Spree
       @request.balance = params[:withdrawal_request][:balance]
 
       if @request.balance <= 0.0
-        flash[:warning] = "Withdrawal balance cannot be zero"
+        flash[:warning] = I18n.t('pd.wd_cannot_be_zero')
         redirect_to main_app.producer_dashboard_request_withdrawal_page_path
         return
       end
 
       if @request.balance > params[:withdrawal_request][:available_balance].to_d
         respond_to do |format|
-          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, warning: "Your requested withdrawal exceeds the available balance" }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, warning: I18n.t('pd.wd_exceeds_balance') }
         end
         return
       end
@@ -116,10 +115,10 @@ module Spree
       
       respond_to do |format|
         if @request.save
-          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, info: "Withdrawal request was successfully created." }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, info: I18n.t('pd.wd_request_created') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_request_withdrawal_page_path }
         else
-          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_request_withdrawal_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @request.errors, status: :unprocessable_entity }
         end
       end
@@ -137,10 +136,10 @@ module Spree
 
       respond_to do |format|
         if @ticket.save
-          format.html { redirect_to main_app.producer_dashboard_support_page_path, info: "Ticket was successfully created. We will reach you via your email" }
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, info: I18n.t('pd.ticket_created') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_support_page_path }
         else
-          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @ticket.errors, status: :unprocessable_entity }
         end
       end
@@ -160,10 +159,10 @@ module Spree
 
       respond_to do |format|
         if @brand.save
-          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: "Brand info was successfully updated" }
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: I18n.t('pd.brand_info_updated') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_brand_info_page_path }
         else
-          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @brand.errors, status: :unprocessable_entity }
         end
       end
@@ -204,10 +203,10 @@ module Spree
 
       respond_to do |format|
         if @request.save
-          format.html { redirect_to main_app.producer_dashboard_shipping_request_page_path(@request), info: "Notification was successfully updated" }
+          format.html { redirect_to main_app.producer_dashboard_shipping_request_page_path(@request), info: I18n.t('pd.notif_updated') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_shipping_request_page_path(@request) }
         else
-          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: "Whoops, it is on us. We cannot process your request. Please try again" }
+          format.html { redirect_to main_app.producer_dashboard_support_page_path, danger: I18n.t('pd.server_error') }
           format.json { render json: @request.errors, status: :unprocessable_entity }
         end
       end
