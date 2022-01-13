@@ -106,6 +106,7 @@ en:
     brand_info_updated: "Brand info was successfully updated"
     notif_updated: "Notification was successfully updated"
     payment_info_updated: "Payment info was successfully updated"
+    contact_info_updated: "Contact info was successfully updated"
   spree:
     admin:
       tab:

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     post '/producer_dashboard/create_wd_request', :to => 'producer_dashboard#create_wd_request'
     post '/producer_dashboard/submit_ticket', :to => 'producer_dashboard#submit_ticket'
     post '/producer_dashboard/submit_brand_info', :to => 'producer_dashboard#submit_brand_info'
+    post '/producer_dashboard/submit_contact_info', :to => 'producer_dashboard#submit_contact_info'
     put '/producer_dashboard/update_notif', :to => 'producer_dashboard#update_notif'
     patch '/producer_dashboard/update_notif_read_status', :to => 'producer_dashboard#update_notif_read_status'
 

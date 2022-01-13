@@ -147,6 +147,12 @@ module Spree
 
     def brand_info
       set_brand()
+
+      if spree_current_user.bill_address.nil?
+        @address = Spree::Address.build_default
+      else
+        @address = spree_current_user.bill_address
+      end
     end
 
     def submit_brand_info
@@ -160,6 +166,21 @@ module Spree
       respond_to do |format|
         if @brand.save
           format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: I18n.t('pd.brand_info_updated') }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_brand_info_page_path }
+        else
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: I18n.t('pd.server_error') }
+          format.json { render json: @brand.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def submit_contact_info
+      @address = Spree::Address.new(bill_address_params)
+      @user.bill_address = @address
+
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: I18n.t('pd.contact_info_updated') }
           format.json { render :show, status: :created, location: main_app.producer_dashboard_brand_info_page_path }
         else
           format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: I18n.t('pd.server_error') }
@@ -297,6 +318,14 @@ module Spree
       def brand_params
         if params[:brand] && !params[:brand].empty?
           params.require(:brand).permit(:id, :user_id, :name, :description, :brand_banner, :brand_photo)
+        else
+          {}
+        end
+      end
+
+      def bill_address_params
+        if params[:address] && !params[:address].empty?
+          params.require(:address).permit(:id, :user_id, :name, :company, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :alternative_phone)
         else
           {}
         end

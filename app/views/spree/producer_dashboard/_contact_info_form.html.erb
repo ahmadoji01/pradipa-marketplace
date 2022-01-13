@@ -1,0 +1,19 @@
+<% account ||= spree_current_user
+%>
+
+<div class="card m-2">
+    <div class="card-body">
+        <h4 class="card-title"><%= t('pd.account_info') %></h4>
+        <p class="card-description">
+            <%= t('pd.account_info_msg') %>
+        </p>
+        <div id="checkout_form_address" class="columns alpha six" data-hook="billing_fieldset_wrapper">
+            <div id="billing" data-hook>
+                <%= form_for @address, url: main_app.producer_dashboard_submit_contact_info_path, html: { method: :post } do |bill_form| %>
+                    <%= render partial: 'spree/producer_dashboard/elements/address_form', locals: { form: bill_form, address_type: 'billing', address: @address } %>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
