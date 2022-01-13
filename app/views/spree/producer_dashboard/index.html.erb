@@ -3,7 +3,11 @@
         <div class="row">
             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                 <h3 class="font-weight-bold">Welcome!</h3>
-                <h6 class="font-weight-normal mb-0">You have <span class="text-primary">3 incoming orders!</span></h6>
+                <h6 class="font-weight-normal mb-0"><%= t('pd.intro_prefix') %> 
+                  <%= link_to main_app.producer_dashboard_shipping_requests_page_path do %>
+                    <span class="text-primary"><b><%= @requests.length %> <%= t('pd.intro_suffix') %></b></span>
+                  <% end %>
+                </h6>
             </div>
         </div>
     </div>
@@ -11,7 +15,7 @@
 
 <div class="row">
   <div class="col-md-12 mb-4">
-    <%= render partial: 'spree/producer_dashboard/elements/shipping_requests_table', locals: { requests: @requests } %>
+    <%= render partial: 'spree/producer_dashboard/elements/shipping_requests_table', locals: { requests: @requests, home: true } %>
   </div>
 </div>
 

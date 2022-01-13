@@ -11,28 +11,32 @@
         </p>
         <div class="table-responsive">
             <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Order Number</th>
-                        <th>Balance</th>
-                        <th>Shipping Cost</th>
-                        <th>Tax</th>
-                        <th>Handling Fee</tf>
-                        <th>Net Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% wd_balances.each do |wd_balance| %>
+                <% if !wd_balances.empty? %>
+                    <thead>
                         <tr>
-                            <td><%= wd_balance.order.number %></td>
-                            <td><%= wd_balance.balance %></td>
-                            <td><%= wd_balance.shipping %></td>
-                            <td><%= wd_balance.tax %></td>
-                            <td><%= wd_balance.handling_fee %></td>
-                            <td><%= wd_balance.total %></td>
+                            <th>Order Number</th>
+                            <th>Balance</th>
+                            <th>Shipping Cost</th>
+                            <th>Tax</th>
+                            <th>Handling Fee</th>
+                            <th>Net Total</th>
                         </tr>
-                    <% end %>
-                </tbody>
+                    </thead>
+                    <tbody>
+                        <% wd_balances.each do |wd_balance| %>
+                            <tr>
+                                <td><%= wd_balance.order.number %></td>
+                                <td><%= wd_balance.balance %></td>
+                                <td><%= wd_balance.shipping %></td>
+                                <td><%= wd_balance.tax %></td>
+                                <td><%= wd_balance.handling_fee %></td>
+                                <td><%= wd_balance.total %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                <% else %>
+                    <h6><%= t('pd.withdrawal_balance_empty') %></h6>
+                <% end %>
             </table>
         </div>
     </div>

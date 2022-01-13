@@ -75,6 +75,15 @@ en:
     orders_fulfilled: "Orders Fulfilled"
     can_withdraw: "You Can Withdraw"
     submit_wd_request: "Submit Withdrawal Request"
+    intro_prefix: "You have"
+    intro_suffix: "pending order(s) waiting to be shipped!"
+    shipping_request_title: "Shipping Requests"
+    pending_shipment_title: "Orders Waiting for You to be Shipped!"
+    order_number: "Order Number"
+    requested_products: "Requested Products"
+    status: "Status"
+    withdrawal_request_empty: "You have no history of requesting withdrawal"
+    withdrawal_balance_empty: "You have no history of having withdrawal balance"
   spree:
     admin:
       tab:
