@@ -3,18 +3,21 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Products</h4>
+        <h4 class="card-title"><%= t('pd.products') %></h4>
         <p class="card-description">
-            Below are your products available on our store
+            <%= t('pd.products_desc') %>
+        </p>
+        <p class="card-description">
+            <a href="<%= main_app.producer_dashboard_support_page_path %>" class="btn btn-primary mr-2"><%= t('pd.click_to_change_products') %></a>
         </p>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Default Price</th>
-                        <th>Variants</th>
+                        <th><%= t('pd.image') %></th>
+                        <th><%= t('pd.name') %></th>
+                        <th><%= t('pd.default_price') %></th>
+                        <th><%= t('pd.variants') %></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,10 +27,21 @@
                                 <%= image_tag product.gallery.images.first.try(:url, :mini) %>
                             </td>
                             <td><%= product.name.truncate(75) %></td>
-                            <td class="text-danger">$<%= product.price %></td>
+                            <td class="text-danger">
+                                <% if price = product.price_for(current_pricing_options) %>
+                                    <span class="price selling" itemprop="price" content="<%= price.to_d %>">
+                                        <%= price.to_html %>
+                                    </span>
+                                <% end %>
+                            </td>
                             <td>
                                 <% product.variants.each do |variant| %>
-                                    <%= variant.options_text %>, Price: $<%= variant.price %><br>
+                                    <%= variant.options_text %>, 
+                                    <% if price = variant.price_for(current_pricing_options) %>
+                                        <span class="price selling" itemprop="price" content="<%= price.to_d %>">
+                                            Price: <%= price.to_html %>
+                                        </span>
+                                    <% end %><br>
                                 <% end %>
                             </td>
                         </tr>

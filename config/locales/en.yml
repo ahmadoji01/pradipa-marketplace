@@ -84,6 +84,18 @@ en:
     status: "Status"
     withdrawal_request_empty: "You have no history of requesting withdrawal"
     withdrawal_balance_empty: "You have no history of having withdrawal balance"
+    products_desc: "Below are your products available on our store"
+    image: "Image"
+    name: "Name"
+    default_price: "Default Price"
+    variants: "Variants"
+    click_to_change_products: "Click here if you want to change some product infos"
+    send_message_for_support: "Send us message for your support"
+    support_desc: "Describe the supports you would like to have, we will reach you through your email"
+    support_image: "Send us image to help you better"
+    support_body: "How could we help you?"
+    support_title: "Title"
+    support_change_product_info: "To request for changing your products information, fill in the Title column with 'Change Products Info: ' then followed by your products' name. In the Body column, write the explanation of what informations you want to change"
   spree:
     admin:
       tab:

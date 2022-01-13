@@ -1,23 +1,24 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Send us message for your support</h4>
+            <h4 class="card-title"><%= t('pd.send_message_for_support') %></h4>
             <p class="card-description">
-                Describe the supports you would like to have, we will reach you through your email
+                <%= t('pd.support_desc') %><br>
+                <%= t('pd.support_change_product_info') %>
             </p>
 
             <%= form_for @ticket, url: main_app.producer_dashboard_submit_ticket_path, html: { method: :post } do |f| %>
                 <%= f.hidden_field :user_id, value: spree_current_user.id, required: true %>
                 <div class="form-group">
-                    <label for="payment-full-name">Title</label>
+                    <label for="payment-full-name"><%= t('pd.support_title') %></label>
                     <%= f.text_field :title, class: 'form-control', required: true %>
                 </div>
                 <div class="form-group">
-                    <label for="exampleTextarea1">How could we help you?</label>
+                    <label for="exampleTextarea1"><%= t('pd.support_body') %></label>
                     <%= f.text_area :body, class: 'form-control', required: true, rows: 4 %>
                 </div>
                 <div class="form-group">
-                    <label>Send us image to help you better</label>
+                    <label><%= t('pd.support_image') %></label>
                     <div class="row">
                         <div class="col-12">
                             <%= image_tag(@ticket.picture_url) if @ticket.picture? %>
@@ -29,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button type="submit" class="btn btn-primary mr-2"><%= t('submit') %></button>
             <% end %>
         </div>
     </div>
