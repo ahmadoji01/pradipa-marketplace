@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
 
   def coming_soon
-    if ENV["RAILS_COMING_SOON"] == "true" && !request.path.include?("admin") && !request.path.include?("submit_mailing")
+    if ENV["RAILS_COMING_SOON"] == "true" && !request.path.include?("admin") && !request.path.include?("submit_mailing") && !request.path.include?("blogs")
       if spree_current_user.nil?
         redirect_to main_app.coming_soon_page_path
         return
