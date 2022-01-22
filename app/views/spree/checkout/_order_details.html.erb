@@ -2,34 +2,36 @@
   <div class="container">
     <div data-hook="inside_cart_form">
       <div data-hook="cart_items">
-        <table class="cart-wishlist-table table">
-            <thead>
-              <tr>
-                <th class="name" colspan="2"><%= t('spree.item') %></th>
-                <th class="price"><%= t('spree.price') %></th>
-                <th class="quantity"><%= t('spree.qty') %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% order.line_items.each do |item| %>
-                <tr class="<%= cycle('', 'alt') %> line-item">
-                  <td class="thumbnail"><%= link_to(render('spree/shared/image',
-                    image: (item.variant.gallery.images.first || item.variant.product.gallery.images.first),
-                    size: :small), item.variant.product) %></td>
-                  <td class="name">
-                    <%= link_to item.name, product_path(item.variant.product) %><br>
-                    <%= "(" + item.variant.options_text + ")" unless item.variant.option_values.empty? %>
-                  </td>
-                  <td class="price"><span><%= item.single_money.to_html %></span></td>
-                  <td class="quantity">
-                      <div class="product-quantity">
-                          <%= item.quantity %>
-                      </div>
-                  </td>
+        <% if !mobile_device? %>
+          <table class="cart-wishlist-table table">
+              <thead>
+                <tr>
+                  <th class="name" colspan="2"><%= t('spree.item') %></th>
+                  <th class="price"><%= t('spree.price') %></th>
+                  <th class="quantity"><%= t('spree.qty') %></th>
                 </tr>
-              <% end %>
-            </tbody>
-        </table>
+              </thead>
+              <tbody>
+                <% order.line_items.each do |item| %>
+                  <tr class="<%= cycle('', 'alt') %> line-item">
+                    <td class="thumbnail"><%= link_to(render('spree/shared/image',
+                      image: (item.variant.gallery.images.first || item.variant.product.gallery.images.first),
+                      size: :small), item.variant.product) %></td>
+                    <td class="name">
+                      <%= link_to item.name, product_path(item.variant.product) %><br>
+                      <%= "(" + item.variant.options_text + ")" unless item.variant.option_values.empty? %>
+                    </td>
+                    <td class="price"><span><%= item.single_money.to_html %></span></td>
+                    <td class="quantity">
+                        <div class="product-quantity">
+                            <%= item.quantity %>
+                        </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        <% end %>
         <div class="row mt-4">
           <div class="col">
             <div class="checkout-totals" style="<%= if mobile_device? then 'width:100%' end%>">

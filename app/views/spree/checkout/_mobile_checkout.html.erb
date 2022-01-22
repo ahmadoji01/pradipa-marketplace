@@ -53,6 +53,9 @@
                             <% end %>
                             <% if @order.state == 'payment' then %>
                                 <div class="card accordion-item">
+                                    <div class="order-review">
+                                        <%= render partial: 'order_details', locals: { order: @order } %>
+                                    </div>
                                     <div class="card-header accordion-header">
                                         <h6 style="padding-left:20px;margin-top:15px">What's your payment information?</h6>
                                     </div>
