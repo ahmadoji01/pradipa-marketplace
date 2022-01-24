@@ -74,7 +74,7 @@ Rails.application.configure do
   # SMTP settings for zohomail
   config.action_mailer.smtp_settings = {
     :address              => "smtp.zoho.com",
-    :port                 => 587,
+    :port                 => 465,
     :domain               => "pradipa.co",
     :user_name            => 'no-reply@pradipa.co',
     :password             => 'TLukXsyA9qhU',
