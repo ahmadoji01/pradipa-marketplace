@@ -71,16 +71,29 @@ Rails.application.configure do
   host = 'pradipa.co'
   config.action_mailer.default_url_options = { host: host }
 
-  # SMTP settings for gmail
+  # SMTP settings for zohomail
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => "smtp.zoho.com",
     :port                 => 587,
-    :domain               => "gmail.com",
-    :user_name            => 'pradipamanager@gmail.com',
-    :password             => 'ggpftervsbsoteht',
+    :domain               => "pradipa.co",
+    :user_name            => 'no-reply@pradipa.co',
+    :password             => '9S$?U^x_U=c*9bH',
     :authentication       => "plain",
-    :enable_starttls_auto => true
+    :enable_starttls_auto => true, 
+    :ssl                  => true, 
+    :tls                  => true
   }
+
+  # SMTP settings for gmail
+  # config.action_mailer.smtp_settings = {
+  #   :address              => "smtp.gmail.com",
+  #   :port                 => 587,
+  #   :domain               => "gmail.com",
+  #   :user_name            => 'pradipamanager@gmail.com',
+  #   :password             => 'ggpftervsbsoteht',
+  #   :authentication       => "plain",
+  #   :enable_starttls_auto => true
+  # }
 
   # SMTP settings for privateemail
   # config.action_mailer.smtp_settings = {
