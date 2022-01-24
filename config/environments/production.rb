@@ -77,7 +77,7 @@ Rails.application.configure do
     :port                 => 587,
     :domain               => "pradipa.co",
     :user_name            => 'no-reply@pradipa.co',
-    :password             => '9S$?U^x_U=c*9bH',
+    :password             => 'TLukXsyA9qhU',
     :authentication       => "plain",
     :enable_starttls_auto => true, 
     :ssl                  => true, 
