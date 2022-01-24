@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'support@pradipa.co'
+  default from: 'Pradipa.co <support@pradipa.co>'
   layout 'mailer'
 end
