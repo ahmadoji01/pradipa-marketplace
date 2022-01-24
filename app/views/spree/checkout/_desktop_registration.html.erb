@@ -20,7 +20,9 @@
                             </div>
                             <div id="faq-accordion-2" class="accordion-collapse collapse show" data-bs-parent="#faq-accordion">
                               <div class="card-body accordion-body">
-                                <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
+                                <% flash.each do |type, msg| %>
+                                  <%= render partial: 'spree/shared/flash_message', locals: { message: msg, type: type } %>
+                                <% end %>
                                 <div id="registration" data-hook>
                                   <div id="account" class="columns alpha eight">
                                     <%= render partial: 'checkout_register' %>
