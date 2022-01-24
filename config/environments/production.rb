@@ -67,20 +67,20 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   host = 'pradipa.co'
-  config.action_mailer.default_url_options = { host: host }
 
   # SMTP settings for zohomail
   config.action_mailer.smtp_settings = {
-    :address              => "smtppro.zoho.com",
+    :address              => "smtp.zoho.com",
     :port                 => 465,
-    :domain               => "pradipa.co",
-    :user_name            => 'support@pradipa.co',
-    :password             => '3UQQJ5Cii9Ne',
+    :user_name            => "support@pradipa.co",
+    :password             => "3UQQJ5Cii9Ne",
     :authentication       => "login",
     :ssl                  => true,
-    :enable_starttls_auto => true 
+    :tls                  => true,
+    :enable_starttls_auto => true
   }
 
   # SMTP settings for gmail
