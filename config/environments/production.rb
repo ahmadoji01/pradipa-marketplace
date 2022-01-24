@@ -78,10 +78,9 @@ Rails.application.configure do
     :domain               => "pradipa.co",
     :user_name            => 'support@pradipa.co',
     :password             => '3UQQJ5Cii9Ne',
-    :authentication       => "plain",
-    :enable_starttls_auto => true, 
-    :ssl                  => true, 
-    :tls                  => true
+    :authentication       => "login",
+    :ssl                  => true,
+    :enable_starttls_auto => true 
   }
 
   # SMTP settings for gmail
