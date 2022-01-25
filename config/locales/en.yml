@@ -123,6 +123,7 @@ en:
         withdrawal: "Withdrawal"
         withdrawal_balance: "Withdrawal Balance"
         withdrawal_request: "Withdrawal Request"
+        currency_value: "Currency Value"
     producer:
       tab:
         order: "Your Order"

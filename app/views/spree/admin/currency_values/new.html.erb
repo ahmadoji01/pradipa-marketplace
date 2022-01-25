@@ -1,0 +1,13 @@
+<% admin_breadcrumb(link_to 'Currency Value', main_app.admin_currency_values_path) %>
+<% admin_breadcrumb('New Currency Value') %>
+
+<% content_for :page_actions do %>
+<% end %>
+<%= render partial: 'spree/shared/error_messages', locals: { target: @currency_value } %>
+<%= form_for @currency_value, url: main_app.admin_currency_values_path, html: { method: :post } do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+
+  <div class="clear"></div>
+
+  <%= render partial: 'spree/admin/shared/new_resource_links', locals: {collection_url: main_app.admin_currency_values_path} %>
+<% end %>

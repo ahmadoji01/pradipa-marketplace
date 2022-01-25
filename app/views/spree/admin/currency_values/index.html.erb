@@ -1,0 +1,88 @@
+<% admin_breadcrumb(link_to(plural_resource_name(CurrencyValue), main_app.admin_currency_values_path)) %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Blog Post', main_app.new_admin_currency_value_url, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= t('spree.filter') %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_currency_values_index_search">
+    <%= search_form_for @search, url: main_app.admin_currency_values_path do |f| %>
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="field">
+            <%= label_tag :currency_from_cont, 'From' %>
+            <%= f.text_field :currency_from_cont, value: params[:q][:currency_from_cont], size: 25 %>
+          </div>
+
+          <div class="field">
+            <%= label_tag :currency_to_cont, 'To' %>
+            <%= f.text_field :currency_to_cont, value: params[:q][:currency_to_cont], size: 25 %>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="field">
+              <%= label_tag :q_value_eq, 'Value' %>
+              <%= f.number_field :q_value_eq, value: params[:q][:value_eq], size: 25 %>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="actions filter-actions">
+        <div data-hook="admin_orders_index_search_buttons">
+          <%= button_tag t('spree.filter_results'), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @currency_values.any? %>
+  <table class="index" id="listing_orders" data-hook>
+    <colgroup>
+       <col style="width: 15%;">
+       <col style="width: 25%;">
+       <col style="width: 20%;">
+       <col style="width: 10%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_orders_index_headers">
+        <th><%= link_to "From", main_app.admin_currency_values_path(sort: "currency_from asc") %></th>
+        <th><%= link_to "To", main_app.admin_currency_values_path(sort: "currency_to asc") %></th>
+        <th><%= link_to "Value", main_app.admin_currency_values_path(sort: "value asc") %></th>
+        <th data-hook="admin_orders_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @currency_values.each do |curr_value| %>
+      <tr data-hook="admin_orders_index_rows">
+        <td><%= curr_value.currency_from %></td>
+        <td><%= curr_value.currency_to %></td>
+        <td><%= curr_value.value %></td>
+        <td class='actions align-center' data-hook="admin_orders_index_row_actions">
+          <%= link_to_edit_url main_app.edit_admin_currency_value_path(curr_value), title: "admin_edit_#{dom_id(curr_value)}", no_text: true %>
+          <%= link_to main_app.admin_currency_value_path(curr_value), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fa fa-trash"><% end %></td>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%= paginate @currency_values, theme: "solidus_admin" %>
+<% else %>
+  <div class="no-objects-found">
+    <% if can? :manage, CurrencyValue %>
+      <%= render 'spree/admin/shared/no_objects_found',
+                   resource: CurrencyValue,
+                   new_resource_url: main_app.new_admin_currency_value_path %>
+    <% end %>
+  </div>
+<% end %>

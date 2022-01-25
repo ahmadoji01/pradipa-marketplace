@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_062543) do
+ActiveRecord::Schema.define(version: 2022_01_25_075604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 2021_12_28_062543) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "parent_category_id"
     t.index ["parent_category_id"], name: "index_blog_categories_on_parent_category_id"
+  end
+
+  create_table "currency_values", force: :cascade do |t|
+    t.text "currency_from"
+    t.text "currency_to"
+    t.float "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|

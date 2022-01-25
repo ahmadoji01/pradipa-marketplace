@@ -1,0 +1,41 @@
+<% method ||= 'post' %>
+
+<% if @currency_value.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@currency_value.errors.count, "error") %> prohibited this currency value from being saved:</h2>
+
+    <ul>
+      <% @currency_value.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div data-hook="admin_ticket_form_fields">
+  <div class="row">
+    <div class="left col-9" data-hook="admin_withdrawal_form_fields">
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :currency_from do %>
+          <%= f.label :currency_from, class: 'required' %>
+          <%= f.text_field :currency_from, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :currency_to do %>
+          <%= f.label :currency_to, class: 'required' %>
+          <%= f.text_field :currency_to, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :value do %>
+          <%= f.label :value, class: 'required' %>
+          <%= f.number_field :value, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

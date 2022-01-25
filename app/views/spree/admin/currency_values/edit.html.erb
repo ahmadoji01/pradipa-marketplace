@@ -1,0 +1,17 @@
+<% admin_breadcrumb(link_to(plural_resource_name(CurrencyValue), main_app.admin_currency_values_path)) %>
+<% admin_breadcrumb('Edit Currency Value') %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Currency Value', main_app.new_admin_currency_value_url, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<%= form_for @currency_value, url: main_app.admin_currency_value_path, html: { method: :put } do |f| %>
+  <fieldset class="no-border-top">
+    <%= render 'form', f: f %>
+    <% if can? :update, @currency_value %>
+      <%= render partial: 'spree/admin/shared/edit_resource_links', locals: {collection_url: main_app.admin_currency_values_path} %>
+    <% end %>
+  </fieldset>
+<% end %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :currency_values
   resources :mailings
   match '/404', via: :all, to: 'errors#not_found'
   match '/422', via: :all, to: 'errors#unprocessable_entity'
@@ -56,6 +57,7 @@ Rails.application.routes.draw do
       resources :tickets
       resources :blogs
       resources :blog_categories
+      resources :currency_values
     end
   end
 
