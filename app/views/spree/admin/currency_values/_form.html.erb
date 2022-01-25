@@ -18,14 +18,20 @@
       <div data-hook="admin_withdrawal_request_form_withdrawal">
         <%= f.field_container :currency_from do %>
           <%= f.label :currency_from, class: 'required' %>
-          <%= f.text_field :currency_from, class: 'fullwidth title' %>
+          <%= f.select :currency_from,
+            Spree::Config.available_currencies.map(&:iso_code),
+            { include_blank: true },
+            { class: 'custom-select fullwidth' } %>
         <% end %>
       </div>
 
       <div data-hook="admin_withdrawal_request_form_withdrawal">
         <%= f.field_container :currency_to do %>
           <%= f.label :currency_to, class: 'required' %>
-          <%= f.text_field :currency_to, class: 'fullwidth title' %>
+          <%= f.select :currency_to,
+            Spree::Config.available_currencies.map(&:iso_code),
+            { include_blank: true },
+            { class: 'custom-select fullwidth' } %>
         <% end %>
       </div>
 

@@ -1,7 +1,7 @@
 module Spree
     module Admin
         class CurrencyValuesController < Spree::Admin::BaseController
-            before_action :set_currency_value, only: %i[ show edit update destroy ]
+            before_action :set_currency_value, only: %i[ edit update destroy ]
 
             def index
                 params[:q] ||= {}
@@ -27,6 +27,13 @@ module Spree
             def create
                 @currency_value = CurrencyValue.new(currency_value_params)
                 
+                @existing_curr_value = CurrencyValue.where(currency_from: @currency_value.currency_from, currency_to: @currency_value.currency_to)
+                if !@existing_curr_value.empty?
+                    flash[:error] = "Currency value already exists. Edit Instead"
+                    redirect_to main_app.edit_admin_currency_value_path(@existing_curr_value.first)
+                    return
+                end
+
                 respond_to do |format|
                     if @currency_value.save
                         format.html { redirect_to main_app.admin_currency_values_path, notice: "Currency value was successfully created." }
