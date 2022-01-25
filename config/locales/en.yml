@@ -43,7 +43,10 @@ en:
     new_shipping_request: "Incoming shipping request. Click here"
   pd:
     home: "Home"
-    brand_info: "Your Info"
+    your_account_info: "Your Account Info"
+    brand_info: "Brand Info"
+    contact_info: "Contact Info"
+    change_password: "Change Password"
     withdrawal: "Withdrawal"
     wd_requests: "Withdrawals"
     submit_wd: "Submit Withdrawal"

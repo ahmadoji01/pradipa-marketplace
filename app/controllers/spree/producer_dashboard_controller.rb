@@ -3,8 +3,8 @@ module Spree
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
     before_action :init_user
     before_action :authorize
-    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications, :show_shipping_request]
-    before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications, :show_shipping_request]
+    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :contact_info, :change_password, :shipping_requests, :notifications, :show_shipping_request]
+    before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :contact_info, :change_password, :shipping_requests, :notifications, :show_shipping_request]
     layout 'spree/layouts/producer_dashboard'
     attr_accessor :available_balance
 
@@ -155,6 +155,18 @@ module Spree
       end
     end
 
+    def contact_info
+      if spree_current_user.bill_address.nil?
+        @address = Spree::Address.build_default
+      else
+        @address = spree_current_user.bill_address
+      end
+    end
+
+    def change_password
+      
+    end
+
     def submit_brand_info
       @brand = Spree::Brand.where(user_id: spree_current_user.id).first
       if @brand.nil?
@@ -180,10 +192,10 @@ module Spree
 
       respond_to do |format|
         if @user.save
-          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: I18n.t('pd.contact_info_updated') }
-          format.json { render :show, status: :created, location: main_app.producer_dashboard_brand_info_page_path }
+          format.html { redirect_to main_app.producer_dashboard_contact_info_page, info: I18n.t('pd.contact_info_updated') }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_contact_info_page }
         else
-          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: I18n.t('pd.server_error') }
+          format.html { redirect_to main_app.producer_dashboard_contact_info_page, danger: I18n.t('pd.server_error') }
           format.json { render json: @brand.errors, status: :unprocessable_entity }
         end
       end
