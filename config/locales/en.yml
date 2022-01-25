@@ -42,6 +42,10 @@ en:
   notif:
     new_shipping_request: "Incoming shipping request. Click here"
   pd:
+    currency: "US Dollar"
+    currency_prefix: "USD"
+    currency_value_to_usd: "Kurs Rupiah ke US Dollar saat ini adalah "
+    welcome: "Welcome"
     home: "Home"
     your_account_info: "Your Account Info"
     brand_info: "Brand Info"

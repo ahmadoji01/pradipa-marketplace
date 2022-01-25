@@ -3,6 +3,7 @@ module Spree
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
     before_action :init_user
     before_action :authorize
+    before_action :set_default_locale
     before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :contact_info, :change_password, :shipping_requests, :notifications, :show_shipping_request]
     before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :contact_info, :change_password, :shipping_requests, :notifications, :show_shipping_request]
     layout 'spree/layouts/producer_dashboard'
@@ -256,6 +257,10 @@ module Spree
     end
 
     private
+
+      def set_default_locale
+        I18n.locale = :id
+      end
 
       def notif_display(notification)
         if notification.notif_type == "shipping_request"
