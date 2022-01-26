@@ -4,7 +4,7 @@
         <div class="input-group mb-4">
             <%= search_form_for @q, url: main_app.producer_dashboard_shipping_requests_page_path do |f| %>
                 <%= f.label 'Filter Status' %>
-                <%= f.select :status_eq, [ ['All', ''], ['Pending', 'pending'], ['Shipped', 'shipped'], ['Processing', 'processing'] ], 
+                <%= f.select :status_eq, [ [t('pd.all'), ''], [t('pd.pending'), 'pending'], [t('pd.shipped'), 'shipped'], [t('pd.processing'), 'processing'] ], 
                     {required: true, include_hidden: true}, class: 'form-control select2-basic content-search',
                     :onchange => 'this.form.submit()' %>
             <% end %>

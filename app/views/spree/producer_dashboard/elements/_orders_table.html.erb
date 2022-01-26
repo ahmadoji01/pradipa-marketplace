@@ -15,8 +15,8 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Product</th>
-                        <th>Quantity</th>
+                        <th><%= t('pd.product') %></th>
+                        <th><%= t('pd.quantity') %></th>
                         <th>Total</th>
                         <th>Status <i class="mdi mdi-arrow-down" /></th>
                     </tr>
@@ -25,13 +25,13 @@
                     <% line_items.each do |line_item| %>
                         <% if line_item.order.shipment_state == 'shipped'
                             badge = 'success'
-                            status = 'Shipped to Customer' 
+                            status = I18n.t('pd.shipped_to_customer') 
                            elsif line_item.order.shipment_state == 'ready' 
                             badge = 'info' 
-                            status = 'Ready to be Shipped' 
+                            status = I18n.t('pd.ready_to_ship') 
                            elsif line_item.order.shipment_state == 'pending' 
                             badge = 'warning'
-                            status = 'Pending' 
+                            status = I18n.t('pd.pending') 
                         end %>
                         <tr>
                             <td class="py-1">
@@ -39,7 +39,13 @@
                             </td>
                             <td><%= line_item.name %></td>
                             <td><%= line_item.quantity %></td>
-                            <td class="text-danger">$<%= line_item.quantity * line_item.price %></td>
+                            <td class="text-danger"><%= t('pd.currency_prefix') %> 
+                                <% if t('currency_code') != "USD" && !@currency_value.nil? %>
+                                    <%= line_item.quantity * line_item.price * @currency_value.value %>
+                                <% else %>
+                                    <%= line_item.quantity * line_item.price %>
+                                <% end %>
+                            </td>
                             <td><label class="badge badge-<%= badge %>"><%= status %></label></td>
                         </tr>
                     <% end %>

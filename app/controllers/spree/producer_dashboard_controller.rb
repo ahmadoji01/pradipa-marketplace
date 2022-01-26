@@ -4,7 +4,7 @@ module Spree
     before_action :init_user
     before_action :authorize
     before_action :set_default_settings
-    before_action :count_currency_value, only: [:index, :withdrawals, :withdrawal_balances, :request_withdrawal]
+    before_action :count_currency_value, only: [:index, :withdrawals, :withdrawal_balances, :request_withdrawal, :orders, :products]
     before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :contact_info, :change_password, :shipping_requests, :notifications, :show_shipping_request]
     before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :contact_info, :change_password, :shipping_requests, :notifications, :show_shipping_request]
     layout 'spree/layouts/producer_dashboard'
@@ -97,12 +97,22 @@ module Spree
       end
 
       @request = Spree::WithdrawalRequest.new
-      @request.balance = params[:withdrawal_request][:balance]
+      @request.balance = params[:withdrawal_request][:balance].to_d
 
       if @request.balance <= 0.0
         flash[:warning] = I18n.t('pd.wd_cannot_be_zero')
         redirect_to main_app.producer_dashboard_request_withdrawal_page_path
         return
+      end
+      
+      if I18n.t('currency_code') != 'USD'
+        currency_value = CurrencyValue.where(currency_from: 'USD', currency_to: I18n.t('currency_code'))
+      end
+
+      value = 1
+      if !currency_value.empty?
+        value = currency_value.first.value
+        @request.balance /= value 
       end
 
       if @request.balance > params[:withdrawal_request][:available_balance].to_d
@@ -439,7 +449,7 @@ module Spree
 
       def withdrawn_balance(wd_requests)
         wd_requests.each do |request|
-          if request.status == 'Completed' || request.status == 'Processing'
+          if request.status.downcase == 'completed' || request.status.downcase == 'processing'
             @wd_balance += request.balance
           end
         end

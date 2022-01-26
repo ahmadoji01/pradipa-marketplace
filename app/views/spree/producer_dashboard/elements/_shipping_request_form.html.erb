@@ -6,13 +6,13 @@
 
 <div class="card m-2">
     <div class="card-body">
-        <h4 class="card-title">Update Shipping Request</h4>
+        <h4 class="card-title"><%= t('pd.update_shipping_request') %></h4>
         <%= form_for @request, url: main_app.producer_dashboard_update_notif_path, html: { method: :put } do |f| %>
             <%= f.hidden_field :id, value: @request.id, required: true %>
             <div class="form-group">
                 <%= f.field_container :status do %>
                     <%= f.label :status, class: 'required' %>
-                    <%= f.select :status, options_for_select([ "processing", "shipped", "pending" ], @request.status), class: 'form-control select2-basic content-search' %>
+                    <%= f.select :status, options_for_select([ [t('pd.all'), ''], [t('pd.pending'), 'pending'], [t('pd.shipped'), 'shipped'], [t('pd.processing'), 'processing'] ], @request.status), class: 'form-control select2-basic content-search' %>
                 <% end %>
             </div>
             <button type="submit" class="btn btn-primary mr-2">Submit</button>

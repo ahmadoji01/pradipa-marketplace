@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-body">
-        <p class="card-title">Order Details</p>
+        <p class="card-title"><%= t('pd.order_details') %></p>
         <table class="w-100 mb-4">
             <thead>
                 <tr>
@@ -13,27 +13,27 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Number</td>
+                    <td><%= t('pd.number') %></td>
                     <td><%= order.number %></td>
                 </tr>
                 <tr>
-                    <td>Customer's Email</td>
+                    <td><%= t('pd.customer_email') %></td>
                     <td><%= order.email %></td>
                 </tr>
                 <tr>
-                    <td>Shipping Address</td>
+                    <td><%= t('pd.shipping_address') %></td>
                     <td><%= order.ship_address %></td>
                 </tr>
             </tbody>
         </table>
 
-        <p class="card-title">Requested Products</p>
+        <p class="card-title"><%= t('pd.requested_products') %></p>
         <table class="w-100">
             <thead>
                 <tr>
                     <th></th>
-                    <th>Name</th>
-                    <th>Quantity</th>
+                    <th><%= t('pd.name') %></th>
+                    <th><%= t('pd.quantity') %></th>
                 </tr>
             </thead>
             <tbody>

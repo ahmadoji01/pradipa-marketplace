@@ -5,7 +5,7 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Withdrawal Requests</h4>
+        <h4 class="card-title"><%= t('pd.withdrawal_requests') %></h4>
         <p class="card-description">
             <% if home %><a href="<%= main_app.producer_dashboard_withdrawals_page_path %>" class="btn btn-primary mr-2">See All Requests</a><% end %>
         </p>
@@ -14,10 +14,10 @@
                 <% if !wd_requests.empty? %>
                     <thead>
                         <tr>
-                            <th>Balance</th>
+                            <th><%= t('pd.balance') %></th>
                             <th>Status</th>
-                            <th>Requested At</th>
-                            <th>Completed At</th>
+                            <th><%= t('pd.requested_at') %></th>
+                            <th><%= t('pd.completed_at') %></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,13 @@
                                 badge = 'warning' 
                             end %>
                             <tr>
-                                <td>$<%= wd_request.balance %></td>
+                                <td><%= t('pd.currency_prefix') %> 
+                                    <% if t('currency_code') != "USD" && !@currency_value.nil? %>
+                                        <%= wd_request.balance * @currency_value.value %>
+                                    <% else %>
+                                        <%= wd_request.balance  %>
+                                    <% end %>
+                                </td>
                                 <td><label class="badge badge-<%= badge %>"><%= wd_request.status %></label></td>
                                 <td><%= wd_request.created_at %></td>
                                 <td><%= wd_request.completed_at %></td>
