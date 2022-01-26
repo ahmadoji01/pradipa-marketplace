@@ -12,23 +12,23 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Status</th>
+                        <th><%= t('pd.product') %></th>
+                        <th><%= t('pd.quantity') %></th>
+                        <th><%= t('pd.total') %></th>
+                        <th><%= t('pd.status') %></th>
                     </tr>
                 </thead>
                 <tbody>
                     <% line_items.each do |line_item| %>
                         <% if line_item.order.shipment_state == 'shipped'
                             badge = 'success'
-                            status = 'Shipped to Customer' 
+                            status = I18n.t('pd.shipped_to_customer') 
                            elsif line_item.order.shipment_state == 'ready' 
                             badge = 'info' 
-                            status = 'Ready to be Shipped' 
+                            status = I18n.t('pd.ready_to_ship') 
                            elsif line_item.order.shipment_state == 'pending' 
                             badge = 'warning'
-                            status = 'Pending' 
+                            status = I18n.t('pd.pending') 
                         end %>
                         <tr>
                             <td class="py-1">

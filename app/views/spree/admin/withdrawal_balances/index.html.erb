@@ -17,23 +17,15 @@
       <div class="row">
         <div class="field-block col-12 col-md-6 col-lg-4 col-xl-3">
           <div class="date-range-filter field">
-            <%= label_tag :q_created_at_gt, t('spree.date_range') %>
+            <%= label_tag :q_total_eq, 'Net Total' %>
             <div class="date-range-fields input-group">
-              <%= f.text_field :created_at_gt, class: 'datepicker form-control datepicker-from', value: params[:q][:created_at_gt], placeholder: t('spree.start') %>
-
-              <div class="input-group-prepend input-group-append">
-                <span class="input-group-text range-divider">
-                  <i class="fa fa-arrow-right"></i>
-                </span>
-              </div>
-
-              <%= f.text_field :created_at_lt, class: 'datepicker form-control datepicker-to', value: params[:q][:created_at_lt], placeholder: t('spree.stop') %>
+              <%= f.number_field :total_eq, class: 'form-control', value: params[:q][:created_at_gt] %>
             </div>
           </div>
 
           <div class="field">
             <%= label_tag :user_id_eq, 'Email' %>
-            <%= f.select :user_id_eq, Spree::User.all.map { |user| [user.email, user.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+            <%= f.select :user_id_eq, Spree::User.all.map { |user| [user.email, user.id] }, {include_blank: true}, class: 'form-control select2-basic content-search' %>
           </div>
         </div>
 

@@ -12,7 +12,7 @@
                     f: f,
                     amount_attr: :balance,
                     required: Spree::Config.require_master_price,
-                    currency: Spree::Config.default_pricing_options.currency %>
+                    currency: t('currency_code') %>
             <% end %>
             <button type="submit" class="btn btn-primary mt-4"><%= t('submit') %></button>
         <% end %>

@@ -1,23 +1,23 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Your Brand Information</h4>
+            <h4 class="card-title"><%= t('pd.your_brand_info') %></h4>
             <p class="card-description">
-                Tell us about your brand
+                <%= t('pd.tell_your_brand') %>
             </p>
 
             <%= form_for @brand, url: main_app.producer_dashboard_submit_brand_info_path, html: { method: :post } do |f| %>
                 <%= f.hidden_field :user_id, value: spree_current_user.id, required: true %>
                 <div class="form-group">
-                    <label for="payment-full-name">Brand Name</label>
+                    <label for="payment-full-name"><%= t('pd.brand_name') %></label>
                     <%= f.text_field :name, class: 'form-control', required: true %>
                 </div>
                 <div class="form-group">
-                    <label for="exampleTextarea1">How would you describe your brand?</label>
+                    <label for="exampleTextarea1"><%= t('pd.brand_describe') %></label>
                     <%= f.text_area :description, class: 'form-control', required: true, rows: 4 %>
                 </div>
                 <div class="form-group">
-                    <label>Select your brand logo</label>
+                    <label><%= t('pd.brand_logo') %></label>
                     <div class="row">
                         <div class="col-12">
                             <%= image_tag(@brand.brand_photo_url) if @brand.brand_photo? %>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Select banner for your brand</label>
+                    <label><%= t('pd.brand_banner') %></label>
                     <div class="row">
                         <div class="col-12">
                             <%= image_tag(@brand.brand_banner_url) if @brand.brand_banner? %>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button type="submit" class="btn btn-primary mr-2"><%= t('pd.submit') %></button>
             <% end %>
         </div>
     </div>

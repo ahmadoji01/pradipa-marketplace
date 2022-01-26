@@ -15,22 +15,57 @@
                     <thead>
                         <tr>
                             <th>Order Number</th>
-                            <th>Balance</th>
-                            <th>Shipping Cost</th>
-                            <th>Tax</th>
-                            <th>Handling Fee</th>
-                            <th>Net Total</th>
+                            <th><%= t('pd.balance') %></th>
+                            <th><%= t('pd.shipping_cost') %></th>
+                            <th><%= t('pd.tax') %></th>
+                            <th><%= t('pd.handling_fee') %></th>
+                            <th><%= t('pd.net_total') %></th>
                         </tr>
                     </thead>
                     <tbody>
                         <% wd_balances.each do |wd_balance| %>
                             <tr>
                                 <td><%= wd_balance.order.number %></td>
-                                <td><%= wd_balance.balance %></td>
-                                <td><%= wd_balance.shipping %></td>
-                                <td><%= wd_balance.tax %></td>
-                                <td><%= wd_balance.handling_fee %></td>
-                                <td><%= wd_balance.total %></td>
+                                <td>
+                                    <%= t('pd.currency_prefix') %> 
+                                    <% if t('currency_code') != "USD" && !@currency_value.nil? %>
+                                        <%= wd_balance.balance * @currency_value.value %>
+                                    <% else %>
+                                        <%= wd_balance.balance %>
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= t('pd.currency_prefix') %> 
+                                    <% if t('currency_code') != "USD" && !@currency_value.nil? %>
+                                        <%= wd_balance.shipping * @currency_value.value %>
+                                    <% else %>
+                                        <%= wd_balance.shipping %>
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= t('pd.currency_prefix') %> 
+                                    <% if t('currency_code') != "USD" && !@currency_value.nil? %>
+                                        <%= wd_balance.tax * @currency_value.value %>
+                                    <% else %>
+                                        <%= wd_balance.tax %>
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= t('pd.currency_prefix') %> 
+                                    <% if t('currency_code') != "USD" && !@currency_value.nil? %>
+                                        <%= wd_balance.handling_fee * @currency_value.value %>
+                                    <% else %>
+                                        <%= wd_balance.handling_fee %>
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= t('pd.currency_prefix') %> 
+                                    <% if t('currency_code') != "USD" && !@currency_value.nil? %>
+                                        <%= wd_balance.total * @currency_value.value %>
+                                    <% else %>
+                                        <%= wd_balance.total %>
+                                    <% end %>
+                                </td>
                             </tr>
                         <% end %>
                     </tbody>
