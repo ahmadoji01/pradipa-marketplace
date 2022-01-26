@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_075604) do
+ActiveRecord::Schema.define(version: 2022_01_25_100829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,15 @@ ActiveRecord::Schema.define(version: 2022_01_25_075604) do
     t.string "refund_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "producer_settings", force: :cascade do |t|
+    t.string "key"
+    t.string "value"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_producer_settings_on_user_id"
   end
 
   create_table "solidus_importer_imports", force: :cascade do |t|
@@ -1461,6 +1470,7 @@ ActiveRecord::Schema.define(version: 2022_01_25_075604) do
   add_foreign_key "blog_categories", "blog_categories", column: "parent_category_id"
   add_foreign_key "order_notifications", "spree_orders", column: "order_id"
   add_foreign_key "order_notifications", "spree_users", column: "user_id"
+  add_foreign_key "producer_settings", "spree_users", column: "user_id"
   add_foreign_key "spree_brands", "spree_users", column: "user_id"
   add_foreign_key "spree_products", "spree_users", column: "user_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"

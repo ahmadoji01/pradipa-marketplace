@@ -1,4 +1,7 @@
 id:
+  language_name: "Bahasa Indonesia"
+  flag: "🇲🇨"
+  currency_code: "IDR"
   submit: "Kirim"
   hello: "Halo dunia"
   error_msg:
@@ -13,7 +16,8 @@ id:
   pd:
     currency: "Rupiah Indonesia"
     currency_prefix: "Rp."
-    currency_value_to_usd: "Kurs Rupiah ke US Dollar saat ini adalah "
+    currency_value_to_usd: "Nilai mata uang "
+    language_updated: "Bahasa telah berhasil diganti"
     welcome: "Selamat Datang"
     home: "Rumah"
     your_account_info: "Info Akun Anda"
@@ -55,9 +59,9 @@ id:
     intro_prefix: "Anda punya"
     intro_suffix: "pesanan yang tertunda menunggu untuk dikirim!"
     shipping_request_title: "Permintaan Pengiriman"
-    pending_shipment_title: "Pesanan Menunggu Anda untuk Dikirim!"
+    pending_shipment_title: "Pesanan Berikut Menunggu Anda untuk Dikirim!"
     order_number: "Nomor Pesanan"
-    request_products: "Produk yang Diminta"
+    requested_products: "Produk yang Diminta"
     status: "Status"
     withdraw_request_empty: "Anda tidak memiliki riwayat pengajuan penarikan"
     withdraw_balance_empty: "Anda tidak memiliki riwayat penarikan saldo"

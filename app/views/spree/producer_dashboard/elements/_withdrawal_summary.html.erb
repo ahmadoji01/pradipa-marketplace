@@ -4,16 +4,22 @@
 <div class="card">
     <div class="card-body">
         <p class="card-title"><%= t('pd.withdrawal_summary') %></p>
-        <p class="font-weight-500"><% if I18n.locale != "en" %><%= t('pd.currency_value_to_usd') %>1 USD = <%= t('pd.currency_prefix') %> 14.000<% end %></p>
+        <p class="font-weight-500"><% if t('currency_code') != "USD" && !@currency_value.nil? %><%= t('pd.currency_value_to_usd') %>1 USD = <%= t('pd.currency_prefix') %> 14.000<% end %></p>
         <p class="font-weight-500"><%= t('pd.withdrawal_summary_msg') %></p>
         <div class="d-flex flex-wrap justify-content-center">
             <div class="mr-5 mt-3">
                 <p class="text-muted"><%= t('pd.balance') %></p>
-                <h3 class="text-primary fs-30 font-weight-medium"><%= t('pd.currency_prefix') %> <%= @balance %></h3>
+                <h3 class="text-primary fs-30 font-weight-medium">
+                    <%= t('pd.currency_prefix') %>
+                    <% if t('currency_code') != "USD" && !@currency_value.nil? %><%= @balance * @currency_value.value %><% else %><% @balance %><% end %>
+                </h3>
             </div>
             <div class="mr-5 mt-3">
                 <p class="text-muted"><%= t('pd.wd_balance') %></p>
-                <h3 class="text-primary fs-30 font-weight-medium"><%= t('pd.currency_prefix') %> <%= @wd_balance %></h3>
+                <h3 class="text-primary fs-30 font-weight-medium">
+                    <%= t('pd.currency_prefix') %> 
+                    <% if t('currency_code') != "USD" && !@currency_value.nil? %><%= @wd_balance * @currency_value.value %><% else %><% @wd_balance %><% end %>
+                </h3>
             </div>
             <div class="mr-5 mt-3">
                 <p class="text-muted"><%= t('pd.orders_fulfilled') %></p>
@@ -23,7 +29,10 @@
         <div class="row mt-3 mb-3">
             <div class="col-12 text-center">
                 <h4><%= t('pd.can_withdraw') %></h4>
-                <h1 class="text-primary font-weight-medium"><%= t('pd.currency_prefix') %> <%= @available_balance %></h1>
+                <h1 class="text-primary font-weight-medium">
+                    <%= t('pd.currency_prefix') %> 
+                    <% if t('currency_code') != "USD" && !@currency_value.nil? %><%= @available_balance * @currency_value.value %><% else %><% @available_balance %><% end %>
+                </h1>
             </div>
         </div>
         <div class="row">

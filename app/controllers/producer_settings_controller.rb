@@ -1,0 +1,2 @@
+class ProducerSettingsController < ApplicationController
+end

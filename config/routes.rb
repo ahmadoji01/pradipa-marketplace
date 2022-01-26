@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :producer_settings
   resources :currency_values
   resources :mailings
   match '/404', via: :all, to: 'errors#not_found'
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
     post '/producer_dashboard/submit_brand_info', :to => 'producer_dashboard#submit_brand_info'
     post '/producer_dashboard/submit_contact_info', :to => 'producer_dashboard#submit_contact_info'
     put '/producer_dashboard/update_notif', :to => 'producer_dashboard#update_notif'
+    put '/producer_dashboard/change_locale', :to => 'producer_dashboard#change_locale', :as => 'producer_dashboard_change_locale'
     patch '/producer_dashboard/update_notif_read_status', :to => 'producer_dashboard#update_notif_read_status'
 
     namespace :admin do

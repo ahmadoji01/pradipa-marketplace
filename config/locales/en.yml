@@ -30,6 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  language_name: "English"
+  flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+  currency_code: "USD"
   submit: "Submit"
   hello: "Hello world"
   error_msg:
@@ -44,7 +47,8 @@ en:
   pd:
     currency: "US Dollar"
     currency_prefix: "USD"
-    currency_value_to_usd: "Kurs Rupiah ke US Dollar saat ini adalah "
+    currency_value_to_usd: "Today's value of "
+    language_updated: "The language has been updated"
     welcome: "Welcome"
     home: "Home"
     your_account_info: "Your Account Info"
