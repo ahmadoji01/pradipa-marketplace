@@ -30,6 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  language_name: "English"
+  flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+  currency_code: "USD"
   submit: "Submit"
   hello: "Hello world"
   error_msg:
@@ -42,8 +45,16 @@ en:
   notif:
     new_shipping_request: "Incoming shipping request. Click here"
   pd:
+    currency: "US Dollar"
+    currency_prefix: "USD"
+    currency_value_to_usd: "Today's value of "
+    language_updated: "The language has been updated"
+    welcome: "Welcome"
     home: "Home"
-    brand_info: "Your Info"
+    your_account_info: "Your Account Info"
+    brand_info: "Brand Info"
+    contact_info: "Contact Info"
+    change_password: "Change Password"
     withdrawal: "Withdrawal"
     wd_requests: "Withdrawals"
     submit_wd: "Submit Withdrawal"
@@ -116,6 +127,7 @@ en:
         withdrawal: "Withdrawal"
         withdrawal_balance: "Withdrawal Balance"
         withdrawal_request: "Withdrawal Request"
+        currency_value: "Currency Value"
     producer:
       tab:
         order: "Your Order"

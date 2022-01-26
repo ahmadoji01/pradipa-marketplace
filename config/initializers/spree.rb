@@ -102,6 +102,12 @@ Spree::Backend::Config.configure do |config|
   )
 
   config.menu_items << config.class::MenuItem.new(
+    [:currency_value],
+    'dollar',
+    url: '/admin/currency_values'
+  )
+
+  config.menu_items << config.class::MenuItem.new(
     [:ticket],
     'info',
     url: '/admin/tickets'

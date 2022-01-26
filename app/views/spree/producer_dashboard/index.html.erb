@@ -2,7 +2,7 @@
     <div class="col-md-12 grid-margin">
         <div class="row">
             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                <h3 class="font-weight-bold">Welcome!</h3>
+                <h3 class="font-weight-bold"><%= t('pd.welcome') %>!</h3>
                 <h6 class="font-weight-normal mb-0"><%= t('pd.intro_prefix') %> 
                   <%= link_to main_app.producer_dashboard_shipping_requests_page_path do %>
                     <span class="text-primary"><b><%= @requests.length %> <%= t('pd.intro_suffix') %></b></span>
@@ -20,11 +20,8 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6 grid-margin stretch-card">
+  <div class="col-md-12 grid-margin stretch-card">
     <%= render partial: 'spree/producer_dashboard/elements/withdrawal_summary', locals: { home: true } %>
-  </div>
-  <div class="col-md-6 grid-margin stretch-card">
-    <%= render partial: 'spree/producer_dashboard/elements/sales_report' %>
   </div>
 </div>
 

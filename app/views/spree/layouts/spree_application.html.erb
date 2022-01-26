@@ -12,7 +12,7 @@
     <%= render partial: 'spree/offcanvases/search' %>
     <%= render partial: 'spree/offcanvases/mobile_menu' %>
     
-    <% if !current_page?(cart_path) %>
+    <% if !current_page?(cart_path) && !request.path.include?("login") && !request.path.include?("signup") %>
       <%= render partial: 'spree/offcanvases/cart' %>
     <% end %>
 

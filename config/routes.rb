@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :producer_settings
+  resources :currency_values
   resources :mailings
   match '/404', via: :all, to: 'errors#not_found'
   match '/422', via: :all, to: 'errors#unprocessable_entity'
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
     get '/producer_dashboard', :to => 'producer_dashboard#redirect_to_home'
     get '/producer_dashboard/home', :to => 'producer_dashboard#index', :as => 'producer_dashboard_home_page'
     get '/producer_dashboard/brand_info', :to => 'producer_dashboard#brand_info', :as => 'producer_dashboard_brand_info_page'
+    get '/producer_dashboard/contact_info', :to => 'producer_dashboard#contact_info', :as => 'producer_dashboard_contact_info_page'
+    get '/producer_dashboard/change_password', :to => 'producer_dashboard#change_password', :as => 'producer_dashboard_change_password_page'
     get '/producer_dashboard/orders', :to => 'producer_dashboard#orders', :as => 'producer_dashboard_orders_page'
     get '/producer_dashboard/products', :to => 'producer_dashboard#products', :as => 'producer_dashboard_products_page'
     get '/producer_dashboard/payment_info', :to => 'producer_dashboard#payment_info', :as => 'producer_dashboard_payment_info_page'
@@ -45,6 +49,7 @@ Rails.application.routes.draw do
     post '/producer_dashboard/submit_brand_info', :to => 'producer_dashboard#submit_brand_info'
     post '/producer_dashboard/submit_contact_info', :to => 'producer_dashboard#submit_contact_info'
     put '/producer_dashboard/update_notif', :to => 'producer_dashboard#update_notif'
+    put '/producer_dashboard/change_locale', :to => 'producer_dashboard#change_locale', :as => 'producer_dashboard_change_locale'
     patch '/producer_dashboard/update_notif_read_status', :to => 'producer_dashboard#update_notif_read_status'
 
     namespace :admin do
@@ -54,6 +59,7 @@ Rails.application.routes.draw do
       resources :tickets
       resources :blogs
       resources :blog_categories
+      resources :currency_values
     end
   end
 

@@ -3,8 +3,10 @@ module Spree
     before_action :init_withdrawal, only: [:index, :request_withdrawal]
     before_action :init_user
     before_action :authorize
-    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications, :show_shipping_request]
-    before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :shipping_requests, :notifications, :show_shipping_request]
+    before_action :set_default_settings
+    before_action :count_currency_value, only: [:index, :withdrawals, :withdrawal_balances, :request_withdrawal]
+    before_action :set_avatar, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :contact_info, :change_password, :shipping_requests, :notifications, :show_shipping_request]
+    before_action :set_short_notifs, only: [:index, :orders, :products, :payment_info, :withdrawals, :request_withdrawal, :support, :brand_info, :contact_info, :change_password, :shipping_requests, :notifications, :show_shipping_request]
     layout 'spree/layouts/producer_dashboard'
     attr_accessor :available_balance
 
@@ -155,6 +157,18 @@ module Spree
       end
     end
 
+    def contact_info
+      if spree_current_user.bill_address.nil?
+        @address = Spree::Address.build_default
+      else
+        @address = spree_current_user.bill_address
+      end
+    end
+
+    def change_password
+      
+    end
+
     def submit_brand_info
       @brand = Spree::Brand.where(user_id: spree_current_user.id).first
       if @brand.nil?
@@ -180,10 +194,10 @@ module Spree
 
       respond_to do |format|
         if @user.save
-          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, info: I18n.t('pd.contact_info_updated') }
-          format.json { render :show, status: :created, location: main_app.producer_dashboard_brand_info_page_path }
+          format.html { redirect_to main_app.producer_dashboard_contact_info_page, info: I18n.t('pd.contact_info_updated') }
+          format.json { render :show, status: :created, location: main_app.producer_dashboard_contact_info_page }
         else
-          format.html { redirect_to main_app.producer_dashboard_brand_info_page_path, danger: I18n.t('pd.server_error') }
+          format.html { redirect_to main_app.producer_dashboard_contact_info_page, danger: I18n.t('pd.server_error') }
           format.json { render json: @brand.errors, status: :unprocessable_entity }
         end
       end
@@ -243,7 +257,58 @@ module Spree
       end
     end
 
+    def change_locale
+      locale = :en
+      if !params[:locale].nil?
+        locale = params[:locale]
+      end
+
+      set_producer_setting("language", locale)
+    end
+
     private
+
+      def set_default_settings
+        user = spree_current_user
+        lang_setting = ProducerSetting.where(user_id: user.id, key: "language")
+
+        if !lang_setting.empty?
+          I18n.locale = lang_setting.first.value
+        end
+      end
+
+      def set_producer_setting(key, value)
+        user = spree_current_user
+        setting = ProducerSetting.where(key: key, user_id: user.id)
+
+        if setting.empty?
+          setting = ProducerSetting.new
+          setting.key = key
+          setting.value = value
+          setting.user = user
+        else
+          setting = setting.first
+          setting.key = key
+          setting.value = value
+        end
+
+        respond_to do |format|
+          if setting.save
+            format.html { redirect_to request.referer, info: I18n.t('pd.language_updated') }
+            format.json { render :show, status: :created, location: request.referer }
+          else
+            format.html { redirect_to request.referer, danger: I18n.t('pd.server_error') }
+            format.json { render json: setting.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+
+      def count_currency_value
+        from = "USD"
+        to = I18n.t 'currency_code'
+
+        @currency_value = CurrencyValue.where(currency_from: from, currency_to: to).first
+      end
 
       def notif_display(notification)
         if notification.notif_type == "shipping_request"
