@@ -5,16 +5,16 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Withdrawal Balances</h4>
+        <h4 class="card-title"><%= t('pd.wd_balances') %></h4>
         <p class="card-description">
-            <% if home %><a href="<%= main_app.producer_dashboard_withdrawals_page_path %>" class="btn btn-primary mr-2">See All Balances</a><% end %>
+            <% if home %><a href="<%= main_app.producer_dashboard_withdrawals_page_path %>" class="btn btn-primary mr-2"><%= t('pd.see_all_wd_balances') %></a><% end %>
         </p>
         <div class="table-responsive">
             <table class="table table-hover">
                 <% if !wd_balances.empty? %>
                     <thead>
                         <tr>
-                            <th>Order Number</th>
+                            <th><%= t('pd.order_number') %></th>
                             <th><%= t('pd.balance') %></th>
                             <th><%= t('pd.shipping_cost') %></th>
                             <th><%= t('pd.tax') %></th>

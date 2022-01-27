@@ -1,5 +1,6 @@
 <% wd_requests ||= [] 
     badge ||= 'info'
+    status ||= ''
     home ||= false
 %>
 
@@ -7,7 +8,7 @@
     <div class="card-body">
         <h4 class="card-title"><%= t('pd.withdrawal_requests') %></h4>
         <p class="card-description">
-            <% if home %><a href="<%= main_app.producer_dashboard_withdrawals_page_path %>" class="btn btn-primary mr-2">See All Requests</a><% end %>
+            <% if home %><a href="<%= main_app.producer_dashboard_withdrawals_page_path %>" class="btn btn-primary mr-2"><%= t('pd.see_all_wd_requests') %></a><% end %>
         </p>
         <div class="table-responsive">
             <table class="table table-hover">
@@ -15,17 +16,25 @@
                     <thead>
                         <tr>
                             <th><%= t('pd.balance') %></th>
-                            <th>Status</th>
+                            <th><%= t('pd.status') %></th>
                             <th><%= t('pd.requested_at') %></th>
                             <th><%= t('pd.completed_at') %></th>
                         </tr>
                     </thead>
                     <tbody>
                         <% wd_requests.each do |wd_request| %>
-                            <% if wd_request.status == 'Completed' 
-                                badge = 'success' 
-                            else
-                                badge = 'warning' 
+                            <% if wd_request.status.downcase() == 'completed' 
+                                badge = 'success'
+                                status = I18n.t('pd.completed') 
+                            elsif wd_request.status.downcase() == 'requested' 
+                                badge = 'info' 
+                                status = I18n.t('pd.requested') 
+                            elsif wd_request.status.downcase() == 'processing' 
+                                badge = 'warning'
+                                status = I18n.t('pd.processing') 
+                            elsif wd_request.status.downcase() == 'confirming' 
+                                badge = 'warning'
+                                status = I18n.t('pd.confirming') 
                             end %>
                             <tr>
                                 <td><%= t('pd.currency_prefix') %> 
@@ -35,9 +44,9 @@
                                         <%= wd_request.balance  %>
                                     <% end %>
                                 </td>
-                                <td><label class="badge badge-<%= badge %>"><%= wd_request.status %></label></td>
-                                <td><%= wd_request.created_at %></td>
-                                <td><%= wd_request.completed_at %></td>
+                                <td><label class="badge badge-<%= badge %>"><%= status %></label></td>
+                                <td class="moment-container"><%= wd_request.created_at %></td>
+                                <td class="moment-container"><%= wd_request.completed_at %></td>
                             </tr>
                         <% end %>
                     </tbody>

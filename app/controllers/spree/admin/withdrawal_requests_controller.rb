@@ -71,7 +71,7 @@ module Spree
           @request.assign_attributes(withdrawal_request_params)
           @request.withdrawal = @withdrawal
 
-          if @request.status == 'Completed'
+          if @request.status.downcase() == 'completed'
             @request.completed_at = DateTime.now
           end
 
