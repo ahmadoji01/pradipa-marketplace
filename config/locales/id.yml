@@ -118,6 +118,10 @@ id:
     order_details: "Rincian Pesanan"
     number: "Nomor"
     customer_email: "Surel Pembeli"
+    requested: "Diajukan"
+    confirming: "Menunggu Konfirmasi"
+    processing: "Diproses"
+    completed: "Selesai"
   spree:
     abbreviation: Abbreviation
     accept: Accept
