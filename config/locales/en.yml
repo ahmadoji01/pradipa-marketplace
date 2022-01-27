@@ -57,6 +57,7 @@ en:
     change_password: "Change Password"
     withdrawal: "Withdrawal"
     wd_requests: "Withdrawals"
+    wd_balances: "Balance Records"
     submit_wd: "Submit Withdrawal"
     order: "Orders"
     product: "Product"
@@ -95,7 +96,7 @@ en:
     requested_products: "Requested Products"
     status: "Status"
     withdrawal_request_empty: "You have no history of requesting withdrawal"
-    withdrawal_balance_empty: "You have no history of having withdrawal balance"
+    withdrawal_balance_empty: "You have no history of having balance record"
     products_desc: "Below are your products available on our store"
     image: "Image"
     name: "Name"
@@ -134,6 +135,8 @@ en:
     quantity: "Quantity"
     your_products: "Your Products"
     your_orders: "Your Orders"
+    your_shipping_requests: "Your Shipping Requests"
+    your_notifications: "Your Notifications"
     all: "All"
     your_brand_info: "Your Brand Information"
     tell_your_brand: "Tell us about your brand"
@@ -150,6 +153,8 @@ en:
     confirming: "Waiting Confirmation"
     processing: "Processing"
     completed: "Completed"
+    see_all_wd_requests: "See All Requests"
+    see_all_wd_balances: "See All Balances"
   spree:
     admin:
       tab:
@@ -157,7 +162,7 @@ en:
         blog_category: "Blog Category"
         ticket: "Ticket"
         withdrawal: "Withdrawal"
-        withdrawal_balance: "Withdrawal Balance"
+        withdrawal_balance: "Balance Records"
         withdrawal_request: "Withdrawal Request"
         currency_value: "Currency Value"
     producer:

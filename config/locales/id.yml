@@ -26,6 +26,7 @@ id:
     change_password: "Ubah Kata Sandi"
     withdrawal: "Penarikan"
     wd_requests: "Penarikan"
+    wd_balances: "Catatan Saldo"
     submit_wd: "Ajukan Penarikan"
     order: "Pesanan"
     produk: "Produk"
@@ -105,6 +106,8 @@ id:
     quantity: "Jumlah"
     your_products: "Produk Anda"
     your_orders: "Pesanan Anda"
+    your_shipping_requests: "Permintaan Pengiriman Anda"
+    your_notifications: "Pemberitahuan Anda"
     all: "Semua"
     your_brand_info: "Info Mengenai Merek Anda"
     tell_your_brand: "Beritahu kami merek Anda"
@@ -122,6 +125,8 @@ id:
     confirming: "Menunggu Konfirmasi"
     processing: "Diproses"
     completed: "Selesai"
+    see_all_wd_requests: "Lihat Semua Permintaan Tarik Dana"
+    see_all_wd_balances: "Lihat Semua Catatan Saldo"
   spree:
     abbreviation: Abbreviation
     accept: Accept

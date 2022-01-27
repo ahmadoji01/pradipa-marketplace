@@ -8,7 +8,7 @@
     <div class="card-body">
         <h4 class="card-title"><%= t('pd.withdrawal_requests') %></h4>
         <p class="card-description">
-            <% if home %><a href="<%= main_app.producer_dashboard_withdrawals_page_path %>" class="btn btn-primary mr-2">See All Requests</a><% end %>
+            <% if home %><a href="<%= main_app.producer_dashboard_withdrawals_page_path %>" class="btn btn-primary mr-2"><%= t('pd.see_all_wd_requests') %></a><% end %>
         </p>
         <div class="table-responsive">
             <table class="table table-hover">
