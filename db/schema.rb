@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_100829) do
+ActiveRecord::Schema.define(version: 2022_01_27_051106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1394,6 +1394,8 @@ ActiveRecord::Schema.define(version: 2022_01_25_100829) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "handling_fee"
+    t.bigint "line_item_id"
+    t.index ["line_item_id"], name: "index_spree_withdrawal_balances_on_line_item_id"
     t.index ["order_id"], name: "index_spree_withdrawal_balances_on_order_id"
     t.index ["user_id"], name: "index_spree_withdrawal_balances_on_user_id"
   end
@@ -1479,6 +1481,7 @@ ActiveRecord::Schema.define(version: 2022_01_25_100829) do
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
   add_foreign_key "spree_tickets", "spree_users", column: "user_id"
   add_foreign_key "spree_wallet_payment_sources", "spree_users", column: "user_id"
+  add_foreign_key "spree_withdrawal_balances", "spree_line_items", column: "line_item_id"
   add_foreign_key "spree_withdrawal_balances", "spree_orders", column: "order_id"
   add_foreign_key "spree_withdrawal_balances", "spree_users", column: "user_id"
   add_foreign_key "spree_withdrawal_requests", "spree_withdrawals", column: "withdrawal_id"

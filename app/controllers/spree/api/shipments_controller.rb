@@ -201,6 +201,7 @@ module Spree
                 wd_balance = Spree::WithdrawalBalance.new
                 wd_balance.balance = line_item.total
                 wd_balance.order = line_item.order
+                wd_balance.line_item = line_item
                 wd_balance.handling_fee = 0.0
                 wd_balance.tax = 0.0
                 wd_balance.shipping = 0.0
