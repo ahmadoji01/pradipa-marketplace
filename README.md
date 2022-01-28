@@ -126,9 +126,10 @@ There are three containers, sqlite, app, and nginx. Make sure all the containers
 
 After that, we can use the init-rails-app.sh and load-sample.sh to prepare all the databases and webpacker installation for the app to run properly. Run these commands:
 
-    chmod +x init-rails-app.sh load-sample.sh update-rails-app.sh
+    chmod +x init-rails-app.sh load-sample.sh update-rails-app.sh install-solidus-paypal.sh
     ./init-rails-app.sh
     ./load-sample.sh
+    ./install-solidus-paypal.sh
 
 Test the connection on your server by inputting your server's active IP address, (or domain in case you have set one), to check if Rails instance is running properly.
 
