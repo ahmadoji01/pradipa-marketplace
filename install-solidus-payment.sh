@@ -1,0 +1,1 @@
+docker-compose run --rm app bash -c 'rails generate solidus_paypal_commerce_platform:install'
