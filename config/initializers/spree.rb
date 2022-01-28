@@ -69,6 +69,17 @@ Spree.config do |config|
       display_on_cart: false,
     }
   )
+
+  config.static_model_preferences.add(
+    SolidusPaypalCommercePlatform::PaymentMethod,
+    'paypal_commerce_platform_credentials_live', {
+      test_mode: false,
+      client_id: "AW3AW2PzdUaDPH_HHoeRHAGTqJ0_MvYT0KOnobVRr8ErBjtp7n2Tu4b6vE57Kpy1J2oHhxcEfMtjDMSs",
+      client_secret: "EIkPYFunAzEroZ5o9DvTLqk0iGDMZaP9su7NVyJQwxMlyfxKFFDw1PaMGKz_ybC47FWxYyZEEJIhg5Gr",
+      display_on_product_page: false,
+      display_on_cart: false,
+    }
+  )
 end
 
 Spree::PermittedAttributes.product_attributes << :user_id
