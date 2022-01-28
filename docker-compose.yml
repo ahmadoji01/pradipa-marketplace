@@ -13,6 +13,8 @@ services:
       dockerfile: app.Dockerfile
     command: bash -c "RAILS_ENV=production bundle exec puma -C config/puma.rb"
     environment:
+      - PAYPAL_ID=AW3AW2PzdUaDPH_HHoeRHAGTqJ0_MvYT0KOnobVRr8ErBjtp7n2Tu4b6vE57Kpy1J2oHhxcEfMtjDMSs
+      - PAYPAL_SECRET=EIkPYFunAzEroZ5o9DvTLqk0iGDMZaP9su7NVyJQwxMlyfxKFFDw1PaMGKz_ybC47FWxYyZEEJIhg5Gr
       - RAILS_MASTER_KEY=27e3a2700abbb8da46ee1bc5d54d74ff
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_LOG_TO_STDOUT=true

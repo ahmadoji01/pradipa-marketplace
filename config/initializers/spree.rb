@@ -63,10 +63,10 @@ Spree.config do |config|
     SolidusPaypalCommercePlatform::PaymentMethod,
     'paypal_commerce_platform_credentials', {
       test_mode: !Rails.env.production?,
-      client_id: 'AfJCNhRRzIyhUilcdgslV8Idj_gV_mxdyljERyLfEosAChscDqHgYalr7TrUJ2Es7BkAUgPrZ5mOceGE',
-      client_secret: 'ELQMCJbgPma6VjvDbbIaeUUMrjhZAA3d5_XhVV6DSmxY-Z5ZkMd03vQQsQHUe1WeXh3HOA0jnPjOeS9z',
-      display_on_product_page: true,
-      display_on_cart: true,
+      client_id: ENV['PAYPAL_CLIENT_ID'],
+      client_secret: ENV['PAYPAL_CLIENT_SECRET'],
+      display_on_product_page: false,
+      display_on_cart: false,
     }
   )
 end
