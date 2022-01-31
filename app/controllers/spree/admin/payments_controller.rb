@@ -62,6 +62,7 @@ module Spree
             if event == "capture"
               notifications = set_order_notifications()
               notifications.each(&:save!)
+              send_order_notif_to_user(@order, notifications) 
             end
           else
             flash[:error] = t('spree.cannot_perform_operation')
@@ -96,6 +97,19 @@ module Spree
           end
 
           return notifications
+        end
+
+        def send_order_notif_to_user(order, notifications)
+          notifications.each do |notification|
+            lang_setting = ProducerSetting.where(user_id: notification.user.id, key: "language")
+  
+            locale = I18n.default_locale
+            if !lang_setting.empty?
+              locale = lang_setting.first.value
+            end
+
+            ProducerMailer.with(user: notification.user, order: order, notification: notification, locale: locale).order_notif_to_user.deliver_now
+          end
         end
   
         def object_params

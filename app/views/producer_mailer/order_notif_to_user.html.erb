@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="date=no" />
+	<meta name="format-detection" content="address=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="x-apple-disable-message-reformatting" />
+    <!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet" />
+    <!--<![endif]-->
+	<title><%= t('mailer.producer.order_notif_title') %></title>
+	<!--[if gte mso 9]>
+	<style type="text/css" media="all">
+		sup { font-size: 100% !important; }
+	</style>
+	<![endif]-->
+	
+
+	<style type="text/css" media="screen">
+		/* Linked Styles */
+		body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#f3f4f6; -webkit-text-size-adjust:none }
+		a { color:#000001; text-decoration:none }
+		p { padding:0 !important; margin:0 !important } 
+		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+		.mcnPreviewText { display: none !important; }
+
+				
+		/* Mobile styles */
+		@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+			.mobile-shell { width: 100% !important; min-width: 100% !important; }
+			.bg { background-size: 100% auto !important; -webkit-background-size: 100% auto !important; }
+			
+			.text-header,
+			.m-center { text-align: center !important; }
+			
+			.center { margin: 0 auto !important; }
+			.container { padding: 20px 10px !important }
+			
+			.td { width: 100% !important; min-width: 100% !important; }
+
+			.m-br-15 { height: 15px !important; }
+			.p30-15 { padding: 30px 15px !important; }
+			.p0-15-30 { padding: 0px 15px 30px 15px !important; }
+			.mpb30 { padding-bottom: 30px !important; }
+
+			.m-td,
+			.m-hide { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
+
+			.m-block { display: block !important; }
+
+			.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+
+			.column,
+			.column-dir,
+			.column-top,
+			.column-empty,
+			.column-empty2,
+			.column-dir-top { float: left !important; width: 100% !important; display: block !important; }
+
+			.column-empty { padding-bottom: 30px !important; }
+			.column-empty2 { padding-bottom: 10px !important; }
+
+			.content-spacing { width: 15px !important; }
+		}
+	</style>
+</head>
+<body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#f3f4f6; -webkit-text-size-adjust:none;">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f3f4f6">
+		<tr>
+			<td align="center" valign="top">
+				<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+					<tr>
+						<td class="td container" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; margin:0; font-weight:normal; padding:55px 0px;">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td class="p30-15 tbrr" style="padding: 30px; border-radius:26px 26px 0px 0px;" bgcolor="#ffffff">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<th class="column-top" width="145" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="<%= image_url 'logo/logo-2.png' %>" width="124" height="53" border="0" alt="" /></td>
+														</tr>
+													</table>
+												</th>
+												<th class="column-empty2" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;"></th>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="<%= image_url 'for_use/mailer/banner.jpg' %>" border="0" width="650" height="135" alt="" /></td>
+								</tr>
+							</table>
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+								<tr>
+									<td style="padding-bottom: 10px;">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="p30-15" style="padding: 60px 30px;">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<td class="h1 pb25" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:40px; line-height:46px; text-align:center; padding-bottom:25px;"><%= t('mailer.producer.order_notif_heading') %></td>
+														</tr>
+														<tr>
+															<td class="text-center pb25" style="color:#666666; font-family:'Muli', Arial,sans-serif; font-size:16px; line-height:30px; text-align:center; padding-bottom:25px;"><%= t('mailer.producer.order_notif_description') %></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td style="padding: 0px 30px 50px 30px;" class="p0-15-30" bgcolor="#ffffff">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td style="padding-bottom: 40px;" class="mpb30">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<td class="content-spacing" width="210" style="font-size:0pt; line-height:0pt; text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#d9dada" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;"><tr><td bgcolor="#d9dada" height="1" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
+</td>
+															<td class="section-title" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:16px; line-height:22px; text-align:center; text-transform:uppercase;"><%= t('mailer.producer.products_to_be_shipped') %></td>
+															<td class="content-spacing" width="210" style="font-size:0pt; line-height:0pt; text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#d9dada" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;"><tr><td bgcolor="#d9dada" height="1" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
+</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<% @order.line_items.each do |item| %>
+                                                <% product = item.product %>
+                                                <% if !product.user.nil? %>
+                                                    <% if @user == product.user %>
+                                                        <tr>
+                                                            <td style="padding-bottom: 10px;">
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="column-top" width="290" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                <tr>
+                                                                                    <td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="<% if !item.variant.gallery.images.first.nil? %><%= image_url main_app.url_for(item.variant.gallery.images.first.attachment) %><% end %>" width="290" height="290" border="0" alt="" /></td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </th>
+                                                                        <th class="column-empty" width="30" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;"></th>
+                                                                        <th class="column" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                <tr>
+                                                                                    <td class="h4 pb20" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:20px; line-height:28px; text-align:left; padding-bottom:20px;">
+                                                                                        <%= item.variant.product.name %>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text pb20" style="color:#999999; font-family:Arial,sans-serif; font-size:14px; line-height:26px; text-align:left; padding-bottom:20px;">
+                                                                                        <%= item.variant.options_text -%>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text pb20" style="color:#999999; font-family:Arial,sans-serif; font-size:14px; line-height:26px; text-align:left; padding-bottom:20px;">
+                                                                                        <%= t('mailer.producer.quantity') %>: <%=item.quantity%>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    <% end %>
+                                                <% end %>
+											<% end %>
+										</table>
+									</td>
+								</tr>
+							</table>
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td style="padding: 0px 30px 50px 30px;" class="p0-15-30" bgcolor="#ffffff">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td style="padding-bottom: 40px;" class="mpb30">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<td style="padding-bottom: 40px;" class="mpb30">
+																<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class="content-spacing" width="210" style="font-size:0pt; line-height:0pt; text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#d9dada" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;"><tr><td bgcolor="#d9dada" height="1" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table></td>
+																		<td class="section-title" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:16px; line-height:22px; text-align:center; text-transform:uppercase;"><%= t('mailer.producer.shipping_instruction') %></td>
+																		<td class="content-spacing" width="210" style="font-size:0pt; line-height:0pt; text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#d9dada" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;"><tr><td bgcolor="#d9dada" height="1" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table></td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td class="h2 pb30" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:30px; line-height:36px; text-align:center; padding-bottom:30px;">
+													<%= t('mailer.producer.shipping_instr_1') %>
+												</td>
+											</tr>
+											<tr>
+												<td class="img" width="100%" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="https://www.youtube.com/watch?v=KhGByWQlUUQ" target="_blank"><img src="<%= image_url 'for_use/mailer/packaging.jpg' %>" width="100%" border="0" alt="" /></a></td>
+											</tr>
+											<tr>
+												<td class="h2 pb30" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:30px; line-height:36px; text-align:center; padding-bottom:30px;">
+													<%= t('mailer.producer.shipping_instr_2') %>
+												</td>
+											</tr>
+											<tr>
+												<td class="img" width="100%" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="<%= image_url 'for_use/mailer/kurasi_label.jpg' %>" width="100%" border="0" alt="" /></td>
+											</tr>
+											<tr>
+												<td class="h2 pb30" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:30px; line-height:36px; text-align:center; padding-bottom:30px;">
+													<%= t('mailer.producer.shipping_instr_3') %>
+												</td>
+											</tr>
+											<tr>
+												<td class="h2 pb30" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:30px; line-height:36px; text-align:center; padding-bottom:30px;">
+													Receiver: PT Kurasi Indonesia Jaya<br>
+													Jl. Tanjung Duren Raya No. 90 A<br>
+													Jakarta Barat 11470<br>
+													+62(821)-2225-8170
+												</td>
+											</tr>
+											<tr>
+												<td class="h2 pb30" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:30px; line-height:36px; text-align:center; padding-bottom:30px;">
+													<%= t('mailer.producer.shipping_instr_4') %>
+												</td>
+											</tr>
+											<tr>
+												<td class="h2 pb30" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:30px; line-height:36px; text-align:center; padding-bottom:30px;">
+													<%= link_to t('mailer.producer.go_to_dashboard'), main_app.producer_dashboard_home_page_url %>
+												</td>
+											</tr>
+											<tr>
+												<td class="h2 pb30" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:30px; line-height:36px; text-align:center; padding-bottom:30px;">
+													<%= t('mailer.producer.shipping_instr_5') %>
+												</td>
+											</tr>
+											<tr>
+												<td class="h2 pb30" style="color:#000000; font-family:'Playfair Display', Georgia,serif; font-size:30px; line-height:36px; text-align:center; padding-bottom:30px;">
+													<%= link_to t('mailer.producer.go_to_shipping_request'), main_app.producer_dashboard_shipping_request_page_url(@notification) %>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+							<!-- END CTA -->
+
+							<!-- Footer -->
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td class="pb10" style="padding-bottom:10px;"></td>
+								</tr>
+								<tr>
+									<td class="p30-15 bbrr" style="padding: 50px 30px; border-radius:0px 0px 26px 26px;" bgcolor="#ffffff">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td align="center" style="padding-bottom: 30px;">
+													<table border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="https://facebook.com/pradipa.co" target="_blank"><img src="<%= image_url 'for_use/icons/fb.png' %>" width="34" height="34" border="0" alt="" /></a></td>
+															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="https://instagram.com/pradipa.co" target="_blank"><img src="<%= image_url 'for_use/icons/ig.png' %>" width="34" height="34" border="0" alt="" /></a></td>
+															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="https://youtube.com/channel/UCq-6L09jgu6wfMwK0pbykLA/videos" target="_blank"><img src="<%= image_url 'for_use/icons/yt.png' %>" height="34" border="0" alt="" /></a></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td class="text-footer1 pb10" style="color:#999999; font-family:'Muli', Arial,sans-serif; font-size:14px; line-height:20px; text-align:center; padding-bottom:10px;">Pradipa.co - Home to the Greatest Crafts</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+							<!-- END Footer -->
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

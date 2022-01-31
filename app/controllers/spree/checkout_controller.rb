@@ -72,7 +72,9 @@ module Spree
   
       def finalize_order
         if @order.paid?
-            set_order_notifications
+          notifications = set_order_notifications()
+          notifications.each(&:save!)
+          send_order_notif_to_user(@order, notifications) 
         end
 
         @current_order = nil
@@ -263,10 +265,23 @@ module Spree
           notification.notif_type = "shipping_request"
           notification.read = false
           notification.status = "pending"
-          notifications = notifications.push(notification) 
+          notifications = notifications.push(notification)
         end
 
         return notifications
+      end
+
+      def send_order_notif_to_user(order, notifications)
+        notifications.each do |notification|
+          lang_setting = ProducerSetting.where(user_id: notification.user.id, key: "language")
+
+          locale = I18n.default_locale
+          if !lang_setting.empty?
+            locale = lang_setting.first.value
+          end
+
+          ProducerMailer.with(user: notification.user, order: order, notification: notification, locale: locale).order_notif_to_user.deliver_now
+        end
       end
 
     end

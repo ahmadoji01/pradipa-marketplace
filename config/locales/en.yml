@@ -168,3 +168,20 @@ en:
     producer:
       tab:
         order: "Your Order"
+  mailer:
+    producer:
+      order_notif_subject: "An order for your products are incoming!"
+      order_notif_title: "Pradipa.co - An Order is Incoming for Your Products!"
+      quantity: "Quantity"
+      shipping_info: "Below is the address where your items should be shipped"
+      products_to_be_shipped: "Products Waiting to be Shipped"
+      order_notif_heading: "There is a customer that just ordered your products!"
+      order_notif_description: "Here is the summary of the ordered products that is waiting for you to be shipped"
+      shipping_instruction: "Shipping Instruction"
+      shipping_instr_1: "1. Package and prepare all your items. For a guide to cheap, eco-friendly, and sturdy packaging click this image below to show the instruction video of packaging"
+      shipping_instr_2: "2. Inform us through our WhatsApp on the following link before shipping the products. We will send you the shipping label then attach it to the package you have made on instruction 1. Shipping label should look like this"
+      shipping_instr_3: "3. Send the package with the label obtained from us to the address below:"
+      shipping_instr_4: "4. Assuming you have logged into your dashboard, click the link below to confirm us that you have sent the product:"
+      shipping_instr_5: "5. If you have logged in, skip the instruction 4 and click the following link to inform us that you have sent the package to the address on instruction 3:"
+      go_to_dashboard: "Go to Your Dashboard"
+      go_to_shipping_request: "Go to This Shipping Request Page"
