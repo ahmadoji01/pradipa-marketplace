@@ -84,7 +84,7 @@
                             <p>The following addresses will be used on the checkout page by default.</p>
                             <div class="row learts-mb-n30">
                                 <div class="col-md-6 col-12 learts-mb-30">
-                                    <h4 class="title">Billing Address <a href="#" class="edit-link">edit</a></h4>
+                                    <h4 class="title">Billing Address <!--<a href="#" class="edit-link">edit</a></h4>-->
                                     <% if !@user.bill_address.nil? %>
                                     <address>
                                         <p><strong><%= @user.bill_address.name %></strong></p>
@@ -99,13 +99,13 @@
                                     <% end %>
                                 </div>
                                 <div class="col-md-6 col-12 learts-mb-30">
-                                    <h4 class="title">Shipping Address <a href="#" class="edit-link">edit</a></h4>
+                                    <h4 class="title">Shipping Address <!--<a href="#" class="edit-link">edit</a></h4>-->
                                     <% if !@user.ship_address.nil? %>
                                     <address>
                                         <p><strong><%= @user.ship_address.name %></strong></p>
                                         <p><%= @user.ship_address.address1 %><br>
                                           <%= @user.ship_address.address2 %><br>
-                                          <%= @user.ship_address.city %>, <%= @user.ship_address.state.name %><br>
+                                          <%= @user.ship_address.city %><% if !@user.ship_address.state.nil? %>, <%= @user.ship_address.state.name %><% end %><br>
                                           <%= @user.ship_address.country.name %>, <%= @user.ship_address.zipcode %></p>
                                         <p><% if !@user.ship_address.phone == "" %>Mobile: <%= @user.ship_address.phone %><% end %></p>
                                     </address>
