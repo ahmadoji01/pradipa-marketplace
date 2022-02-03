@@ -4,18 +4,34 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
 
   def coming_soon
-    if ENV["RAILS_COMING_SOON"] == "true" && !request.path.include?("admin") && !request.path.include?("submit_mailing") && !request.path.include?("blogs")
-      if spree_current_user.nil?
-        redirect_to main_app.coming_soon_page_path
-        return
-      end
-      
-      if !spree_current_user.role_users.first.role.name == "admin"       
-        redirect_to main_app.coming_soon_page_path
-        return
-      end
+    if ENV["RAILS_COMING_SOON"] != "true"
       return
     end
+
+    if request.path.include?("submit_mailing")
+      return
+    end
+
+    if request.path.include?("admin")
+      return
+    end
+
+    if request.path.include?("blogs")
+      return
+    end
+
+    if spree_current_user.nil?
+      redirect_to main_app.coming_soon_page_path
+      return
+    end
+
+    if spree_current_user.role_users.first.role.name != "admin"
+      redirect_to main_app.coming_soon_page_path
+      return
+    end
+
+    redirect_to main_app.coming_soon_page_path
+    return
 
   end
 
