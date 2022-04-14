@@ -35,7 +35,7 @@ At the prompt, type a secure passphrase. For more information, see "Working with
     > Enter passphrase (empty for no passphrase): [Type a passphrase]
     > Enter same passphrase again: [Type passphrase again]
 
-Then open your GitHub profile setting page. Go to SSH and GPG keys tab and add your newly generated SSH key there. Depends on where your SSH key is generated, you can see your generated SSH public key by running the following command
+Then open your GitHub profile setting page. Go to SSH and GPG keys tab by [clicking here](https://github.com/settings/keys) and add your newly generated SSH key there. Depends on where your SSH key is generated, you can see your generated SSH public key by running the following command
 
     cat ~/.ssh/id_ed25519.pub
 
