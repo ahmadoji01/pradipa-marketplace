@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   scope module: 'spree' do
     resources :blogs
 
+    get '/collection/:slug', :to => 'collection_display#show', :as => 'collection_page'
+
     get '/post/:slug', :to => 'blogs#show_post', :as => 'post_page'
 
     get '/brand/:slug', :to => 'home#brand', :as => 'brand_page'
