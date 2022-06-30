@@ -1,0 +1,101 @@
+<% admin_breadcrumb(link_to(plural_resource_name(Spree::Collection), main_app.admin_collections_path)) %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Collection Post', main_app.new_admin_collection_url, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= t('spree.filter') %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_blogs_index_search">
+    <%= search_form_for @search, url: main_app.admin_collections_path do |f| %>
+      <div class="row">
+        <div class="field-block col-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="date-range-filter field">
+            <%= label_tag :q_created_at_gt, t('spree.date_range') %>
+            <div class="date-range-fields input-group">
+              <%= f.text_field :created_at_gt, class: 'datepicker form-control datepicker-from', value: params[:q][:created_at_gt], placeholder: t('spree.start') %>
+
+              <div class="input-group-prepend input-group-append">
+                <span class="input-group-text range-divider">
+                  <i class="fa fa-arrow-right"></i>
+                </span>
+              </div>
+
+              <%= f.text_field :created_at_lt, class: 'datepicker form-control datepicker-to', value: params[:q][:created_at_lt], placeholder: t('spree.stop') %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= label_tag :name_cont, 'Name' %>
+            <%= f.text_field :name_cont, value: params[:q][:name_cont], size: 25 %>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="field">
+            <%= label_tag :q_published, 'Published' %>
+            <%= f.check_box :published, { checked: @show_only_published }, "1", "0" %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="actions filter-actions">
+        <div data-hook="admin_orders_index_search_buttons">
+          <%= button_tag t('spree.filter_results'), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @collections.any? %>
+  <table class="index" id="listing_orders" data-hook>
+    <colgroup>
+       <col style="width: 30%;">
+       <col style="width: 40%;">
+       <col style="width: 10%;">
+       <col style="width: 20%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_orders_index_headers">
+        <th><%= link_to "Name", main_app.admin_collections_path(sort: "anme asc") %></th>
+        <th><%= link_to "Description", main_app.admin_collections_path(sort: "description asc") %></th>
+        <th><%= link_to "Published", main_app.admin_collections_path(sort: "published asc") %></th>
+        <th><%= link_to "Created At", main_app.admin_collections_path(sort: "created_at asc") %></th>
+        <th data-hook="admin_orders_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @collections.each do |collection| %>
+      <tr data-hook="admin_orders_index_rows">
+        <td><%= collection.name %></td>
+        <td><%= collection.description.to_plain_text.truncate(150) %></td>
+        <td><%= collection.published %></td>
+        <td><%= collection.created_at %></td>
+        <td class='actions align-center' data-hook="admin_orders_index_row_actions">
+          <%= link_to_edit_url main_app.edit_admin_collection_path(collection), title: "admin_edit_#{dom_id(collection)}", no_text: true %>
+          <%= link_to 'Preview', main_app.collection_page_path(collection.slug), target: '_blank' %>
+          <%= link_to main_app.admin_collection_path(collection), method: :delete, data: { confirm: "Are you sure?" } do %><i class="fa fa-trash"><% end %></td>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%= paginate @collections, theme: "solidus_admin" %>
+<% else %>
+  <div class="no-objects-found">
+    <% if can? :manage, Spree::Collection %>
+      <%= render 'spree/admin/shared/no_objects_found',
+                   resource: Spree::Collection,
+                   new_resource_url: main_app.new_admin_collection_path %>
+    <% end %>
+  </div>
+<% end %>

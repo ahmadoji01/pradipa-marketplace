@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :spree do
+    resources :collections
+  end
   resources :producer_settings
   resources :currency_values
   resources :mailings
@@ -9,10 +12,11 @@ Rails.application.routes.draw do
 
   scope module: 'spree' do
     resources :blogs
-
-    get '/collection/:slug', :to => 'collection_display#show', :as => 'collection_page'
+    resources :collections
 
     get '/post/:slug', :to => 'blogs#show_post', :as => 'post_page'
+
+    get '/collection/:slug', :to => 'collections#show', :as => 'collection_page'
 
     get '/brand/:slug', :to => 'home#brand', :as => 'brand_page'
 
@@ -62,6 +66,7 @@ Rails.application.routes.draw do
       resources :blogs
       resources :blog_categories
       resources :currency_values
+      resources :collections
     end
   end
 

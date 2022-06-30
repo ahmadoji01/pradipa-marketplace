@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_27_051106) do
+ActiveRecord::Schema.define(version: 2022_06_30_105330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -306,6 +306,28 @@ ActiveRecord::Schema.define(version: 2022_01_27_051106) do
     t.index ["imported_from_shipment_id"], name: "index_spree_cartons_on_imported_from_shipment_id", unique: true
     t.index ["number"], name: "index_spree_cartons_on_number", unique: true
     t.index ["stock_location_id"], name: "index_spree_cartons_on_stock_location_id"
+  end
+
+  create_table "spree_collections", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "meta_description"
+    t.string "meta_keywords"
+    t.string "meta_tags"
+    t.string "featured_video"
+    t.string "featured_image"
+    t.string "collection_description"
+    t.bigint "product_id", null: false
+    t.bigint "blog_id"
+    t.string "production_image"
+    t.string "production_description"
+    t.string "production_video"
+    t.string "description"
+    t.boolean "published"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_id"], name: "index_spree_collections_on_blog_id"
+    t.index ["product_id"], name: "index_spree_collections_on_product_id"
   end
 
   create_table "spree_countries", id: :serial, force: :cascade do |t|
@@ -1474,6 +1496,8 @@ ActiveRecord::Schema.define(version: 2022_01_27_051106) do
   add_foreign_key "order_notifications", "spree_users", column: "user_id"
   add_foreign_key "producer_settings", "spree_users", column: "user_id"
   add_foreign_key "spree_brands", "spree_users", column: "user_id"
+  add_foreign_key "spree_collections", "spree_blogs", column: "blog_id"
+  add_foreign_key "spree_collections", "spree_products", column: "product_id"
   add_foreign_key "spree_products", "spree_users", column: "user_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
