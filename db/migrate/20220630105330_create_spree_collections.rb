@@ -12,6 +12,7 @@ class CreateSpreeCollections < ActiveRecord::Migration[6.1]
       t.string :production_image
       t.string :production_description
       t.string :production_video
+      t.string :summary_image
       t.string :description
       t.boolean :published
       t.timestamps

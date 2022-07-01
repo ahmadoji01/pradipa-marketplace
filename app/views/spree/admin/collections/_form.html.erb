@@ -42,6 +42,14 @@
           <% end %>
       </div>
 
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= f.field_container :featured_video do %>
+            <%= f.label :featured_video, class: 'required' %>
+            <%= f.text_field :featured_video, class: 'fullwidth title' %>
+            <%= f.error_message_on :featured_video %>
+          <% end %>
+      </div>
+
       <div data-hook="admin_withdrawal_request_form_withdrawal">
         <%= f.field_container :production_description do %>
           <%= f.label :production_description, class: 'required' %>
@@ -55,6 +63,23 @@
             <%= f.label :production_image, class: 'required' %>
             <%= f.file_field :production_image, class: 'fullwidth title' %>
             <%= f.error_message_on :production_image %>
+          <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= f.field_container :production_video do %>
+            <%= f.label :production_video, class: 'required' %>
+            <%= f.text_field :production_video, class: 'fullwidth title' %>
+            <%= f.error_message_on :production_video %>
+          <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= image_tag(@collection.summary_image_url) if @collection.summary_image? %>
+          <%= f.field_container :summary_image do %>
+            <%= f.label :summary_image, class: 'required' %>
+            <%= f.file_field :summary_image, class: 'fullwidth title' %>
+            <%= f.error_message_on :summary_image %>
           <% end %>
       </div>
 

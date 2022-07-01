@@ -1,64 +1,53 @@
-<%= render partial: 'spree/sections/full_width_video' %>
+<%= render partial: 'spree/collections/youtube_video', locals: {video: @collection.featured_video, id: 'featured-video-yt-player'} %>
+<div class="row">
+    <div class="col-lg-6 col-sm-12 collection-info">
+        <h1 style="text-align:center;flex-grow:1"><%= @collection.name %></h3>
+        <div class="flex-breaker"></div>
+        <p><%= @collection.collection_description %></p>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+        <div class="image">
+            <%= image_tag @collection.featured_image.url, class: "collection-image" %>
+        </div>
+    </div>
+</div>
+
 <div class="section section-padding">
     <div class="container">
         <div class="section-title2 text-center">
-            <h2 class="title title-icon-both">Project Overview</h2>
-            <p>You don’t need expensive ornaments to make your house look more fashionable.</p>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <div class="portfolio-overview">
-                    <p>Back in 1989, the first time I got on the Internet, at that time I was still pretty young. I didn’t go to college so I had to find a stable job for myself. I never found what I was into and what I could do well for a living. I tried and got rejected so many times.</p>
-                    <p>Google and Facebook weren’t even around as well at that time. One day in 1999, I suddenly had this idea of creating a website that introduce my handmade projects, providing not only handcraft lessons but also selling stuff to earn some money for myself.</p>
-                    <div class="row learts-mt-30">
-                        <div class="col-lg-6 col-12 learts-mb-30">
-                            <div class="sale-banner7">
-                                <div class="inner">
-                                    <div class="image"><%= image_tag 'product/single/3/banner/banner-1.jpg' %></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-12 learts-mb-30">
-                            <div class="row learts-mb-n30">
-                                <div class="col-sm-6 col-12 learts-mb-30">
-                                    <div class="sale-banner7">
-                                        <div class="inner">
-                                            <div class="image"><%= image_tag 'product/single/3/banner/banner-2.jpg' %></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-12 learts-mb-30">
-                                    <div class="sale-banner7">
-                                        <div class="inner">
-                                            <div class="image"><%= image_tag 'product/single/3/banner/banner-3.jpg' %></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-12 learts-mb-30">
-                                    <div class="sale-banner7">
-                                        <div class="inner">
-                                            <div class="image"><%= image_tag 'product/single/3/banner/banner-4.jpg' %></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-12 learts-mb-30">
-                                    <div class="sale-banner7">
-                                        <div class="inner">
-                                            <div class="image"><%= image_tag 'product/single/3/banner/banner-5.jpg' %></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <h2 class="title title-icon-both">Discover this Collection</h2>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="product-all">
+                    <div class="products row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
+                        <% @collection.products.take(4).each do |product| %>
+                            <%= render partial: 'spree/elements/product_card', locals: { product: product } %>
+                        <% end %>
                     </div>
-                    <p>Then I got to learn about how to start a website on my own. I created a website called leartshandmade.com. I spent years developing it, teaching HTML to myself, networking with in-field professionals, and growing it into a profitable business.</p>
-                    <p>Throughout the years, I cooperated with plenty of craft companies to grow my website. I had worked as the craft expert for Miimo Studio (miimo.thememove.com), and created fun crafts for kids from 2009-2016. Also, I have self-published many online magazines, including ForHer.mag.com, LiveLife.com & ForEverYoung.net.</p>
+                </div>
+                <div class="d-flex justify-content-center learts-mt-50">
+                    <a href="/products" class="btn btn-primary btn-hover-black">View All Products</a>
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
-<!-- Portfolio Section End -->
+
+<div class="row">
+    <div class="col-lg-6 col-sm-12">
+        <div class="image">
+            <%= image_tag @collection.production_image.url, class: "collection-image" %>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12 collection-info">
+        <p><%= @collection.production_description %></p>
+    </div>
+</div>
+<%= render partial: 'spree/collections/youtube_video', locals: {video: @collection.production_video, id: 'production-video-yt-player'} %>
+
+<div class="row">
+    <div class="col-12">
+        <div class="image">
+            <%= image_tag @collection.production_image.url, class: "collection-image" %>
+        </div>
+    </div>
+</div>
