@@ -4,7 +4,9 @@ module Spree
         before_action :set_collection, only: %i[ show ]
 
         def show
-
+            if @collection.nil?
+                raise ActionController::RoutingError.new('Not Found')
+            end
         end
 
         private

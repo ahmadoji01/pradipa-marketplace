@@ -1,5 +1,8 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>$(window).on('load', function () { $('.select2-basic').select2({ allowClear: true, placeholder: "" }); })</script>
+
 <% method ||= 'post' %>
-<% @url = (method == 'post' ? main_app.collections_path : main_app.collection_path(@blog)) %>
+<% @url = (method == 'post' ? main_app.admin_collections_path : main_app.collection_page_path(@collection)) %>
 
 <% if @collection.errors.any? %>
   <div id="error_explanation">
@@ -24,9 +27,9 @@
       </div>
 
       <div data-hook="admin_withdrawal_request_form_withdrawal">
-        <%= f.field_container :description do %>
-          <%= f.label :description, class: 'required' %>
-          <%= f.rich_text_area :description, class: 'fullwidth title', row: 4 %>
+        <%= f.field_container :collection_description do %>
+          <%= f.label :collection_description, class: 'required' %>
+          <%= f.rich_text_area :collection_description, class: 'fullwidth title', row: 4 %>
         <% end %>
       </div>
 
@@ -57,15 +60,15 @@
 
       <div data-hook="admin_product_form_user">
         <%= f.field_container :product do %>
-          <%= f.label :product_id, 'Products' %>
-          <%= f.select :product_id, Spree::Product.all.map { |product| [product.name, product.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+          <%= f.label 'product_ids', 'Products' %>
+          <%= f.select 'product_ids', Spree::Product.all.map { |product| [product.name, product.id] }, {include_blank: true, required: true, include_hidden: true}, multiple: true, class: 'form-control select2-basic content-search' %>
         <% end %>
       </div>
 
       <div data-hook="admin_product_form_user">
         <%= f.field_container :product do %>
-          <%= f.label :blog_id, 'Blogs' %>
-          <%= f.select :blog_id, Spree::Blog.all.map { |blog| [blog.title, blog.id] }, {include_blank: true, required: true, include_hidden: true}, class: 'form-control select2-basic content-search' %>
+          <%= f.label 'blog_ids', 'Blogs' %>
+          <%= f.select 'blog_ids', Spree::Blog.all.map { |blog| [blog.title, blog.id] }, {include_blank: true, required: true, include_hidden: true, multiple: true}, multiple: true, class: 'form-control select2-basic content-search' %>
         <% end %>
       </div>
 

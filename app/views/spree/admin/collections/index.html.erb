@@ -77,7 +77,7 @@
     <% @collections.each do |collection| %>
       <tr data-hook="admin_orders_index_rows">
         <td><%= collection.name %></td>
-        <td><%= collection.description.to_plain_text.truncate(150) %></td>
+        <td><%= collection.collection_description.to_plain_text.truncate(150) %></td>
         <td><%= collection.published %></td>
         <td><%= collection.created_at %></td>
         <td class='actions align-center' data-hook="admin_orders_index_row_actions">

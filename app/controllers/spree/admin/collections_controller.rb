@@ -52,6 +52,8 @@ module Spree
             # POST /spree/blogs or /spree/blogs.json
             def create
                 @collection = Spree::Collection.new(collection_params)
+                @collection.product_ids = params[:collection][:product_ids]
+                @collection.blog_ids = params[:collection][:blog_ids]
                 
                 respond_to do |format|
                     if @collection.save
@@ -95,7 +97,7 @@ module Spree
         
                 # Only allow a list of trusted parameters through.
                 def collection_params
-                    params.fetch(:collection, {}).permit(:name, :slug, :description, :published, :meta_description, :meta_keywords, :meta_tags, :featured_image, :edited_at, :product_id, :blog_id, :production_image, :featured_video, :production_video)
+                    params.fetch(:collection, {}).permit(:name, :slug, :collection_description, :published, :meta_description, :meta_keywords, :meta_tags, :featured_image, :edited_at, :product_ids, :blog_ids, :production_image, :production_description, :featured_video, :production_video)
                 end
         end
     end
