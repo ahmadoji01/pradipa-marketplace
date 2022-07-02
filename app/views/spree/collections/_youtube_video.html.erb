@@ -1,16 +1,14 @@
-<% video ||= "gE5fCfGXq3g" 
+<% featured_video ||= "gE5fCfGXq3g"
+   production_video ||= "i_clzek10VI"
    id ||= "yt-player" %>
 
 <script>
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    //Call the JS API Loader first on spree/sections/_youtube_js_api_loader.html.erb
     function onYouTubeIframeAPIReady(){
-        player = new YT.Player('<%= id %>', {
+        player1 = new YT.Player('featured-video-player', {
             width: '100%',
             height: '100%',
-            videoId: '<%= video %>',
+            videoId: '<%= featured_video %>',
             playerVars: { 
                 'autoplay': 1, 
                 'rel' : 0,
@@ -20,7 +18,26 @@
                 'mute': 1, 
                 'loop': 1,
                 'enablejsapi' : 1,
-                'playlist': '<%= video %>' },
+                'playlist': '<%= featured_video %>' },
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+
+        player2 = new YT.Player('production-video-player', {
+            width: '100%',
+            height: '100%',
+            videoId: '<%= production_video %>',
+            playerVars: { 
+                'autoplay': 1, 
+                'rel' : 0,
+                'showinfo' : 0,
+                'showsearch' : 0,
+                'controls' : 0,
+                'mute': 1, 
+                'loop': 1,
+                'enablejsapi' : 1,
+                'playlist': '<%= production_video %>' },
             events: {
                 'onReady': onPlayerReady
             }
@@ -36,9 +53,3 @@
         onYouTubeIframeAPIReady();
     })
 </script>
-
-<div class="iframe-container">
-    <div class="responsive-iframe swiper-slide">
-        <div id="<%= id %>" class="iframe-video"></div>
-    </div>
-</div>

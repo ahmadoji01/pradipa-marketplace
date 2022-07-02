@@ -1,4 +1,12 @@
+<%= render partial: 'spree/sections/youtube_js_api_loader' %>
 <%= render partial: 'spree/collections/youtube_video', locals: {video: @collection.featured_video, id: 'featured-video-yt-player'} %>
+
+<div class="iframe-container">
+    <div class="responsive-iframe swiper-slide">
+        <div id="featured-video-player" class="iframe-video"></div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-6 col-sm-12 collection-info">
         <h1 style="text-align:center;flex-grow:1"><%= @collection.name %></h3>
@@ -32,6 +40,11 @@
     </div>
 </div>
 
+<div class="iframe-container">
+    <div class="responsive-iframe swiper-slide">
+        <div id="production-video-player" class="iframe-video"></div>
+    </div>
+</div>
 <div class="row">
     <div class="col-lg-6 col-sm-12">
         <div class="image">
@@ -42,12 +55,11 @@
         <p><%= @collection.production_description %></p>
     </div>
 </div>
-<%= render partial: 'spree/collections/youtube_video', locals: {video: @collection.production_video, id: 'production-video-yt-player'} %>
 
 <div class="row">
     <div class="col-12">
         <div class="image">
-            <%= image_tag @collection.production_image.url, class: "collection-image" %>
+            <%= image_tag @collection.summary_image.url, class: "collection-image" %>
         </div>
     </div>
 </div>

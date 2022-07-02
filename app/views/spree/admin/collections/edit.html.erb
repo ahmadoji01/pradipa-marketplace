@@ -6,7 +6,7 @@
     <%= link_to 'New Collection', main_app.new_admin_collection_url, class: 'btn btn-primary' %>
   </li>
   <li>
-    <%= link_to 'View Collection', main_app.post_page_path(@collection.slug), class: 'btn btn-secondary' %>
+    <%= link_to 'View Collection', main_app.collection_page_path(@collection.slug), class: 'btn btn-secondary' %>
   </li>
 <% end %>
 
