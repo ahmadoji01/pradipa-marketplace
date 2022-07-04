@@ -1,0 +1,58 @@
+<% @categories = Spree::Taxon.find_by(name: "Categories").children %>
+<div class="header-section header-transparent header-menu-center section section-fluid bg-white d-none d-xl-block">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col">
+                <div class="header-logo">
+                    <a href="/"><%= image_tag "logo/logo-white.png", style: "max-width: 180px" %></a>
+                </div>
+            </div>
+
+            <div class="col">
+                <nav class="site-main-menu justify-content-center menu-height-60">
+                    <ul>
+                        <%= render partial: 'spree/sections/flat_menu', locals: { textClass: "menu-text-white" } %>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header Tools Start -->
+            <div class="col">
+                <div class="header-tools justify-content-end">
+                    <div class="header-login">
+                        <a href="/account"><i class="fal fa-user" style="color:white!important"></i></a>
+                    </div>
+                    <div class="header-search d-none d-sm-block">
+                        <a href="#offcanvas-search" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-search"><i class="fal fa-search" style="color:white!important"></i></a>
+                    </div>
+                    <div class="header-cart">
+                        <% if current_order.nil? %>
+                            <% num_of_items = 0 %>
+                        <% else %>
+                            <% num_of_items = current_order.line_items.count %>
+                        <% end %>
+                        <% if !current_page?(cart_path) && !request.path.include?("login") && !request.path.include?("signup") %>
+                            <a href="#offcanvas-cart" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart" style="color:white!important"></i></a>
+                        <% else %>
+                            <a href="/cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart" style="color:white!important"></i></a>
+                        <% end %>
+                    </div>
+                    <div class="mobile-menu-toggle d-xl-none">
+                        <a href="#offcanvas-mobile-menu" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-mobile-menu">
+                            <svg viewBox="0 0 800 600">
+                                <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                                <path d="M300,320 L540,320" id="middle"></path>
+                                <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Header Tools End -->
+
+        </div>
+    </div>
+
+</div>
+<!-- Header Section End -->

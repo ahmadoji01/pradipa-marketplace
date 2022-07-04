@@ -1,19 +1,15 @@
-<div id="offcanvas-search" class="offcanvas offcanvas-top search-menu">
+<div id="offcanvas-search" class="offcanvas offcanvas-top search-menu" style="height:15%!important">
     <div class="inner">
         <div class="offcanvas-search-form">
-            <button class="offcanvas-close close-btn" data-bs-dismiss="offcanvas" aria-label="Close">×</button>
+            <button class="offcanvas-close close-btn" data-bs-dismiss="offcanvas" aria-label="Close" style="float:right">×</button>
             <%= form_tag spree.products_path, method: :get do %>
                 <% cache [I18n.locale, @categories] do %>
                     <div class="row no-gutters">
-                        <div class="col-lg-4 col-sm-12">
-                            <%= select_tag :taxon, 
-                                options_for_select([[t('spree.all_departments'), '']] +
-                                                        @categories.map {|t| [t.name, t.id]},
-                                                        @taxon ? @taxon.id : params[:taxon]), class: 'search-select select2-basic', 'aria-label' => 'Taxon', id: :taxon2 %>
-                        </div>
+                        <div class="col-lg-2"></div>
                         <div class="col-lg-8 col-sm-12">
                             <%= search_field_tag :keywords, params[:keywords], placeholder: 'What can we help you find?', id: :keyword2 %>
                         </div>
+                        <div class="col-lg-2"></div>
                     </div>
                 <% end %>
             <% end %>

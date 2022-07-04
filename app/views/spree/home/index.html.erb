@@ -1,4 +1,8 @@
 <%= render partial: 'spree/sections/full_width_video' %>
+<%= render partial: 'spree/sections/parallax_banner1' %>
+<%= render partial: 'spree/sections/parallax_banner2' %>
+<%= render partial: 'spree/sections/parallax_banner3' %>
+<%= render partial: 'spree/sections/parallax_banner4' %>
 <%= render partial: 'spree/sections/main_slider' %>
 <%= render partial: 'spree/sections/about_us' %>
 
@@ -13,10 +17,6 @@
     </div>
 </div>
 
-<%= render partial: 'spree/sections/products', locals: { featured_products: @featured_products } %>
-<%= render partial: 'spree/sections/special_product_banner' %>
 <%= render partial: 'spree/sections/recent_products', locals: { products: @recent_products } %>
-<%= render partial: 'spree/sections/feature' %>
-<%= render partial: 'spree/sections/deal_of_the_day' %>
 <%= render partial: 'spree/sections/recent_posts' %>
 <%= render partial: 'spree/sections/instagram_feed' %>
