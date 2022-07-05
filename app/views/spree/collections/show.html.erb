@@ -7,18 +7,7 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-6 col-sm-12 collection-info">
-        <h1 style="text-align:center;flex-grow:1"><%= @collection.name %></h3>
-        <div class="flex-breaker"></div>
-        <p><%= @collection.collection_description %></p>
-    </div>
-    <div class="col-lg-6 col-sm-12">
-        <div class="image">
-            <%= image_tag @collection.featured_image.url, class: "collection-image" %>
-        </div>
-    </div>
-</div>
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.featured_image.url} %>
 
 <div class="section section-padding">
     <div class="container">
@@ -45,21 +34,7 @@
         <div id="production-video-player" class="iframe-video"></div>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-6 col-sm-12">
-        <div class="image">
-            <%= image_tag @collection.production_image.url, class: "collection-image" %>
-        </div>
-    </div>
-    <div class="col-lg-6 col-sm-12 collection-info">
-        <p><%= @collection.production_description %></p>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-12">
-        <div class="image">
-            <%= image_tag @collection.summary_image.url, class: "collection-image" %>
-        </div>
-    </div>
-</div>
+<%= render partial: 'spree/sections/parallax_info_left', locals: {bg: @collection.production_image.url}  %>
+
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.summary_image.url} %>

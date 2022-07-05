@@ -1,6 +1,8 @@
+<% bg ||= 'banner/parallax/parallax-2.jpg' %>
+
 <div class="parallax-banner parallax-banner-2" data-scrollax-parent="true">
     <div class="parallax-image" data-scrollax="properties: { translateY: '30%' }">
-        <img src="<%= image_url 'banner/parallax/parallax-2.jpg' %>" alt="parallax-2" />
+        <img src="<%= image_url bg %>" alt="parallax-2" />
     </div>
     <div class="content text-center">
         <img class="price " src="<%= image_url 'banner/parallax/parallax-2-1.png' %>" alt="Price">

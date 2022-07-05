@@ -1,0 +1,41 @@
+<div class="mobile-header header-section header-transparent section d-xl-none">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col">
+                <div class="header-logo mobile-logo">
+                    <a href="/"><%= image_tag "logo/logo-white.png" %></a>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="header-tools justify-content-end">
+                    <div class="header-login">
+                        <a href="/account"><i class="fal fa-user" style="color:white!important"></i></a>
+                    </div>
+                    <div class="header-search">
+                        <a href="#offcanvas-search" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-search"><i class="fal fa-search" style="color:white!important"></i></a>
+                    </div>
+                    <div class="header-cart">
+                        <% if current_order.nil? %>
+                            <% num_of_items = 0 %>
+                        <% else %>
+                            <% num_of_items = current_order.line_items.count %>
+                        <% end %>
+                        <% if !current_page?(cart_path) && !request.path.include?("login") && !request.path.include?("signup") %>
+                            <a href="#offcanvas-cart" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart" style="color:white!important"></i></a>
+                        <% else %>
+                            <a href="/cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart" style="color:white!important"></i></a>
+                        <% end %>
+                    </div>
+                    <div class="mobile-menu-toggle">
+                        <a href="#offcanvas-mobile-menu" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-mobile-menu">
+                            <i class="fa fa-bars" style="color:white!important"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
