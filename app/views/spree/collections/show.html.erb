@@ -1,10 +1,16 @@
-<div class="iframe-container">
-    <div class="responsive-iframe swiper-slide">
-        <div class="iframe-video video-player" data-video-code="<%= @collection.featured_video %>"></div>
+
+<div class="parallax-banner parallax-banner-3" data-scrollax-parent="true" style="background:#00000044">
+    <div class="parallax-image" data-scrollax="properties: { translateY: '30%' }">
+        <div class="responsive-iframe swiper-slide">
+            <div class="iframe-video video-player" data-video-code="<%= @collection.featured_video %>"></div>
+        </div>
+    </div>
+    <div class="content text-center banner-collection-text">
+        <a href="<%= main_app.collection_page_path(@collection) %>" class="btn btn-light btn-hover-dark">discover this collection</a>
     </div>
 </div>
 
-<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.featured_image.url, description: @collection.collection_description, title: @collection.name} %>
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.featured_image.url, description: @collection.collection_description, title: @collection.name, isBtnShown: true} %>
 
 <div class="section section-padding">
     <div class="container">
@@ -34,4 +40,4 @@
 
 <%= render partial: 'spree/sections/parallax_info_left', locals: {bg: @collection.production_image.url, description: @collection.production_description}  %>
 
-<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.summary_image.url, description: @collection.summary_description} %>
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.summary_image.url, description: @collection.summary_description, isBtnShown: true, btnStyle: "btn-dark btn-hover-light"} %>

@@ -2,17 +2,18 @@
     description ||= ''
     title ||= ''
     link ||= ''
-    isBtnShown ||= false %>
+    isBtnShown ||= false 
+    btnStyle ||= "btn-light btn-hover-dark" %>
 
-<div class="parallax-banner parallax-banner-2" data-scrollax-parent="true">
-    <div class="parallax-image" data-scrollax="properties: { translateY: '30%' }">
+<div class="row gx-0">
+    <div class="col-lg-6 col-sm-12">
         <img src="<%= image_url bg %>" alt="parallax-2" />
     </div>
-    <div class="content text-center">
+    <div class="content text-center col-lg-6 col-sm-12" style="padding:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-content:center">
         <h2 class="title"><%= title %></h2>
-        <p><%= description %></p>
+        <p style="padding:0 10px"><%= description %></p>
         <% if isBtnShown %>
-            <a href="<%= link %>" class="btn btn-light btn-hover-dark">Discover Collection</a>
+            <a href="<%= link %>" class="btn <%= btnStyle %>">Discover Collection</a>
         <% end %>
     </div>
 </div>
