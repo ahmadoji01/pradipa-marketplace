@@ -1,0 +1,15 @@
+<% imgUrl ||= image_url('blog/s370/blog-1.jpg') 
+    title ||= "Read Our Stories" 
+    postUrl ||= "/blogs" %>
+
+<div class="col">
+    <div class="blog">
+        <div class="image">
+            <a href="blog-details-right-sidebar.html"><img src="<%= imgUrl %>" alt="Blog Image"></a>
+        </div>
+        <div class="content">
+            <h5 class="title"><a href="<%= postUrl %>"><%= title %></a></h5>
+            <a href="<%= postUrl %>" class="link">Read More</a>
+        </div>
+    </div>
+</div>

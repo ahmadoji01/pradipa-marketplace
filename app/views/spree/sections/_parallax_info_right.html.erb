@@ -9,11 +9,11 @@
     <div class="col-lg-6 col-sm-12">
         <img src="<%= image_url bg %>" alt="parallax-2" />
     </div>
-    <div class="content text-center col-lg-6 col-sm-12" style="padding:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-content:center">
+    <div class="content text-center col-lg-6 col-sm-12" style="margin-top:20px;padding:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-content:center">
         <h2 class="title"><%= title %></h2>
         <p style="padding:0 10px"><%= description %></p>
         <% if isBtnShown %>
-            <a href="<%= link %>" class="btn <%= btnStyle %>">Discover Collection</a>
+            <a href="<%= link %>" class="btn <%= btnStyle %>" style="margin-top:20px">Discover Collection</a>
         <% end %>
     </div>
 </div>

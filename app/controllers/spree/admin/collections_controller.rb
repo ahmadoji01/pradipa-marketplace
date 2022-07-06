@@ -68,6 +68,9 @@ module Spree
         
             # PATCH/PUT /spree/blogs/1 or /spree/blogs/1.json
             def update
+                @collection.product_ids = params[:collection][:product_ids]
+                @collection.blog_ids = params[:collection][:blog_ids]
+                
                 respond_to do |format|
                     if @collection.update(collection_params)
                         format.html { redirect_to main_app.edit_admin_collection_path(@collection), notice: "Collection was successfully updated." }
