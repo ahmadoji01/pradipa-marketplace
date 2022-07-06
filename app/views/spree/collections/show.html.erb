@@ -1,13 +1,10 @@
-<%= render partial: 'spree/sections/youtube_js_api_loader' %>
-<%= render partial: 'spree/collections/youtube_video', locals: {video: @collection.featured_video, id: 'featured-video-yt-player'} %>
-
 <div class="iframe-container">
     <div class="responsive-iframe swiper-slide">
-        <div id="featured-video-player" class="iframe-video"></div>
+        <div class="iframe-video video-player" data-video-code="<%= @collection.featured_video %>"></div>
     </div>
 </div>
 
-<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.featured_image.url} %>
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.featured_image.url, description: @collection.collection_description, title: @collection.name} %>
 
 <div class="section section-padding">
     <div class="container">
@@ -31,10 +28,10 @@
 
 <div class="iframe-container">
     <div class="responsive-iframe swiper-slide">
-        <div id="production-video-player" class="iframe-video"></div>
+        <div class="iframe-video video-player" data-video-code="<%= @collection.production_video %>"></div>
     </div>
 </div>
 
-<%= render partial: 'spree/sections/parallax_info_left', locals: {bg: @collection.production_image.url}  %>
+<%= render partial: 'spree/sections/parallax_info_left', locals: {bg: @collection.production_image.url, description: @collection.production_description}  %>
 
-<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.summary_image.url} %>
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.summary_image.url, description: @collection.summary_description} %>

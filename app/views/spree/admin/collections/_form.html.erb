@@ -74,6 +74,13 @@
           <% end %>
       </div>
 
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :summary_description do %>
+          <%= f.label :summary_description, class: 'required' %>
+          <%= f.rich_text_area :summary_description, class: 'fullwidth title', row: 4 %>
+        <% end %>
+      </div>
+
       <div data-hook="admin_withdrawal_form_bank_swift_code">
           <%= image_tag(@collection.summary_image_url) if @collection.summary_image? %>
           <%= f.field_container :summary_image do %>
@@ -91,7 +98,7 @@
       </div>
 
       <div data-hook="admin_product_form_user">
-        <%= f.field_container :product do %>
+        <%= f.field_container :blog do %>
           <%= f.label 'blog_ids', 'Blogs' %>
           <%= f.select 'blog_ids', Spree::Blog.all.map { |blog| [blog.title, blog.id] }, {include_blank: true, required: true, include_hidden: true, multiple: true}, multiple: true, class: 'form-control select2-basic content-search' %>
         <% end %>
