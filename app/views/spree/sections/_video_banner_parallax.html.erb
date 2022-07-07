@@ -1,13 +1,15 @@
-<% collection ||= Spree::Collection.first  %>
+<%  name ||= "Fashion" 
+    videoCode ||= "LPGUtKKO6F8"
+    link ||= "/collection/fashion-2" %>
 
 <div class="parallax-banner parallax-banner-3" data-scrollax-parent="true" style="background:#00000044">
     <div class="parallax-image" data-scrollax="properties: { translateY: '30%' }">
         <div class="responsive-iframe swiper-slide iframe-video">
-            <div id="yt-player" class="video-player" data-video-code="LPGUtKKO6F8"></div>
+            <div id="yt-player" class="video-player" data-video-code="<%= videoCode %>"></div>
         </div>
     </div>
     <div class="content text-center banner-collection-text">
-        <h4 class="video-banner-title">Alumsy Shelf</h4>
-        <a href="shop.html" class="btn btn-light btn-hover-dark">discover collection</a>
+        <h4 class="video-banner-title"><%= name %></h4>
+        <a href="<%= link %>" class="btn btn-light btn-hover-dark">discover collection</a>
     </div>
 </div>
