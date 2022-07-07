@@ -13,10 +13,10 @@
 <%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.featured_image.url, description: @collection.collection_description, title: @collection.name, isBtnShown: true} %>
 
 <% if !@collection.blogs.empty? %>
-    <%= render partial: 'spree/collections/featured_blog_posts', locals: { blogs: @collection.blogs } %>
+    <%= render partial: 'spree/collections/featured_blog_posts', locals: { blogs: @collection.blogs, name: @collection.name } %>
 <% end %>
 
-<div class="section section-padding">
+<div class="section section-padding" style="padding-top:0">
     <div class="container">
         <div class="section-title2 text-center">
             <h2 class="title title-icon-both">Discover this Collection</h2>
