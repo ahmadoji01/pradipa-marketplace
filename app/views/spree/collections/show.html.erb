@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="content text-center banner-collection-text">
-        <a href="<%= main_app.collection_page_path(@collection) %>" class="btn btn-light btn-hover-dark">discover this collection</a>
+        <a href="/discover_collection/<%= @collection.slug %>" class="btn btn-light btn-hover-dark">discover this collection</a>
     </div>
 </div>
 
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center learts-mt-50">
-                    <a href="/products" class="btn btn-primary btn-hover-black">View All Products</a>
+                    <a href="/discover_collection/<%= @collection.slug %>" class="btn btn-primary btn-hover-black">View All Products</a>
                 </div>
             </div>
         </div>
@@ -42,6 +42,6 @@
     </div>
 </div>
 
-<%= render partial: 'spree/sections/parallax_info_left', locals: {bg: @collection.production_image.url, description: @collection.production_description}  %>
+<%= render partial: 'spree/sections/parallax_info_left', locals: {bg: @collection.production_image.url, description: @collection.production_description, slug: @collection.slug}  %>
 
-<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.summary_image.url, description: @collection.summary_description, isBtnShown: true, btnStyle: "btn-dark btn-hover-light"} %>
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.summary_image.url, description: @collection.summary_description, isBtnShown: true, btnStyle: "btn-dark btn-hover-light", slug: @collection.slug} %>

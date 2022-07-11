@@ -9,7 +9,7 @@
         <h2 class="title"><%= title %></h2>
         <p style="padding:0 10px"><%= description %></p>
         <% if isBtnShown %>
-            <a href="<%= link %>" class="btn <%= btnStyle %>" style="margin-top:20px">Discover Collection</a>
+            <a href="/discover_collection/<%= @collection.slug %>" class="btn <%= btnStyle %>" style="margin-top:20px">Discover Collection</a>
         <% end %>
     </div>
     <div class="col-lg-6 col-sm-12" style="background-image:url('<%= image_url bg %>');background-size:cover;background-position:center"></div>
