@@ -1,4 +1,4 @@
-class CollectionFeaturedImageUploader < CarrierWave::Uploader::Base
+class CollectionBannerImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -22,7 +22,8 @@ class CollectionFeaturedImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process resize_to_fit: [1000, 1000]
+  # process scale: [200, 300]
+  process resize_to_fit: [1920, 381]
   #
   # def scale(width, height)
   #   # do something

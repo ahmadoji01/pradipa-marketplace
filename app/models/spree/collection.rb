@@ -5,6 +5,7 @@ class Spree::Collection < ApplicationRecord
   mount_uploader :featured_image, CollectionFeaturedImageUploader
   mount_uploader :production_image, CollectionProductionImageUploader
   mount_uploader :summary_image, CollectionSummaryImageUploader
+  mount_uploader :banner_image, CollectionBannerImageUploader
 
   has_many :collection_products
   has_many :products, :class_name => "Spree::Product", through: :collection_products 

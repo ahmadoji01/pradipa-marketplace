@@ -340,6 +340,7 @@ ActiveRecord::Schema.define(version: 2022_07_01_042610) do
     t.string "production_video"
     t.string "summary_image"
     t.string "summary_description"
+    t.string "banner_image"
     t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

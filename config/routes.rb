@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get '/post/:slug', :to => 'blogs#show_post', :as => 'post_page'
 
     get '/collection/:slug', :to => 'collections#show', :as => 'collection_page'
+    get '/discover_collection/:slug', :to => 'collections#discover', :as => 'discover_collection_page'
 
     get '/brand/:slug', :to => 'home#brand', :as => 'brand_page'
 

@@ -16,18 +16,7 @@
                             <%= rel_next_prev_link_tags paginated_products %>
                         <% end %>
                     <% end %>
-
-                    <div class="row mb-4">
-                        <div class="col">
-                            <div class="page-title">
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        Showing results of <strong style="color:black">"<%= params[:keywords] %>"</strong> - <%= @total %> items
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <% if @total == 0 %><div class="row"><h5>No products found. You can try to change your query for better results</h5></div><% end %>
                     <div id="shop-products" class="products isotope-grid row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
                         <div class="grid-sizer col-1"></div>

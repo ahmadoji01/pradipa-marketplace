@@ -100,7 +100,7 @@ module Spree
         
                 # Only allow a list of trusted parameters through.
                 def collection_params
-                    params.fetch(:collection, {}).permit(:name, :slug, :collection_description, :published, :meta_description, :meta_keywords, :meta_tags, :featured_image, :featured_video, :summary_image, :summary_description, :edited_at, :product_ids, :blog_ids, :production_image, :production_video, :production_description, :featured_video, :production_video)
+                    params.fetch(:collection, {}).permit(:name, :slug, :collection_description, :published, :meta_description, :meta_keywords, :meta_tags, :featured_image, :featured_video, :summary_image, :banner_image, :summary_description, :edited_at, :product_ids, :blog_ids, :production_image, :production_video, :production_description, :featured_video, :production_video)
                 end
         end
     end
