@@ -1,0 +1,22 @@
+<% blogs ||= [] 
+   name ||= "" %>
+
+<!-- Blog Section Start -->
+<div class="section section-padding">
+    <div class="container">
+
+        <!-- Section Title Start -->
+        <div class="section-title2 text-center" style="margin-top:0;margin-bottom:0">
+            <h3 class="sub-title"><%= name %> Stories</h3>
+        </div>
+        <!-- Section Title End -->
+
+        <div class="blog-carousel">
+            <% blogs.each do |blog| %>
+                <%= render partial: 'spree/collections/featured_post_card', locals: { title: blog.title, imgUrl: blog.featured_image.url, postUrl: main_app.blog_path(blog) } %>
+            <% end %>
+        </div>
+
+    </div>
+</div>
+<!-- Blog Section End -->

@@ -151,3 +151,22 @@ Sometimes docker-compose command will hang if there is not enough entropy. To pr
     sudo apt install haveged
     haveged
 
+***
+***
+
+### Application Usage
+
+#### Adding Product Collection (Not Category)
+
+The collection page consists of the following elements:
+1. Featured video (Optional)
+2. Product usage image demonstrated by the model
+3. Description of the collection
+4. List of products
+5. Image of the production house making the collection
+6. Description of the production house involved in collection creation
+7. Video of the production process (Optional)
+8. Story from the influencers
+
+Here is the way to add the entry for each of the elements:
+1. 

@@ -1,0 +1,146 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>$(window).on('load', function () { $('.select2-basic').select2({ allowClear: true, placeholder: "" }); })</script>
+
+<% method ||= 'post' %>
+<% @url = (method == 'post' ? main_app.admin_collections_path : main_app.collection_page_path(@collection)) %>
+
+<% if @collection.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@collection.errors.count, "error") %> prohibited this spree_collection from being saved:</h2>
+
+    <ul>
+      <% @collection.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div data-hook="admin_ticket_form_fields">
+  <div class="row">
+    <div class="left col-9" data-hook="admin_withdrawal_form_fields">
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :name do %>
+          <%= f.label :name, class: 'required' %>
+          <%= f.text_field :name, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :collection_description do %>
+          <%= f.label :collection_description, class: 'required' %>
+          <%= f.rich_text_area :collection_description, class: 'fullwidth title', row: 4 %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= image_tag(@collection.featured_image_url) if @collection.featured_image? %>
+          <%= f.field_container :featured_image do %>
+            <%= f.label :featured_image, class: 'required' %>
+            <%= f.file_field :featured_image, class: 'fullwidth title' %>
+            <%= f.error_message_on :featured_image %>
+          <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= f.field_container :featured_video do %>
+            <%= f.label :featured_video, class: 'required' %>
+            <%= f.text_field :featured_video, class: 'fullwidth title' %>
+            <%= f.error_message_on :featured_video %>
+          <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :production_description do %>
+          <%= f.label :production_description, class: 'required' %>
+          <%= f.rich_text_area :production_description, class: 'fullwidth title', row: 4 %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= image_tag(@collection.production_image_url) if @collection.production_image? %>
+          <%= f.field_container :production_image do %>
+            <%= f.label :production_image, class: 'required' %>
+            <%= f.file_field :production_image, class: 'fullwidth title' %>
+            <%= f.error_message_on :production_image %>
+          <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= f.field_container :production_video do %>
+            <%= f.label :production_video, class: 'required' %>
+            <%= f.text_field :production_video, class: 'fullwidth title' %>
+            <%= f.error_message_on :production_video %>
+          <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :summary_description do %>
+          <%= f.label :summary_description, class: 'required' %>
+          <%= f.rich_text_area :summary_description, class: 'fullwidth title', row: 4 %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= image_tag(@collection.summary_image_url) if @collection.summary_image? %>
+          <%= f.field_container :summary_image do %>
+            <%= f.label :summary_image, class: 'required' %>
+            <%= f.file_field :summary_image, class: 'fullwidth title' %>
+            <%= f.error_message_on :summary_image %>
+          <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_bank_swift_code">
+          <%= image_tag(@collection.banner_image_url) if @collection.banner_image? %>
+          <%= f.field_container :banner_image do %>
+            <%= f.label :banner_image %>
+            <%= f.file_field :banner_image, class: 'fullwidth title' %>
+            <%= f.error_message_on :banner_image %>
+          <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_user">
+        <%= f.field_container :product do %>
+          <%= f.label 'product_ids', 'Products' %>
+          <%= f.select 'product_ids', Spree::Product.all.map { |product| [product.name, product.id] }, {include_blank: true, required: true, include_hidden: true}, multiple: true, class: 'form-control select2-basic content-search' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_user">
+        <%= f.field_container :blog do %>
+          <%= f.label 'blog_ids', 'Blogs' %>
+          <%= f.select 'blog_ids', Spree::Blog.all.map { |blog| [blog.title, blog.id] }, {include_blank: true, required: true, include_hidden: true, multiple: true}, multiple: true, class: 'form-control select2-basic content-search' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :meta_description do %>
+          <%= f.label :meta_description, class: 'required' %>
+          <%= f.text_field :meta_description, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :meta_keywords do %>
+          <%= f.label :meta_keywords, class: 'required' %>
+          <%= f.text_field :meta_keywords, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_request_form_withdrawal">
+        <%= f.field_container :meta_tags do %>
+          <%= f.label :meta_tags, class: 'required' %>
+          <%= f.text_field :meta_tags, class: 'fullwidth title' %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_withdrawal_form_user">
+        <%= f.field_container :published do %>
+          <%= f.check_box :published, class: 'required' %>
+          Published
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

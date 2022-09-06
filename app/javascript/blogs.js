@@ -11,4 +11,4 @@ function convertTimeWithMoment() {
 
 $(window).on('load', function () {
     convertTimeWithMoment();
-})
+});

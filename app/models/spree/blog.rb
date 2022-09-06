@@ -5,6 +5,9 @@ class Spree::Blog < ApplicationRecord
     belongs_to :blog_category, optional: true
     has_rich_text :body
 
+    has_many :collection_blogs, :class_name => "Spree::CollectionBlog"
+    has_many :collections, :class_name => "Spree::Collection", through: :collection_blogs
+
     def create_slug
         self.update_columns(slug: generate_slug(self.title))
     end

@@ -22,3 +22,40 @@ window.updateCart = function() {
         error: function(data) { $('#spinner-container').hide(); }
     })
 }
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+function onYouTubeIframeAPIReady() {
+    $(".video-player").each ( function(i, obj) {
+        videoCode = obj.dataset['videoCode'];
+        player = new YT.Player(obj, {
+            width: '100%',
+            height: '100%',
+            videoId: videoCode,
+            playerVars: { 
+                'autoplay': 1, 
+                'rel' : 0,
+                'showinfo' : 0,
+                'showsearch' : 0,
+                'controls' : 0,
+                'mute': 1, 
+                'loop': 1,
+                'enablejsapi' : 1,
+                'playlist': videoCode },
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+    });
+}
+
+function onPlayerReady(event) {
+    event.target.setVolume(70);
+    event.target.playVideo();
+}
+
+$(window).on('load', function () {
+    onYouTubeIframeAPIReady();
+})

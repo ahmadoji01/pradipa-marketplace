@@ -1,0 +1,47 @@
+
+<div class="parallax-banner parallax-banner-3" data-scrollax-parent="true" style="background:#00000044">
+    <div class="parallax-image" data-scrollax="properties: { translateY: '30%' }">
+        <div class="responsive-iframe swiper-slide">
+            <div class="iframe-video video-player" data-video-code="<%= @collection.featured_video %>"></div>
+        </div>
+    </div>
+    <div class="content text-center banner-collection-text">
+        <a href="/discover_collection/<%= @collection.slug %>" class="btn btn-light btn-hover-dark">discover this collection</a>
+    </div>
+</div>
+
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.featured_image.url, description: @collection.collection_description, title: @collection.name, isBtnShown: true} %>
+
+<% if !@collection.blogs.empty? %>
+    <%= render partial: 'spree/collections/featured_blog_posts', locals: { blogs: @collection.blogs, name: @collection.name } %>
+<% end %>
+
+<div class="section section-padding" style="padding-top:0">
+    <div class="container">
+        <div class="section-title2 text-center">
+            <h2 class="title title-icon-both">Discover this Collection</h2>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="product-all">
+                    <div class="products row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
+                        <% @collection.products.take(4).each do |product| %>
+                            <%= render partial: 'spree/elements/product_card', locals: { product: product } %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center learts-mt-50">
+                    <a href="/discover_collection/<%= @collection.slug %>" class="btn btn-primary btn-hover-black">View All Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="iframe-container">
+    <div class="responsive-iframe swiper-slide">
+        <div class="iframe-video video-player" data-video-code="<%= @collection.production_video %>"></div>
+    </div>
+</div>
+
+<%= render partial: 'spree/sections/parallax_info_left', locals: {bg: @collection.production_image.url, description: @collection.production_description, slug: @collection.slug}  %>
+
+<%= render partial: 'spree/sections/parallax_info_right', locals: {bg: @collection.summary_image.url, description: @collection.summary_description, isBtnShown: true, btnStyle: "btn-dark btn-hover-light", slug: @collection.slug} %>

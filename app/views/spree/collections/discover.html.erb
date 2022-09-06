@@ -1,0 +1,56 @@
+<div class="page-title-section section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <div class="parallax-banner parallax-banner-3" data-scrollax-parent="true" style="background:#00000044;height:100%;min-height:0">
+                    <div class="parallax-image" data-scrollax="properties: { translateY: '30%' }">
+                        <div class="iframe-video video-player" data-video-code="<%= @collection.featured_video %>"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="page-title">
+                    <h1 class="title"><%= @collection.name %></h1>
+                    <p><%= @collection.collection_description %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-padding pt-0">
+
+    <div class="section learts-mt-40">
+        <div class="container">
+            <div class="row learts-mb-n50">
+
+                <div class="col-lg-12 col-12 learts-mb-50 order-lg-2">
+
+                    <% content_for :head do %>
+                        <% if @paginated_products.respond_to?(:total_pages) %>
+                            <%= rel_next_prev_link_tags @paginated_products %>
+                        <% end %>
+                    <% end %>
+                    <% if @total == 0 %><div class="row"><h5>No products found. You can try to change your query for better results</h5></div><% end %>
+                    <div id="shop-products" class="products isotope-grid row row-cols-xl-3 row-cols-sm-2 row-cols-2">
+                        <div class="grid-sizer col-1"></div>
+                        <% @paginated_products.each do |product| %>
+                            <div class="grid-item col">
+                                <%= render partial: 'spree/elements/product_card', locals: { product: product } %>
+                            </div>
+                        <% end %>
+                    </div>
+
+
+                    <% if @paginated_products.respond_to?(:total_pages) %>
+                        <div class="text-center learts-mt-70 enable-x-scroll bring-to-front">
+                            <%= paginate @paginated_products, theme: 'store_frontend' %>
+                        </div>
+                    <% end %>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

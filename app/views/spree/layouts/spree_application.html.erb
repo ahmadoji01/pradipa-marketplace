@@ -12,9 +12,19 @@
     </script>
   </head>
   <body id="<%= @body_id || 'default' %>" data-hook="body">
-    <%= render partial: 'spree/sections/header' %>
+    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") %>
+      <%= render partial: 'spree/sections/transparent_header' %>
+    <% else %>
+      <%= render partial: 'spree/sections/header_simplified' %>
+    <% end %>
+
     <%= render partial: 'spree/sections/header_sticky' %>
-    <%= render partial: 'spree/sections/mobile_header' %>
+
+    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") %>
+      <%= render partial: 'spree/sections/transparent_mobile_header' %>
+    <% else %>
+      <%= render partial: 'spree/sections/mobile_header' %>
+    <% end %>
     <%= render partial: 'spree/sections/mobile_header_sticky' %>
     
     <%= render partial: 'spree/offcanvases/search' %>

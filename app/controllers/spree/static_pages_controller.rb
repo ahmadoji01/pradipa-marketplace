@@ -31,6 +31,17 @@ module Spree
     end
 
     def contact_us
+      @subject = ""
+      if !request.GET['subject'].nil?
+        if request.GET['subject'] == "custom-request"
+          @subject = "Personalized Request: (Replace this sentence with your query)"
+        end
+
+        if request.GET['subject'] == "wholesale-partnership"
+          @subject = "Wholesale Partnership: (Replace this sentence with your query)"
+        end
+      end
+
       @ticket = Ticket.new
     end
 

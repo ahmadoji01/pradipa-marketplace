@@ -1,0 +1,16 @@
+<% link ||= "#" 
+    bgType ||= "image" 
+    imageUrl ||= image_url("banner/parallax/parallax-2.jpg") 
+    videoCode ||= "" %>
+
+<div class="parallax-banner parallax-banner-2" data-scrollax-parent="true">
+    <div class="parallax-image" data-scrollax="properties: { translateY: '30%' }">
+        <img src="<%= image_url 'banner/parallax/parallax-2.jpg' %>" alt="parallax-2" />
+    </div>
+    <div class="content text-center">
+        <img class="price " src="<%= image_url 'banner/parallax/parallax-2-1.png' %>" alt="Price">
+        <h2 class="title">MOROCCO VASE</h2>
+        <span class="sub-title">Superb quality</span>
+        <a href="shop.html" class="btn btn-light btn-hover-dark">shop now</a>
+    </div>
+</div>

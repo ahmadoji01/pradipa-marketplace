@@ -1,0 +1,18 @@
+<% bg ||= 'banner/parallax/parallax-2.jpg' 
+    description ||= ''
+    title ||= ''
+    link ||= ''
+    isBtnShown ||= false 
+    btnStyle ||= "btn-light btn-hover-dark"
+    slug ||= '' %>
+
+<div class="row gx-0">
+    <div class="col-lg-6 col-sm-12" style="background-image:url('<%= image_url bg %>');background-size:cover;background-position:center"></div>
+    <div class="content text-center col-lg-6 col-sm-12" style="margin-top:20px;padding:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-content:center">
+        <h2 class="title"><%= title %></h2>
+        <p style="padding:0 10px"><%= description %></p>
+        <% if isBtnShown %>
+            <a href="/discover_collection/<%= @collection.slug %>" class="btn <%= btnStyle %>" style="margin-top:20px">Discover Collection</a>
+        <% end %>
+    </div>
+</div>

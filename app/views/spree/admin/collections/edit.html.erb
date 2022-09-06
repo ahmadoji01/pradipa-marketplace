@@ -1,0 +1,20 @@
+<% admin_breadcrumb(link_to(plural_resource_name(Spree::Collection), main_app.admin_collections_path)) %>
+<% admin_breadcrumb('Edit Collection') %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Collection', main_app.new_admin_collection_url, class: 'btn btn-primary' %>
+  </li>
+  <li>
+    <%= link_to 'View Collection', main_app.collection_page_path(@collection.slug), class: 'btn btn-secondary' %>
+  </li>
+<% end %>
+
+<%= form_for @collection, url: main_app.admin_collection_path, html: { method: :put } do |f| %>
+  <fieldset class="no-border-top">
+    <%= render 'form', f: f %>
+    <% if can? :update, @collection %>
+      <%= render partial: 'spree/admin/shared/edit_resource_links', locals: {collection_url: main_app.admin_collections_path} %>
+    <% end %>
+  </fieldset>
+<% end %>

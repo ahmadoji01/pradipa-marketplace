@@ -1,21 +1,7 @@
+<%= render partial: 'spree/sections/video_banner_parallax', locals: { videoCode: "tKAGXxQ2cEg", link: "/collection/fashion-2", name: "Faber Instrument Vintage Radio" } %>
+<%= render partial: 'spree/sections/video_banner_parallax', locals: { videoCode: "gE5fCfGXq3g", link: "/collection/fashion-2", name: "Floral Fashion and Mediterranean Bags" } %>
+<%= render partial: 'spree/sections/video_banner_parallax', locals: { videoCode: "206ibMtEo8U", link: "/collection/fashion-2", name: "Handmade Leather Wallet" } %>
 <%= render partial: 'spree/sections/main_slider' %>
-<%= render partial: 'spree/sections/about_us' %>
 
-<div class="section">
-    <div class="container">
-        <div class="row row-cols-lg-4 row-cols-sm-2 row-cols-2 learts-mb-n40">
-            <%= render partial: 'spree/elements/category_banner', locals: { color: "#DBE6FD", name: "Gift Ideas", permalink: 'gifts', image: 'for_use/banner/category/category-1.jpg' } %>
-            <%= render partial: 'spree/elements/category_banner', locals: { color: "#FFEDA3", name: "Home Decor", permalink: 'home-decor', image: 'for_use/banner/category/category-2.jpg' } %>
-            <%= render partial: 'spree/elements/category_banner', locals: { color: "#F4CCA4", name: "Fashion", permalink: 'fashion', image: 'for_use/banner/category/category-3.jpg' } %>
-            <%= render partial: 'spree/elements/category_banner', locals: { color: "#F6DCBF", name: "Accessories", permalink: 'accessories', image: 'for_use/banner/category/category-4.jpg' } %>
-        </div>
-    </div>
-</div>
-
-<%= render partial: 'spree/sections/products', locals: { featured_products: @featured_products } %>
-<%= render partial: 'spree/sections/special_product_banner' %>
-<%= render partial: 'spree/sections/recent_products', locals: { products: @recent_products } %>
-<%= render partial: 'spree/sections/feature' %>
-<%= render partial: 'spree/sections/deal_of_the_day' %>
+<%= render partial: 'spree/sections/two_horizontal_banners' %>
 <%= render partial: 'spree/sections/recent_posts' %>
-<%= render partial: 'spree/sections/instagram_feed' %>
