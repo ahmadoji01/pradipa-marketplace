@@ -27,17 +27,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-sidebar/3.3.1/jquery.sticky-sidebar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
     
-    <% if current_page?(main_app.spree_path) || current_page?(main_app.about_us_page_path) %>
-      <%= javascript_include_tag 'instafeed.min.js' %>
-      <script>
-        var feed = new Instafeed({
-            accessToken: 'IGQVJXT3J0MG5rRldyaEoyOXZAjZAXpEZAlhpbGpueU9kNVNnTU9WRmpUT3NDR2o4Uk1wc3pBVnQ5MndlY1FrQmhHczE1cmwzR21Tay1hak9rQXdUTDRGaGxaWDZAWdnZACbFFfeFN6ZAHpyNnNKZAWUwUFc3egZDZD',
-            limit: 5
-        });
-        feed.run();
-      </script>
-    <% end %>
-    
     <%= javascript_include_tag 'main.js' %>
 
   </body>
