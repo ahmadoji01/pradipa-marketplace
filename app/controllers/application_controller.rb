@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
       return
     end
 
+    if request.path.include?("collection")
+      return
+    end
+
     if request.path.include?("blogs")
       return
     end
