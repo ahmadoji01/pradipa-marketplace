@@ -1,3 +1,7 @@
-<li class="btn btn-dark btn-outline-hover-dark page-frontend bring-to-front">
-    <%= link_to_unless current_page.first?, raw(t 'views.pagination.first'), url, remote: remote, class: '' %>
-</li>
+<% if !current_page.first? %>
+    <%= link_to url, remote: remote, class: '' do %>
+        <li class="btn btn-dark btn-outline-hover-dark page-frontend bring-to-front">
+            <%= raw(t 'views.pagination.first') %>
+        </li>
+    <% end %>
+<% end %>
