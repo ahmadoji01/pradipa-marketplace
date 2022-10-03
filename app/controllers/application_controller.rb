@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def menu_taxon_id_search
     fashion = Spree::Taxon.find_by(name: "Fashion")
-    home_decor = Spree::Taxon.find_by(name: "Home Decor")
+    home_decor = Spree::Taxon.find_by(name: "Decorations")
     gifts = Spree::Taxon.find_by(name: "Gifts")
 
     @fashion_link = "/products"
