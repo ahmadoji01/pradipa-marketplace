@@ -1,15 +1,12 @@
 <% textClass ||= "" %>
-<li class=""><a href="/products">
+<li class=""><a href="<%= @fashion_link %>">
     <span class="menu-text <%= textClass %>">Fashion</span></a>
 </li>
+<li class=""><a href="<%= @home_decor_link %>">
+    <span class="menu-text <%= textClass %>">Home Decor</span></a>
+</li>
 <li class="">
-    <a href="/products"><span class="menu-text <%= textClass %>">Accessories</span></a>
-</li>
-<li class=""><a href="/products">
-    <span class="menu-text <%= textClass %>">Home Deco</span></a>
-</li>
-<li class=""><a href="/products">
-    <span class="menu-text <%= textClass %>">Gifts</span></a>
+    <a href="<%= @gifts_link %>"><span class="menu-text <%= textClass %>">Gifts</span></a>
 </li>
 <li class="has-children"><a href="#"><span class="menu-text <%= textClass %>">Info</span></a>
     <ul class="sub-menu">

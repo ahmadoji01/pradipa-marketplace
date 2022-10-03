@@ -1,7 +1,27 @@
 class ApplicationController < ActionController::Base
-  before_action :coming_soon
+  before_action :coming_soon, :menu_taxon_id_search
   add_flash_types :success, :warning, :info, :danger
   include Pagy::Backend
+
+  def menu_taxon_id_search
+    fashion = Spree::Taxon.find_by(name: "Fashion")
+    home_decor = Spree::Taxon.find_by(name: "Home Decor")
+    gifts = Spree::Taxon.find_by(name: "Gifts")
+
+    @fashion_link = "/products"
+    @home_decor_link = "/products"
+    @gifts_link = "/products"
+
+    if !fashion.nil?
+      @fashion_link = "/products?taxon=" + fashion.id
+    end
+    if !home_decor.nil?
+      @home_decor_link = "/products?taxon=" + home_decor.id
+    end
+    if !gifts.nil?
+      @gifts_link = "/products?taxon=" + gifts.id
+    end
+  end
 
   def coming_soon
     if ENV["RAILS_COMING_SOON"] == "true"
