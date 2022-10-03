@@ -13,13 +13,13 @@ class ApplicationController < ActionController::Base
     @gifts_link = "/products"
 
     if !fashion.nil?
-      @fashion_link = "/products?taxon=" + fashion.id
+      @fashion_link = "/products?taxon=" + fashion.id.to_s
     end
     if !home_decor.nil?
-      @home_decor_link = "/products?taxon=" + home_decor.id
+      @home_decor_link = "/products?taxon=" + home_decor.id.to_s
     end
     if !gifts.nil?
-      @gifts_link = "/products?taxon=" + gifts.id
+      @gifts_link = "/products?taxon=" + gifts.id.to_s
     end
   end
 
