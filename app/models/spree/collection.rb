@@ -1,6 +1,6 @@
 class Spree::Collection < ApplicationRecord
   after_update :update_slug
-  after_save :create_slug
+  after_create :create_slug
 
   mount_uploader :featured_image, CollectionFeaturedImageUploader
   mount_uploader :production_image, CollectionProductionImageUploader
@@ -21,7 +21,7 @@ class Spree::Collection < ApplicationRecord
   end
 
   def update_slug
-    self.update_columns(slug: generate_update_slug(self.name, self.id))
+    self.update_columns(slug: generate_update_slug(self))
   end
 
   private
@@ -36,18 +36,17 @@ class Spree::Collection < ApplicationRecord
       return slug
     end
 
-    def generate_update_slug(name, id)
-      collection = Spree::Collection.find(id)
-      if collection.name != name
+    def generate_update_slug(collection)
+      if collection.name_changed?
         i = 1
-        slug = name.parameterize
+        slug = collection.name.parameterize
         while !Spree::Collection.find_by(slug: slug).nil?
           i = i + 1
-          slug = name.parameterize + "-" + i.to_s
+          slug = collection.name.parameterize + "-" + i.to_s
         end  
         return slug
       end
-      return name.parameterize
+      return collection.name.parameterize
     end
 
 end
