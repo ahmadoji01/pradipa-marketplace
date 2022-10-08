@@ -43,7 +43,7 @@
 
     <%= render partial: 'spree/elements/spinner' %>
 
-    <% if request.path.include?("checkout") %>
+    <% if request.path.include?("checkout") || request.path.include?("cart") %>
       <% if !mobile_device? %>
         <%= render partial: 'spree/shared/footer' %>
       <% end %>
