@@ -1,6 +1,24 @@
-<%= render partial: 'spree/sections/video_banner_parallax', locals: { videoCode: "tKAGXxQ2cEg", link: "/collection/wooden-vintage-radio-collection", name: "Wooden Vintage Radio" } %>
-<%= render partial: 'spree/sections/video_banner_parallax', locals: { videoCode: "oV8Oo5sQ8PQ", link: "/collection/mediterranean-fashion-collection", name: "Floral Fashion and Mediterranean Bags" } %>
-<%= render partial: 'spree/sections/video_banner_parallax', locals: { videoCode: "206ibMtEo8U", link: "/collection/handmade-leather-wallet-collection", name: "Handmade Leather Wallet" } %>
-<%= render partial: 'spree/sections/main_slider' %>
+<%= render partial: 'spree/sections/video_banner', locals: { videoCode: "c86b7hyQJvY", link: "/collection/mediterranean-fashion-collection" } %>
+<%= render partial: 'spree/sections/what_we_do' %>
+<%= render partial: 'spree/sections/our_missions' %>
 
-<%= render partial: 'spree/sections/two_horizontal_banners' %>
+<div class="text-center learts-mb-10" style="padding:20px">
+    <h2 class="title title-icon-both">Our Recent Collections</h2>
+    <div id="shop-products" class="products isotope-grid row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
+        <div class="grid-sizer col-1"></div>
+        <% @recent_products.each do |product| %>
+            <div class="grid-item col">
+                <%= render partial: 'spree/elements/product_card', locals: { product: product } %>
+            </div>
+        <% end %>
+    </div>
+</div>
+<div class="row learts-mt-30 mb-4">
+    <div class="col" style="text-align:center">
+        <a href="shop.html" class="btn btn-dark btn-hover-primary">View All Products</a>
+    </div>
+</div>
+<%= render partial: 'spree/sections/feature' %>
+<%= render partial: 'spree/sections/our_story' %>
+<%= render partial: 'spree/sections/contact_us_banner' %>
+<%= render partial: 'spree/sections/recent_posts', locals: { blogs: @recent_posts } %>

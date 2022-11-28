@@ -27,6 +27,9 @@ module Spree
     def order_status
     end
 
+    def natural_fibers
+    end
+
     def track_my_package
     end
 

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     get '/track-my-package', :to => 'static_pages#track_my_package', :as => 'track_my_package_page'
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
     get '/coming-soon', :to => 'static_pages#coming_soon', :as => 'coming_soon_page'
+    get '/natural-fibers', :to => 'static_pages#natural_fibers', :as => 'natural_fibers_page'
 
     post '/submit_ticket', :to => 'static_pages#submit_ticket'
     post '/submit_mailing', :to => 'mailings#submit_mailing'
