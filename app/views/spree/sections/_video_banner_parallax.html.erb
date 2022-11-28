@@ -1,4 +1,4 @@
-<%  name ||= "Fashion" 
+<%  name ||= "" 
     videoCode ||= "LPGUtKKO6F8"
     link ||= "/collection/fashion-2" %>
 
@@ -8,8 +8,10 @@
             <div id="yt-player" class="video-player" data-video-code="<%= videoCode %>"></div>
         </div>
     </div>
-    <div class="content text-center banner-collection-text">
-        <h4 class="video-banner-title"><%= name %></h4>
-        <a href="<%= link %>" class="btn btn-light btn-hover-dark">discover collection</a>
-    </div>
+    <% if name != "" %>
+        <div class="content text-center banner-collection-text">
+            <h4 class="video-banner-title"><%= name %></h4>
+            <a href="<%= link %>" class="btn btn-light btn-hover-dark">discover collection</a>
+        </div>
+    <% end %>
 </div>

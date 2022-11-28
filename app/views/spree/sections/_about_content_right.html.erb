@@ -1,0 +1,23 @@
+<%  title ||= "Fashion" 
+    subtitle ||= "Redefine your fashion"
+    body ||= "This is a generic body"
+    image_url ||= "for_use/about/about-5.jpg" %>
+
+<div class="section section-padding pb-0">
+    <div class="container">
+        <div class="row learts-mb-20">
+            <div class="col-md-6 col-12 align-self-center learts-mb-30">
+                <div class="about-us3">
+                    <span class="sub-title"><%= subtitle %></span>
+                    <h2 class="title"><%= title %></h2>
+                    <div class="desc">
+                        <p><%= body %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 text-center learts-mb-30">
+                <%= image_tag image_url %>
+            </div>
+        </div>
+    </div>
+</div>
