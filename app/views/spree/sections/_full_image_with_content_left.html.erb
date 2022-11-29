@@ -1,0 +1,18 @@
+<%  title ||= "Fashion" 
+    subtitle ||= "Redefine your fashion"
+    body ||= "This is a generic body"
+    img_url ||= "for_use/about/about-5.jpg" %>
+
+<div class="row">
+    <div class="col-md-5 col-sm-12" style="height:600px;background-position:center;background-image:url(<%= image_url img_url %>)">
+    </div>
+    <div class="col-md-7 col-sm-12 p-5 d-flex" style="align-items:center">
+        <div class="about-us3">
+            <span class="sub-title"><%= subtitle %></span>
+            <h2 class="title"><%= title %></h2>
+            <div class="desc">
+                <p><%= body %></p>
+            </div>
+        </div>
+    </div>
+</div>

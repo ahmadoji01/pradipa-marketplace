@@ -30,6 +30,12 @@ module Spree
     def natural_fibers
     end
 
+    def our_story
+    end
+
+    def sustainability_impact
+    end
+
     def track_my_package
     end
 

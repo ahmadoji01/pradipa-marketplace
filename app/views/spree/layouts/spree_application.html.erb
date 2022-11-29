@@ -12,7 +12,7 @@
     </script>
   </head>
   <body id="<%= @body_id || 'default' %>" data-hook="body">
-    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") %>
+    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") || (controller.controller_name == "static_pages" && controller.action_name == "our_story") %>
       <%= render partial: 'spree/sections/transparent_header' %>
     <% else %>
       <%= render partial: 'spree/sections/header_simplified' %>
@@ -20,7 +20,7 @@
 
     <%= render partial: 'spree/sections/header_sticky' %>
 
-    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") %>
+    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") || (controller.controller_name == "static_pages" && controller.action_name == "our_story") %>
       <%= render partial: 'spree/sections/transparent_mobile_header' %>
     <% else %>
       <%= render partial: 'spree/sections/mobile_header' %>

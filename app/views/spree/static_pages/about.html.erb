@@ -6,7 +6,7 @@
                 <div class="page-title">
                     <h1 class="title">About Us</h1>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
                         <li class="breadcrumb-item active">About Us</li>
                     </ul>
                 </div>
@@ -22,7 +22,7 @@
             <div class="col-lg-4 col-12 align-self-center learts-mb-30">
                 <div class="about-us4">
                     <span class="sub-title">Pradipa.co</span>
-                    <h2 class="title">Home to the Greatest Craft</h2>
+                    <h2 class="title">Natural Looks Our Earth Loves</h2>
                 </div>
             </div>
             <div class="col-lg-8 col-12 learts-mb-30">
@@ -85,13 +85,15 @@
     </div>
 
 </div>
-<div class="section">
-    <div class="video-banner" data-bg-image="<%= image_url 'for_use/banner/video/video-banner-about.jpg' %>">
-        <div class="content">
-            <h2 class="title"></h2>
-            <a href="https://www.youtube.com/watch?v=oV8Oo5sQ8PQ" class="video-popup">
-                <%= image_tag 'icons/button-play.png' %>
-            </a>
-        </div>
-    </div>
-</div>
+<%= render partial: 'spree/sections/full_image_with_content_left', locals: {
+    subtitle: "Managing Director",
+    title: "Ahmad Ridwan 'Oji' Fauzi",
+    body: "7+ years of working experience among 4 years of them living as an expatriate in Japan and France has opened Oji's global mindset. He was living in Japan for 3 years and co-founded a company that traded secondhand items for foreigners in Sapporo called 2Gaijin.com. Graduated from Global MBA at EDHEC Business School, he is now embarking on a journey to come up with solutions that align with the sustainable development goals.",
+    img_url: "for_use/about/about-oji.jpg"
+} %>
+<%= render partial: 'spree/sections/full_image_with_content_right', locals: {
+    subtitle: "Managing Operator",
+    title: "Sony Wijaya",
+    body: "Currently enrolled in Universitas Gadjah Mada as an MBA student, Sony also has 3 years of experience living as an expatriate in Japan. His sheer will and determination has led him to garner attentions on his social media. He is able to turn the attentions into a good influential impact that he truly believes in.",
+    img_url: "for_use/about/about-sony.jpg"
+} %>

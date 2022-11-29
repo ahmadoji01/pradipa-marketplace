@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     get '/contact-us', :to => 'static_pages#contact_us', :as => 'contact_us_page'
     get '/coming-soon', :to => 'static_pages#coming_soon', :as => 'coming_soon_page'
     get '/natural-fibers', :to => 'static_pages#natural_fibers', :as => 'natural_fibers_page'
+    get '/our-story', :to => 'static_pages#our_story', :as => 'our_story_page'
+    get '/sustainability-impact', :to => 'static_pages#sustainability_impact', :as => 'sustainability_impact_page'
 
     post '/submit_ticket', :to => 'static_pages#submit_ticket'
     post '/submit_mailing', :to => 'mailings#submit_mailing'
