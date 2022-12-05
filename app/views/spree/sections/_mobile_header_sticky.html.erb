@@ -21,9 +21,15 @@
                             <% num_of_items = current_order.line_items.count %>
                         <% end %>
                         <% if !current_page?(cart_path) && !request.path.include?("login") && !request.path.include?("signup") %>
-                            <a href="#offcanvas-cart" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart"></i></a>
+                            <!--<a href="#offcanvas-cart" class="offcanvas-toggle" data-bs-toggle="offcanvas" aria-controls="offcanvas-cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart"></i></a>-->
+                            <a target="_blank" href="https://wa.me/+6281287935234?text=Hi! I am interested in learning about Pradipa.co and what you could offer">
+                                <i class="fal fa-phone"></i>
+                            </a>
                         <% else %>
-                            <a href="/cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart"></i></a>
+                            <!--<a href="/cart"><span class="cart-count"><%= num_of_items %></span><i class="fal fa-shopping-cart"></i></a>-->
+                            <a target="_blank" href="https://wa.me/+6281287935234?text=Hi! I am interested in learning about Pradipa.co and what you could offer">
+                                <i class="fal fa-phone"></i>
+                            </a>
                         <% end %>
                     </div>
                     <div class="mobile-menu-toggle">
