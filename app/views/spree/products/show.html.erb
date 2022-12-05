@@ -57,8 +57,27 @@
                     <div class="product-description">
                         <p><%= @product.meta_description %></p>
                     </div>
+                    <!--
                     <div id="cart-form" data-hook="cart_form">
                       <%= render partial: 'cart_form' %>
+                    </div>-->
+                    <div class="add-to-cart">
+                        <div class="product-buttons">
+                            <%= link_to "https://wa.me/+6281287935234?text=Hi! I am interested in this " + @product.name + ". I would love to get a sample for this product" do %>
+                                <%= button_tag class: 'full-width btn btn-dark btn-outline-hover-dark', id: 'add-to-cart-button', type: :submit do %>
+                                    <i class="fal fa-whatsapp"></i> <%= t('spree.ask_sample_whatsapp') %>
+                                <% end %>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="add-to-cart">
+                        <div class="product-buttons">
+                            <%= link_to "https://wa.me/+6281287935234?text=Hi! I am interested to order this " + @product.name do %>
+                                <%= button_tag class: 'full-width btn btn-dark btn-outline-hover-dark', id: 'add-to-cart-button', type: :submit do %>
+                                    <i class="fal fa-whatsapp"></i> <%= t('spree.order_this_whatsapp') %>
+                                <% end %>
+                            <% end %>
+                        </div>
                     </div>
                     <% if @brand.any? %>
                         <% brand = @brand.first %>

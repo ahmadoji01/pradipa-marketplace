@@ -168,6 +168,8 @@ en:
     producer:
       tab:
         order: "Your Order"
+    ask_sample_whatsapp: "Ask for a Sample of This Product"
+    order_this_whatsapp: "Order This Product"
   mailer:
     producer:
       order_notif_subject: "An order for your products are incoming!"
