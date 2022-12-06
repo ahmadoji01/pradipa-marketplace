@@ -1,8 +1,19 @@
 <meta charset="utf-8">
+<% if @meta_title == "" %>
 <title><%= title %></title>
+<% else %>
+<title><%= @meta_title %> - <%= title %></title>
+<% end %>
+
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport">
+
+<% if @meta_desc == "" %>
 <%== meta_data_tags %>
+<% else %>
+<meta name="description" content="<%= @meta_desc %>">
+<% end %>
+
 <%= canonical_tag(current_store.url) %>
 <link rel="icon" href="<%= image_url 'favicon.png' %>">
 

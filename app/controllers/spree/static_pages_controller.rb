@@ -28,9 +28,13 @@ module Spree
     end
 
     def natural_fibers
+      @meta_title = "Natural Fibers for Sustainable Fashion"
+      @meta_desc = "Natural handmade bags and textile made from water hyacinth and banana bark fibers. Shop with us now to make sustainable impact for people and earth"
     end
 
     def our_story
+      @meta_title = "Our Natural and Sustainable Story of Redefining Fashion"
+      @meta_desc = "We heard many horrible stories of how fashion nowadays have polluted the world seeing it contributes to 10% GHG emissions. We are here to democratize natural fibers for fashion!"
     end
 
     def sustainability_impact

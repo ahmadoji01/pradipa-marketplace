@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
-  before_action :coming_soon, :menu_taxon_id_search
+  before_action :coming_soon, :menu_taxon_id_search, :init_seo
   add_flash_types :success, :warning, :info, :danger
   include Pagy::Backend
+
+  def init_seo
+    @meta_title = ""
+    @meta_desc = ""
+  end
 
   def menu_taxon_id_search
     fashion = Spree::Taxon.find_by(name: "Fashion")
