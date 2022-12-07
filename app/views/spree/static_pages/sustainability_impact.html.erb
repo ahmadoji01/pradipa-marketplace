@@ -1,0 +1,69 @@
+<div class="parallax-banner parallax-banner-3" data-scrollax-parent="true" style="background:#00000044">
+    <div class="text-center d-flex w-100" style="align-items:center;justify-content:center">
+        <h1 class="title" style="color:white">Our contribution to the future</h1>
+    </div>
+    <div class="parallax-image" data-scrollax="properties: { translateY: '30%' }">
+        <div class="responsive-iframe swiper-slide">
+            <div class="iframe-video video-player" data-video-code="zSE56iQhbPs"></div>
+        </div>
+    </div>
+</div>
+<div class="section section-padding">
+    <div class="container">
+        <h1 class=" learts-mb-30">Pradipa.co Contribution to Sustainable Development Goals</h1>
+        <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 learts-mb-n30">
+
+            <div class="col learts-mb-30">
+                <div class="portfolio">
+                    <div class="thumbnail"><%= image_tag "for_use/sdgs_logo/5.png" %></div>
+                    <!--<div class="content">
+                        <h4 class="title"><a href="portfolio-details.html">Fresh Fruit Keeper</a></h4>
+                        <div class="desc">
+                            <p>I made this out of brushed stainless steel. It has…</p>
+                        </div>
+                        <div class="link"><a href="portfolio-details.html">Read more</a></div>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class="col learts-mb-30">
+                <div class="portfolio">
+                    <div class="thumbnail"><%= image_tag "for_use/sdgs_logo/8.png" %></div>
+                    <!--<div class="content">
+                        <h4 class="title"><a href="portfolio-details.html">Wooden Cutting Board</a></h4>
+                        <div class="desc">
+                            <p>My personalized Walnut or Maple Cutting Board makes a wonderful…</p>
+                        </div>
+                        <div class="link"><a href="portfolio-details.html">Read more</a></div>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class="col learts-mb-30">
+                <div class="portfolio">
+                    <div class="thumbnail"><%= image_tag "for_use/sdgs_logo/12.png" %></div>
+                    <!--<div class="content">
+                        <h4 class="title"><a href="portfolio-details.html">Elegant Kitchen Utensils</a></h4>
+                        <div class="desc">
+                            <p>This is made of porcelain, lead free and stain resistant.…</p>
+                        </div>
+                        <div class="link"><a href="portfolio-details.html">Read more</a></div>
+                    </div>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<%= render partial: 'spree/sections/full_image_with_content_left', locals: {
+    subtitle: "Started from the motivation to democratize natural fibers for fashion",
+    title: "From a peaceful village to the world",
+    body: "We started from a humble beginning in a beautiful village of Cianjur, Indonesia. One of our team, Fauzi, when studying at EDHEC Business School in France, he learned that fashion industry is one of the most polluting industries, contributing to 10% GHG emissions and 20% of global wastewater. Seeing how little industries are making an effort in reducing the pollution, he eventually learned that there are housewives in one area in Cianjur who formed a community.",
+    img_url: "for_use/our_story/story-1.jpg"
+} %>
+<%= render partial: 'spree/sections/full_image_with_content_right', locals: {
+    subtitle: "Banana bark as a strong fiber",
+    title: "Utilizing natural materials and empowering woman",
+    body: "Fauzi visited this small community and their leader’s answer about the motivation of why she formed the community to produce the valuable crafts strikes us the most. She wanted to make an impact on the world by empowering women who mostly stay at home to produce valuable fashion crafts out of sustainable materials. She told us interesting stories about how she found out a robust, long-lasting natural fiber made out of banana bark where people usually use it as a rope to tie the paddy that then will be carried to the rice field. Observing this fact, she tried to process this material and it turns out that this fiber is much stronger than what is already available on the market like raffia, palm fiber, and even pandan leaves. She then turned this into an opportunity to craft it into fashion products that are sustainable and eco-friendly while empowering women in her areas to have meaningful work and to elevate their economical conditions.",
+    img_url: "for_use/our_story/story-2.jpg"
+} %>

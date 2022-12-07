@@ -12,7 +12,7 @@
     </script>
   </head>
   <body id="<%= @body_id || 'default' %>" data-hook="body">
-    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") || (controller.controller_name == "static_pages" && controller.action_name == "our_story") %>
+    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") || (controller.controller_name == "static_pages" && (controller.action_name == "our_story" || controller.action_name == "sustainability_impact")) %>
       <%= render partial: 'spree/sections/transparent_header' %>
     <% else %>
       <%= render partial: 'spree/sections/header_simplified' %>
@@ -20,7 +20,7 @@
 
     <%= render partial: 'spree/sections/header_sticky' %>
 
-    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") || (controller.controller_name == "static_pages" && controller.action_name == "our_story") %>
+    <% if current_page?(main_app.spree_path) || (controller.controller_name == "collections" && controller.action_name == "show") || (controller.controller_name == "static_pages" && (controller.action_name == "our_story" || controller.action_name == "sustainability_impact")) %>
       <%= render partial: 'spree/sections/transparent_mobile_header' %>
     <% else %>
       <%= render partial: 'spree/sections/mobile_header' %>
@@ -67,6 +67,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-sidebar/3.3.1/jquery.sticky-sidebar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script async src="https://unpkg.com/typer-dot-js@0.1.0/typer.js"></script>
     
     <%= javascript_include_tag 'main.js' %>
   </body>
